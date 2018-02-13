@@ -1,0 +1,543 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"><title>SNMP: Simple? Network Management Protocol</title>
+		
+		<link href="note161_files/products.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+<!--
+.style4 {
+	font-size: xx-large;
+	color: #73A3C1;
+}
+-->
+        </style>
+		<csimport user="bar.html" occur="27"></csimport>
+			<script type="text/javascript" src="note161_files/menumachine.js"></script></head><body onload="void(0);">
+<div id="container">
+<div id="header">
+  <div align="right">
+    <h1><img src="note161_files/ranenote.gif" alt="RaneNote" align="left" height="42" width="433">
+      <span class="style4">RaneNote</span> </h1>
+  </div>
+  <br>
+  <h1 align="left">SNMP: Simple? Network Management Protocol</h1>
+<hr>
+    
+        <p><b><i>Douglas Bruey</i></b></p>
+        <p>[RaneNote 161, written December 2005]</p>
+        <ul>
+          <li>An SNMP Overview
+          </li><li>The Message Format
+          </li><li>The Actual Bytes
+    </li></ul>
+        <h3><b>Introduction</b></h3>
+        <p>Although
+some RS-232 connectors still cling desperately to audio hardware
+products around the world, for years Ethernet and the Internet Protocol
+(IP) have been replacing older serial communication formats as the
+connection of choice for monitoring and controlling audio as well as
+video, networking, and industrial equipment. Since the childhood of
+computer networking, network designers envisioned a world where a
+person's audio system, video system, HVAC system, and toaster all
+connect to the same network. To that end, computer scientists developed
+a protocol capable of managing any network device. The result was SNMP,
+which stands for Simple Network Management Protocol. SNMP was
+introduced in 1988 and now includes three distinct versions SNMPv1,
+SNMPv2, and SNMPv3. Due to the maturity of SNMP, many device
+manufacturers include support for this protocol in their products, and
+many SNMP management solutions exist off-the-shelf for common operating
+systems and programming languages. However, SNMP management
+capabilities are still lacking for today's control system platforms,
+requiring control system programmers to write their own SNMP management
+code.</p>
+        <p>Of course, writing an SNMP manager should be simple, right? After all, it is the <i>Simple</i>
+Network Management Protocol. Unfortunately, "Simple" means "easy for
+computer scientists who spend eight hours a day thinking about
+designing network protocols." When making the leap from constructing
+text strings to constructing SNMP messages, the word "Simple" is a
+cruel joke that leaves control system programmers shouting "Just tell
+me the bytes to send!"</p>
+        <p>In answer to that plea, this
+RaneNote provides a technical overview of SNMPv1, along with the
+terminology necessary to understand the SNMP message, describe the
+message format, and show exactly (byte-by-byte) how to construct the
+SNMP message.</p>
+        <h3>SNMP: Overview</h3>
+        <p>SNMP is
+the protocol that allows an SNMP manager (the controller) to control an
+SNMP agent (the controlee) by exchanging SNMP messages. An SNMP message
+is a packet sent over UDP/IP to port 161. UDP/IP is the User Datagram
+Protocol over IP. To learn how to get your hardware to send your SNMP
+message using UDP/IP to port 161, pick your favorite programming
+language and hit the help files. To learn how to construct an SNMP
+message, read on.</p>
+        <p>The main purpose of an SNMP message
+is to control (set) or monitor (get) parameters on an SNMP agent. In
+SNMP, a parameter is an instance of a more generic object. For example,
+an SNMP agent may have several instances of a microphoneMute object --
+one instance for each microphone input. An SNMP manager can set or get
+the value for each instance (each parameter). In an SNMP agent,
+parameters are arranged in a tree. SNMP uses an Object Identifier (OID)
+to specify the exact parameter to set or get in the tree. An OID is a
+list of numbers separated by periods. For example, the OID addressing
+the microphoneMute parameter in a Rane NM 1 is
+'1.3.6.1.4.1.2680.1.2.7.3.2.0'. This OID is actually a combination of
+two values. The first value is the OID of the generic object
+'1.3.6.1.4.1.2680.1.2.7.3.2'. The second is the instance value, which
+specifies the particular instance of the mirophoneMute object. The
+instance value in this case is 0, because the NM 1 has only one
+microphone input. But where do these OIDs come from?</p>
+        <p>Every
+SNMP agent has an address book of all its objects, called the MIB or
+Management Information Base. The MIB provides the name, OID, data type,
+read/write permissions, and a brief description for each object in an
+SNMP agent. For an example, check out the Rane NM 1 MIB in its <a href="http://www.rane.com/pdf/nm1man.pdf">manual</a>.
+Armed with information about an object from the MIB, and the instance
+value, an SNMP manager can send an SNMP message to set or get one of
+the parameters on an SNMP agent. However, there are two major
+difficulties that an SNMP message must overcome to be understood by any
+SNMP device.</p>
+        <p>All SNMP devices must understand an SNMP
+message, which presents a couple problems. The first problem exists
+because different software languages have slightly different sets of
+data types (integers, strings, bytes, characters, etc). For example, an
+SNMP manager sending a message full of Java data types may not be
+understood by an SNMP agent written in C. To solve this problem SNMP
+uses ASN.1 or Abstract Syntax Notation One to define the data types
+used to build an SNMP message. Since ASN.1 is independent of any
+particular programming language, the SNMP agents and managers may be
+written in any language. However, even when using valid ASN.1 data
+types another problem still exists. When sending a particular data type
+over the wire, how should it be encoded? Should strings be null
+terminated as in the programming language C, or not? Should Boolean
+values be 8 bits as in C++ or 16 bits as in Visual Basic 6? ASN.1
+includes Basic Encoding Rules (BER) to address this problem. Regardless
+of programming language, all data types are encoded the same way before
+they are placed on the wire by following the Basic Encoding Rules. In
+short, all data fields in an SNMP message must be a valid ASN.1 data
+type, and encoded according to the BER. To send a properly formatted
+message, the programmer must understand ASN.1 and the Basic Encoding
+Rules.</p>
+        <h3>ASN.1</h3>
+        <p>Constructing a message
+requires some knowledge of the data types specified by ASN.1, which
+fall into two categories: primitive and complex. ASN.1 primitive data
+types include Integer, Octet (byte, character) String, Null, Boolean
+and Object Identifier. The Object Identifier type is central to the
+SNMP message, because a field of the Object Identifier type holds the
+OID used to address a parameter in the SNMP agent. To expand the
+programmer's ability to organize data, ASN.1 allows primitive data
+types to be grouped together into complex data types.</p>
+        <p>ASN.1
+offers several complex data types necessary for building SNMP messages.
+One complex data type is the Sequence. A Sequence is simply a list of
+data fields. Each field in a Sequence can have a different data type.
+ASN.1 also defines the SNMP PDU (Protocol Data unit) data types, which
+are complex data types specific to SNMP. The PDU field contains the
+body of an SNMP message. Two PDU data types available are GetRequest
+and SetRequest, which hold all the necessary data to get and set
+parameters, respectively. Ultimately the SNMP message is a structure
+built entirely from fields of ASN.1 data types. However, specifying the
+correct data type is not enough. If the SNMP message is a Sequence of
+fields with varying data types, how can a recipient know where one
+field ends and another begins, or the data type of each field? Avoid
+these problems by conforming to the Basic Encoding Rules.</p>
+        <h3>Basic Encoding Rules</h3>
+        <p>Follow
+the Basic Encoding Rules when laying out the bytes of an SNMP message.
+The most fundamental rule states that each field is encoded in three
+parts: Type, Length, and Data. Type specifies the data type of the
+field using a single byte identifier. For a brief table of some data
+types and their identifiers, see Table 1. Length specifies the length
+in bytes of the following Data section, and Data is the actual value
+communicated (the number, string, OID, etc). One way to visualize
+encoding a field is shown in Figure 1.</p>
+        <div align="center">
+          <p><img src="note161_files/n161fig1.gif" alt="" border="0" height="52" width="220"></p>
+          <h4><b>Figure 1. Format: BER Encoded Field (Primitive Data Type)</b></h4>
+        </div>
+        <p>Some
+data types, like Sequences and PDUs, are built from several smaller
+fields. Therefore, a complex data type is encoded as nested fields, as
+shown in Figure 2.</p>
+        <div align="center">
+          <p><img src="note161_files/n161fig2.gif" alt="" border="0" height="64" width="556"></p>
+          <h4><b>Figure 2. Format: BER Encoded Fields (Complex Data Type)</b></h4>
+        </div>
+        <p>There
+are two more Basic Encoding Rules necessary for encoding an SNMP
+message. Both apply to encoding OIDs. The first rule applies when
+encoding the first two numbers in the OID. According to BER, the first
+two numbers of any OID (x.y) are encoded as one value using the formula
+(40*x)+y. The first two numbers in an SNMP OID are always 1.3.
+Therefore, the first two numbers of an SNMP OID are encoded as 43 or
+0x2B, because (40*1)+3 = 43. After the first two numbers are encoded,
+the subsequent numbers in the OID are each encoded as a byte. However,
+a special rule is required for large numbers because one byte (eight
+bits) can only represent a number from 0-255. For example, the number
+2680 in the Rane NM 1 microphoneMute OID '1.3.6.1.4.1.2680.1.2.7.3.2.0'
+cannot be encoded using a single byte. The rule for large numbers
+states that only the lower 7 bits in the byte are used for holding the
+value (0-127). The highest order bit is used as a flag to let the
+recipient know that this number spans more than one byte. Therefore,
+any number over 127 must be encoded using more than one byte. According
+to this rule, the number 2680 must be encoded 0x94 0x78. Since the most
+significant bit is set in the first byte (0x94), the recipient knows to
+use the lower 7 bits from each byte (0x14 and 0x78) and decode the two
+bytes as (0x14 *128) + 0x78 = 2680.</p>
+        <div align="center">
+          <table align="center" border="0" cellpadding="2" cellspacing="2" width="600">
+            <tbody><tr align="center" bgcolor="white">
+              <td><h4>&nbsp;</h4></td>
+              <td><h4>Primitive Data Types</h4></td>
+              <td><h4>Identifier</h4></td>
+              <td><h4>&nbsp;</h4></td>
+              <td><h4>Complex Data Types</h4></td>
+              <td><h4>Identifier</h4></td>
+              <td><h4>&nbsp;</h4></td>
+            </tr>
+            <tr align="center">
+              <td bgcolor="white"></td>
+              <td><p>Integer</p></td>
+              <td><p>0x02</p></td>
+              <td bgcolor="white"><p>&nbsp;</p></td>
+              <td><p>Sequence</p></td>
+              <td><p>0x30</p></td>
+              <td bgcolor="white"></td>
+            </tr>
+            <tr align="center">
+              <td bgcolor="white"></td>
+              <td><p>Octet String</p></td>
+              <td><p>0x04</p></td>
+              <td bgcolor="white"><p>&nbsp;</p></td>
+              <td><p>GetRequest PDU</p></td>
+              <td><p>0xA0</p></td>
+              <td bgcolor="white"></td>
+            </tr>
+            <tr align="center">
+              <td bgcolor="white"></td>
+              <td><p>Null</p></td>
+              <td><p>0x05</p></td>
+              <td bgcolor="white"><p>&nbsp;</p></td>
+              <td><p>GetResponse PDU</p></td>
+              <td><p>0xA2</p></td>
+              <td bgcolor="white"></td>
+            </tr>
+            <tr align="center">
+              <td bgcolor="white"></td>
+              <td><p>Object Identifier</p></td>
+              <td><p>0x06</p></td>
+              <td bgcolor="white"><p>&nbsp;</p></td>
+              <td><p>SetRequest PDU</p></td>
+              <td><p>0xA3</p></td>
+              <td bgcolor="white"></td>
+            </tr>
+          </tbody></table>
+          <h4><b>Table 1. Some ASN.1 Data Types</b></h4>
+        </div>
+        <h3>The SNMP Message Format</h3>
+        <p>The
+SNMP message format specifies which fields to include in the message
+and in what order. Ultimately, the message is made of several layers of
+nested fields. At the outer-most layer, the SNMP message is a single
+field, of the Sequence type. The entire message is a Sequence of three
+smaller fields: the SNMP Version (Integer), the SNMP Community String
+(Octet String), and the SNMP PDU (GetRequest, or SetRequest).</p>
+        <div align="center">
+          <p><a href="http://www.rane.com/swf/n161fig3.swf"><img src="note161_files/n161fig3.gif" alt="" border="0" height="98" width="734"></a></p>
+        </div>
+        <p>Since
+the SNMP Version and SNMP Community String are primitive data types
+they are not built from smaller fields (no more layers). However, the
+PDU is a complex data type made up of several smaller fields (more
+layers). The PDU is composed of a Request ID (Integer), Error
+(Integer), Error Index (Integer), and a Varbind List. A Varbind or
+Variable Binding is a Sequence of two specific fields. The first field
+is an OID, which addresses a specific parameter. The second field
+contains the Value of the specified parameter. In a SetRequest, Value
+must be the same data type specified in the MIB for the parameter being
+set. In a GetRequest, Value is a Null with length 0x00. This null data
+is a placeholder for the Value data that the SNMP agent returns using
+the GetResponse PDU. Furthermore, as the name suggests, a Varbind List
+is a Sequence of Varbinds. Finally, when a message is setting or
+getting a single parameter, the Varbind List holds only one Varbind.
+For an explanation of each field in the SNMP message see Table 2. </p>
+        <div align="center">
+          <p><a href="http://www.rane.com/swf/n161fig4.swf"><img src="note161_files/n161fig4.gif" alt="" border="0" height="150" width="734"></a></p>
+          <table align="center" border="1" cellpadding="0" cellspacing="3" width="600">
+            <tbody><tr>
+              <td><h4>Field</h4></td>
+              <td><h4>Description</h4></td>
+            </tr>
+            <tr>
+              <td><p>SNMP message</p></td>
+              <td><p>A Sequence representing the entire SNMP message consisting of the SNMP version, Community String, and SNMP PDU.</p></td>
+            </tr>
+            <tr>
+              <td><p>SNMP Version</p></td>
+              <td><p>An Integer that identifies the version of SNMP. SNMPv1 = 0</p></td>
+            </tr>
+            <tr>
+              <td><p>SNMP Community String</p></td>
+              <td><p>An Octet String that may contain a string used to add security to SNMP devices.</p></td>
+            </tr>
+            <tr>
+              <td><p>SNMP PDU</p></td>
+              <td><p>An
+SNMP PDU contains the body of the SNMP message. There are several types
+of PDUs. Three common PDUs are GetRequest, GetResponse, SetRequest.</p></td>
+            </tr>
+            <tr>
+              <td><p>Request ID</p></td>
+              <td><p>An
+Integer that identifies a particular SNMP request. This index is echoed
+back in the response from the SNMP agent, allowing the SNMP manager to
+match an incoming response to the appropriate request.</p></td>
+            </tr>
+            <tr>
+              <td rowspan="7"><p>Error</p></td>
+              <td><p>An
+Integer set to 0x00 in the request sent by the SNMP manager. The SNMP
+agent places an error code in this field in the response message if an
+error occurred processing the request. Some error codes include:</p></td>
+            </tr>
+            <tr>
+              <td><ul>
+                  <li>
+                    <p>0x00 -- No error occurred                    </p>
+                  </li></ul></td>
+            </tr>
+            <tr>
+              <td><ul>
+                  <li>
+                    <p>0x01 -- Response message too large to transport                    </p>
+                  </li></ul></td>
+            </tr>
+            <tr>
+              <td><ul>
+                  <li>
+                    <p>0x02 -- The name of the requested object was not found                    </p>
+                  </li></ul></td>
+            </tr>
+            <tr>
+              <td><ul>
+                  <li>
+                    <p>0x03 -- A data type in the request did not match the data type in the SNMP agent                    </p>
+                  </li></ul></td>
+            </tr>
+            <tr>
+              <td><ul>
+                  <li>
+                    <p>0x04 -- The SNMP manager attempted to set a read-only parameter                    </p>
+                  </li></ul></td>
+            </tr>
+            <tr>
+              <td><ul>
+                  <li>
+                    <p>0x05 -- General Error (some error other than the ones listed above)                    </p>
+                  </li></ul></td>
+            </tr>
+            <tr>
+              <td><p>Error Index</p></td>
+              <td><p>If an Error occurs, the Error Index holds a pointer to the Object that caused the error, otherwise the Error Index is 0x00.</p></td>
+            </tr>
+            <tr>
+              <td><p>Varbind List</p></td>
+              <td><p>A Sequence of Varbinds.</p></td>
+            </tr>
+            <tr>
+              <td><p>Varbind</p></td>
+              <td><p>A Sequence of two fields, an Object ID and the value for/from that Object ID.</p></td>
+            </tr>
+            <tr>
+              <td><p>Object Identifier</p></td>
+              <td><p>An Object Identifier that points to a particular parameter in the SNMP agent.</p></td>
+            </tr>
+            <tr>
+              <td rowspan="3"><p>Value</p></td>
+              <td><p>SetRequest PDU -- Value is applied to the specified OID of the SNMP agent.</p></td>
+            </tr>
+            <tr>
+              <td><p>GetRequest PDU -- Value is a Null that acts as a placeholder for the return data.</p></td>
+            </tr>
+            <tr>
+              <td><p>GetResponse PDU -- The returned Value from the specified OID of the SNMP agent.</p></td>
+            </tr>
+          </tbody></table>
+          <h4><b>Table 2. Fields in the SNMP message</b></h4>
+        </div>
+        <h3>The Actual Bytes</h3>
+        <p>To
+all the readers joining us at this point, because they are in a hurry,
+or because they enjoy reading the last chapter of their mystery novels
+first, welcome. Now is the time to create the SNMP message by applying
+the Basic Encoding Rules to the fields and laying out the bytes in the
+correct order. As an example, Figure 3 shows an SNMP GetRequest packet
+for the microphoneMute parameter on a Rane NM 1 (OID:
+1.3.6.1.4.1.2680.1.2.7.3.2.0). It is important to remember that
+changing the number of bytes of any field in the SNMP message requires
+changing the Length byte of all the outer layers that enclose the
+edited field. For example, changing the GetRequest below to a
+SetRequest that sets the microphoneMute to a Value of 1 (0x01) requires
+changing the PDU data type to SetRequest (0xA3) and the Value field to
+an integer (0x04) of length 0x01 and data 0x01. However, increasing the
+length of the Value field also increases the length of the Varbind,
+Varbind List, PDU, and SNMP message fields.</p>
+        <div align="center">
+          <p><a href="http://www.rane.com/swf/n161fig5.swf"><img src="note161_files/n161fig5.gif" alt="" border="0" height="114" width="750"></a></p>
+          <h4><b>Figure 3. SNMP Message Diagram (click to enlarge, right-click to zoom and pan).</b></h4>
+    </div>
+        <p><img src="note161_files/pdficon.gif" alt="PDF" height="32" width="32"> The Rane NM 1 MIB (Management Information Base) is listed in the <a href="http://www.rane.com/pdf/nm1man.pdf">NM 1 Manual (PDF)</a>. </p>
+    <h3><a name="ref"></a>References</h3>
+        <ol>
+          <li>Kevin Gross and Tom Holtzen. <i>Controlling and Monitoring Audio Systems with Simple Network Management Protocol (SNMP)</i>, presented at the 105th Convention of the <a href="http://www.aes.org/">Audio Engineering Society</a>, San Francisco, September 26, 1998, preprint no. 4760.</li>
+          <li>ITU-T X.690, ASN.1 Encoding Rules Specification, 7/2002.</li>
+          <li>Vijay Mukhi's Computer Institute, India: <a href="http://www.vijaymukhi.com/vmis/bersnmp.htm">BER SNMP</a> and <a href="http://www.vijaymukhi.com/vmis/snmp.htm">SNMP</a>.</li>
+          <li>Instytut Elektroniki I Telekommunikacji (Electronic and telecommunication Institute), Poland: <a href="http://www.et.put.poznan.pl/snmp/main/mainmenu.html">Lessons about SNMP</a>.</li>
+          <li><a href="http://www.tcpipguide.com/">The TCP/IP Guide</a>, Version 3.0, Charles M. Kozierok: <a href="http://www.tcpipguide.com/free/t_SNMPVersion1SNMPv1MessageFormat.htm">SNMP Version 1 (SNMPv1) Message Format</a></li>
+          <li>Objective Systems, Inc.: <a href="http://www.obj-sys.com/asn1tutorial/node1.html">ASN.1</a></li>
+        </ol>
+        <p><img src="note161_files/pdficon.gif" alt="PDF" height="32" width="32"> <a href="http://www.rane.com/pdf/ranenotes/SNMP%20Simple%20Network%20Management%20Protocol.pdf">"SNMP: Simple? Network Management Protocol" (400k)</a> This note in PDF.</p>
+  </div>
+<div id="footer"><p><a href="#top"><img src="note161_files/return.gif" alt="Return to top" border="0" height="16" width="130"></a></p>
+</div>
+</div>
+
+<csobj csref="bar.html" h="38" occur="27" t="Component" w="864">
+			</csobj><div align="center">
+			</div>
+			<div id="bbML" style="position: absolute; z-index: 2000; top: 0px; left: 336px; width: 608px; height: 36px; visibility: visible;">
+				<bb:menu height="36" width="608" i="1" v="1.5">
+					<script type="text/javascript"><!--
+bbL=bbMenu.length;bbMenu[bbL]=new _bbroot(bbL,"bbML",0,0,2,0,0,0,1,15,4,/*URL*/"GeneratedItems/menutriangle.gif",/*URL*/"GeneratedItems/menutriangledown.gif",/*URL*/"GeneratedItems/menutriangleleft.gif",1,0,400,"","#FFFFCC",2,1,"Verdana,Geneva,Sans-serif",10,1,0,"center",0,3,0.05,0.2,1,"#FFFFCC",2,1,"Verdana,Geneva,Sans-serif",10,1,0,"center",0,3,0,0,1,/*URL*/"GeneratedItems/spacer.gif",0,0,5,5);
+/*begin_bbMenuDefs*/
+bbMenu[bbL].bM("bbMenu1","","",100,32,/*URL*/"index.html",/*URL*/"ranebar.gif",/*URL*/"rhomebar.gif","#336699","#6699cc","white","black","","","","",0);
+bbMenu[bbL].bM("m5m0v96","","Products",124,20,"","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m8g5ktq","m5m0v96","by Type",124,20,/*URL*/"procat.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m8g5ktr","m5m0v96","Featured Installs",124,20,/*URL*/"http://www.rane.com/apps/rane/featmain.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("ma4tc50","m5m0v96","What's New",124,20,/*URL*/"new.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("ma4tc51","m5m0v96","Buyer Beware",124,20,/*URL*/"caveat.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("ma4tc52","m5m0v96","USA Reps",124,20,/*URL*/"where.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m1wdyt4i","m5m0v96","International",124,20,/*URL*/"internat.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m1wdyt4j","m5m0v96","Accessory Store",124,20,/*URL*/"ordwarn.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m3lisg60","m5m0v96","Outlet Store",124,20,/*URL*/"ordwarn2.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v98","","About Rane",124,20,"","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9g","m5m0v98","Factory Contacts",124,20,/*URL*/"email.php","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9h","m5m0v98","The Rane Story",124,20,/*URL*/"ranebio.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9i","m5m0v98","Our Mission",124,20,/*URL*/"upclose.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9j","m5m0v98","Events",124,20,/*URL*/"events.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m41gbdha","m5m0v98","Careers",124,20,/*URL*/"careers.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m8g5kto","","Support",124,20,"","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9l","m8g5kto","Technical FAQ",123,20,/*URL*/"tech.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9s","m5m0v9l","DJ Crossfaders",123,20,/*URL*/"crossfadr.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9t","m5m0v9l","Power Supplies",123,20,/*URL*/"rap.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9m","m8g5kto","Product Registration",123,20,/*URL*/"register.php","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9n","m8g5kto","Warranty & Service",123,20,/*URL*/"service.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9o","m8g5kto","Software Updates",123,20,/*URL*/"raneware.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9p","m8g5kto","Discontinued Items",123,20,/*URL*/"oldman.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9q","m8g5kto","The Library",123,20,/*URL*/"library.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9r","m8g5kto","Rane Training",123,20,/*URL*/"train.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m2qfpp57","m8g5kto","Rane Graphics",123,20,/*URL*/"pics.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9u","m2qfpp57","Product Photos",123,20,/*URL*/"pics.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9v","m2qfpp57","CAD files",123,20,/*URL*/"cadlist.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9w","m2qfpp57","Rane Logo",123,20,/*URL*/"logo.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m8g5ktp","","Reference",124,20,"","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9x","m8g5ktp","Pro Audio Reference",125,20,/*URL*/"digi-dic.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9y","m8g5ktp","Pro Audio Names",125,20,/*URL*/"pronames.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0v9z","m8g5ktp","Pro Audio Books",125,20,/*URL*/"par-book.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0va0","m8g5ktp","RaneNotes",125,20,/*URL*/"library.html","","","#336699","#6699cc","white","black","","","","",1);
+bbMenu[bbL].bM("m5m0va1","m8g5ktp","Audio Links",125,20,/*URL*/"hotlinks.html","","","#336699","#6699cc","white","black","","","","",1);
+/*end_bbMenuDefs*/
+bbMenu[bbL].buildLayers();
+//-->
+</script></bb:menu><div id="bbMLbbMenu1" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 104px; height: 36px; left: 0px; top: 0px;"><div id="bbMLbbMenu1n" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; color: white; left: 2px; top: 2px; width: 100px; height: 32px;"><img name="bbMLbbMenu1i" id="bbMLbbMenu1i" src="note161_files/ranebar.gif" alt="" title="" height="32" width="100"></div><div id="bbMLbbMenu1e" style="overflow: hidden; display: block; cursor: pointer; width: 104px; height: 36px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v96" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 102px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v96n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Products</div><div id="bbMLm5m0v96a" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; top: 17px; left: 111px; width: 9px; height: 5px;"><img src="note161_files/menutriangledown.gif"></div><div id="bbMLm5m0v96e" style="overflow: hidden; display: block; cursor: default; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v96x1" style="left: 102px; top: 22px; z-index: 3000; position: absolute; visibility: hidden;">
+<div id="bbMLm8g5ktq" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm8g5ktqn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">by Type</div><div id="bbMLm8g5ktqe" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm8g5ktr" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 22px; background-color: rgb(255, 255, 204);"><div id="bbMLm8g5ktrn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Featured Installs</div><div id="bbMLm8g5ktre" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLma4tc50" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 44px; background-color: rgb(255, 255, 204);"><div id="bbMLma4tc50n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">What's New</div><div id="bbMLma4tc50e" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLma4tc51" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 66px; background-color: rgb(255, 255, 204);"><div id="bbMLma4tc51n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Buyer Beware</div><div id="bbMLma4tc51e" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLma4tc52" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 88px; background-color: rgb(255, 255, 204);"><div id="bbMLma4tc52n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">USA Reps</div><div id="bbMLma4tc52e" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm1wdyt4i" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 110px; background-color: rgb(255, 255, 204);"><div id="bbMLm1wdyt4in" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">International</div><div id="bbMLm1wdyt4ie" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm1wdyt4j" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 132px; background-color: rgb(255, 255, 204);"><div id="bbMLm1wdyt4jn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Accessory Store</div><div id="bbMLm1wdyt4je" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm3lisg60" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 154px; background-color: rgb(255, 255, 204);"><div id="bbMLm3lisg60n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Outlet Store</div><div id="bbMLm3lisg60e" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+</div>
+<div id="bbMLm5m0v98" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 228px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v98n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">About Rane</div><div id="bbMLm5m0v98a" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; top: 17px; left: 111px; width: 9px; height: 5px;"><img src="note161_files/menutriangledown.gif"></div><div id="bbMLm5m0v98e" style="overflow: hidden; display: block; cursor: default; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v98x1" style="left: 228px; top: 22px; z-index: 3000; position: absolute; visibility: hidden;">
+<div id="bbMLm5m0v9g" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9gn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Factory Contacts</div><div id="bbMLm5m0v9ge" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9h" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 22px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9hn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">The Rane Story</div><div id="bbMLm5m0v9he" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9i" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 44px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9in" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Our Mission</div><div id="bbMLm5m0v9ie" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9j" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 66px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9jn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Events</div><div id="bbMLm5m0v9je" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm41gbdha" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 0px; top: 88px; background-color: rgb(255, 255, 204);"><div id="bbMLm41gbdhan" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Careers</div><div id="bbMLm41gbdhae" style="overflow: hidden; display: block; cursor: pointer; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+</div>
+<div id="bbMLm8g5kto" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 354px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm8g5kton" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Support</div><div id="bbMLm8g5ktoa" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; top: 17px; left: 111px; width: 9px; height: 5px;"><img src="note161_files/menutriangledown.gif"></div><div id="bbMLm8g5ktoe" style="overflow: hidden; display: block; cursor: default; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm8g5ktox1" style="left: 354px; top: 22px; z-index: 3000; position: absolute; visibility: hidden;">
+<div id="bbMLm5m0v9l" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9ln" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Technical FAQ</div><div id="bbMLm5m0v9la" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; top: 7px; left: 115px; width: 5px; height: 9px;"><img src="note161_files/menutriangle.gif"></div><div id="bbMLm5m0v9le" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9lx2" style="left: 119px; top: 5px; z-index: 4000; position: absolute; visibility: hidden;">
+<div id="bbMLm5m0v9s" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9sn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">DJ Crossfaders</div><div id="bbMLm5m0v9se" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9t" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 22px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9tn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Power Supplies</div><div id="bbMLm5m0v9te" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+</div>
+<div id="bbMLm5m0v9m" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 22px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9mn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Product Registration</div><div id="bbMLm5m0v9me" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9n" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 44px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9nn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Warranty &amp; Service</div><div id="bbMLm5m0v9ne" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9o" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 66px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9on" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Software Updates</div><div id="bbMLm5m0v9oe" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9p" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 88px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9pn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Discontinued Items</div><div id="bbMLm5m0v9pe" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9q" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 110px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9qn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">The Library</div><div id="bbMLm5m0v9qe" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9r" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 132px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9rn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Rane Training</div><div id="bbMLm5m0v9re" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm2qfpp57" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 154px; background-color: rgb(255, 255, 204);"><div id="bbMLm2qfpp57n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Rane Graphics</div><div id="bbMLm2qfpp57a" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; top: 7px; left: 115px; width: 5px; height: 9px;"><img src="note161_files/menutriangle.gif"></div><div id="bbMLm2qfpp57e" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm2qfpp57x2" style="left: 119px; top: 159px; z-index: 4000; position: absolute; visibility: hidden;">
+<div id="bbMLm5m0v9u" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9un" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Product Photos</div><div id="bbMLm5m0v9ue" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9v" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 22px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9vn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">CAD files</div><div id="bbMLm5m0v9ve" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9w" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 127px; height: 24px; left: 0px; top: 44px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9wn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 123px; height: 17px; padding-top: 3px;">Rane Logo</div><div id="bbMLm5m0v9we" style="overflow: hidden; display: block; cursor: pointer; width: 127px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+</div>
+</div>
+<div id="bbMLm8g5ktp" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 128px; height: 24px; left: 480px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm8g5ktpn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 124px; height: 17px; padding-top: 3px;">Reference</div><div id="bbMLm8g5ktpa" style="position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; top: 17px; left: 111px; width: 9px; height: 5px;"><img src="note161_files/menutriangledown.gif"></div><div id="bbMLm8g5ktpe" style="overflow: hidden; display: block; cursor: default; width: 128px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm8g5ktpx1" style="left: 480px; top: 22px; z-index: 3000; position: absolute; visibility: hidden;">
+<div id="bbMLm5m0v9x" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 129px; height: 24px; left: 0px; top: 0px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9xn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 125px; height: 17px; padding-top: 3px;">Pro Audio Reference</div><div id="bbMLm5m0v9xe" style="overflow: hidden; display: block; cursor: pointer; width: 129px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9y" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 129px; height: 24px; left: 0px; top: 22px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9yn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 125px; height: 17px; padding-top: 3px;">Pro Audio Names</div><div id="bbMLm5m0v9ye" style="overflow: hidden; display: block; cursor: pointer; width: 129px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0v9z" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 129px; height: 24px; left: 0px; top: 44px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0v9zn" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 125px; height: 17px; padding-top: 3px;">Pro Audio Books</div><div id="bbMLm5m0v9ze" style="overflow: hidden; display: block; cursor: pointer; width: 129px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0va0" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 129px; height: 24px; left: 0px; top: 66px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0va0n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 125px; height: 17px; padding-top: 3px;">RaneNotes</div><div id="bbMLm5m0va0e" style="overflow: hidden; display: block; cursor: pointer; width: 129px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+<div id="bbMLm5m0va1" style="overflow: hidden; display: block; position: absolute; visibility: inherit; width: 129px; height: 24px; left: 0px; top: 88px; background-color: rgb(255, 255, 204);"><div id="bbMLm5m0va1n" style="overflow: hidden; position: absolute; visibility: inherit; font-size: 10px; font-weight: bold; font-family: Verdana,Geneva,Sans-serif; text-align: center; background-color: rgb(51, 102, 153); color: white; left: 2px; top: 2px; width: 125px; height: 17px; padding-top: 3px;">Audio Links</div><div id="bbMLm5m0va1e" style="overflow: hidden; display: block; cursor: pointer; width: 129px; height: 24px; left: 0px; top: 0px; position: absolute; visibility: inherit;">&nbsp;</div>
+</div>
+</div>
+</div>
+
+				
+		
+</body></html>

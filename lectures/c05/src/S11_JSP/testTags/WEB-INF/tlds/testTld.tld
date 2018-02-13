@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>testTld</shortname>
+  <info>Testing jsp tags</info>
+
+  <tag>
+    <name>tagError</name>
+    <tagclass>eu.ase.taglib.TagError</tagclass>
+    <bodycontent>JSP</bodycontent> <!-- Also: empty, tagdependent -->
+    <info>Show a string as an error message</info>
+    <attribute>
+      <name>color</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+  <name>tagList</name>
+  <tagclass>eu.ase.taglib.TagList</tagclass>
+  <bodycontent>JSP</bodycontent>
+  <info>show a list of items</info>
+  <attribute>
+    <name>items</name>
+    <required>false</required>
+    <rtexprvalue>true</rtexprvalue>
+  </attribute>
+</tag>
+
+</taglib>

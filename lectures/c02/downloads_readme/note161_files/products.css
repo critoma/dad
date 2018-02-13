@@ -1,0 +1,48 @@
+/* CSS Document*/
+body,td,th {
+   color: #000000;
+   font-family: Verdana, Arial, sans-serif;
+   background-color: #fff8dc;
+}
+
+p{
+font-size: small;
+color: #000000;
+padding: 3px;
+}
+
+h6{font-size:xx-small}
+
+h5{font-size:x-small}
+
+h4{font-size:small}
+
+h3{font-size:medium}
+
+h2{font-size:large}
+
+h1{font-size:x-large}
+
+li{
+font-size:small
+}
+div#container{
+	width:760px;
+	height: auto;
+	text-align:left;
+	padding-top: 40px;
+	margin: auto;
+}
+div#header h1{
+height:auto; 
+margin:0;
+padding-left:10px;
+}
+
+div#content p{line-height:1.4}
+div#extra{list-style-type:disc}
+div#footer p{margin:0;padding:5px}
+
+div#further{float:right;width:380px}
+div#extra{float:left;width:380px}
+div#footer{clear:both;width:100%}

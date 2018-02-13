@@ -1,0 +1,108 @@
+//javac eu/ase/rmiweb/ZoomZoom.java
+//java -Xmx1000000000 eu/ase/rmiweb/ZoomZoom c:\test1.jpg, C:\test2zoomed.jpg 2000 2000 100 100
+
+package eu.ase.rmiweb;
+
+import java.io.*;
+import java.awt.*;
+import java.awt.image.*;
+import java.awt.geom.*;
+import javax.swing.*;
+import javax.imageio.*;
+import java.util.*;
+
+//import com.sun.image.codec.jpeg.JPEGCodec;
+//import com.sun.image.codec.jpeg.JPEGEncodeParam;
+//import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+public class ZoomZoom
+{
+   public static BufferedImage imageToBufferedImage(Image img) {
+		// if it's already a buffered image, return it (assume it's fully loaded already)
+		if(img instanceof BufferedImage) {
+			return (BufferedImage)img;
+		}
+		// create a new buffered image and draw the specified image on it
+		BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = bi.createGraphics();
+		g2d.drawImage(img, 0, 0, null);
+		g2d.dispose();
+		return bi;
+   }
+   public static void main(String[] args) {
+	try{
+		//java eu/ase/rmiweb/ZoomZoom C:\test1.jpg c:\testZoomed2.jpg 1500 1500 100 100
+		String fileName = args[0]; String newFileName = args[1];
+		String xpoz = args[2]; String ypoz = args[3]; String w = args[4]; String h = args[5];
+
+		ImageIcon ii = new ImageIcon(fileName, "jpg");
+		//serializare / deserializare pe retea Imageicon
+		Image img = ii.getImage();
+
+		//BufferedImage bi = imageToBufferedImage(img);
+		BufferedImage biold = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = biold.createGraphics();
+		g2d.drawImage(img, 0, 0, null);
+		g2d.dispose();
+
+		BufferedImage bi = biold.getSubimage(Integer.parseInt(xpoz), Integer.parseInt(ypoz), Integer.parseInt(w), Integer.parseInt(h));
+
+		String format = "jpeg";
+		Iterator writers = ImageIO.getImageWritersByFormatName(format.toLowerCase());
+		if(writers == null || !writers.hasNext()) {
+			System.out.println("Unsupported format (" + format + ")");
+			return;
+		}
+		ImageWriter writer = (ImageWriter)writers.next();
+		IIOImage iioImg = new IIOImage(bi, null, null);
+		ImageWriteParam iwparam = writer.getDefaultWriteParam();
+		// if JPEG, set image quality parameters
+		if("jpeg".equalsIgnoreCase(format)) {
+			iwparam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+			iwparam.setCompressionQuality(1.0f);
+		}
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		writer.setOutput(ImageIO.createImageOutputStream(out));
+		writer.write(null, iioImg, iwparam);
+		byte[] bufOut = out.toByteArray();
+
+		//BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+		//BufferedImage bi = new BufferedImage(img.getWidth(ii.getImageObserver()), img.getHeight(ii.getImageObserver()), BufferedImage.TYPE_BYTE_BINARY);
+		//Graphics2D g2 = bi.createGraphics();
+		//g2.drawImage(img, new AffineTransform(1f,0f,0f,1f,0,0), ii.getImageObserver());
+		//g2.drawImage(img, 0, 0, null);
+		//g2.dispose();
+
+
+		FileOutputStream fout = new FileOutputStream(newFileName);
+		//JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(fout);
+		//JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bi);
+		//param.setQuality(0.5f,false);
+		//encoder.setJPEGEncodeParam(param);
+
+		//encoder.encode(bi);
+		fout.write(bufOut);
+		fout.close();
+		//System.out.println("file saved...");
+		
+
+		//Image img2 = img.getScaledInstance(Integer.parseInt(w), Integer.parseInt(h), 0);
+
+		//deserializare raspuns ImageIcon
+		//ImageIcon ii2 = new Imageicon();
+		//ii2.setImage(img2);
+
+		//BufferedImage img = ImageIO.read(new File(fileName));
+		//BufferedImage img = ii.getImage();
+
+		//BufferedImage imgRes = null;
+
+		//imgRes = bi.getSubimage(Integer.parseInt(xpoz), Integer.parseInt(ypoz), Integer.parseInt(w), Integer.parseInt(h));
+	       
+		//ImageIO.write(imgRes, "jpg", new File(newFileName));
+		System.out.println("file saved...");
+	   } catch(Exception e) {
+		e.printStackTrace();
+	   }
+   }
+}

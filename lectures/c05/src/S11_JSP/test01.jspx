@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:directive.page contentType="text/html"/>
+<HTML>
+<HEAD>
+ <TITLE>Test jsp</TITLE>
+</HEAD>
+<BODY>
+<H2>JSP Expressions</H2>
+<UL>
+<LI>Current time: <jsp:expression> new java.util.Date() </jsp:expression> </LI>
+<LI>Server: <jsp:expression> application.getServerInfo() </jsp:expression> </LI>
+<LI>Session ID: <jsp:expression> session.getId() </jsp:expression> </LI>
+<LI>The <CODE>testParam</CODE> form parameter: <jsp:expression> request.getParameter("testParam") </jsp:expression> </LI>
+</UL>
+</BODY>
+</HTML>
+</jsp:root>

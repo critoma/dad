@@ -1,0 +1,1142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="Description" content="Homepage von Daniel Schwamm, Heimat des Dilettantismus, Kurse zu HTML, Javascript, Delphi, Linux, Cgi, Erterungen zu Themen der Organisation, Informationstechnologie, Geschichte und vieles mehr">
+<meta name="author" content="Daniel Schwamm">
+<meta name="Keywords" content="heimat des dilettanstismus, programmieren, delphi, c++, pascal, cgi, internet, web, software, linux, comics, geschichte, organisation, computer, editor, kurse, html, java, javascript, vrml, winsock, brse, windows, universalien, freeware, shareware, wertewandel, arbeit, zufriedenheit, betriebssysteme, entscheidungstheorie, eingliederung, familiaer-fraktales organisationsmodell, neuronale netze, fuzzy logic, neurometrie, fakes, itefix, demoware, gedichte, philosophie, aktien, brse, ticker, kurse, lernen, windows, division, universalien, geschichte, mannheim, hassloch, henrys, car-net, linux, alssysa milano, startrek, evolution, datenmodell, information, management, physik, zukunft, html, java, javascript, vrml, winsock, börse, windows, universalien, freeware, shareware, wertewandel, arbeit, zufriedenheit, betriebssysteme, entscheidungstheorie, eingliederung, familiaer-fraktales organisationsmodell, neuronale netze, fuzzy logic">
+<link rel="SHORTCUT ICON" href="http://www.henrys.de/daniel/favicon.ico" type="image/x-icon"><title>Homepage von Daniel Schwamm - texte/winsock/snmp.htm</title>
+
+
+
+<script language="javascript" type="text/javascript">
+function js_docmd(cmd,target){
+  document.frm.cmd.value=cmd;
+  if(typeof(document.frm.ta)!='undefined')document.frm.ta.value='';
+
+  if(target)document.frm.target='_blank';
+
+  document.frm.submit();
+  document.frm.target='_top';
+};
+
+function js_login(){
+  var s=prompt('PW','');if(!(s && s.length>0)){return;};
+  document.frm.cgipw.value=s;
+  if(typeof(document.frm.ta)!='undefined')document.frm.ta.value='';
+  document.frm.submit();
+};
+
+</script>
+
+<style type="text/css">
+<!--
+body{
+ background-attachment: fixed;
+ scrollbar-base-color: #ffdf70;
+}
+
+a:link{text-decoration:none;}
+a:active{text-decoration:none;}
+a:visited{text-decoration:none;}
+a:hover{text-decoration:none;color:#000000;background-color:#efdfb0;}
+
+h3{
+ font-size: 18px;
+ font-weight: bold;
+ font-family: 'Arial';
+ color: #000000;
+ margin: 15px 0;
+ margin-top: 0px;
+ /*
+ margin-left: 10px;
+ margin-right: 10px;
+ width: 300px
+ */
+ line-height: 35px;
+ background-color:#ffdf70;
+ background-image: url('pics/h3.jpg');
+ text-align:center;
+ border-top:   2px solid #ffff00;
+ border-left:  2px solid #ffff00;
+ border-bottom:2px solid #beb6a1;
+ border-right: 2px solid #beb6a1;
+}
+h4{
+ font-size: 17px;
+ font-weight: bold;
+ font-family: 'Arial';
+ color: #000000;
+ margin: 15px 0;
+ margin-top: 30px;
+ line-height: 20px;
+ text-align:center;
+ background-image: url('pics/h4.jpg');
+ border-top:   2px solid #ffff00;
+ border-left:  2px solid #ffff00;
+ border-bottom:2px solid #beb6a1;
+ border-right: 2px solid #beb6a1;
+}
+
+table.tab_std{
+ font-family: 'Arial'; 
+ font-size: 13px; 
+ border-color: #beb6a1;
+ border-style: solid;
+ border-width: 1px;
+ padding: 2px;
+}
+table.tab_std th{
+ color: navy;
+ background-color: #ffdf70;
+ background-image: url('pics/h4.jpg');
+ padding: 3px;
+}
+table.tab_std td{
+ border-color: #ffdf70;
+ border-style: solid;
+ border-width: 1px;
+}
+
+table.tab_src{
+ border-top:   2px solid #beb6a1;
+ border-left:  2px solid #beb6a1;
+ border-bottom:2px solid #beb6a1;
+ border-right: 2px solid #beb6a1;
+ font-family: 'Courier new';
+ font-size: 13px; 
+ padding: 0px;
+}
+table.tab_src th{
+ background-color: white; 
+}
+table.tab_src td{
+ border-left:  1px solid #beb6a1;
+ border-top:   1px solid #beb6a1;
+ border-right: 1px solid #beb6a1;
+ border-bottom:1px solid #beb6a1;
+ background-color: white; 
+ text-align: left; 
+}
+
+table.tab_sql{
+ border-top:   2px solid #beb6a1;
+ border-left:  2px solid #beb6a1;
+ border-bottom:2px solid #beb6a1;
+ border-right: 2px solid #beb6a1;
+ font-family: 'Arial'; 
+ font-size: 12px; 
+ padding: 0px;
+}
+table.tab_sql th{
+ border-top:   1px solid #beb6a1;
+ border-left:  1px solid #beb6a1;
+ border-bottom:1px solid #ffff00;
+ border-right: 1px solid #ffff00;
+ font-size: 14px; 
+}
+table.tab_sql td{
+ border-left:  1px solid #beb6a1;
+ border-top:   1px solid #beb6a1;
+ border-right: 1px solid #ffff00;
+ border-bottom:1px solid #ffff00;
+}
+
+.submit_button_off{
+ font-family: 'ms sans serif';
+ font-size:10px;
+ font-weight:bold;
+ color:#604000;
+ text-align:center;
+ height:18px;
+ background-color:#ffef70;
+ border:1px solid #604000;
+}
+.submit_button_on{
+ font-family: 'ms sans serif';
+ font-size:10px;
+ font-weight:bold;
+ color:#604000;
+ text-align:center;
+ height:18px;
+ background-color:#ffffff;
+ border:1px solid #604000;
+}
+.input_text{
+ border:1px solid #604000;
+ font-size:12px;
+ background-color:#ffefc0;
+}
+
+.submit_button{
+ font-family: 'ms sans serif';
+ font-size:10px;
+ font-weight:bold;
+ color:#604000;
+ text-align:center;
+ height:18px;
+ background-color:#ffdf70;
+ border:1px solid #604000;
+}
+
+.asubmit_button{
+ font-family: 'ms sans serif';
+ font-size:10px;
+ font-weight:bold;
+ color:#604000;
+ text-align:center;
+ height:18px;
+ background-color:#ffffff;
+ border:1px solid #604000;
+}
+-->
+</style></head><body alink="#7c636a" background="indexSNMP.php_files/back.jpg" bgcolor="#d0d0d0" link="#7c635a" text="black" vlink="#7c636a">
+<center>
+<!-- getform():start -->
+
+<form action="index.php" name="frm" method="get">
+<input name="cmd" value="texte/winsock/snmp.htm" type="hidden">
+<input name="cgipw" value="" type="hidden">
+
+<!-- getform():ende -->
+<table class="tab_std" cellpadding="5" width="100%">
+<tbody><tr>
+<td align="center" valign="top" width="180">
+<!-- getnavleft():start -->
+<table class="tab_std" border="0" cellpadding="10" width="95%">
+<tbody><tr>
+<td align="left">
+
+<input class="submit_button" onmouseover=" this.className='asubmit_button'" onmouseout=" this.className='submit_button'" onclick="javascript:js_login()" value="Benutzer Gast" type="button">
+<br><br>
+• <a href="javascript:js_docmd('home/index.php')" target="_top">Home</a><br>
+<br>• <a href="javascript:js_docmd('news/index.php')" target="_top">News</a><br>
+<br>• <a href="javascript:js_docmd('sw/index.php')" target="_top">Software</a><br>
+<br>• <a href="javascript:js_docmd('bilder/index.php')" target="_top">Bilder</a><br>
+<br>• <a href="javascript:js_docmd('texte/index.php')" target="_top">Texte</a><br>
+&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/boerse/index.php')" target="_top">Börse</a><br>
+&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/favs/index.php')" target="_top">Favoriten</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/favs/goddesses/index.php')" target="_top">Goddesses</a><br>
+&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/winsock/index.php')" target="_top">Winsock</a><br>
+&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/index.php')" target="_top">Diplomarbeit</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/titel/index.php')" target="_top">Titel</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/inhalt/index.php')" target="_top">Inhalt</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/einleitung/index.php')" target="_top">Einleitung</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel2/index.php')" target="_top">Kapitel 2</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel2/1/index.php')" target="_top">Kapitel 2-1</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel2/2/index.php')" target="_top">Kapitel 2-2</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel2/3/index.php')" target="_top">Kapitel 2-3</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel3/index.php')" target="_top">Kapitel 3</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel3/1/index.php')" target="_top">Kapitel 3-1</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel3/2/index.php')" target="_top">Kapitel 3-2</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/kapitel3/3/index.php')" target="_top">Kapitel 3-3</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/ausblick/index.php')" target="_top">Ausblick</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/literatur/index.php')" target="_top">Literatur</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;- <a href="javascript:js_docmd('texte/da/anhang/index.php')" target="_top">Anhang</a><br>
+<br>• <a href="javascript:js_docmd('allesfliesst/index.php')" target="_top">Alles fliesst</a><br>
+<br>• <a href="javascript:js_docmd('comics/index.php')" target="_top">Comics</a><br>
+<br>• <a href="javascript:js_docmd('musik/index.php')" target="_top">Musik</a><br>
+<br>• <a href="javascript:js_docmd('leben/index.php')" target="_top">Leben</a><br>
+<br>• <a href="javascript:js_docmd('links/index.php')" target="_top">Links</a><br>
+<br>• <a href="javascript:js_docmd('admin/index.php')" target="_top">Admin</a><br>
+</td>
+</tr>
+</tbody></table>
+<!-- getnavleft():ende -->
+</td>
+<td align="left" valign="top">
+<!-- getcmdpage():start -->
+
+
+
+
+
+
+<p>
+ [Aus: "Heimat des Dilettantismus",
+ <a href="http://www.henrys.de/daniel/">
+ "http://www.henrys.de/daniel/"</a>]
+</p>
+<hr>
+
+
+<h2 align="center">SNMP<br> The Simple Network Management Protocol
+
+</h2>
+
+<hr color="black" size="2">
+
+<p>
+
+
+
+</p><h5 align="right">When we were young, we wanted to become  a pilot, astronaut or a fire engine driver. <br>	              				-Our mothers would laugh at us.</h5>
+
+<h5 align="right">When we were  in our pre-teens, we wanted to become programmers.
+
+<br>					-Our fathers would laugh at us.</h5>
+
+<h5 align="right">When we became programmers, we wanted to become network administrators.
+
+<br>					- The world (our girlfriends included) would laugh at us.</h5>
+
+<p>
+The above is not a figment of our imagination but facts relating to our
+daily life. When we started off as programmers we proved our fathers
+wrong. Sorry, we could not do the same regarding our mothers. This left
+us with the world and our girlfriends to deal with. It took us some
+time to devise ways to prove them wrong. But before we let you into our
+secret of how to do it, lets try and justify their laughs. </p><p> Network administrators of yore were perfect nerds, living in
+ivory towers(actually dingy low-lit rooms , disconnected from the
+world). In short, they were people to be avoided, basically belonging
+to class called social rejects. The rationale behind this was very
+simple. Network administrators had no control over their networks. The
+designation 'Network administrator' sounded glamorous but that was
+where the glamour ended. All he was supposed to do was to add/remove
+users to the network , add/remove network paraphernalia ( or was it
+peripherals?). If he got bored of doing all this, he would set up the
+network all over again and life went on. (By the way, the world and his
+girlfriend had left him)
+</p><p>
+
+<u><font size="4">The Empire Strikes back</font></u>
+
+</p><p> When he coined the title, George Lucas did not even dream that
+it may become a mission statement for many a network administrators on
+this planet. The network administrator it was high time to take control
+of the life (life had become synonymous with routers, bridges and other
+peripherals.) To a layman, getting control over his life meant knowing
+his wife, family, his pay-check, his dues( however unpleasant they may
+seem.) But to a network administrator, it meant knowing the traffic on
+his routers, the load on the server etc. But the big question was 'How
+does he do it? Simple SNMP ???
+</p><p> Sorry, we did not mean to shock you. We thought that you would
+have got impatient reading this stuff and so we decided to get down to
+business. SNMP is an acronym for Simple Network Management Protocol. It
+belongs to the rare breed of computer jargon which justify their name,
+i.e it is actually simple. As seeing is believing let us check out
+SNMP.
+</p><p> Imagine a situation where a company has 50 routers , 20
+servers and all sorts of network hardware that runs the TCP/IP suite (A
+network administrators utopian dream!!). In such a situation questions
+like 'What is the load on the server?', 'What time does this loading
+take place ?' or 'When to expand the lease line?' etc formed part of
+the network administrators nightmare ( almost lead to his downfall). To
+add to his sorrow, he had to work with diverse piece of equipment from
+diverse companies running equally diverse protocols. Variety is the
+spice of life you may say but this is the case of food ( for thought)
+getting too spicy. The only thing that was common between the network
+elements was that they ran the TCP/IP suite. Therefore TCP/IP formed
+the lowest common denominator as it was the only thing we could
+standardize on. Beyond this standardization was almost zero, in some
+cases it approached the negative index. The Network Administrator had
+to figure out a way to manage his network which was running the TCP/IP
+suite. Therefore this gained the generic term network management under
+TCP/IP. Here is how the Network Administrators went about their work. </p><p> The first thing he did was to built himself another ivory
+tower ( a cleaner one this time). This he named it as the 'Network
+Management Station'. He then went about stating the guidelines for the
+protocol to be called 'Simple Network Management Protocol (SNMP). The
+guidelines were as follows [ in no order of importance]
+</p><p>
+
+</p><ol>
+
+<li> The protocol should be cross-platform compatible ( No we DON'T use
+JAVA). Put simply, it meant that the rules for talking to a router from
+CISCO should not differ from those used to talk to a router from 3COM.
+( All trademarks acknowledge)
+</li><li> The language used ( if any) and the output generated should
+not increase the network traffic. Rationale:- Choking of network by the
+traffic should not lead the network administrator being fired.
+</li><li> It should be fast. Faster network always gave the network
+administrator a 'high'. Well that is one of the reasons as to why a
+network administrator did not buy a Ferrari.
+</li><li> The system was to work as if it were operating in a
+client-server atmosphere with the software running at the network
+management station acting as the client and the software running at the
+other network elements ( jargonsss.... but basically stuff like
+routers, bridge , etc. ) acting as the server. Perfect case of 'cart
+drawing the horse". (Taming of the shrew ( or the network)). The
+factors or the variables affecting the server were to be stored in a
+database.
+</li></ol>
+
+<p> But before he did all this, he implemented the most important item
+on his agenda. He thought life was getting too simple due to all the
+'simple' stuff floating around. He decided to rename everything that he
+set his eyes on. So the client software became a manager ( to reflect
+his new status), the server software became the agent. ( it would have
+been a better idea to call them spies because all they do was to pass
+on information about the network element). The database seemed to
+remind people of likes of ORACLE, SYBASE etc. So he decided to rename
+it as the Management Information Base or the MIB. The variables were
+formatted using a data definition language called the ASN.1, but more
+on this later. The variable itself was renamed as an object. The final
+objective of the entire exercise was to present a case of name changed
+to protect identity. We recommended you take a break (coffee or
+otherwise) because it is going to be a hell of a day today. </p><p> The Network Administrator had by now renamed most ( if not
+all the) factors ( name unchanged) involved in making up a network .
+Rule of nature state that every simple answer gives rise to complex
+questions. So the question was how does the Network Administrator know
+which element he was to communication with? He, therefore went around
+drawing a 'tree diagram' of the network. He arranged the factors
+involved as part of the tree. The tree diagram was used to </p><p>
+
+</p><ol>
+
+<li> define administrative relationships
+
+</li><li> organize network management data
+
+</li><li> assign a unique identifier to every network management variable.
+
+</li></ol>
+
+<p>
+As he was still in the mood to rename things, so he decided to call the
+tree as the Structure of Management Information (SMI) . A sample of the
+tree diagram (or the SMI) is shown below.
+</p><p> The elements of the SIM were called as Groups or modules.
+These groups were nothing but a collection of objects ( the good old
+variable) relating to that group. For example the Ethernet module
+contained further groups of Ethernet related stuff like DIX, 802.3 and
+so on. These were further subdivided to obtain groups or objects as the
+case may be. As each module/group and objects were numbered, accessing
+them became a child's play ( not necessarily the network
+administrator's child) The modules at the end of any node was called
+the leaf node ( network administrators are the most eco-friendly people
+on the planet)
+</p><p> The elements in the SMI have been assigned numbers. This makes
+traversing through the SMI easier. You always travel from the roots up
+( or down). For example to access the interfaces 'leaf', we traverse
+through root - iso - org - dod - internet - mgmt - mib - interfaces. As
+numbering has been enabled to access the same interface all we say is
+1.3.6.1.2.1.2 (eco-friendly again - less waste paper).
+</p><p>
+
+<u><font size="4">Pressing the accelerator</font></u>
+
+</p><p> By now, or so we hope you will be able to visualize the setup
+of the entire SNMP structure. If you don't then please hit the Page Up
+and go through it all over again. If you did understand then it is time
+for some action, Let's put all the pieces together. The manager can
+seek any data from the agent at any point of time. To do this the
+manager sends a UDP packet to the agent. Actually any other protocol
+can be used instead of UDP. Despite being unreliable UDP won the battle
+for the post of the messenger because of it's ability to have a very
+small packet size. This helped fulfill the second guideline of the
+specifications. The manager speaks to the agent on port 161 whereas the
+agent responds by communicating with the manager on port 162.
+</p><p>
+
+The SNMP version 1 has only 5 (unbelievable but true) commands in it's instruction set. They are listed as below
+
+</p><p>
+
+</p><ol>
+
+<li> Get_Request      - used to request the value of 1 or more MIB variable
+
+</li><li> Get_Next_Request - used to read the next value , works in a sequential way
+
+</li><li> Set_Request      - used to update one or more MIB value
+
+</li><li> Get_Response     - Returns an answer to the above 3 commands
+
+</li><li> Trap - used to report significant events on the network. Such
+events include 'cold or warm restart' or a failed link.
+</li></ol>
+
+<p> By the way, it reminds us to tell you that the instruction set is
+no longer called an instruction set but an SNMP Protocol Data Unit or a
+PDU. In the above PDU, the first 3 are generated by the manager. They
+are self explanatory . Hence lets not waste disk space talking about
+them . The other two are generated by the client. The differentiation
+comes in the fact that 'Get_Response' works in the polling mode i.e it
+forms the reply to a query from the manager, whereas 'trap' is
+generated by the agent only under certain condition independent of the
+presence or absence of a query i.e it is interrupt driven. For the
+uninitiated, lets put it in a simpler format. Polling (Get_Response) is
+akin to you asking your date for kiss. Interrupt driven (Trap) is your
+date giving you a kiss without you asking for it. Well we must admit,
+keeping your trap shut all the time does not do you any good !!!
+</p><p> SNMP version 2 is the latest version of SNMP commercially
+available. For once developers have retained the earthly flavor of the
+previous version. They struck to their task and have kept the SNMP as
+simple as possible. SNMP v2 is just a superset of SNMP v1. The 5 basic
+instruction of the SNMP v1 . PDU have been retained though some names
+have been changed (moods at play again). Get_Response whereas trap has
+been renamed as SNMPv2 - trap. This however does not affect them.
+Functionality remain the same. The 'Get' function have also been
+strengthened. In SNMP v1 the get_request and get_next request would
+fail in case one of the read processes failed. Generation of error
+signals was virtually non-existant. However in SNMPv2 request failure
+leads to appropriately error messages generation. Besides these 5
+instructions, SNMPv2 includes 2 new instruction
+</p><p>
+
+</p><ol>
+
+<li> inform request
+
+</li><li> get_bulk_request
+
+</li></ol>
+
+<p>Inform request is used by a network administrator to talk to his
+brethren i.e. network administrator at other network management
+stations. Birds of a feather flock together. This enables a large
+complex network to be further subdivided into smaller network, each
+with his own network management station. Get_Bulk_Request is used to
+transfer large block of data from the MIB to the Manager in a single
+transfer operation. That's all that consists the PDU of SNMPv2.
+</p><p>Lets turn our attention to the objects that constitute the MIB
+of a device . An object is actually a variable which holds information
+about a particular device. An object is known by the following
+</p><p>
+
+</p><ol>
+
+<li> A unique name, called object identifier ( remember the mood)
+
+</li><li> Attributes :- This include 
+
+<ul>
+
+<li>- data type
+
+</li><li> details required for the correct implementation.
+
+</li><li>- status information
+
+</li></ul>
+
+</li><li> Read/Write option available
+
+</li></ol>
+
+<p>On deciding the datatypes to be used in SNMP, the designers
+remembered their motto of keeping SNMP simple. Therefore only
+elementary datatypes like integer or octet strings are available under
+SNMP. The only other datatype was the structure which unfortunately
+doomed to be renamed as 'Sequence'. These were the specification for
+SNMP. The answer was simple , use a Data Definition Language like<a target="_blank" href="http://www.neca.com/%7Evmis/bersnmp.htm"> ASN.1</a>
+
+</p><p>
+One of the greatest mystery of our time have been to know how long the
+server at our ISP's end has been functioning. This mystery is deepened
+by some cryptic message from the help-desk of our ISP, saying that the
+server will be shutdown for maintenance. We decided to pip them at the
+post by finding out how much time the server was up (or down) This can
+be done using the object identifier called 'sysuptime' in the object
+called 'system'. The object identifier for sysuptime is 1.3.6.1.2.1.3.
+The program given below uses a basic windows socket program. How to
+master socket programming has been best explained in our <a target="_blank" href="http://www.neca.com/%7Evmis/wsock.htm">tutorial on sockets programming </a>so check it out. Here we will concentrate only on the bits &amp; bytes that are sent across and received.
+
+</p><p> We sent a UDP packet on port 161 to the server at VSNL (our
+ISP). The IP address of the server is 202.54.1.18, but you can change
+it to any IP address you like. Since WindowsNT 4.0 has an in-built SNMP
+service, this program can also be tried out using NT. The initial parts
+of the program involves a simple Windows socket program and hence is
+not explained here. For details on such programs, have a look at our
+tutorial on sockets programming. The only section of the code that
+might intrigue you with it's presence are the functions 'abc' and
+'abc1'. These are our in-house helper functions and are used to write
+the trapped bytes to the hard disk. The latter part of the program
+deals with the process of sending a data packet to the server. The
+various bytes have been explained below.
+</p><p>
+
+<b>SNMP.C</b>
+
+</p><blockquote><pre>
+#include &lt;windows.h&gt;
+
+#include &lt;stdio.h&gt;
+
+unsigned char kk[1000],ll[1000];
+
+void abc(char *p)
+
+{
+
+FILE *fp=fopen("c:\\snmp\\z.txt","a+");
+
+fprintf(fp,"%s\n",p);
+
+fclose(fp);
+
+}
+
+int ii,dw,jj;
+
+void abc1(unsigned char p)
+
+{
+
+FILE *fp=fopen("c:\\snmp\\z.txt","a+");
+
+fprintf(fp,"%d:   %x..%d..%c\n",jj,p,p,p);
+
+fclose(fp);
+
+}
+
+WNDCLASS a;HWND b;MSG c;char aa[200];SOCKET s;struct hostent h;
+
+WSADATA ws;DWORD e;char bb[100];struct sockaddr_in sa;
+
+long _stdcall zzz (HWND,UINT,WPARAM,LPARAM);
+
+int _stdcall WinMain(HINSTANCE i,HINSTANCE j,char *k,int l)
+
+{
+
+a.lpszClassName="a1";
+
+a.hInstance=i;
+
+a.lpfnWndProc=zzz;
+
+a.hbrBackground=GetStockObject(WHITE_BRUSH);
+
+RegisterClass(&amp;a);
+
+b=CreateWindow("a1","SNMP manager",WS_OVERLAPPEDWINDOW,1,1,10,20,0,0,i,0);
+
+ShowWindow(b,3);
+
+while ( GetMessage(&amp;c,0,0,0) )
+
+DispatchMessage(&amp;c);
+
+return 1;
+
+}
+
+long _stdcall zzz (HWND w,UINT x,WPARAM y,LPARAM z)
+
+{
+
+if ( x == WM_LBUTTONDOWN)
+
+{       
+
+e=WSAStartup(0x0101,&amp;ws);
+
+sprintf(aa,"WSAStartup e = %ld",e);
+
+s = socket(PF_INET,SOCK_DGRAM,0);
+
+sprintf(aa,"socket s = %ld",s);
+
+sa.sin_family=AF_INET;
+
+sa.sin_addr.s_addr = inet_addr("202.54.1.18");
+
+sa.sin_port=htons(161);
+
+kk[0]=0x30;
+
+kk[1]=0x25;
+
+
+
+kk[2]=2;
+
+kk[3]=1;
+
+kk[4]=0;
+
+
+
+kk[5]=4;
+
+kk[6]=6;
+
+kk[7]='p';
+
+kk[8]='u';
+
+kk[9]='b';
+
+kk[10]='l';
+
+kk[11]='i';
+
+kk[12]='c';
+
+
+
+kk[13]=0xa1;
+
+kk[14]=0x18;
+
+
+
+kk[15]=2;
+
+kk[16]=1;
+
+kk[17]=1;
+
+
+
+kk[18]=2;
+
+kk[19]=1;
+
+kk[20]=0;
+
+
+
+kk[21]=2;
+
+kk[22]=1;
+
+kk[23]=0;
+
+
+
+kk[24]=0x30;
+
+kk[25]=0xd;
+
+
+
+kk[26]=0x30;
+
+kk[27]=0xb;
+
+
+
+kk[28]=6;
+
+kk[29]=7;
+
+kk[30]=0x2b;
+
+kk[31]=6;
+
+kk[32]=1;
+
+kk[33]=2;
+
+kk[34]=1;
+
+kk[35]=1;
+
+kk[36]=3;
+
+kk[37]=5;
+
+kk[38]=0;
+
+
+
+e=sendto(s,kk,39,0,(struct sockaddr *)&amp;sa,sizeof(sa));
+
+sprintf(aa,"SendTo %ld",e);
+
+dw = sizeof(sa);
+
+ii=recvfrom(s,ll,1000,0,(struct sockaddr *)&amp;sa,&amp;dw);
+
+sprintf(aa,"Recv from %d",ii);
+
+abc(aa);
+
+for (jj=0;jj&lt;ii;jj++)
+
+abc1(ll[jj]);
+
+MessageBox(0,"hi","hi",0);
+
+}
+
+if ( x == WM_DESTROY)
+
+PostQuitMessage(0);
+
+return DefWindowProc(w,x,y,z);
+
+}
+
+</pre></blockquote>
+
+<p>The first byte we send across to the server (it can also be a
+router) at the other end is 0x30. This stands for The Universal
+Sequence and is usually the first byte in BER/DER compliant protocols. </p><p>
+
+If we break up the byte into it's individual bits, we get
+
+</p><p>
+
+</p><table border="3">
+
+<tbody><tr><td><b>0</b></td><td><b>0</b></td><td><u>1</u></td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+
+</tbody></table>
+
+<p>
+The first two bits from the left, when off, imply that the query is
+universal, i.e. it applies to all fields. The next bit from the left is
+on and that means that the query is a constructed one. The value of the
+fourth bit is 16 and that's Sequence in the RFC. So it's a Universal
+Sequence.
+</p><p>
+
+The next byte in the array holds the size of the total packet, excluding the first two bytes.
+
+</p><p>The next byte is 0x02, which means that the information that
+follows is an Integer, i.e. a number. The byte in kk[3] is the length
+of the data and kk[4] is the actual value. The 0x00 there stands for
+the version number which is zero.
+</p><p>The byte that comes next is 0x04 which means that the following
+data is an octet (8 bit) string. The byte after that holds the length
+of the string and next six bytes hold the string itself. The string
+'public' stands for the community we belong too; that's just a fancy
+way of saying it's our password!
+</p><p>
+
+The byte in kk[13] is 0xa1. If we were to break this up into it's constituent bytes, we'd get
+
+</p><p>
+
+</p><table border="3">
+
+<tbody><tr><td><b>1</b></td><td><b>0</b></td><td><u>1</u></td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr></tbody></table>
+
+<p>When the first three bytes are 101, it means that the data to follow
+is Context Specific i.e. you have to look up the documentation and look
+for it as it's context changes with every protocol. The last four bits
+hold the number, which is 1 in this case. So it's Context Specific 1.
+This stands for Get Next Request in the documentation.
+</p><p>
+
+The next byte holds the length.
+
+</p><p>The next three bytes hold the Request ID, which we've set to
+one. Kk[15] is 0x02 which means that the data is an Integer. The next
+byte is the length and the data itself is 0x01. </p><p>
+
+The next three bytes contain the error status of the present connection. Since we've just begun talking, it is set to zero.
+
+</p><p>
+
+Right after that we have another three bytes which hold the error index. It too is set to zero.
+
+</p><p>
+Now, at kk[26] we have another structure (or sequence if you prefer)
+starting up. The byte after that is the length of the data that
+follows.
+</p><p>Immediatly after the first structure, we have another one. This
+format is maintained so that if you want to ask two questions at the
+same time, you can. Simply add another 0x30 after the end of this one
+and more data.
+</p><p>
+
+After the length byte we have the byte 0x06 which stands for the Object data type. The byte after that is the length.
+
+</p><p>
+
+The next seven bytes are very important.
+
+</p><p>
+
+The ISO, in it's infinite wisdom, has chopped up the Internet into a tree like hierarchy. 
+
+</p><p>
+
+</p><blockquote><pre>
+                                                Root
+
+                                                   |
+
+                                  |-----------|----------------|
+
+                           ccitt(0)           ISO(1)      joint-ISO-ccitt(2)
+
+                                                   |
+
+                                                org(3)
+
+                                                   |
+
+                                                dod(6)					
+
+                                                   |
+
+                                             internet(1)
+
+                                                   |
+
+|------------------------------|-------------------|--------------------|
+
+directory(1)                mgmt(2)        experimental(3)         private(4)
+
+                              |                                           |
+
+                              |                                     enterprises(1)
+
+                           MIB(1)
+
+                              |
+
+|--------------|--------------|----------|---------|----------|----------|
+
+system(1)  interfaces(2)    at(3)     ip(4)     icmp(5)    tcp(6)  udp(7)
+
+
+
+</pre>
+
+</blockquote>
+
+<p>Right at the top is the root, then comes the ISO (1), then org under
+ISO (1.3), then the Department of Defense or the dod under org (1.3.6).
+Right after that we have the Internet (1.3.6.1) under the Internet we
+have mgmt (1.3.6.1.2) and under mgmt we have MIB or the Management
+Information Database (1.3.6.1.2.1). Since we're using SNMP which is
+used to manage a network system, we have system (1.3.6.1.2.1). So the
+hierarchy we're under is 1.3.6.1.2.1. The last 3, in kk[36], is
+Sysuptime under System. </p><p>
+So the bytes from kk[30] to kk[36] hold the hierarchy of our query.
+What you may find a little confusing is that the first byte, kk[30], is
+0x2b instead of 1.3 as it should be. Actually, this is the ISO being
+little clever (for once!). To save transmitting an extra byte, they
+decided to multiply the first 1 in 1.3.6.1.2.1.3 with 40 and add it to
+the second number i.e. 3. So we get 1*40+3=43 or 0x2b!! Confusing, but
+neat.
+</p><p>The last two bytes in the packet are 0x05 and 0x00 which
+collectively stand for a NULL value. This is because we can't have an
+answer in a query!
+</p><p>The output file provides the key to understanding SNMP. The
+contents of the output file is reproduced below to save you the trouble
+of actually running the programs and finding the results. The column on
+the left are the actual contents of the output file whereas the column
+on the right hand side represent the analysis of the bytes that were
+'collected' by us.
+</p><p>
+
+
+
+<b><u>Z.TXT</u></b>
+
+
+
+Recv from 44 -   Inserted by the program and signifies that length of packet is 44 bytes</p><p>
+
+</p><table border="3">
+
+<tbody><tr><td>0</td><td>30</td><td>48</td><td>0</td><td><b>Structure</b>  </td></tr>
+
+<tr><td>1</td><td>2a</td><td>42</td><td>*</td><td> Len - 42</td></tr>   
+
+<tr><td>2</td><td>2</td><td>2</td><td></td><td><b>Version number</b> (int)</td></tr>       
+
+<tr><td>3</td><td>1</td><td>1</td><td></td><td>Len -1</td></tr>   
+
+<tr><td>4</td><td>0</td><td>0</td><td></td><td>value - 0</td></tr>         
+
+<tr><td>5</td><td>4</td><td>4</td><td></td><td><b>Community</b> (Octet String)</td></tr>   
+
+<tr><td>6</td><td>6</td><td>6</td><td></td><td>Len -6</td></tr>        
+
+<tr><td>7</td><td>70</td><td>112</td><td>p</td><td>&nbsp;</td></tr>     
+
+<tr><td>8</td><td>75</td><td>117</td><td>u</td><td>&nbsp;</td></tr>     
+
+<tr><td>9</td><td>62</td><td>98</td><td>b</td><td>&nbsp;</td></tr>      
+
+<tr><td>10</td><td>6c</td><td>108</td><td>l</td><td>&nbsp;</td></tr>            
+
+<tr><td>11</td><td>69</td><td>105</td><td>i</td><td>&nbsp;</td></tr>            
+
+<tr><td>12</td><td>63</td><td>99</td><td>c</td><td>public</td></tr>   
+
+<tr><td>13</td><td>a2</td><td>162</td><td>¢</td><td><b>Context Specific</b> 2</td></tr>            
+
+<tr><td>14</td><td>1d</td><td>29</td><td></td><td>Len -29</td></tr>     
+
+<tr><td>15</td><td>2</td><td>2</td><td></td><td><b>ID</b> (int)</td></tr>   
+
+<tr><td>16</td><td>1</td><td>1</td><td></td><td>Len -1</td></tr>       
+
+<tr><td>17</td><td>1</td><td>1</td><td></td><td>value -1</td></tr>       
+
+<tr><td>18</td><td>2</td><td>2</td><td></td><td><b>Error Status </b>(int)</td></tr>   
+
+<tr><td>19</td><td>1</td><td>1</td><td></td><td>Len -1</td></tr>       
+
+<tr><td>20</td><td>0</td><td>0</td><td>&nbsp;</td><td>Value -0</td></tr>        
+
+<tr><td>21</td><td>2</td><td>2</td><td></td><td><b>Error Index </b>(int)</td></tr>
+
+<tr><td>22</td><td>1</td><td>1</td><td></td><td>Len -1</td></tr>       
+
+<tr><td>23</td><td>0</td><td>0</td><td>&nbsp;</td><td>Value -1</td></tr>        
+
+<tr><td>24</td><td>30</td><td>48</td><td>0</td><td><b>Strucutre</b></td></tr>   
+
+<tr><td>25</td><td>12</td><td>18</td><td></td><td>Len -18</td></tr>     
+
+<tr><td>26</td><td>30</td><td>48</td><td>0</td><td><b>Structure</b></td></tr>   
+
+<tr><td>27</td><td>10</td><td>16</td><td></td><td>Len - 16</td></tr>     
+
+<tr><td>28</td><td>6</td><td>6</td><td></td><td><b>Object</b></td></tr>       
+
+<tr><td>29</td><td>8</td><td>8</td><td></td><td>Len -8</td></tr>       
+
+<tr><td>30</td><td>2b</td><td>43</td><td>+</td><td><b>Sysuptime</b></td></tr>   
+
+<tr><td>31</td><td>6</td><td>6</td><td></td><td>Len -6</td></tr>
+
+<tr><td>32</td><td>1</td><td>1</td><td></td><td>&nbsp;</td></tr>       
+
+<tr><td>33</td><td>2</td><td>2</td><td></td><td>&nbsp;</td></tr>       
+
+<tr><td>34</td><td>1</td><td>1</td><td></td><td>&nbsp;</td></tr>       
+
+<tr><td>35</td><td>1</td><td>1</td><td></td><td>&nbsp;</td></tr>       
+
+<tr><td>36</td><td>3</td><td>3</td><td></td><td>&nbsp;</td></tr>       
+
+<tr><td>37</td><td>0</td><td>0</td><td></td><td>1.2.1.1.3.0</td></tr>        
+
+<tr><td>38</td><td>43</td><td>67</td><td>C</td><td><b>Time Ticks</b></td></tr>
+
+<tr><td>39</td><td>4</td><td>4</td><td></td><td>Len -4</td></tr>   
+
+<tr><td>40</td><td>0</td><td>0</td><td> </td><td>the time in milliseconds</td></tr>
+
+<tr><td>41</td><td>bc</td><td>188</td><td>¼</td><td>&nbsp;</td></tr>
+
+<tr><td>42</td><td>c8</td><td>200</td><td>È</td><td>&nbsp;</td></tr>       
+
+<tr><td>43</td><td>a4</td><td>164</td><td>¤</td><td>&nbsp;</td></tr>                
+
+</tbody></table>
+
+
+
+<p>
+
+Lets examine the output now.
+
+</p><p>The first byte we see is 0x30 which stands, as before, for the
+start of a structure (or a sequence). The next byte after that is the
+length of the packet to follow. The next three bytes hold an Integer
+whose value is zero. This is the version number we sent across in our
+query. Now come eight bytes for a string (strings always start with a
+0x04) which holds our password.
+</p><p>
+
+Byte number 13 is 0xa2. If broken up into it's individual bits it looks like this
+
+</p><p>
+
+</p><table border="3">
+
+<tbody><tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+
+</tbody></table>
+
+<p>Since the first three bits are 101 it means that this is 'Context
+Specific'; the last four bits hold the number which is two in this
+case. So it is Context Specific 2 which means that this is our asnwer.
+</p><p>
+
+The byte after that is the length of the data to follow.
+
+</p><p>The next three bytes contain an Integer which is the ID of the
+packet (it's the same as our ID i.e. it's one). The three bytes after
+that hold the Error status, which is still zero and the following three
+bytes hold the error index, which is also zero.
+</p><p>
+
+Now come two bytes for  a structure and it's length. The next two bytes also contains a structure and it's length.
+
+</p><p>
+
+Then we have the number 0x06 which as mentioned before represents an Object. It is immediately followed by it's length.
+
+</p><p>Now comes the tree like hierarchy our query belongs to and then
+another 6 bytes that hold our answer. The last zero means that the
+bytes following it hold the answer to our query about SysUpTime.
+</p><p>Byte 38 contains the number 0x43 which stands for Time Ticks.
+The string that follows holds the time, in milliseconds, that the
+server 202.54.1.18 has been up.
+</p><p>We have not taken the trouble of calculating the corresponding
+time in days and hours for a simple reason that the answer obtained
+from the server was to large to fit into the calculator provided with
+Windows95. We hope that this program infuses in you a desire to use the
+various objects provided with SNMP. To do this just replace the object
+identifier used in the above program with the desired identifier. Then
+you can check the output file for the answer to your query. Do let us
+know about your success and travails with SNMP. Also provide us with
+your feedback as to how you liked this tutorial. </p><p>
+
+</p><hr>
+
+The above tutorial is a joint effort of<p>
+
+<b>
+
+Mr. Vijay Mukhi<br>
+
+Ms. Sonal Kotecha<br>
+
+Mr. Arsalan Zaidi<br>
+
+Mr. Vinesh Kurup<br>
+
+</b>
+
+</p><p>
+
+</p><hr>
+
+<a target="_blank" href="http://www.neca.com/%7Evmis"><b>Back to the main page</b></a><p>
+
+</p><hr color="black" size="2">
+
+<p align="center"><font size="3"><b><i>Vijay Mukhi's Computer
+
+Institute<br>
+
+VMCI, B-13, Everest Building, Tardeo, Mumbai 400 034, India<br>
+
+Tel : 91-22-496 4335 /6/7/8/9 &nbsp;&nbsp;&nbsp;
+
+Fax : 91-22-307 28 59 <br>
+
+e-mail : <a href="mailto:vmukhi@giasbm01.vsnl.net.in">vmukhi@giasbm01.vsnl.net.in</a><br>
+
+<a target="_blank" href="http://www.neca.com/%7Evmis">http://www.neca.com/~vmis</a><br>
+
+<br>
+
+</i></b></font></p>
+
+<!-- getcmdpage():ende -->
+</td>
+</tr>
+</tbody></table>
+<br>
+<!-- getfooter():start -->
+
+<font size="1">
+<i>
+© by DanPHPEd - Letzte Änderung: 08. Mai 2008
+</i>
+</font>
+  
+<!-- getfooter():ende -->
+</form>
+</center>
+</body></html>

@@ -1,0 +1,1 @@
+COMSCORE.BMX.Broker.handleInteraction("");

@@ -1,0 +1,1243 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0063)http://www.hscripts.com/tutorials/jsp/jstltags/database-tag.php -->
+<HTML><HEAD><TITLE>Database Tag Library - JSP Tutorial</TITLE>
+<META http-equiv=Content-Type content=text/html;charset=utf-8>
+<STYLE type=text/css>.lines1 {
+	BORDER-RIGHT: #7d050d 3px solid; BORDER-TOP: #7d050d 3px solid; FONT-SIZE: 13px; BORDER-LEFT: #7d050d 3px solid; BORDER-BOTTOM: #7d050d 3px solid
+}
+.firsttab {
+	BORDER-RIGHT: white 2px ridge; BORDER-TOP: white 2px ridge; BORDER-LEFT: white 2px ridge; BORDER-BOTTOM: white 2px ridge; BACKGROUND-COLOR: #042f01
+}
+.hiox {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bolder; FONT-SIZE: 22px; COLOR: #227722; TEXT-DECORATION: none
+}
+.heading {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bolder; FONT-SIZE: 18px; COLOR: black
+}
+.hioxlinks {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; MARGIN-LEFT: 15px; COLOR: white; MARGIN-RIGHT: 15px; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none
+}
+.hlinks {
+	FONT-SIZE: 11px; COLOR: rgb(66,22,224); FONT-FAMILY: verdana,arial, san-serif; TEXT-DECORATION: none
+}
+.hlinks:hover {
+	COLOR: #4544ff
+}
+.mainstyle {
+	BORDER-RIGHT: #feaaee 0px solid; PADDING-RIGHT: 4px; BORDER-TOP: #feaaee 0px solid; PADDING-LEFT: 4px; FONT-SIZE: 13px; BACKGROUND-IMAGE: url(http://hscripts.com/images/menu.jpg); PADDING-BOTTOM: 0px; BORDER-LEFT: #feaaee 0px solid; COLOR: rgb(0,0,0); PADDING-TOP: 0px; BORDER-BOTTOM: #feaaee 0px solid; FONT-FAMILY: arial, verdana, serif; TEXT-DECORATION: none
+}
+.mainstyle:hover {
+	COLOR: #77aa66
+}
+.contenttable {
+	BORDER-TOP-WIDTH: 0px; BACKGROUND-COLOR: #042f01
+}
+.leftbox {
+	BORDER-RIGHT: green 1px solid; BORDER-TOP: green 0px solid; BORDER-LEFT: green 0px solid; BORDER-BOTTOM: green 0px solid; BACKGROUND-COLOR: #eeffee
+}
+.lefttitle {
+	FONT-SIZE: 13px; BACKGROUND-IMAGE: url(http://hscripts.com/images/tab1.jpg); COLOR: #000000
+}
+.topics {
+	PADDING-LEFT: 2px; COLOR: white; BACKGROUND-COLOR: #ffffff
+}
+.topics1 {
+	FONT-WEIGHT: 400; FONT-SIZE: 11px; CURSOR: pointer; COLOR: #333333; FONT-FAMILY: verdana,arial,serif; TEXT-DECORATION: none
+}
+.topics1:hover {
+	COLOR: #333111
+}
+.topics2 {
+	FONT-SIZE: 11px; COLOR: #696969; FONT-FAMILY: verdana,arial,serif; TEXT-DECORATION: none
+}
+.topics2:hover {
+	COLOR: #444111
+}
+.topics3 {
+	FONT-SIZE: 11px; COLOR: #965511; FONT-FAMILY: verdana,arial,serif; TEXT-DECORATION: none
+}
+.topics3:hover {
+	COLOR: #236633
+}
+.utilstd {
+	FONT-SIZE: 12px; COLOR: blue; BACKGROUND-COLOR: #eeffee
+}
+.utilslink {
+	FONT-SIZE: 13px; COLOR: #001100; TEXT-DECORATION: none
+}
+.sublinks {
+	FONT-SIZE: 13px; MARGIN-LEFT: 15px; COLOR: #aa300a; TEXT-DECORATION: none
+}
+.sublinks:hover {
+	FONT-SIZE: 13px; COLOR: #333111
+}
+.mainbox {
+	BORDER-TOP: #042f01 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.centerbox {
+	FONT-WEIGHT: 200; FONT-SIZE: 8pt; COLOR: #3d366f; FONT-FAMILY: Verdana, Arial, Times
+}
+.scriptname {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 13px; PADDING-BOTTOM: 5px; MARGIN: 0px; COLOR: #111660; PADDING-TOP: 5px; FONT-FAMILY: Verdana,arial,san-serif
+}
+.scripttags {
+	PADDING-LEFT: 15px; FONT-WEIGHT: bold; COLOR: #773563
+}
+.copybox {
+	BORDER-RIGHT: black 2px inset; PADDING-RIGHT: 5px; BORDER-TOP: black 2px inset; PADDING-LEFT: 5px; FONT-SIZE: 13px; PADDING-BOTTOM: 5px; MARGIN: 5px; OVERFLOW: auto; BORDER-LEFT: black 2px inset; WIDTH: 400px; COLOR: green; PADDING-TOP: 5px; BORDER-BOTTOM: black 2px inset; FONT-FAMILY: verdana, arial, san-serif; HEIGHT: 150px; BACKGROUND-COLOR: white
+}
+.copybox2 {
+	BORDER-RIGHT: #000000 2px inset; PADDING-RIGHT: 15px; BORDER-TOP: #000000 2px inset; PADDING-LEFT: 15px; FONT-SIZE: 14px; PADDING-BOTTOM: 5px; MARGIN: 0px; BORDER-LEFT: #000000 2px inset; COLOR: green; PADDING-TOP: 5px; BORDER-BOTTOM: #000000 2px inset; FONT-FAMILY: verdana, arial, san-serif; BACKGROUND-COLOR: #fafffa
+}
+.copybox3 {
+	BORDER-RIGHT: black 1px inset; PADDING-RIGHT: 2px; BORDER-TOP: black 1px inset; PADDING-LEFT: 6px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; MARGIN: 2px; OVERFLOW: auto; BORDER-LEFT: black 1px inset; COLOR: green; PADDING-TOP: 2px; BORDER-BOTTOM: black 1px inset; FONT-FAMILY: verdana, arial, san-serif; HEIGHT: 160px; BACKGROUND-COLOR: white
+}
+.clinks {
+	FONT-SIZE: 13px; COLOR: #aa300a; TEXT-DECORATION: none
+}
+.clinks:hover {
+	FONT-SIZE: 13px; COLOR: #333111
+}
+.downlink {
+	FONT-SIZE: 12px; COLOR: #3331c1; TEXT-DECORATION: none
+}
+.addcol {
+	BACKGROUND-COLOR: #eeffee
+}
+.addbox {
+	BORDER-RIGHT: green 0px solid; BORDER-TOP: green 0px solid; FONT-SIZE: 13px; BORDER-LEFT: green 1px solid; COLOR: #958383; BORDER-BOTTOM: green 0px solid; BACKGROUND-COLOR: #eeffee
+}
+.abouttablehead {
+	PADDING-LEFT: 5px; FONT-SIZE: 12pt; BACKGROUND-IMAGE: url(http://hscripts.com/images/tab1.jpg); COLOR: #3d366f; FONT-FAMILY: Georgia, Times, serif
+}
+.abouttabletext {
+	BORDER-RIGHT: #abe680 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #abe680 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 13px; PADDING-BOTTOM: 5px; BORDER-LEFT: #abe680 1px solid; COLOR: #3d366f; PADDING-TOP: 5px; BORDER-BOTTOM: #abe680 1px solid; FONT-FAMILY: Verdana, Arial, Georgia, serif; BACKGROUND-COLOR: #ffffff
+}
+.codetext {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 36px; PADDING-BOTTOM: 4px; COLOR: #af45aa; PADDING-TOP: 4px
+}
+.colc {
+	COLOR: #9eff36; FONT-FAMILY: san-serif
+}
+.colc:hover {
+	COLOR: #456745; FONT-FAMILY: san-serif
+}
+</STYLE>
+<LINK href="http://hscripts.com/images/favicon.gif" rel="shortcut icon"><LINK 
+title="ICRA labels" href="http://www.hscripts.com/labels.rdf" 
+type=application/rdf+xml rel=meta><!--script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-582001-1";
+urchinTracker();
+</script--><LINK 
+title=Images href="http://hscripts.com/rss/rss.xml" type=application/rss+xml 
+rel=alternate><LINK title=Scripts href="http://hscripts.com/rss/rss-scripts.xml" 
+type=application/rss+xml rel=alternate><LINK title=Tutorials 
+href="http://hscripts.com/rss/rss-tutorial.xml" type=application/rss+xml 
+rel=alternate>
+<META content="MSHTML 6.00.2900.3676" name=GENERATOR></HEAD>
+<BODY style="MARGIN: 0px; FONT-FAMILY: Serif, Arial,Times, serif">
+<TABLE class=firsttab height="100%" cellSpacing=0 cellPadding=0 width="100%"><!-- The First Row -->
+  <TBODY>
+  <TR height="10%" width="100%">
+    <TD width="100%"><!-- Header Table -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" align=center>
+        <TBODY>
+        <TR>
+          <TD>
+            <SCRIPT language=javascript>
+var ajss = "../";
+</SCRIPT>
+<!-- Header First Row -->
+            <TABLE height=80 cellSpacing=1 cellPadding=1 width="100%" 
+            align=center 
+            background="Database Tag Library - JSP Tutorial_files/bg.gif">
+              <TBODY>
+              <TR>
+                <TD align=left width="30%">
+                  <DIV class=hiox align=left>H I O X INDIA </DIV>
+                  <DIV class=heading align=left>Javaserver Pages</DIV></TD>
+                <TD align=middle><IMG 
+                  src="Database Tag Library - JSP Tutorial_files/hscripts.gif" 
+                  border=0> </TD>
+                <TD vAlign=center align=right width="30%">
+                  <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=middle><!-- SiteSearch Google -->
+                        <TABLE height=80 cellSpacing=0 cellPadding=0 width=220 
+                        background="Database Tag Library - JSP Tutorial_files/test3.gif" 
+                        border=0>
+                          <TBODY>
+                          <TR>
+                            <TD align=middle>
+                              <FORM id=cse-search-box 
+                              action=http://www.hscripts.com/search.php>
+                              <DIV><INPUT type=hidden 
+                              value=partner-pub-3229609591361912:tr32dstt7u 
+                              name=cx> <INPUT type=hidden value=FORID:10 
+                              name=cof> <INPUT type=hidden value=ISO-8859-1 
+                              name=ie> <INPUT name=q><BR><INPUT type=submit value=Search name=sa> 
+                              </DIV></FORM>
+                              <SCRIPT 
+                              src="Database Tag Library - JSP Tutorial_files/brand.htm" 
+                              type=text/javascript></SCRIPT>
+                            </TD></TR></TBODY></TABLE><!-- SiteSearch Google --></TD></TR></TBODY></TABLE>
+                  <SCRIPT 
+                  src="Database Tag Library - JSP Tutorial_files/select-code.js" 
+                  type=text/javascript></SCRIPT>
+                </TD></TR></TBODY></TABLE><!-- Header First Row  Completed--></TD></TR><!-- Styles For Tools -->
+        <STYLE>.scale {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #454545
+}
+.result {
+	FONT-SIZE: 12px; MARGIN: 2px; COLOR: #ffffff; FONT-FAMILY: arial, verdana; BACKGROUND-COLOR: #44dd55
+}
+.result1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; MARGIN: 3px; COLOR: #ffffff; FONT-FAMILY: arial, verdana; BACKGROUND-COLOR: #ff4433
+}
+.result2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; MARGIN: 3px; COLOR: #ffffff; FONT-FAMILY: arial, verdana; BACKGROUND-COLOR: #aa9a9a
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 17px; COLOR: #0000ff; PADDING-TOP: 10px; FONT-FAMILY: san-serif, verdana, arial
+}
+.dnstab1 {
+	BORDER-RIGHT: #d1aeae 0px solid; PADDING-RIGHT: 5px; BORDER-TOP: #d1aeae 0px solid; PADDING-LEFT: 5px; FONT-SIZE: 13px; PADDING-BOTTOM: 5px; BORDER-LEFT: #d1aeae 0px solid; COLOR: #000044; PADDING-TOP: 5px; BORDER-BOTTOM: #d1aeae 0px solid; FONT-FAMILY: arial, verdana, san-serif; BACKGROUND-COLOR: #f1efea; TEXT-ALIGN: center
+}
+.dnstab {
+	BORDER-RIGHT: #006600 0px solid; PADDING-RIGHT: 5px; BORDER-TOP: #006600 0px solid; PADDING-LEFT: 5px; FONT-SIZE: 12px; PADDING-BOTTOM: 5px; BORDER-LEFT: #006600 0px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #006600 0px solid; FONT-FAMILY: arial, verdana; BACKGROUND-COLOR: #f3f7f3
+}
+.taba {
+	BORDER-RIGHT: #ddffaa 1px solid; BORDER-TOP: #ddffaa 1px solid; BORDER-LEFT: #ddffaa 1px solid; BORDER-BOTTOM: #ddffaa 1px solid
+}
+.trans {
+	COLOR: #000044; TEXT-DECORATION: none
+}
+.trans:hover {
+	COLOR: #1d1aab
+}
+.atag {
+	FONT-SIZE: 12px; COLOR: green; FONT-FAMILY: arial, verdana, san-serif; TEXT-DECORATION: none
+}
+.atag:hover {
+	TEXT-DECORATION: underline
+}
+.new {
+	BORDER-RIGHT: #afc784 1px solid; BORDER-TOP: #afc784 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 13px; MARGIN: 1px; BORDER-LEFT: #afc784 1px solid; BORDER-BOTTOM: #afc784 1px solid; FONT-FAMILY: arial,verdana
+}
+.new1 {
+	PADDING-LEFT: 3px; FONT-SIZE: 13px; MARGIN: 1px; COLOR: #000000; FONT-FAMILY: arial,verdana; BACKGROUND-COLOR: #afc784
+}
+.new2 {
+	PADDING-LEFT: 2px; FONT-SIZE: 13px; MARGIN: 1px; COLOR: #000055; FONT-FAMILY: arial,verdana
+}
+.field {
+	BORDER-RIGHT: #660000 0px solid; BORDER-TOP: #660000 0px solid; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FONT-SIZE: 13px; MARGIN: 1px; BORDER-LEFT: #660000 0px solid; COLOR: #000055; BORDER-BOTTOM: #660000 0px solid; FONT-FAMILY: arial, verdana, san-serif; BACKGROUND-COLOR: #ffffff
+}
+.crclass {
+	CURSOR: pointer; COLOR: blue
+}
+#bubble_tooltip {
+	DISPLAY: none; WIDTH: 300px; POSITION: absolute
+}
+#bubble_tooltip .bubble_top {
+	BACKGROUND-IMAGE: url(http://hscripts.com/images/bubble_top.gif); BACKGROUND-REPEAT: no-repeat; POSITION: relative; HEIGHT: 18px
+}
+#bubble_tooltip .bubble_middle {
+	BACKGROUND-POSITION: left bottom; BACKGROUND-IMAGE: url(http://hscripts.com/images/bubble_middle.gif); BACKGROUND-REPEAT: repeat-y; POSITION: relative
+}
+#bubble_tooltip .bubble_middle DIV {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 12px; FONT-SIZE: 11px; COLOR: red; FONT-FAMILY: arial, verdana, san-serif; POSITION: relative; TEXT-ALIGN: justify; TEXT-DECORATION: none
+}
+#bubble_tooltip .bubble_bottom {
+	BACKGROUND-IMAGE: url(http://hscripts.com/images/bubble_bottom.gif); BACKGROUND-REPEAT: no-repeat; POSITION: relative; TOP: 0px; HEIGHT: 65px
+}
+.syntax {
+	FONT-WEIGHT: bold; COLOR: brown; TEXT-ALIGN: center
+}
+.lnk {
+	FONT-SIZE: 14px; COLOR: #b8860b; FONT-FAMILY: times new roman; TEXT-DECORATION: none
+}
+.ex {
+	MARGIN-LEFT: 15px; COLOR: #998322
+}
+.cmt {
+	FONT-SIZE: 12px; COLOR: #d2691e; FONT-STYLE: italic
+}
+.ref {
+	COLOR: #0000cd; TEXT-DECORATION: none
+}
+</STYLE>
+<!-- End of style for tools-->
+        <TR>
+          <TD bgColor=#eeffee><!-- Header Second Row -->
+            <STYLE>.tab {
+	FONT-SIZE: 14px; FONT-FAMILY: arial, verdana, san-serif
+}
+.asd {
+	FONT-SIZE: 12px; CURSOR: pointer; COLOR: #505050; FONT-FAMILY: arial, verdana, san-serif; TEXT-DECORATION: none
+}
+.row1 {
+	BACKGROUND-COLOR: #ffffee
+}
+.row2 {
+	BACKGROUND-COLOR: #edf8d7
+}
+</STYLE>
+
+            <SCRIPT language=javascript>
+var color1 = "#ffffee";
+var color2 = "#edf8d7";
+var mouseocolor = "#FFFFFF";
+var sitename = "hscripts.com";
+
+window.onerror = null;
+var bName = navigator.appName;
+var bVer = parseInt(navigator.appVersion);
+var IE4 = (bName == "Microsoft Internet Explorer" && bVer >= 4);
+var menuActive = 0;
+var menuOn = 0;
+var onLayer;
+var timeOn = null;
+var colnow = color1;
+
+var url = encodeURIComponent(window.location);
+var title = encodeURIComponent(document.title);
+var sitename = "hscripts.com";
+
+//set the bookmark link, where you want(topright,topleft,bottomright,bottomleft)  
+var corner = "bottomright";
+
+function bookmark(title,url){
+	if(window.sidebar) 
+          window.sidebar.addPanel(title,url,"");
+	else if(window.opera && window.print){
+          var elem = document.createElement('a');
+          elem.setAttribute('href',url);
+          elem.setAttribute('title',title);
+          elem.setAttribute('rel','sidebar');
+          elem.click();
+	}
+	else if(os == "ie")
+          window.external.AddFavorite(url,title);
+}
+
+document.write('<div id=ddd style="z-index: 1000; position: absolute; visibility: visible; padding: 2px; left:5px; top: 5px; border: 0px solid green;"><img src="http://hscripts.com/images/share.gif" border="0" usemap="#Map" style=\'border: 0px solid gray;\' width=135><map name="Map" id="Map"><area shape="circle" coords="15,10,9" href="http://hscripts.com" /></map><br><div style="background-color: #d3d3d3;" width=138><a rel="nofollow" onclick=wopmove("twitter") target="_blank" style="font-size:14px; padding-left: 3px; text-decoration: none; cursor: pointer;" title="Twitter"><img src="http://twitter.com/favicon.ico" alt="twitter" border=0"></a><a rel="nofollow" target="_blank" style="font-size:14px; padding-left: 3px; text-decoration: none; cursor: pointer;" onclick=wopmove("orkut") title="Orkut"><img src="http://img2.orkut.com/favicon.ico" alt="orkut" border=0"></a><a rel="nofollow" style="font-size:14px; padding-left: 3px; text-decoration: none; cursor: pointer;"  onclick=wopmove("facebook") title="facebook"><img src="http://facebook.com/favicon.ico" alt="Bookmark" border=0"></a><a rel="nofollow" style="font-size:14px; text-decoration: none; cursor: pointer; padding-left: 3px; cursor: pointer;" onclick=wopmove("google") title="google"><img src="http://google.com/favicon.ico"></a><a rel="nofollow" style="font-size:14px; padding-left: 3px; text-decoration: none; cursor: pointer;" onclick=wopmove("delicious") title="delicious"><img src="http://delicious.com/favicon.ico" alt="Bookmark" border=0"></a><a rel="nofollow" style="font-size:14px; cursor: pointer; padding-left: 3px; text-decoration: none;" onclick=wopmove("digg") title="Digg"><img src="http://digg.com/favicon.ico" alt="Bookmark" border=0"></a><a rel="nofollow" target="_blank" style="font-size:14px; padding-left: 3px; text-decoration: none; cursor: pointer;" onclick=wopmove("stumbleupon") title="Stumble upon"><img src="http://hscripts.com/images/stumble-upon.gif" alt="stumble upon" border=0"></a></div></div>');
+
+var os;
+if(document.layers)
+ os = "n4";
+else if(document.getElementById&&!document.all)
+ os = "n6";
+else if(document.all)
+ os = "ie";
+
+//Function to scroll the bookmark images throughout the page
+function run()
+{
+var dda = document.getElementById('ddd');
+ if(os == "ie"){
+   pwidth = window.document.body.offsetWidth;
+   pheight = window.document.body.offsetHeight;
+   stop = document.body.scrollTop;
+   sleft = document.body.scrollLeft;
+   setTimeout('run()',5);
+ }else{
+   pwidth = window.innerWidth;
+   pheight = window.innerHeight;
+   stop = window.pageYOffset;
+   sleft = window.pageXOffset;
+   document.getElementById('ddd').style.position = 'fixed';
+}
+
+  if(corner == "topleft"){
+    dda.style.top = (stop+15)+"px";
+    dda.style.left = (sleft+15)+"px";
+  }else if(corner == "topright"){
+    dda.style.top = (stop)+"px";
+    dda.style.left = (sleft+pwidth-70)+"px";  
+  }else if(corner == "bottomleft"){
+    dda.style.top = (stop+pheight-43)+"px";
+    dda.style.left = (sleft+15)+"px";
+  }else if(corner == "bottomright"){
+    dda.style.top = (stop+pheight-70)+"px";
+    dda.style.left = (sleft+pwidth-280)+"px";  
+  }
+ // setTimeout('run()',5);
+}
+function wopmove(id)
+{
+//alert(title);
+  	window.location = "http://zxc9.com/seo.php?type="+id+"&title="+title+"&url="+url;
+}
+document.onload = run();
+function showLayer(layerName,aa){
+	var x =document.getElementById(aa);
+	var tt =findPosX(x);
+	var ww =findPosY(x)+18;
+	
+	//alert(tt+"---"+ww);
+
+	if (timeOn != null) {
+	clearTimeout(timeOn);
+	hideLayer(onLayer);
+	}
+	if (IE4) {
+	var layers = eval('document.all["'+layerName+'"].style');
+	layers.left = tt;
+	layers.top = ww;
+	eval('document.all["'+layerName+'"].style.visibility="visible"');
+	}
+	else {
+		if(document.getElementById){
+		var elementRef = document.getElementById(layerName);
+		if((elementRef.style)&& (elementRef.style.visibility!=null)){
+		elementRef.style.visibility = 'visible';
+		elementRef.style.left = tt;
+		elementRef.style.top = ww;
+		}
+		}
+	}
+	onLayer = layerName
+}
+
+function hideLayer(layerName){
+	if (menuActive == 0)
+	{
+		if (IE4){
+		eval('document.all["'+layerName+'"].style.visibility="hidden"');
+		}
+		else{
+			if(document.getElementById){
+				var elementRef = document.getElementById(layerName);
+				if((elementRef.style)&& (elementRef.style.visibility!=null)){
+					elementRef.style.visibility = 'hidden';
+				}
+			}
+		}
+	}
+}
+
+function btnTimer() {
+	timeOn = setTimeout("btnOut()",600)
+}
+
+function btnOut(layerName){
+	if (menuActive == 0){
+	hideLayer(onLayer)
+	}
+}
+
+var item;
+function menuOver(itemName){
+	item=itemName;
+	itemName.style.backgroundColor = mouseocolor; //background color change on mouse over
+	clearTimeout(timeOn);
+	menuActive = 1
+}
+
+function menuOut(itemName,iid){
+	if(iid == 1)
+		colnow = color1;
+	else
+		colnow = color2;
+
+	if(item)
+		itemName.style.backgroundColor = colnow;
+	menuActive = 0
+	timeOn = setTimeout("hideLayer(onLayer)", 100)
+}
+
+function findPosX(obj)
+{
+var curleft = 0;
+if (obj.offsetParent)
+{
+while (obj.offsetParent)
+{
+curleft += obj.offsetLeft
+obj = obj.offsetParent;
+}
+}
+else if (obj.x)
+curleft += obj.x;
+return curleft;
+}
+
+function findPosY(obj)
+{
+var curtop = 0;
+if (obj.offsetParent)
+{
+while (obj.offsetParent)
+{
+curtop += obj.offsetTop
+obj = obj.offsetParent;
+}
+}
+else if (obj.y)
+curtop += obj.y;
+return curtop;
+}
+</SCRIPT>
+
+            <DIV id=Menu251 
+            style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; Z-INDEX: 1; VISIBILITY: hidden; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; POSITION: absolute">
+            <TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=0 
+cellPadding=0>
+              <TBODY>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/php/index.php">PHP 
+                  Script </A></TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/JavaScript/index.php">Java 
+                  Script </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/jsp/index.php">JSP 
+                  Script </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/ajax/index.php">AJAX 
+                  Script </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/perl/index.php">Perl 
+                  Script </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/shell-scripts/index.php">Shell 
+                  Script </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.asp.hscripts.com/">ASP Script 
+                </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://hscripts.com/scripts/php/licensed/index.php">Licensed 
+                  Scripts </A>&nbsp;&nbsp;</TD></TR></TBODY></TABLE></DIV>
+            <DIV id=Menu252 
+            style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; Z-INDEX: 1; VISIBILITY: hidden; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; POSITION: absolute">
+            <TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=0 
+cellPadding=0>
+              <TBODY>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/scripts/php/licensed/">Licensed 
+                  Scripts </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/premium-icons/">Premium 
+                  Icons</A> &nbsp;&nbsp;</TD></TR></TBODY></TABLE></DIV>
+            <DIV id=Menu253 
+            style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; Z-INDEX: 1; VISIBILITY: hidden; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; POSITION: absolute">
+            <TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=0 
+cellPadding=0>
+              <TBODY>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/html/index.php">HTML 
+                  Tutorials </A></TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/css/index.php">CSS 
+                  Tutorials </A></TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/javascript/index.php">JavaScript 
+                  Tutorials </A></TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/jsp/index.php">JSP 
+                  Topics</A> </TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/mysql/index.php">MYSQL 
+                  Tutorials </A></TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/photoshop/index.php">Photoshop 
+                  Tutorials </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/flash/index.php">Flash 
+                  Tutorial</A> &nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/php/index.php">PHP 
+                  Topics</A> &nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/perl/index.php">Perl 
+                  Tutorial</A> &nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/regular-expression/index.php">Regular 
+                  Expression </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/linux-commands/index.php">Unix 
+                  Commands</A> &nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/linux-services/index.php">Linux 
+                  services</A></TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp;<A class=asd 
+                  href="http://www.hscripts.com/tutorials/SEO/index.php"> SEO 
+                  Tutorial</A></TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/web/domain-names.php">Domain 
+                  &amp; DNS</A></TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/vista-services/index.php">Vista 
+                  Services</A></TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tutorials/rss-feed/index.php">RSS 
+                  Feed</A></TD></TR></TBODY></TABLE></DIV>
+            <DIV id=Menu254 
+            style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; Z-INDEX: 1; VISIBILITY: hidden; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; POSITION: absolute">
+            <TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=0 
+cellPadding=0>
+              <TBODY>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/freeimages/icons/">Gif Icons 
+                  &amp; Clipart</A> </TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/freeimages/logos/">Logos</A> 
+              </TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/freeimages/background/">Background 
+                  Images </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/freeimages/icons/menu-buttons/index.php">Menu 
+                  buttons </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/freeimages/maps/map-icons.php">Your 
+                  Country </A>&nbsp;&nbsp;</TD></TR></TBODY></TABLE></DIV>
+            <DIV id=Menu255 
+            style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; Z-INDEX: 1; VISIBILITY: hidden; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; POSITION: absolute">
+            <TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=0 
+cellPadding=0>
+              <TBODY>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/ButtonCreator/index.php">Button 
+                  Creator </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/form-generator/index.php">Form 
+                  Generator</A> &nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://hscripts.com/tools/case-conversion/index.php">Case 
+                  Converter</A> &nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/drop-down-menu/index.php">Menu 
+                  Builder </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/HLPC/index.php">Website 
+                  Popularity </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/HPR/index.php">Page Rank 
+                  Checker </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/BrokenLinkChecker/index.php">Link 
+                  Analyzer </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/web-page-color/index.php">Color 
+                  Chooser </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/HDNT/index.php">DNS Lookup 
+                  </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/HVLT/index.php">Apache Ver 
+                  Lookup </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row1 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,1) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/statistics/index.php">Statistics 
+                  </A>&nbsp;&nbsp;</TD></TR>
+              <TR class=row2 onmouseover=menuOver(this) 
+              onmouseout=menuOut(this,2) height=22>
+                <TD align=left>&nbsp;&nbsp; <A class=asd 
+                  href="http://www.hscripts.com/tools/unix-timestamp/index.php">Epoch-GMT 
+                  Converter</A> &nbsp;&nbsp;</TD></TR></TBODY></TABLE></DIV>
+            <TABLE 
+            style="BORDER-TOP: green 0px solid; BORDER-BOTTOM: green 1px solid; BACKGROUND-COLOR: rgb(230,245,230)" 
+            width="100%" align=center 
+            background="Database Tag Library - JSP Tutorial_files/bg2.jpg" 
+            border=0>
+              <TBODY>
+              <TR vAlign=bottom align=middle>
+                <TD vAlign=center align=middle>
+                  <TABLE cellSpacing=0 cellPadding=1 width="100%" align=center 
+                  border=0>
+                    <TBODY>
+                    <TR>
+                      <TD align=middle colSpan=3><A 
+                        href="http://www.hscripts.com/index.php"><IMG height=15 
+                        src="Database Tag Library - JSP Tutorial_files/house.gif" 
+                        border=0></A> <A class=mainstyle 
+                        href="http://www.hscripts.com/index.php">&nbsp;HOME&nbsp;</A> 
+                        || <A class=mainstyle id=251 
+                        onmouseover="showLayer(&quot;Menu251&quot;,'251')" 
+                        onmouseout=btnTimer() 
+                        href="http://www.hscripts.com/scripts/index.php">&nbsp;Scripts&nbsp;</A> 
+                        || <A class=mainstyle id=252 
+                        onmouseover="showLayer(&quot;Menu252&quot;,'252')" 
+                        href="http://www.hscripts.com/scripts/php/licensed/index.php" 
+                        onmmouseout="btnTimer()">&nbsp;Purchase&nbsp;</A> || <A 
+                        class=mainstyle id=253 
+                        onmouseover="showLayer(&quot;Menu253&quot;,'253')" 
+                        onmouseout=btnTimer() 
+                        href="http://www.hscripts.com/tutorials/index.php">&nbsp;Tutorials&nbsp;</A> 
+                        || <A class=mainstyle id=254 
+                        onmouseover="showLayer(&quot;Menu254&quot;,'254')" 
+                        onmouseout=btnTimer() 
+                        href="http://www.hscripts.com/freeimages/index.php">&nbsp;Images&nbsp;</A> 
+                        || <A class=mainstyle id=255 
+                        onmouseover="showLayer(&quot;Menu255&quot;,'255')" 
+                        onmouseout=btnTimer() 
+                        href="http://www.hscripts.com/tools/index.php">&nbsp;Tools&nbsp;</A> 
+                        || <A class=mainstyle 
+                        href="http://freedesignertemplates.com/" 
+                        target=_blank>&nbsp;Templates&nbsp;</A> </TD></TR>
+                    <STYLE>A#a2 {
+	COLOR: #7777ee; TEXT-DECORATION: none
+}
+A#a2:hover {
+	COLOR: #77aaff; TEXT-DECORATION: none
+}
+</STYLE>
+
+                    <TR vAlign=bottom align=middle>
+                      <TD width="20%"></TD>
+                      <TD vAlign=center align=middle>
+                        <TABLE id=linkaa style="MARGIN-TOP: -1px" cellSpacing=0 
+                        cellPadding=0>
+                          <TBODY>
+                          <TR>
+                            <TD 
+                            style="FONT-SIZE: 13px; COLOR: green; PADDING-TOP: 1px; BACKGROUND-COLOR: #e5fcda">&nbsp; 
+                              :-)&nbsp; <A class=hlinks 
+                              href="http://www.hscripts.com/sendpage.php">Send 
+                              Page</A> &nbsp; :-) &nbsp; <A class=hlinks 
+                              href="http://www.hscripts.com/feedback.php">Feedback</A> 
+                              &nbsp; :-) &nbsp; <A class=hlinks 
+                              href="http://www.hscripts.com/regpage.php">Register</A> 
+                              &nbsp; :-) &nbsp; <A class=hlinks 
+                              href="http://www.hscripts.com/links.php">Links</A> 
+                              &nbsp; :-) &nbsp; <A class=hlinks 
+                              href="http://www.hscripts.com/support.php">Support</A> 
+                              &nbsp; :-) <!-- BEGIN PHP Live! code, (c) OSI Codes Inc. --><!--script language="JavaScript" src="http://hscripts.com/live-chat/js/status_image.php?base_url=http://hscripts.com/live-chat&l=hscripts_chat&x=1&deptid=0&"><a href="http://www.phplivesupport.com"></a></script--><!-- END PHP Live! code : (c) OSI Codes Inc. --></TD></TR></TBODY></TABLE><!-- Column to display Flags -->
+                      <TD width="20%"><A href="http://es.hscripts.com/"><IMG 
+                        title="&#10;Español" alt=Español 
+                        src="Database Tag Library - JSP Tutorial_files/spain-flag.gif" 
+                        border=0></A> <A href="http://fr.hscripts.com/"><IMG 
+                        title=Français alt=Français 
+                        src="Database Tag Library - JSP Tutorial_files/france-flag.gif" 
+                        border=0></A> <A href="http://cn.hscripts.com/"><IMG 
+                        title="&#10;中文" alt=中文 
+                        src="Database Tag Library - JSP Tutorial_files/chinese-flag.gif" 
+                        border=0></A> <A href="http://de.hscripts.com/"><IMG 
+                        title=Deutsch alt=Deutsch 
+                        src="Database Tag Library - JSP Tutorial_files/german-flag.gif" 
+                        border=0></A> <A href="http://pt.hscripts.com/"><IMG 
+                        title=Portuguese alt=Portuguese 
+                        src="Database Tag Library - JSP Tutorial_files/portuguese.jpg" 
+                        border=0></A> <A href="http://ja.hscripts.com/"><IMG 
+                        title=Japanese 
+                        style="BORDER-RIGHT: #d3d3d3 1px solid; BORDER-TOP: #d3d3d3 1px solid; BORDER-LEFT: #d3d3d3 1px solid; BORDER-BOTTOM: #d3d3d3 1px solid" 
+                        alt=Japanese 
+                        src="Database Tag Library - JSP Tutorial_files/japanese-flag.gif" 
+                        border=0></A> <A href="http://ta.hscripts.com/"><IMG 
+                        title=தமிழ் alt=தமிழ் 
+                        src="Database Tag Library - JSP Tutorial_files/tamil-flag.gif" 
+                        border=0></A> 
+                      </TD><!-- End of column to display Flags --></TD></TR>
+                    <TR align=middle>
+                      <TD align=middle colSpan=3><A id=a2 
+                        href="http://www.forums.hscripts.com/" 
+                        target=_blank>&nbsp;Forums&nbsp;</A> <A id=a2 
+                        href="http://www.hioxindia.com/" target=_blank>&nbsp;Web 
+                        Hosting&nbsp;</A> <A id=a2 
+                        href="http://www.tofocus.info/" 
+                        target=_blank>&nbsp;Internet Stats&nbsp;</A> <A id=a2 
+                        href="http://www.easycalculation.com/" 
+                        target=_blank>&nbsp;Easy Calculation&nbsp;</A> <A id=a2 
+                        href="http://www.funmin.com/" target=_blank>&nbsp;FUN 
+                        Games&nbsp;</A> </TD></TR></TBODY></TABLE></TD></TR><!--tr><td align=center>
+</td></tr--></TBODY></TABLE><!-- Header Second Row Completed--></TD></TR></TBODY></TABLE><!-- Header Tabele Completed--></TD></TR><!-- First Row Completed--><!-- Second Row -->
+  <TR height="90%">
+    <TD height="100%"><!-- Second row table-->
+      <TABLE class=contenttable height="100%" cellSpacing=0 cellPadding=0 
+      width="100%"><!-- Second row table - row1 -->
+        <TBODY>
+        <TR height="100%">
+          <TD height="100%"><!-- Main contents -->
+            <TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD width="20%">
+                  <TABLE class=leftbox height="100%" cellPadding=0 width="100%" 
+                  align=center valign="top">
+                    <TBODY>
+                    <TR>
+                      <TD vAlign=top align=middle><BR><!-- css tutorials table -->
+                        <SCRIPT language=javascript 
+                        src="Database Tag Library - JSP Tutorial_files/expander.js">
+</SCRIPT>
+
+                        <TABLE 
+                        style="BORDER-RIGHT: green 1px solid; BORDER-TOP: green 1px solid; BORDER-LEFT: green 1px solid; BORDER-BOTTOM: green 1px solid" 
+                        cellSpacing=1 width="95%" border=0>
+                          <TBODY>
+                          <TR>
+                            <TD class=lefttitle align=middle height=25><B>JSP 
+                              Tutorial</B></TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/index.php">Introduction</A> 
+                            </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jdk-windows.php">Installing 
+                              JDK-Windows</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jdk-linux.php">Installing 
+                              JDK-Linux</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/installing-tomcat.php">Installing 
+                              Tomcat</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/firstprogram.php">Simple 
+                              Program in JSP</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/variables.php">Pre-defined 
+                              Variables</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/tag-syntax.php">Syntax 
+                              of Tags</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jsp-expression-lang.php">JSP 
+                              Expression Language</A> </TD></TR>
+                          <TR>
+                            <TD class=topics>
+                          <TR>
+                            <TD class=topics id=operators 
+                            onclick="addChilds('operators','./')"><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <FONT class=topics1>JSP EL Operators</FONT></TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/el-implicit-variables.php">EL 
+                              Implicit Variables</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jsp-scopes.php">Scopes</A> 
+                            </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jsp-arrays.php">Using 
+                              Arrays</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/methods-in-jsp.php">Methods</A> 
+                            </TD></TR>
+                          <TR>
+                            <TD class=topics>
+                          <TR>
+                            <TD class=topics id=jspelements 
+                            onclick="addChilds('jspelements','./')"><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <FONT class=topics1>JSP Elements</FONT></TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jspandbeans.php">Including 
+                              Beans</A> </TD></TR>
+                          <TR>
+                            <TD class=topics>
+                          <TR>
+                            <TD class=topics id=jstltags 
+                            onclick="addChilds('jstltags','./')"><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <FONT class=topics1>JSTL Tags</FONT></TD></TR>
+                          <TR>
+                            <TD class=topics>
+                          <TR>
+                            <TD class=topics id=customtag 
+                            onclick="addChilds('customtag','./')"><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <FONT class=topics1>Custom Tags</FONT></TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jsp-session.php">Session 
+                              in JSP</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jsp-cookie.php">Handling 
+                              Cookies</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/jsp-application-structure.php">JSP 
+                              Application Structure</A> </TD></TR>
+                          <TR>
+                            <TD class=topics>
+                          <TR>
+                            <TD class=topics id=webxml 
+                            onclick="addChilds('webxml','./')"><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <FONT class=topics1>Configuring 
+                          web.xml</FONT></TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/tutorials/jsp/tomcat-configuration.php">Tomcat 
+                              Configuration</A> </TD></TR>
+                          <TR>
+                            <TD class=topics>
+                          <TR>
+                            <TD class=topics id=examples 
+                            onclick="addChilds('examples','./')"><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <FONT class=topics1>JSP Examples</FONT></TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.forums.hscripts.com/viewforum.php?f=18" 
+                              target=_blank>Ask Your Doubts</A> </TD></TR>
+                          <TR>
+                            <TD class=topics><IMG 
+                              src="Database Tag Library - JSP Tutorial_files/icon.gif"> 
+                              <A class=topics1 
+                              href="http://www.hscripts.com/feedback.php?type=jsp-tutorial">Feedback</A> 
+                            </TD></TR></TBODY></TABLE><BR><!-- php scripts table --></TD></TR>
+                    <TR>
+                      <TD align=middle><!-- utilities table --><!--table width=95% style="border: green solid 1px;" cellspacing=0 align=center>
+<tr><td class="lefttitle" height=25 align=center>
+<b>Utilities</b> </td></tr>
+<tr><td align=center class="utilstd"> 
+<a href="http://www.easycalculation.com" class="utilslink"> Calculators & Converters </td></tr>
+</table--><!-- utilities table --><BR>
+                        <DIV align=center><A href="http://www.buildmylink.com/" 
+                        target=_blank 
+                        alt="track, manage link submission status"><IMG alt="" 
+                        src="Database Tag Library - JSP Tutorial_files/buildmylink-ad.gif" 
+                        border=0></A></DIV><BR></TD></TR>
+                    <TR>
+                      <TD><BR><BR></TD></TR><!--tr><td align=center> <a href="http://www.hioxindia.com"><img
+src="../../../images/hiox_text_add.gif" width=120 height=80 border=1> </a></td></tr-->
+                    <TR>
+                      <TD height="90%"></TD></TR></TBODY></TABLE></TD>
+                <SCRIPT language=javascript>
+document.onload=addChilds('jstltags','./');
+</SCRIPT>
+
+                <TD class=mainbox vAlign=top width="60%">
+                  <DIV align=center>
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                    align=center><TBODY>
+                    <TR>
+                      <TD align=middle 
+                      background="Database Tag Library - JSP Tutorial_files/center.jpg" 
+                      height=40>
+                        <H3 class=scriptname>Database Tag Library in 
+                    JSP</H3></TD></TR></TBODY></TABLE></DIV><BR>
+                  <DIV class=centerbox align=left>
+                  <TABLE cellSpacing=0 cellPadding=0 width="95%" align=center>
+                    <TBODY>
+                    <TR>
+                      <TD class=abouttablehead>
+                        <DIV><B>Topic</B></DIV></TD></TR>
+                    <TR>
+                      <TD class=abouttabletext><BR>What is Database Tag 
+                        Library in JSP?<BR><BR></TD></TR></TBODY></TABLE><BR>
+                  <TABLE>
+                    <TBODY>
+                    <TR>
+                      <TD style="PADDING-LEFT: 150px" align=middle>
+                        <SCRIPT type=text/javascript>
+<!--
+google_ad_client = "pub-3229609591361912";
+/* hscripts-tut-468-60 */
+google_ad_slot = "6088966587";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</SCRIPT>
+
+                        <SCRIPT 
+                        src="Database Tag Library - JSP Tutorial_files/show_ads.js" 
+                        type=text/javascript>
+</SCRIPT>
+
+                        <SCRIPT 
+                        src="Database Tag Library - JSP Tutorial_files/expansion_embed.js"></SCRIPT>
+                      </TD></TR></TBODY></TABLE>
+                  <TABLE cellSpacing=0 cellPadding=0 width="95%" align=center>
+                    <TBODY>
+                    <TR>
+                      <TD class=abouttablehead><B>Explanation</B></TD></TR>
+                    <TR>
+                      <TD class=abouttabletext>
+                        <P align=justify>Database Tag Library lists the tags 
+                        that are used for database connectivity in JSP pages. 
+                        All these tags are used for quick design of database 
+                        connectivity in simple applications, but in large 
+                        application database connectivity is embedded using Java 
+                        beans. The database tags have the prefix 
+                        "sql".</P><B><U>Syntax:</U></B> <FONT color=brown><PRE>    &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %&gt;
+</PRE></FONT>
+                        <TABLE class=abouttabletext height="30%" cellSpacing=1 
+                        cellPadding=2 width="80%" align=center border=1>
+                          <TBODY>
+                          <TR height="30%">
+                            <TD align=middle><B>Function</B></TD>
+                            <TD align=middle><B>Tags</B></TD></TR>
+                          <TR height="30%">
+                            <TD align=middle>Setting the data source</TD>
+                            <TD align=middle>setDataSource</TD></TR>
+                          <TR height="30%">
+                            <TD align=middle>SQL</TD>
+                            <TD 
+                          align=middle>query,transaction,update</TD></TR></TBODY></TABLE><BR><BR><B><U>Example 
+                        for INSERT Query:</U></B> <FONT color=brown><PRE>    &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" 
+    prefix="c"%&gt;
+    &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/sql" 
+    prefix="sql"%&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://localhost/test" user="root" password=""
+    scope="session" /&gt;
+    &lt;sql:update dataSource="${dataSource}" var="updttble"&gt;
+    INSERT INTO emp(id,name,salary) VALUES(2,"alex","3000")
+    &lt;/sql:update&gt;
+</PRE></FONT>
+                        <P align=justify>In the above example we have used the 
+                        "&lt;sql:setDataSource/&gt;" tag to define the driver 
+                        location. Here the "driver" attribute specifies the JDBC 
+                        driver, the "url" attribute specifies the JDBC url for 
+                        the database connection with the database name, the 
+                        attribute "user", "password" specifies the username, 
+                        password for the database, "scope" of connection. We 
+                        have used the "INSERT" query to update the table with 
+                        the "id=2", "name=alex", "salary=3000".</P><B><U>Example 
+                        for SELECT query:</U></B> <FONT color=brown><PRE>    &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%&gt;
+    &lt;%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%&gt;
+    &lt;html&gt;
+    &lt;sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost/test" user="root" password=""
+	scope="session"/&gt;
+    &lt;sql:query var = "qry" dataSource="${dataSource}"&gt;
+      SELECT id,name FROM emp
+    &lt;/sql:query&gt;
+    &lt;table&gt;
+    &lt;c:forEach var="row" items="${qry.rows}"&gt;
+    &lt;tr&gt;
+    &lt;td&gt;&lt;c:out value="${row.id}"/&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;c:out value="${row.name}"/&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/c:forEach&gt;
+    &lt;/table&gt;
+    &lt;/html&gt;
+</PRE></FONT><B><U>Result:</U></B><BR><FONT color=brown>
+                        <TABLE border=1>
+                          <TBODY>
+                          <TR>
+                            <TD><B>id</B></TD>
+                            <TD><B>name</B></TD></TR>
+                          <TR>
+                            <TD align=middle>1</TD>
+                            <TD align=middle>prasad</TD></TR>
+                          <TR>
+                            <TD align=middle>2</TD>
+                            <TD align=middle>alex</TD></TR></TBODY></TABLE></FONT>
+                        <P align=justify>In the above example we have used the 
+                        tag "&lt;sql:query" and the "SELECT" query to get the 
+                        records with only the "id" and "name" alone form the 
+                        table "emp".</P>
+                        <DIV align=center><A 
+                        title="fn:trim tag in function tag library in JSP" 
+                        href="http://www.hscripts.com/tutorials/jsp/functiontaglist/fn-trim.php" 
+                        alt="fn:trim tag in function tag library in JSP"><IMG 
+                        src="Database Tag Library - JSP Tutorial_files/prev.gif" 
+                        border=0></A> <A 
+                        title="internationalization  tag library in JSP" 
+                        href="http://www.hscripts.com/tutorials/jsp/jstltags/internationalization-tag.php" 
+                        alt="internationalization tag library in JSP"><IMG 
+                        src="Database Tag Library - JSP Tutorial_files/next.gif" 
+                        border=0></A> </DIV><BR></TD></TR></TBODY></TABLE><BR></DIV>
+                  <DIV align=center>
+                  <SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3229609591361912";
+/* hscripts-tut-300-250 */
+google_ad_slot = "6908476640";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</SCRIPT>
+
+                  <SCRIPT 
+                  src="Database Tag Library - JSP Tutorial_files/show_ads.js" 
+                  type=text/javascript>
+</SCRIPT>
+                  </DIV><BR>
+                  <TABLE cellSpacing=0 cellPadding=0 width="95%" align=center>
+                    <TBODY>
+                    <TR>
+                      <TD class=abouttablehead>
+                        <DIV><B>A Note</B></DIV></TD></TR>
+                    <TR>
+                      <TD class=abouttabletext>JSP(Java Server Pages) is one 
+                        of the most used Server Side Programming Language in the 
+                        world. Simple introduction, basic program codes with 
+                        examples. Begin coding your own JSP scripts with this 
+                        online tutorial. Hope you enjoy this tutorial. Do send 
+                        your feedback or suggestions on this JavaServer Pages 
+                        tutorial. This is a copyright content. 
+                  </TD></TR></TBODY></TABLE><BR>
+                  <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+                    align=center><TBODY>
+                    <TR>
+                      <TD align=middle 
+                      background="C:\Documents and Settings\Cristian TOMA\Desktop\Database Tag Library - JSP Tutorial_files\center(1).jpg" 
+                      height=40><A class=downlink 
+                        href="http://www.hscripts.com/license/ppolicy.html">privacypolicy</A>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <A class=downlink 
+                        href="http://www.hscripts.com/license/hioxlicense.html">licence</A>&nbsp;&nbsp;&nbsp;&nbsp; 
+                        <A class=downlink 
+                        href="http://www.hscripts.com/sitemap.php">sitemap</A><BR><SPAN 
+                        style="FONT-SIZE: 12px">© 2004-2010 <A 
+                        style="FONT-SIZE: 12px; TEXT-DECORATION: none" 
+                        href="http://www.hiox.com/">HIOX INDIA</A></SPAN> 
+                    </TD></TR></TBODY></TABLE></TD><!-- center column ends --><!-- Add box column -->
+                <TD class=addcol vAlign=top width="20%"><!-- Add table -->
+                  <TABLE class=addbox height="100%" width="100%" align=center 
+                  valign="top">
+                    <TBODY>
+                    <TR>
+                      <TD vAlign=top align=middle><BR>
+                        <TABLE 
+                        style="BORDER-RIGHT: green 1px solid; BORDER-TOP: green 1px solid; BORDER-LEFT: green 1px solid; BORDER-BOTTOM: green 1px solid" 
+                        height="70%" cellSpacing=0 width="95%" align=center 
+                        valign="top">
+                          <TBODY>
+                          <TR>
+                            <TD class=lefttitle align=middle 
+                              height=25><B>&nbsp;</B></TD></TR>
+                          <TR>
+                            <TD class=topics vAlign=top>
+                              <DIV align=center>
+                              <SCRIPT type=text/javascript>
+iiiidd="group_120_600";
+</SCRIPT>
+<!--a href='http://codingcoding.com'><img src='../../images/coding_coding.jpg'></a><br-->
+                              <SCRIPT 
+                              src="Database Tag Library - JSP Tutorial_files/hioxad.js" 
+                              type=text/javascript></SCRIPT>
+                              </DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- Add table Completed --></TD><!-- Add box column completed --></TR></TBODY></TABLE><!-- Main Contents completed--></TD></TR><!-- Second row table -row1 completed --><!-- Second row table - row2 - use if required -->
+        <TR style="BACKGROUND-COLOR: #ffffff">
+          <TD></TD></TR><!-- Second row table - row2 completed--></TBODY></TABLE><!-- Second row table completed --></TD></TR><!-- Second row completed --></TBODY></TABLE></BODY></HTML>

@@ -1,0 +1,489 @@
+<html><head><title>Java Custom Tags - A Quick How-To</title>
+
+
+<meta name="keywords" content="Java Tag Library, Custom Tags">
+<meta name="description" content="How to create, deploy, and use a Java custom tag. A quick intro."></head><body>
+
+<h2 style="background-color: beige;" align="center">Java Custom Tags - A Quick How-To</h2>
+<div align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+      <td><b>Abdul Habra, July 6, 2002</b> </td>
+    </tr>
+    <tr>
+      <td align="right"> <a href="mailto:ahabra@yahoo.com">ahabra@yahoo.com</a></td>
+    </tr>
+  </tbody></table>
+</div>
+<hr>
+<h3 align="left">Table Of Contents</h3>
+<p>
+<a href="#1">1&nbsp;Introduction.</a><br>
+&nbsp;&nbsp;&nbsp; 1.1 Prerequisites<br>
+&nbsp;&nbsp;&nbsp; 1.2&nbsp;Tag Creation Steps<br>
+&nbsp;&nbsp;&nbsp; 1.3&nbsp;Two Types of Tags<br>
+<a href="#2">2&nbsp;&nbsp;Tags That Do NOT Manipulate Body Contents</a><br>
+&nbsp;&nbsp;&nbsp; 2.1&nbsp;&nbsp;Determine Tag and Attributes<br>
+&nbsp;&nbsp;&nbsp; 2.2&nbsp;&nbsp;Create an Empty Web Application<br>
+&nbsp;&nbsp;&nbsp; 2.3&nbsp;&nbsp;Write Tag Handler<br>
+&nbsp;&nbsp;&nbsp; 2.4&nbsp;&nbsp;Write Tag Library Descriptor (TLD)<br>
+&nbsp;&nbsp;&nbsp; 2.5&nbsp;&nbsp;Register Tag Library<br>
+&nbsp;&nbsp;&nbsp; 2.6&nbsp;&nbsp;Use Tag Library in a JSP<br>
+<a href="#3">3&nbsp;&nbsp;Tags That DO Manipulate Body Contents</a><br>
+&nbsp;&nbsp;&nbsp; 3.1&nbsp;&nbsp;Determine Tag and Attributes<br>
+&nbsp;&nbsp;&nbsp; 3.2&nbsp;&nbsp;Create a Web Application<br>
+&nbsp;&nbsp;&nbsp; 3.3&nbsp;&nbsp;Write Tag Handler<br>
+&nbsp;&nbsp;&nbsp; 3.4&nbsp;&nbsp;Write Tag Library Descriptor (TLD)<br>
+&nbsp;&nbsp;&nbsp; 3.5&nbsp;&nbsp;Register Tag Library<br>
+&nbsp;&nbsp;&nbsp; 3.6&nbsp;&nbsp;Use Tag Library in a JSP<br>
+<a href="#4">4&nbsp;&nbsp;Using Tomcat 4.x and JSP 1.2</a><br>
+<a href="#5">5&nbsp;&nbsp;References</a>
+</p>
+<hr>
+<h2><a name="1">1 Introduction</a></h2>
+<p>This document explains how to create, deploy, and use a Java custom
+tag with Tomcat 3.3.1 (JSP 1.1) running on a Windows 2000 system.</p>
+<h3>1.1 Prerequisites</h3>
+<p>1.      JDK 1.3 or higher must be installed.<br>
+2.      Tomcat 3.3.1 must be installed in a directory that we will denote <font face="Courier New">%TOMCAT_HOME%</font>.<br>
+3. Reader should be familiar with Java, JSP, and Tomcat.
+</p><h3>1.2       Tag Creation Steps</h3>
+<p>Creating a Java Custom Tag consists of the following steps:<br>
+1.      Determine tag and attributes: Think and plan.<br>
+2.      Create an empty web application: Create some directories.<br>
+3.      Write tag handler: A Java class.<br>
+4.      Write tag library descriptor (TLD): An XML file.<br>
+5.      Register tag library: with the Tomcat by modifying the web.xml file.<br>
+6.      Use tag library in a JSP.</p>
+<h3>1.3       Two Types of Tags</h3>
+<p>There are two types of tags:<br>
+1.      Tags that do not manipulate their body content.<br>
+2.      Tags that do manipulate their body content.</p>
+<p>The body of a tag is the data enclosed between its start and end tags. For example, in the element
+<font face="Courier New"> &lt;b&gt;body&lt;/b&gt;</font>, the word &#8220;body&#8221; is the body of the tag.</p>
+<p>The following sections will show how to create each type.</p>
+<hr>
+<h2><a name="2">2                 Tags That Do NOT Manipulate Body Contents</a></h2>
+<h3>2.1       Determine Tag and Attributes</h3>
+<p>For the purpose of this article, assume that we need a tag that will
+display a string as an error message, displaying it in bold. The error
+will have a default color of red, but can be displayed in any other
+color. For example, to use the tag:</p>
+<pre>&lt;test:tagError&gt;Invalid user name&lt;/test:tagError&gt;
+&lt;test:tagError color="blue"&gt;Invalid Password&lt;/test:tagError&gt;</pre>
+<p>Will produce:</p>
+<pre>&lt;font color="red"&gt;&lt;b&gt;Error: Invalid User Id&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font color="blue"&gt;&lt;b&gt;Error: Invalid Password&lt;/b&gt;&lt;/font&gt;&lt;br&gt;</pre>
+<h3>2.2       Create an Empty Web Application</h3>
+<p>In the directory <font face="Courier New">%TOMCAT_HOME%\webapps\</font> create the following folders:</p>
+<p>1. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags</font><br>
+2. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\META-INF</font><br>
+3. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\WEB-INF</font><br>
+4. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\WEB-INF\tlds</font><br>
+5. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\WEB-INF\classes</font><br>
+6. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\WEB-INF\classes\com</font><br>
+7. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\WEB-INF\classes\com\tek271</font><br>
+8. <font face="Courier New"> %TOMCAT_HOME%\webapps\testTags\WEB-INF\classes\com\tek271\testTags</font></p>
+<p>The above will setup a web application named &#8220;testTags&#8221;. Steps 6, 7, and 8 prepare for Java classes in the package
+<font face="Courier New">com.tek271.testTags</font>.</p>
+<h3>2.3       Write Tag Handler</h3>
+<pre><b><font color="#0000ff">package</font></b> com.tek271.testTags;
+<b><font color="#0000ff">import</font></b> java.io.*;
+<b><font color="#0000ff">import</font></b> javax.servlet.jsp.*;
+<b><font color="#0000ff">import</font></b> javax.servlet.jsp.tagext.*;
+
+<b><font color="#0000ff">public class</font></b> TagError <b><font color="#0000ff">extends</font></b> TagSupport {
+
+<b><font color="#0000ff">private</font></b> String mColor = <font color="#008000">"red"</font>;
+
+<b><font color="#0000ff">public void</font></b> setColor(String aColor) {
+&nbsp; mColor = aColor;
+} <i><font color="#808080">// setColor</font></i>
+
+<font color="#0000ff"><b>public</b> <b>int</b></font> doStartTag() <b><font color="#0000ff">throws</font></b> JspException {
+&nbsp; <b><font color="#0000ff">try</font></b> {
+&nbsp;&nbsp;&nbsp; JspWriter out = pageContext.getOut();
+&nbsp;&nbsp;&nbsp; out.print(<font color="#008000">"&lt;font color=\""</font>);
+&nbsp;&nbsp;&nbsp; out.print(mColor);
+&nbsp;&nbsp;&nbsp; out.print(<font color="#008000">"\"&gt;&lt;b&gt;Error: "</font>);
+&nbsp; } <b><font color="#0000ff">catch</font></b> (IOException ex) {
+&nbsp;&nbsp;&nbsp; <b><font color="#0000ff">throw new</font></b> JspTagException(ex.getMessage());
+&nbsp; }
+&nbsp; <b><font color="#0000ff">return</font></b> EVAL_BODY_INCLUDE; <font color="#808080"><i>// other return: SKIP_BODY</i></font>
+} <font color="#808080"><i>// doStartTag()</i></font>
+
+<b><font color="#0000ff">public int</font></b> doEndTag() <b><font color="#0000ff">throws</font></b> JspException {
+&nbsp; <b><font color="#0000ff">try</font></b> {
+&nbsp;&nbsp;&nbsp; JspWriter out = pageContext.getOut();
+&nbsp;&nbsp;&nbsp; out.println(<font color="#008000">"&lt;/b&gt;&lt;/font&gt;&lt;br&gt;"</font>);
+&nbsp; } <b><font color="#0000ff">catch</font></b> (IOException ex) {
+&nbsp;&nbsp;&nbsp; <font color="#0000ff"><b>throw new</b></font> JspTagException(ex.getMessage());
+&nbsp; }
+&nbsp; <font color="#0000ff"><b>return</b></font> EVAL_PAGE; <i><font color="#808080">// other return: SKIP_PAGE</font></i>
+} <i><font color="#808080">// doEndTag()</font></i>
+
+} <font color="#808080"><i>// TagError</i></font>
+</pre>
+<p>Notice the following about the class:<br>
+1.      Save the class into <font face="Courier New">TagError.java</font>.<br>
+2.      The package name <font face="Courier New"> com.tek271.testTags</font> will affect the location of class deployment in the web application&#8217;s directory.<br>
+3.      The class imports <font face="Courier New"> javax.servlet.jsp.*</font> and
+<font face="Courier New"> javax.servlet.jsp.tagext.* </font> packages which are included in the
+<font face="Courier New"> servlet.jar</font> file. In order to compile this class you must have the following file in your class path:&nbsp;</p>
+<p><font face="Courier New">%TOMECAT_HOME%\lib\common\servlet.jar</font></p>
+<p>4.      Our class <font face="Courier New"> TagError</font> extends the <font face="Courier New"> TagSupport</font> class and overrides the
+<font face="Courier New"> doStartTag()</font> and <font face="Courier New"> doEndTag()</font> methods.<br>
+5.      A <font face="Courier New"> setColor()</font> method is implemented to support the &#8220;color&#8221; attribute of the tag.<br>
+6.      The <font face="Courier New"> doStartTag()</font> method returns an integer constant
+<font face="Courier New"> EVAL_BODY_INCLUDE</font> which tells the JSP container (Tomcat in this case) that it should include and process the body of the tag.<br>
+7.      The doEndTag() method returns an integer constant <font face="Courier New"> EVAL_PAGE
+</font> which tells the JSP container to continue evaluating the rest of the page.<br>
+8.      Compile the class and store the <font face="Courier New"> TagError.class</font> file in the directory:</p>
+<p><font face="Courier New">%TOMCAT_HOME%\webapps\testTags\WEB-INF\classes\com\tek271\testTags\</font></p>
+<h3>2.4       Write Tag Library Descriptor (TLD)</h3>
+<pre>&lt;?xml version=<font color="#008000">"1.0"</font> encoding=<font color="#008000">"ISO-8859-1"</font> ?&gt;
+&lt;!DOCTYPE taglib
+  PUBLIC <font color="#008000">"-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"</font>
+  <font color="#008000">"http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd"</font>&gt;
+
+&lt;taglib&gt;
+  &lt;tlibversion&gt;1.0&lt;/tlibversion&gt;
+  &lt;jspversion&gt;1.1&lt;/jspversion&gt;
+  &lt;shortname&gt;testTld&lt;/shortname&gt;
+  &lt;info&gt;Testing jsp tags&lt;/info&gt;
+
+  &lt;tag&gt;
+    &lt;name&gt;tagError&lt;/name&gt;
+    &lt;tagclass&gt;com.tek271.testTags.TagError&lt;/tagclass&gt;
+    &lt;bodycontent&gt;JSP&lt;/bodycontent&gt; <i><font color="#808080">&lt;!-- Also: empty, tagdependent --&gt;</font></i>
+    &lt;info&gt;Show a string as an error message&lt;/info&gt;
+    &lt;attribute&gt;
+      &lt;name&gt;color&lt;/name&gt;
+      &lt;required&gt;false&lt;/required&gt;
+    &lt;/attribute&gt;
+  &lt;/tag&gt;
+
+&lt;/taglib&gt;</pre>
+<p>1.      Save the above file into</p>
+<p><font face="Courier New">%TOMCAT_HOME%\webapps\testTags\WEB-INF\tlds\testTld.tld</font></p>
+<p>2.      This TLD uses a JSP version 1.1 DTD tag library definition.<br>
+3.      The TLD has one tag named <font face="Courier New">tagError</font>. This name will be used in the JSPs to refer to this tag.<br>
+4.      The tag has one optional attribute &#8220;color&#8221;.<br>
+5.      To avoid typographical errors, just cut and past the top part of this file into all your new TLD files.</p>
+<h3>2.5       Register Tag Library</h3>
+<p>Create a new file with the following contents:</p>
+<pre>&lt;?xml version=<font color="#008000">"1.0"</font> encoding=<font color="#008000">"ISO-8859-1"</font>?&gt;
+&lt;web-app&gt;
+  &lt;taglib&gt;
+    &lt;taglib-uri&gt;/testTaglib&lt;/taglib-uri&gt;
+    &lt;taglib-location&gt;/WEB-INF/tlds/testTld.tld&lt;/taglib-location&gt;
+  &lt;/taglib&gt;
+&lt;/web-app&gt;</pre>
+<p>Save the above file into</p>
+<pre>%TOMCAT_HOME%\webapps\testTags\WEB-INF\web.xml</pre>
+<p>This maps references for /testTaglib to our TLD.</p>
+<h3>2.6       Use Tag Library in a JSP</h3>
+<pre>&lt;%@ taglib uri=<font color="#008000">"/testTaglib"</font> prefix=<font color="#008000">"test"</font> %&gt;
+&lt;<b><font color="#0000ff">html</font></b>&gt;
+&lt;<b><font color="#0000ff">head</font></b>&gt;
+  &lt;<b><font color="#0000ff">title</font></b>&gt;Testing Tag Library&lt;/<b><font color="#0000ff">title</font></b>&gt;
+&lt;/<b><font color="#0000ff">head</font></b>&gt;
+&lt;<b><font color="#0000ff">body</font></b>&gt;
+
+&lt;test:tagError&gt;Invalid user name&lt;/test:tagError&gt;
+&lt;test:tagError color=<font color="#008000">"blue"</font>&gt;Invalid Password&lt;/test:tagError&gt;
+
+&lt;/<b><font color="#0000ff">body</font></b>&gt;
+&lt;/<b><font color="#0000ff">html</font></b>&gt;</pre>
+<p>1.      Save the above file into</p>
+<pre>%TOMCAT_HOME%\webapps\testTags\testJsp.jsp</pre>
+<p>2.      The JSP uses the &#8220;testTaglib&#8221; and gives it the prefix &#8220;test&#8221; that will be used to identify the tag library in this
+JSP.<br>
+3.      The <font face="Courier New"> &lt;test:tagError&gt;</font> means:<br>
+&nbsp;&nbsp;&nbsp; a.      In the library &#8220;test&#8221;<br>
+&nbsp;&nbsp;&nbsp; b.      Use the tag named &#8220;tagError&#8221;<br>
+4.      Run Tomcat<br>
+5.      In a web browser, go to the link</p>
+<pre><a href="http://localhost:8080/testTags/testJsp.jsp">http://localhost:8080/testTags/testJsp.jsp</a></pre>
+<p>You should see the following:</p>
+<p><span style="font-size: 10pt; font-family: Verdana;"><img src="JavaCustomTags_files/jtags1.jpg" v:shapes="_x0000_i1025" height="210" width="477"></span></p>
+<p>If you view the source of this page, you should see the following:</p>
+<pre>&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Testing Tag Library&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;font color="red"&gt;&lt;b&gt;Error: Invalid user name&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font color="blue"&gt;&lt;b&gt;Error: Invalid Password&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr>
+<h2><a name="3">3                 Tags That DO Manipulate Body Contents</a></h2>
+<p>In the previous section, we created a tag that puts some HTML before
+and after the body contents of the tag; however, we did not change or
+manipulate the contents of the tag. This section will show you how to
+do that.</p>
+<p>The main difference from the previous section is that the tag handler will extend the
+<font face="Courier New"> BodyTagSupport</font> class instead of the <font face="Courier New"> TagSupport</font> class.</p>
+<p>In the following subsections, we will repeat the steps we did in
+section 2, but with a new tag that manipulates its body contents.</p>
+<h3>3.1       Determine Tag and Attributes</h3>
+<p>We will create a tag that displays a combo box; the items of the list will be specified in the body of the tag. For example:</p>
+<pre>&lt;test:tagList&gt;
+one
+two
+three
+&lt;/test:tagList&gt;</pre>
+<p>Will display a combo box list of three items. Additionally, the tag
+has an optional parameter that can take a list of items and display
+them in the list if the tag does not have a body. For example:</p>
+<pre>&lt;%
+List items = <b><font color="#0000ff">new</font></b> ArrayList();
+items.add(<font color="#008000">"AAA"</font>);
+items.add(<font color="#008000">"BBB"</font>);
+items.add(<font color="#008000">"CCC"</font>);
+%&gt;
+
+&lt;test:tagList items="&lt;%=items %&gt;"/&gt;</pre>
+<p>Note how the attribute is of a type that is not a string or primitive.</p>
+<h3>3.2       Create a Web Application</h3>
+<p>We will use the web application that we created in section 2.2</p>
+<h3>3.3       Write Tag Handler</h3>
+<pre><font color="#0000ff"><b>package</b></font> com.tek271.testTags;
+
+<b><font color="#0000ff">import</font></b> java.io.*;
+<font color="#0000ff"><b>import</b></font> java.util.*;
+<b><font color="#0000ff">import</font></b> javax.servlet.jsp.*;
+<b><font color="#0000ff">import</font></b> javax.servlet.jsp.tagext.*;
+
+<b><font color="#0000ff">public class</font></b> TagList <font color="#0000ff"><b>extends</b></font> BodyTagSupport {
+
+<font color="#0000ff"><b>private</b></font> List mItems;
+
+<b><font color="#0000ff">public void</font></b> setItems(List aItems) {
+  mItems = aItems;
+}
+
+<font color="#0000ff"><b>public int</b></font> doAfterBody() <font color="#0000ff"><b>throws</b></font> JspException {
+  BodyContent body = getBodyContent();
+  String text = body.getString().trim();
+  List list = text.length() &gt;0 ? text2List(text) : mItems;
+  <font color="#0000ff"><b>if</b></font> (list == null) <b><font color="#0000ff">return</font></b> SKIP_BODY;
+
+  <b><font color="#0000ff">try</font></b> {
+    JspWriter out = body.getEnclosingWriter();
+    out.println(<font color="#008000">"&lt;select&gt;"</font>);
+    String item;
+    <b><font color="#0000ff">for</font></b> (<font color="#0000ff"><b>int</b></font> i=0; i&lt;list.size(); i++) {
+      item = (String)list.get(i);
+      <b><font color="#0000ff">if</font></b> (item.length()==0) <font color="#0000ff"><b>continue</b></font>;
+      out.println(<font color="#008000">" &lt;option&gt;"</font> + item + <font color="#008000">"&lt;/option&gt;"</font>);
+    }
+    out.println(<font color="#008000">"&lt;/select&gt;"</font>);
+  } <b><font color="#0000ff">catch</font></b> (IOException ex) {
+    <b><font color="#0000ff">throw new</font></b> JspTagException(ex.getMessage());
+  } <font color="#808080"><i>// try</i></font>
+
+  <font color="#0000ff"><b>return</b></font> SKIP_BODY;
+} <i><font color="#808080">// doAfterBody()</font></i>
+
+<i><font color="#808080">/** Break aText into a list of lines */
+</font></i><b><font color="#0000ff">private</font></b> List text2List(String aText) {
+  List list = <font color="#0000ff"><b>new</b></font> ArrayList();
+  StringTokenizer tz = <b><font color="#0000ff">new</font></b> StringTokenizer(aText, <font color="#008000">"\n\r"</font>);
+  String item;
+  <b><font color="#0000ff">while</font></b> (tz.hasMoreTokens()) {
+    item = tz.nextToken().trim();
+    <b><font color="#0000ff">if</font></b> (item.length() &gt; 0) list.add(item);
+  } <i><font color="#808080">// while</font></i>
+  <font color="#0000ff"><b>return</b></font> list;
+} <i><font color="#808080">// text2List()</font></i>
+
+} <i><font color="#808080">// TagList</font></i></pre>
+<p>Notice the following about the class:<br>
+1.      Save the class into <font face="Courier New">TagList.java</font>.<br>
+2.      The class imports <font face="Courier New"> javax.servlet.jsp.*</font> and
+<font face="Courier New"> javax.servlet.jsp.tagext.*</font> packages which are included in the
+<font face="Courier New"> servlet.jar</font> file. In order to compile this class you must have the following file in your class path:&nbsp;</p>
+<pre>%TOMECAT_HOME%\lib\common\servlet.jar</pre>
+<p>3.      Our class <font face="Courier New"> TagList</font> extends the <font face="Courier New"> BodyTagSupport</font> class and overrides the
+<font face="Courier New"> doAfterBody()</font> method.<br>
+4.      A <font face="Courier New"> setItems()</font> method is implemented to support the &#8220;items&#8221; attribute of the tag.<br>
+5.      The <font face="Courier New"> doAfterBody()</font> method returns an integer constant
+<font face="Courier New"> SKIP_BODY</font> which tells the JSP container (Tomcat in this case) that it should not process body of the tag.<br>
+6.      Compile the class and store the <font face="Courier New"> TagList.class</font> file in the directory:</p>
+<pre>%TOMCAT_HOME%\webapps\testTags\WEB-INF\classes\com\tek271\testTags\</pre>
+<h3>3.4       Write Tag Library Descriptor (TLD)</h3>
+<p>Open the tag library we created in the last section &#8220;testTld.tld&#8221; and add the following tag
+definition at the end just before the <font face="Courier New">&lt;/taglib&gt;</font>:</p>
+<pre>&lt;tag&gt;
+  &lt;name&gt;tagList&lt;/name&gt;
+  &lt;tagclass&gt;com.tek271.testTags.TagList&lt;/tagclass&gt;
+  &lt;bodycontent&gt;JSP&lt;/bodycontent&gt;
+  &lt;info&gt;show a list of items&lt;/info&gt;
+  &lt;attribute&gt;
+    &lt;name&gt;items&lt;/name&gt;
+    &lt;required&gt;false&lt;/required&gt;
+    &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+  &lt;/attribute&gt;
+&lt;/tag&gt;</pre>
+<p>1.      Save the file.<br>
+2.      The new tag is named <font face="Courier New">tagList</font>.<br>
+3.      It has a body content of type JSP, indicating that the JSP container should process the body.<br>
+4.      The tag has one optional attribute <font face="Courier New">items</font>.<br>
+5.      The attribute is the value of a run-time expression.<br>
+</p>
+<h3>3.5       Register Tag Library</h3>
+<p>If you did the tag of section 2, then the TLD should be already registered, otherwise do section 2.5.</p>
+<h3>3.6       Use Tag Library in a JSP</h3>
+<pre><span style="background-color: rgb(221, 221, 221);">&lt;%@ page <b><font color="#0000ff">import</font></b>=<font color="#008000">"java.util.*"</font> %&gt;</span>
+&lt;%@ taglib uri=<font color="#008000">"/testTaglib"</font> prefix=<font color="#008000">"test"</font> %&gt;
+
+&lt;<b><font color="#0000ff">html</font></b>&gt;
+&lt;<b><font color="#0000ff">head</font></b>&gt;
+  &lt;<font color="#0000ff"><b>title</b></font>&gt;Testing Tag Library&lt;/<b><font color="#0000ff">title</font></b>&gt;
+&lt;/<b><font color="#0000ff">head</font></b>&gt;
+&lt;<b><font color="#0000ff">body</font></b>&gt;
+
+&lt;test:tagError&gt;Invalid user name&lt;/test:tagError&gt;
+&lt;test:tagError color=<font color="#008000">"blue"</font>&gt;Invalid Password&lt;/test:tagError&gt;
+
+<span style="background-color: rgb(221, 221, 221);">&lt;%
+List items = <font color="#0000ff"><b>new</b></font> ArrayList();
+items.add(<font color="#008000">"AAA"</font>);
+items.add(<font color="#008000">"BBB"</font>);
+items.add(<font color="#008000">"CCC"</font>);
+%&gt;
+&lt;test:tagList items="&lt;%=items %&gt;"/&gt;
+
+&lt;test:tagList&gt;
+one
+two
+three
+&lt;/test:tagList&gt;
+</span>
+&lt;/<b><font color="#0000ff">body</font></b>&gt;
+&lt;/<b><font color="#0000ff">html</font></b>&gt;</pre>
+<p>1.      Open the testJsp.jsp file you created in section 2.6 and modify it to be similar to the above.
+(Text with gray background is the new addition).<br>
+2. The page uses tagList tag twice; the first time it defines the combo
+box items through a List class, the second time through the body of the
+tag.<br>
+3.      Run Tomcat.<br>
+4.      In a web browser, go to the link</p>
+<pre><a href="http://localhost:8080/testTags/testJsp.jsp">http://localhost:8080/testTags/testJsp.jsp</a></pre>
+<p>You should see the following:</p>
+<p><span style="font-size: 10pt; font-family: Verdana;"><img src="JavaCustomTags_files/jtags2.jpg" v:shapes="_x0000_i1025" height="236" width="457"></span>
+</p>
+<p>If you view the source of this page, you should see the following:</p>
+<pre>&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Testing Tag Library&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;font color="red"&gt;&lt;b&gt;Error: Invalid user name&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font color="blue"&gt;&lt;b&gt;Error: Invalid Password&lt;/b&gt;&lt;/font&gt;&lt;br&gt;
+
+&lt;select&gt;
+  &lt;option&gt;AAA&lt;/option&gt;
+  &lt;option&gt;BBB&lt;/option&gt;
+  &lt;option&gt;CCC&lt;/option&gt;
+&lt;/select&gt;
+&lt;select&gt;
+  &lt;option&gt;one&lt;/option&gt;
+  &lt;option&gt;two&lt;/option&gt;
+  &lt;option&gt;three&lt;/option&gt;
+&lt;/select&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<hr>
+<h2><a name="4">4                 Using Tomcat 4.x and JSP 1.2</a></h2>
+<p>If you decide to use Tomcat 4.x and JSP 1.2, you should notice the following:<br>
+1.      The servlet.jar file is in the following directory</p>
+<pre>%TOMECAT_HOME%\common\lib\servlet.jar</pre>
+<p>2.      In the TLD file, use the following DTD</p>
+<pre>&lt;!DOCTYPE taglib
+  PUBLIC <font color="#008000">"-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"</font>
+  <font color="#008000">"http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd"</font>&gt;</pre>
+<p>3.      In the TLD file, some elements have been renamed according to the following table:</p>
+<div align="left">
+<table border="1" cellpadding="0" cellspacing="0" width="296">
+  <tbody><tr>
+    <th style="background-color: rgb(221, 221, 221);" width="23">#</th>
+    <th style="background-color: rgb(221, 221, 221);" width="129">JSP 1.1</th>
+    <th style="background-color: rgb(221, 221, 221);" width="130">JSP 1.2</th>
+  </tr>
+  <tr>
+    <td align="center" width="23">1</td>
+    <td align="center" width="129"> 
+      <p><font face="Courier New">tlibversion</font> </p>
+    </td>
+    <td align="center" width="130"> 
+      <p><font face="Courier New">tlib-version</font> </p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="23">2</td>
+    <td align="center" width="129">
+      <p><font face="Courier New">jspversion</font></p>
+    </td>
+    <td align="center" width="130">
+      <p><font face="Courier New">jsp-version</font></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="23">3</td>
+    <td align="center" width="129"> 
+      <p><font face="Courier New">shortname</font></p>
+    </td>
+    <td align="center" width="130">
+      <p><font face="Courier New">short-name</font></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="23">4</td>
+    <td align="center" width="129"> 
+      <p><font face="Courier New">info</font></p>
+    </td>
+    <td align="center" width="130"> 
+      <p><font face="Courier New">description</font></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="23">5</td>
+    <td align="center" width="129"> 
+      <p><font face="Courier New">tagclass</font></p>
+    </td>
+    <td align="center" width="130">
+      <p><font face="Courier New">tag-class</font></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="23">6</td>
+    <td align="center" width="129"> 
+      <p><font face="Courier New">bodycontent</font></p>
+    </td>
+    <td align="center" width="130">
+      <p><font face="Courier New">body-content</font></p>
+    </td>
+  </tr>
+</tbody></table>
+</div>
+<p>Note that the table here shows elements that were used in this example only.</p>
+<hr>
+<h2><a name="5">5                 References</a></h2>
+<p>The following link from Sun is a page for JSP Tag Libraries, it has a lot of useful links and references:</p>
+<pre><a href="http://java.sun.com/products/jsp/taglibraries.html">http://java.sun.com/products/jsp/taglibraries.html</a></pre>
+
+<table id="table2" style="background-color: beige;" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+		<td align="center" width="90%"><small><em>Page Last Updated 2002.07.06</em></small> </td>
+		<td align="right">
+		<img src="JavaCustomTags_files/Count.gif"></td>
+	</tr>
+</tbody></table>
+
+</body></html>

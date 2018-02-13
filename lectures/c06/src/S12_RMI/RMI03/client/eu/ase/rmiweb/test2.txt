@@ -1,0 +1,302 @@
+Hi guys,
+
+Iam not going to ask any Q. but after a long frustrating day , I finally have achived in doing this , To avoid any one else from such hardship , I post below the code..
+
+This code below demonstrates 3 solutions
+
+1. How to transfer image from applet to server side.
+2. How to capture image from webcam.
+3. How to do applet-servlet comm.
+
+Well I should thank some of the replies that were already available on the forum, but what I have done here is added all bit's and pieces and u have a complete solution available.
+
+
+// This is the JMF applet
+
+import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import javax.media.Buffer;
+import javax.media.CaptureDeviceInfo;
+import javax.media.Manager;
+import javax.media.MediaLocator;
+import javax.media.Player;
+import javax.media.cdm.CaptureDeviceManager;
+import javax.media.control.FrameGrabbingControl;
+import javax.media.format.VideoFormat;
+import javax.media.util.BufferToImage;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.ImageIcon;
+
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGEncodeParam;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+/*
+* Created on Jun 27, 2003
+*
+*/
+
+/**
+* @author administrator
+*
+*/
+public class WebcamCaptureApplet extends Applet implements ActionListener {
+
+public static Player player = null;
+public CaptureDeviceInfo di = null;
+public MediaLocator ml = null;
+public JButton capture = null;
+public Buffer buf = null;
+public Image img = null;
+public VideoFormat vf = null;
+public BufferToImage btoi = null;
+public ImagePanel imgpanel = null;
+public URL url;
+public URLConnection conn;
+public String hostname;
+public int port;
+
+public void init(){
+setLayout(new BorderLayout());
+setSize(320,550);
+imgpanel = new ImagePanel();
+capture = new JButton("Capture");
+capture.addActionListener(this);
+
+//This may differ check the jmf registry for
+// correct entry
+String str2 = "vfw:Microsoft WDM Image Capture Win32):0";
+di = CaptureDeviceManager.getDevice(str2);
+hostname = getCodeBase().getHost();
+port = getCodeBase().getPort();
+ml = di.getLocator();
+try {
+player = Manager.createRealizedPlayer(ml);
+player.start();
+Component comp;
+if ((comp = player.getVisualComponent()) != null) {
+add(comp,BorderLayout.NORTH);
+}
+add(capture,BorderLayout.CENTER);
+add(imgpanel,BorderLayout.SOUTH);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+
+public void paint (Graphics g) {
+
+}
+
+public static void playerclose() {
+player.close();
+player.deallocate();
+}
+
+public void actionPerformed(ActionEvent e) {
+JComponent c = (JComponent) e.getSource();
+if (c == capture) {
+// Grab a frame
+FrameGrabbingControl fgc = (FrameGrabbingControl)
+player.getControl("javax.media.control.FrameGrabbingControl");
+buf = fgc.grabFrame();
+
+// Convert it to an image
+btoi = new BufferToImage((VideoFormat)buf.getFormat());
+img = btoi.createImage(buf);
+// show the image
+imgpanel.setImage(img);
+// save image
+UploadImage(img);
+}
+}
+
+
+public void start()
+{
+}
+
+public void UploadImage(Image img){
+try {
+String path = "http://"hostname":"port"/dmc_xml/servlet/sampleServlet";
+url = new URL(path);
+System.out.println("after url");
+System.out.println(path);
+conn = url.openConnection();
+System.out.println("after url");
+ImageIcon icon = new ImageIcon(img);
+
+//Prepare for both input and output
+conn.setDoInput(true);
+conn.setDoOutput(true);
+
+//Turn off caching
+conn.setUseCaches(false);
+
+//Set the content type to be java-internal/classname
+conn.setRequestProperty("Content-type", "application/x-java-serialized-object");
+
+//Write the object as post data
+ObjectOutputStream out = new ObjectOutputStream(conn.getOutputStream());
+out.writeObject(icon);
+out.flush();
+out.close();
+InputStream ins = conn.getInputStream();
+ObjectInputStream objin = new ObjectInputStream(ins);
+String msg = (String)objin.readObject();
+System.out.println(msg.toString());
+
+} catch (Exception e) {
+// TODO Auto-generated catch block
+System.out.println(e);
+}
+
+}
+
+class ImagePanel extends Panel {
+public Image myimg = null;
+public ImagePanel() {
+setLayout(null);
+setSize(320,240);
+}
+
+public void setImage(Image img) {
+this.myimg = img;
+repaint();
+}
+
+public void paint(Graphics g) {
+if (myimg != null) {
+g.drawImage(myimg, 0, 0, this);
+}
+}
+
+}
+
+}
+
+// This is the servlet part
+
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.ImageIcon;
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGEncodeParam;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import javax.media.*;
+import javax.media.util.BufferToImage;
+
+/*
+* Created on Jun 13, 2003
+*
+* java_xml
+* $Id:$
+*/
+
+/**
+* @author Administrator
+*
+*/
+public class sampleServlet extends HttpServlet {
+public Image img = null;
+public Buffer buf;
+public BufferToImage btoi = null;
+public PrintWriter out = null;
+
+public void doGet (HttpServletRequest req, HttpServletResponse resp)
+throws ServletException , IOException
+{
+doPost(req, resp);
+}
+
+public void doPost (HttpServletRequest req, HttpServletResponse resp)
+throws ServletException , IOException
+{
+System.out.println("Applet invoked servlet ");
+ObjectInputStream objin = new ObjectInputStream(req.getInputStream());
+try {
+ImageIcon icon = (ImageIcon)objin.readObject();
+System.out.println("object converted to buffer");
+
+img = icon.getImage();
+System.out.println(img.getHeight(null));
+BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+Graphics2D g2 = bi.createGraphics();
+g2.drawImage(img, null, null);
+FileOutputStream fout = null;
+
+try {
+
+//Change it to some server specific path
+fout = new FileOutputStream("c:\\test.jpg");
+} catch (java.io.FileNotFoundException io) {
+System.out.println("File Not Found");
+}
+JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(fout);
+JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bi);
+param.setQuality(0.5f,false);
+encoder.setJPEGEncodeParam(param);
+try {
+encoder.encode(bi);
+System.out.println("file saved...");
+fout.close();
+
+//send back a confirmation message to the applet
+String msg = new String("Upload confirmed");
+ObjectOutputStream out = new ObjectOutputStream(resp.getOutputStream());
+out.writeObject(msg);
+out.flush();
+out.close();
+}
+catch (java.io.IOException io) {
+System.out.println("IOException");
+}
+} catch (OptionalDataException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+} catch (ClassNotFoundException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+
+} catch (Exception e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+
+}
+}
+
+Hope this helps all of you,
+
+Let me know if you want more inputs
+
+-Hari 

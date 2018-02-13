@@ -1,0 +1,175 @@
+Linux UBUNTU 12:
+
+//use ghex for introspecting the files in hex
+
+//set env variables:
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.6.0_35
+
+Linux Ubuntu 14:
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_25
+export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c03/src
+
+A. Exceptions
+
+cd $DAD/c03/src/S06_Exceptions
+
+A.1. No exception handled
+javac ProgMainE1.java
+
+A.2. Catch Exceptions
+javac ProgMainE2.java
+java ProgMainE2
+
+A.3. Pass the exceptions
+javac ProgMainE3.java
+java ProgMainE3
+
+--------------------------------------------------------------------------------------------
+
+B. Source Code Design Patterns
+
+cd $DAD/c03/src/S07_FactoryMethodsClasses
+
+B.1 Factory Methods
+javac FactMethods.java
+java ProgMain1
+java ProgMain2
+
+B.2 Singleton classes
+javac Singleton.java
+java ProgMain3
+
+
+--------------------------------------------------------------------------------------------
+
+C. UNIX/Linux IPC - Inter-Process Communications and POSIX Threads - in C/C++
+cd $DAD/c03/src/S07_ipc_pthreads
+
+C.1 Fork
+cd $DAD/c03/src/S07_ipc_pthreads/S01_Fork
+gcc -Wall -O2 fork1.c -o fork1
+./fork1
+gcc -Wall -O2 fork2.c -o fork2
+./fork2
+
+C.2 Signaling
+cd $DAD/c03/src/S07_ipc_pthreads/S02_Signals
+
+gcc -O2 sig1.c -o sig1
+./sig1
+# in another terminal:
+ps -a | grep sig1
+kill -SIGUSR2 PID_VALUE_nnnn
+
+gcc -O2 sig2.c -o sig2
+./sig2
+# in another terminal:
+ps -a | grep sig2
+kill -SIGUSR2 PID_VALUE_nnnn
+
+C3. Pipes
+cd $DAD/c03/src/S07_ipc_pthreads/S03_Pipes
+
+gcc -O2 pipe0.c -o pipe0
+./pipe0
+
+gcc -O2 pipe1.c -o pipe1
+./pipe1
+
+gcc -O2 pipe2.c -o pipe0
+./pipe2
+
+gcc -O2 pipe3.c -o pipe1
+./pipe3
+
+C.4 FIFO - "Pipes with names"
+cd $DAD/c03/src/S07_ipc_pthreads/S04_Fifo
+
+Terminal 1 + 2 + 3:
+gcc -O2 speak.c -o speak
+gcc -O2 tick.c -o tick
+./speak
+./tick
+
+* in another terminal:
+rm american_maid
+
+C.5 Linux OS - System V - Message Queues
+cd $DAD/c03/src/S07_ipc_pthreads/S06_Msgqueues
+
+Terminal 1+2+3:
+gcc -O2 kirk.c -o kirk
+gcc -O2 spock.c -o spock
+./kirk
+./spock
+
+* in another terminal please see ipcs and ipcrm Commands
+ipcs -h
+ipcs 
+ipcs -q
+ipcs -q -i 0
+
+C.6 POSIX Threads - PThreads
+cd $DAD/c03/src/S07_ipc_pthreads/S12_ConcurrencyThreads
+export LD_LIBRARY_PATH=.:/usr/lib:/usr/lib/i386-linux-gnu:/lib:/lib/i386-linux-gnu
+
+gcc -Wall -O2 pthread1.c -o pthread1 -lpthread
+./pthread1
+
+gcc -Wall -O2 -pthread mutex_21.c -o mutex_21
+./mutex_21
+
+gcc -Wall -O2 mutex_22.c -o mutex_22 -lpthread
+./mutex_22
+
+gcc -Wall -O2 -pthread join3.c -o join3
+./join3
+
+gcc cond4.c -o cond4 -lpthread
+./cond4
+
+----------------------------------------------------------------------------------------------
+
+D. Java Multi-Threading - Concurrency and Parallel
+cd $DAD/c03/src/S08_Threads
+
+D.1.a Not-synchronized thread
+javac FirNe2.java
+java ProgMainNeA1
+
+D.1.b Synch thread
+javac FirSi2.java
+java ProgMainSiA1
+
+D.2.a
+javac FirNe3.java
+java ProgMainNeA2
+
+D.2.b
+javac FirSi3.java
+java ProgMainSiA2
+
+D.3
+javac eu/ase/threads/Priority.java
+java eu/ase/threads/Priority
+
+D.4
+javac eu/ase/threads/ProducatorConsumator.java
+java eu/ase/threads/ProducatorConsumator
+
+D.5
+javac eu/ase/threads/ProducatorConsumator2.java
+java eu/ase/threads/ProducatorConsumator
+
+D.6
+javac eu/ase/threads/SimpleThreads.java
+java eu/ase/threads/SimpleThreads
+
+D.7 The Sum of the array items using Parallelism in Java 8 (Standard Multi-threading, Executor-Service, Future-Callable, Fork-Join)
+javac eu/ase/threads/utilparallel/*.java
+java eu/ase/threads/utilparallel/ProgMainMultiThreadParallel

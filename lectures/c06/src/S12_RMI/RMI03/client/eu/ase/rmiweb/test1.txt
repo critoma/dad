@@ -1,0 +1,155 @@
+import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
+import java.util.*;
+ 
+public class SomeClass implements java.io.Serializable {
+	private transient Image image = null;
+ 
+	// ...constructor, get/set methods, other stuff...
+ 
+	/**
+	 * Customizes serialization to deal with images, which are not normally 
+	 * serializable.  
+	 * 
+	 * @param  s  the object output stream
+	 * @throws  IOException  on read/write errors
+	 */
+	private void writeObject(ObjectOutputStream s) throws IOException {
+		s.defaultWriteObject();
+		if(this.image != null) {
+			byte[] imageData = UIUtils.toPng(this.getImage());
+			s.writeInt(imageData.length);
+			s.write(imageData);
+		} else {
+			s.writeInt(0);
+		}
+	}
+ 
+	/**
+	 * Customizes serialization to deal with images, which are not normally 
+	 * serializable.  
+	 * 
+	 * @param  s  the object output stream
+	 * @throws  IOException  on read/write errors
+	 */
+	private void readObject(ObjectInputStream s) throws IOException {
+		try {
+			s.defaultReadObject();
+			int imageSize = s.readInt();
+			if(imageSize > 0) {
+				byte[] imageData = new byte[imageSize];
+				s.readFully(imageData);
+				this.setImage(UIUtils.loadImage(imageData));
+			}
+		} catch(java.lang.ClassNotFoundException cnfe) {
+			throw new IOException("Class not found!");
+		}
+	}
+}
+ 
+ 
+// UIUtils.java
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.io.*;
+import java.net.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+import javax.imageio.*;
+import javax.swing.*;
+ 
+public class UIUtils {
+	/**
+	 * Converts the specified image to a byte array which is a JPEG formatted 
+	 * image file.  
+	 * 
+	 * @param  img  the image
+	 * @return  the bytes of the image file
+	 * @throws  IOException  on I/O errors
+	 */
+	public static byte[] toJpeg(Image img) throws IOException {
+		return toFormat(img, "jpeg");
+	}
+ 
+	/**
+	 * Converts the specified image to a byte array which is a PNG formatted 
+	 * image file.  
+	 * 
+	 * @param  img  the image
+	 * @return  the bytes of the image file
+	 * @throws  IOException  on I/O errors
+	 */
+	public static byte[] toPng(Image img) throws IOException {
+		return toFormat(img, "png");
+	}
+ 
+	/**
+	 * Converts the specified image to a byte array which is an image file 
+	 * of the specified format.  The formats that can be used are whatever 
+	 * formats are supported by the Java Image I/O package.  
+	 * 
+	 * @param  img     the image
+	 * @param  format  the image format (jpeg, png, etc)
+	 * @return  the bytes of the image file
+	 * @throws  IOException  on I/O errors
+	 */
+	public static byte[] toFormat(Image img, String format) throws IOException {
+		BufferedImage bi = imageToBufferedImage(img);
+		Iterator writers = ImageIO.getImageWritersByFormatName(format.toLowerCase());
+		if(writers == null || !writers.hasNext()) {
+			throw new IllegalArgumentException("Unsupported format (" + format + ")");
+		}
+		ImageWriter writer = (ImageWriter)writers.next();
+		IIOImage iioImg = new IIOImage(bi, null, null);
+		ImageWriteParam iwparam = writer.getDefaultWriteParam();
+		// if JPEG, set image quality parameters
+		if("jpeg".equalsIgnoreCase(format)) {
+			iwparam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+			iwparam.setCompressionQuality(1.0f);
+		}
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		writer.setOutput(ImageIO.createImageOutputStream(out));
+		writer.write(null, iioImg, iwparam);
+		return out.toByteArray();
+	}
+ 
+	/**
+	 * Uses <code>javax.imageio.ImageIO</code> to read the specified data 
+	 * into a <code>java.awt.image.BuffededImage</code>.  
+	 * 
+	 * @param  imageData  the image data
+	 * @return  a buffered image
+	 * @throws  IOException  on I/O errors
+	 */
+	public static BufferedImage loadImage(byte[] imageData) throws IOException {
+		ByteArrayInputStream in = new ByteArrayInputStream(imageData);
+		BufferedImage bi = ImageIO.read(in);
+		in.close();
+		return bi;
+	}
+ 
+	/**
+	 * Converts the specified image to a <code>java.awt.image.BuffededImage</code>.  
+	 * If the image is already a buffered image, it is cast and returned.  
+	 * Otherwise, the image is drawn onto a new buffered image.  
+	 * 
+	 * @param  img  the image
+	 * @return  a buffered image
+	 */
+	public static BufferedImage imageToBufferedImage(Image img) {
+		// if it's already a buffered image, return it (assume it's fully loaded already)
+		if(img instanceof BufferedImage) {
+			return (BufferedImage)img;
+		}
+		// create a new buffered image and draw the specified image on it
+		BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), 
+			BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = bi.createGraphics();
+		g2d.drawImage(img, 0, 0, null);
+		g2d.dispose();
+		return bi;
+	}
+}

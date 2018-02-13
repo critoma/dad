@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+  <display-name>Servlets Labs</display-name>
+  
+  <servlet>
+        <servlet-name>S1</servlet-name>
+        <servlet-class>eu.ase.servlets.HelloWWW</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S1
+        </servlet-name>
+        <url-pattern>
+            /HelloWWW
+        </url-pattern>
+   </servlet-mapping>
+
+  <servlet>
+        <servlet-name>S2</servlet-name>
+        <servlet-class>eu.ase.servlets.ThreeParams</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S2
+        </servlet-name>
+        <url-pattern>
+            /ThreeParams
+        </url-pattern>
+   </servlet-mapping>
+
+  <servlet>
+        <servlet-name>S3</servlet-name>
+        <servlet-class>eu.ase.servlets.ShowParameters</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S3
+        </servlet-name>
+        <url-pattern>
+            /ShowParameters
+        </url-pattern>
+   </servlet-mapping>
+
+  <servlet>
+        <servlet-name>S4</servlet-name>
+        <servlet-class>eu.ase.servlets.ShowRequestHeaders</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S4
+        </servlet-name>
+        <url-pattern>
+            /ShowRequestHeaders
+        </url-pattern>
+   </servlet-mapping>
+
+  <servlet>
+        <servlet-name>S5</servlet-name>
+        <servlet-class>eu.ase.servlets.SetResponseHeader</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S5
+        </servlet-name>
+        <url-pattern>
+            /SetResponseHeader
+        </url-pattern>
+   </servlet-mapping>
+
+  <servlet>
+        <servlet-name>S6</servlet-name>
+        <servlet-class>eu.ase.servlets.SetGetCookie</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S6
+        </servlet-name>
+        <url-pattern>
+            /SetGetCookie
+        </url-pattern>
+   </servlet-mapping>
+
+  <servlet>
+        <servlet-name>S7</servlet-name>
+        <servlet-class>eu.ase.servlets.ShowSession</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+        <servlet-name>
+            S7
+        </servlet-name>
+        <url-pattern>
+            /ShowSession
+        </url-pattern>
+   </servlet-mapping>
+</web-app>

@@ -1,0 +1,599 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0058)http://java.sun.com/docs/books/tutorial/rmi/compiling.html -->
+<HTML><HEAD><TITLE>Compiling the Example Programs (The Java™ Tutorials > RMI)</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<STYLE type=text/css>.FigureCaption {
+	FONT-SIZE: smaller; MARGIN-LEFT: 1in; MARGIN-RIGHT: 1in; FONT-FAMILY: sans-serif; TEXT-ALIGN: justify
+}
+#TopBar_bl {
+	BACKGROUND: url(../images/java_bar_bl.gif) no-repeat 0px 100%; WIDTH: 100%; HEIGHT: 60px
+}
+#TopBar_br {
+	BACKGROUND: url(../images/java_bar_br.gif) no-repeat 100% 100%; WIDTH: 100%; HEIGHT: 60px
+}
+#TopBar_tl {
+	BACKGROUND: url(../images/java_bar_tl.gif) no-repeat 0px 0px; WIDTH: 100%; HEIGHT: 60px
+}
+#TopBar_tr {
+	BACKGROUND: url(../images/java_bar_tr.gif) no-repeat 100% 0px; WIDTH: 100%; HEIGHT: 60px
+}
+#TopBar {
+	FONT-WEIGHT: bold; BACKGROUND: url(../images/java_bar.gif) #35556b; MARGIN: 10px 10px 0px; COLOR: white; FONT-FAMILY: sans-serif; HEIGHT: 60px; min-width: 700px
+}
+
+@media Print    
+{
+#BreadCrumbs {
+	DISPLAY: none
+}
+#Download {
+	DISPLAY: none
+}
+    }
+#TopBar_right {
+	PADDING-RIGHT: 30px; FLOAT: right; LINE-HEIGHT: 14px; PADDING-TOP: 2px; TEXT-ALIGN: center
+}
+
+@media Print    
+{
+#TopBar_right {
+	DISPLAY: none
+}
+    }
+#TopBar_right A {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 3px; PADDING-TOP: 0px
+}
+#TopBar A:visited {
+	COLOR: white; TEXT-DECORATION: none
+}
+#TopBar A:link {
+	COLOR: white; TEXT-DECORATION: none
+}
+#TopBar A:hover {
+	COLOR: #35556b; BACKGROUND-COLOR: white
+}
+#TopBar A:active {
+	COLOR: #35556b; BACKGROUND-COLOR: white
+}
+#BreadCrumbs {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 0px; FLOAT: right; PADDING-BOTTOM: 0.5em; PADDING-TOP: 4px; FONT-FAMILY: sans-serif
+}
+#BreadCrumbs A {
+	COLOR: blue
+}
+#BreadCrumbs A:visited {
+	TEXT-DECORATION: none
+}
+#BreadCrumbs A:link {
+	TEXT-DECORATION: none
+}
+#BreadCrumbs A:hover {
+	TEXT-DECORATION: underline
+}
+#BreadCrumbs A:active {
+	TEXT-DECORATION: underline
+}
+#PageTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 20px; MARGIN: 0px 5px 0.5em 0px; COLOR: #e76f00; FONT-FAMILY: sans-serif
+}
+.LeftBar_shown {
+	MARGIN-TOP: 4px; FLOAT: left; MARGIN-BOTTOM: 2em; MARGIN-LEFT: 10px; WIDTH: 13em
+}
+
+@media Print    
+{
+.LeftBar_shown {
+	DISPLAY: none
+}
+    }
+.LeftBar_hidden {
+	DISPLAY: none
+}
+#Footer {
+	PADDING-LEFT: 10px; MARGIN-RIGHT: 10px; PADDING-TOP: 10px
+}
+.NavBit {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0.5em; PADDING-TOP: 4px; FONT-FAMILY: sans-serif
+}
+
+@media Print    
+{
+.NavBit {
+	DISPLAY: none
+}
+    }
+#TagNotes {
+	FONT-SIZE: smaller; FONT-FAMILY: sans-serif; TEXT-ALIGN: right
+}
+
+@media Print    
+{
+#TagNotes A:visited {
+	COLOR: #35556b; TEXT-DECORATION: none
+}
+#TagNotes A:link {
+	COLOR: #35556b; TEXT-DECORATION: none
+}
+    }
+#Contents A {
+	COLOR: blue
+}
+.NavBit A {
+	COLOR: blue
+}
+#TagNotes A {
+	COLOR: blue
+}
+#TagNotes A:visited {
+	TEXT-DECORATION: none
+}
+#TagNotes A:link {
+	TEXT-DECORATION: none
+}
+#Contents A:visited {
+	TEXT-DECORATION: none
+}
+#Contents A:link {
+	TEXT-DECORATION: none
+}
+.NavBit A:visited {
+	TEXT-DECORATION: none
+}
+.NavBit A:link {
+	TEXT-DECORATION: none
+}
+#TagNotes A:hover {
+	TEXT-DECORATION: underline
+}
+#TagNotes A:active {
+	TEXT-DECORATION: underline
+}
+#Contents A:hover {
+	TEXT-DECORATION: underline
+}
+#Contents A:active {
+	TEXT-DECORATION: underline
+}
+.NavBit A:hover {
+	TEXT-DECORATION: underline
+}
+.NavBit A:active {
+	TEXT-DECORATION: underline
+}
+#Contents {
+	FLOAT: left; FONT-FAMILY: sans-serif
+}
+
+@media Print    
+{
+#Contents {
+	DISPLAY: none
+}
+
+}
+
+@media Screen    
+{
+DIV.PrintHeaders {
+	DISPLAY: none
+}
+    }
+.linkLESSON {
+	MARGIN-LEFT: 0.5em; TEXT-INDENT: -0.5em
+}
+.nolinkLESSON {
+	MARGIN-LEFT: 0.5em; TEXT-INDENT: -0.5em
+}
+.linkAHEAD {
+	MARGIN-LEFT: 1.5em; TEXT-INDENT: -0.5em
+}
+.nolinkAHEAD {
+	MARGIN-LEFT: 1.5em; TEXT-INDENT: -0.5em
+}
+.linkQUESTIONS {
+	MARGIN-LEFT: 1.5em; TEXT-INDENT: -0.5em
+}
+.nolinkQUESTIONS {
+	MARGIN-LEFT: 1.5em; TEXT-INDENT: -0.5em
+}
+.linkBHEAD {
+	MARGIN-LEFT: 2.5em; TEXT-INDENT: -0.5em
+}
+.nolinkBHEAD {
+	MARGIN-LEFT: 2.5em; TEXT-INDENT: -0.5em
+}
+.linkCHEAD {
+	MARGIN-LEFT: 3.5em; TEXT-INDENT: -0.5em
+}
+.nolinkCHEAD {
+	MARGIN-LEFT: 3.5em; TEXT-INDENT: -0.5em
+}
+.nolinkLESSON {
+	FONT-WEIGHT: bold; COLOR: #e76f00
+}
+.nolinkAHEAD {
+	FONT-WEIGHT: bold; COLOR: #e76f00
+}
+.nolinkBHEAD {
+	FONT-WEIGHT: bold; COLOR: #e76f00
+}
+.nolinkCHEAD {
+	FONT-WEIGHT: bold; COLOR: #e76f00
+}
+.nolinkQUESTIONS {
+	FONT-WEIGHT: bold; COLOR: #e76f00
+}
+.MainFlow_indented {
+	MARGIN-BOTTOM: 2em; MARGIN-LEFT: 15em; MARGIN-RIGHT: 10px
+}
+.MainFlow_wide {
+	MARGIN-BOTTOM: 2em; MARGIN-LEFT: 10px; MARGIN-RIGHT: 10px
+}
+
+@media Print    
+{
+.MainFlow_indented {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 0px; MARGIN-RIGHT: 10px; PADDING-TOP: 0px
+}
+.MainFlow_wide {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 0px; MARGIN-RIGHT: 10px; PADDING-TOP: 0px
+}
+    }
+H3 {
+	COLOR: #e76f00; FONT-FAMILY: sans-serif
+}
+H4 {
+	COLOR: #e76f00; FONT-FAMILY: sans-serif
+}
+H5 {
+	COLOR: #e76f00; FONT-FAMILY: sans-serif
+}
+#ToggleLeft {
+	DISPLAY: none
+}
+</STYLE>
+
+<SCRIPT type=text/javascript>
+    function leftBar() {
+        var nameq = 'tutorial_showLeftBar='
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookieString = cookies[i];
+            while (cookieString.charAt(0) == ' ') {
+                cookieString = cookieString.substring(1, cookieString.length);
+            }
+            if (cookieString.indexOf(nameq) == 0) {
+                cookieValue =  cookieString.substring(nameq.length,
+                        cookieString.length);
+                return cookieValue == 'yes';
+            }
+        }
+        return true;
+    }
+
+    function showLeft(b) {
+        var contents = document.getElementById("LeftBar");
+        var main = document.getElementById("MainFlow");
+        var toggle = document.getElementById("ToggleLeft");
+        if (b) {
+            contents.className = "LeftBar_shown";
+            main.className = "MainFlow_indented";
+            toggle.innerHTML = "Hide the TOC";
+            document.cookie = 'tutorial_showLeftBar=yes; path=/';
+        } else {
+            contents.className = "LeftBar_hidden";
+            main.className = "MainFlow_wide";
+            toggle.innerHTML = "Show the TOC";
+            document.cookie = 'tutorial_showLeftBar=no; path=/';
+        }
+    }
+
+    function toggleLeft() {
+        showLeft(document.getElementById("LeftBar").className ==
+                "LeftBar_hidden");
+        document.getElementById("ToggleLeft").blur();
+    }
+
+    function load() {
+        showLeft(leftBar());
+        document.getElementById("ToggleLeft").style.display="inline";
+    }
+    
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.3492" name=GENERATOR></HEAD>
+<BODY onload=load()>
+<DIV id=TopBar>
+<DIV id=TopBar_tr>
+<DIV id=TopBar_tl>
+<DIV id=TopBar_br>
+<DIV id=TopBar_bl>
+<DIV id=TopBar_right><A href="http://java.sun.com/javase/6/download.jsp" 
+target=_blank>Download the JDK</A> <BR><A 
+href="http://java.sun.com/docs/books/tutorial/search.html" target=_blank>Search 
+the Tutorials</A> <BR><A id=ToggleLeft href="javascript:toggleLeft()">Hide the 
+TOC</A> </DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class=PrintHeaders><B>Trail:</B> RMI <BR><B>Section:</B> Compiling and 
+Running the Example </DIV>
+<DIV class=LeftBar_shown id=LeftBar>
+<DIV id=Contents>
+<DIV class=linkAHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/overview.html">An Overview of 
+RMI Applications</A></DIV>
+<DIV class=linkAHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/server.html">Writing an RMI 
+Server</A></DIV>
+<DIV class=linkBHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/designing.html">Designing a 
+Remote Interface</A></DIV>
+<DIV class=linkBHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/implementing.html">Implementing 
+a Remote Interface</A></DIV>
+<DIV class=linkAHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/client.html">Creating a Client 
+Program</A></DIV>
+<DIV class=linkAHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/example.html">Compiling and 
+Running the Example</A></DIV>
+<DIV class=nolinkBHEAD>Compiling the Example Programs</DIV>
+<DIV class=linkBHEAD><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/running.html">Running the 
+Example Programs</A></DIV></DIV></DIV>
+<DIV class=MainFlow_indented id=MainFlow><SPAN id=BreadCrumbs><A 
+href="http://java.sun.com/docs/books/tutorial/index.html" target=_top>Home 
+Page</A> &gt; <A href="http://java.sun.com/docs/books/tutorial/rmi/index.html" 
+target=_top>RMI</A> </SPAN>
+<DIV class=NavBit><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/example.html" 
+target=_top>«&nbsp;Previous</A>&nbsp;•&nbsp;<A 
+href="http://java.sun.com/docs/books/tutorial/rmi/TOC.html" 
+target=_top>Trail</A>&nbsp;•&nbsp;<A 
+href="http://java.sun.com/docs/books/tutorial/rmi/running.html" 
+target=_top>Next&nbsp;»</A> </DIV>
+<DIV id=PageTitle>Compiling the Example Programs</DIV>
+<BLOCKQUOTE>In a real-world scenario in which a service such as the compute 
+  engine is deployed, a developer would likely create a Java Archive (JAR) file 
+  that contains the <CODE>Compute</CODE> and <CODE>Task</CODE> interfaces for 
+  server classes to implement and client programs to use. Next, a developer, 
+  perhaps the same developer of the interface JAR file, would write an 
+  implementation of the <CODE>Compute</CODE> interface and deploy that service 
+  on a machine available to clients. Developers of client programs can use the 
+  <CODE>Compute</CODE> and the <CODE>Task</CODE> interfaces, contained in the 
+  JAR file, and independently develop a task and client program that uses a 
+  <CODE>Compute</CODE> service. 
+  <P>In this section, you learn how to set up the JAR file, server classes, and 
+  client classes. You will see that the client's <CODE>Pi</CODE> class will be 
+  downloaded to the server at runtime. Also, the <CODE>Compute</CODE> and 
+  <CODE>Task</CODE> interfaces will be downloaded from the server to the 
+  registry at runtime. 
+  <P>This example separates the interfaces, remote object implementation, and 
+  client code into three packages: 
+  <UL>
+    <LI><CODE>compute</CODE> – <A class=SourceLink 
+    href="http://java.sun.com/docs/books/tutorial/rmi/examples/compute/Compute.java" 
+    target=_blank><CODE>Compute</CODE></A> and <A class=SourceLink 
+    href="http://java.sun.com/docs/books/tutorial/rmi/examples/compute/Task.java" 
+    target=_blank><CODE>Task</CODE></A> interfaces 
+    <LI><CODE>engine</CODE> – <A class=SourceLink 
+    href="http://java.sun.com/docs/books/tutorial/rmi/examples/engine/ComputeEngine.java" 
+    target=_blank><CODE>ComputeEngine</CODE></A> implementation class 
+    <LI><CODE>client</CODE> – <A class=SourceLink 
+    href="http://java.sun.com/docs/books/tutorial/rmi/examples/client/ComputePi.java" 
+    target=_blank><CODE>ComputePi</CODE></A> client code and <A class=SourceLink 
+    href="http://java.sun.com/docs/books/tutorial/rmi/examples/client/Pi.java" 
+    target=_blank><CODE>Pi</CODE></A> task implementation </LI></UL>
+  <P>First, you need to build the interface JAR file to provide to server and 
+  client developers. </P></BLOCKQUOTE>
+<H3>Building a JAR File of Interface Classes</H3>
+<BLOCKQUOTE>First, you need to compile the interface source files in the 
+  <CODE>compute</CODE> package and then build a JAR file that contains their 
+  class files. Assume that user <CODE>waldo</CODE> has written these interfaces 
+  and placed the source files in the directory 
+  <CODE>c:\home\waldo\src\compute</CODE> on Windows or the directory 
+  <CODE>/home/waldo/src/compute</CODE> on Solaris OS or Linux. Given these 
+  paths, you can use the following commands to compile the interfaces and create 
+  the JAR file: 
+  <P>
+  <BLOCKQUOTE>
+    <HR>
+
+    <DT><STRONG>Microsoft Windows</STRONG>: <PRE>cd c:\home\waldo\src
+javac compute\Compute.java compute\Task.java
+jar cvf compute.jar compute\*.class
+</PRE>
+    <P></P>
+    <DT><STRONG>Solaris OS or Linux</STRONG>: <PRE>cd /home/waldo/src
+javac compute/Compute.java compute/Task.java
+jar cvf compute.jar compute/*.class
+</PRE>
+    <HR>
+    </DT></BLOCKQUOTE>
+  <P>The <CODE>jar</CODE> command displays the following output due to the 
+  <CODE>-v</CODE> option: 
+  <BLOCKQUOTE><PRE>added manifest
+adding: compute/Compute.class(in = 307) (out= 201)(deflated 34%)
+adding: compute/Task.class(in = 217) (out= 149)(deflated 31%)
+</PRE></BLOCKQUOTE>
+  <P>Now, you can distribute the <CODE>compute.jar</CODE> file to developers of 
+  server and client applications so that they can make use of the interfaces. 
+  <P>After you build either server-side or client-side classes with the 
+  <CODE>javac</CODE> compiler, if any of those classes will need to be 
+  dynamically downloaded by other Java virtual machines, you must ensure that 
+  their class files are placed in a network-accessible location. In this 
+  example, for Solaris OS or Linux this location is 
+  <CODE>/home/<I>user</I>/public_html/classes</CODE> because many web servers 
+  allow the accessing of a user's <CODE>public_html</CODE> directory through an 
+  HTTP URL constructed as <CODE>http://host/~<I>user</I>/</CODE>. If your web 
+  server does not support this convention, you could use a different location in 
+  the web server's hierarchy, or you could use a file URL instead. The file URLs 
+  take the form <CODE>file:/home/<I>user</I>/public_html/classes/</CODE> on 
+  Solaris OS or Linux and the form 
+  <CODE>file:/c:/home/<I>user</I>/public_html/classes/</CODE> on Windows. You 
+  may also select another type of URL, as appropriate. 
+  <P>The network accessibility of the class files enables the RMI runtime to 
+  download code when needed. Rather than defining its own protocol for code 
+  downloading, RMI uses URL protocols supported by the Java platform (for 
+  example, HTTP) to download code. Note that using a full, heavyweight web 
+  server to serve these class files is unnecessary. For example, a simple HTTP 
+  server that provides the functionality needed to make classes available for 
+  downloading in RMI through HTTP can be found at <A 
+  href="http://java.sun.com/javase/technologies/core/basic/rmi/class-server.zip"><TT>http://java.sun.com/javase/technologies/core/basic/rmi/class-server.zip</TT></A>. 
+  </P></BLOCKQUOTE>
+<H3>Building the Server Classes</H3>
+<BLOCKQUOTE>The <CODE>engine</CODE> package contains only one server-side 
+  implementation class, <CODE>ComputeEngine</CODE>, the implementation of the 
+  remote interface <CODE>Compute</CODE>. 
+  <P>Assume that user <CODE>ann</CODE>, the developer of the 
+  <CODE>ComputeEngine</CODE> class, has placed <CODE>ComputeEngine.java</CODE> 
+  in the directory <CODE>c:\home\ann\src\engine</CODE> on Windows or the 
+  directory <CODE>/home/ann/src/engine</CODE> on Solaris OS or Linux. She is 
+  deploying the class files for clients to download in a subdirectory of her 
+  <CODE>public_html</CODE> directory, 
+  <CODE>c:\home\ann\public_html\classes</CODE> on Windows or 
+  <CODE>/home/ann/public_html/classes</CODE> on Solaris OS or Linux. This 
+  location is accessible through some web servers as 
+  <CODE>http://<I>host</I>:<I>port</I>/~ann/classes/</CODE>. 
+  <P>The <CODE>ComputeEngine</CODE> class depends on the <CODE>Compute</CODE> 
+  and <CODE>Task</CODE> interfaces, which are contained in the 
+  <CODE>compute.jar</CODE> JAR file. Therefore, you need the 
+  <CODE>compute.jar</CODE> file in your class path when you build the server 
+  classes. Assume that the <CODE>compute.jar</CODE> file is located in the 
+  directory <CODE>c:\home\ann\public_html\classes</CODE> on Windows or the 
+  directory <CODE>/home/ann/public_html/classes</CODE> on Solaris OS or Linux. 
+  Given these paths, you can use the following commands to build the server 
+  classes: 
+  <P>
+  <BLOCKQUOTE>
+    <HR>
+
+    <DT><STRONG>Microsoft Windows</STRONG>: <PRE>cd c:\home\ann\src
+javac -cp c:\home\ann\public_html\classes\compute.jar
+    engine\ComputeEngine.java
+</PRE>
+    <P></P>
+    <DT><STRONG>Solaris OS or Linux</STRONG>: <PRE>cd /home/ann/src
+javac -cp /home/ann/public_html/classes/compute.jar
+    engine/ComputeEngine.java
+</PRE>
+    <HR>
+    </DT></BLOCKQUOTE>
+  <P>The stub class for <CODE>ComputeEngine</CODE> implements the 
+  <CODE>Compute</CODE> interface, which refers to the <CODE>Task</CODE> 
+  interface. So, the class definitions for those two interfaces need to be 
+  network-accessible for the stub to be received by other Java virtual machines 
+  such as the registry's Java virtual machine. The client Java virtual machine 
+  will already have these interfaces in its class path, so it does not actually 
+  need to download their definitions. The <CODE>compute.jar</CODE> file under 
+  the <CODE>public_html</CODE> directory can serve this purpose. 
+  <P>Now, the compute engine is ready to deploy. You could do that now, or you 
+  could wait until after you have built the client. </P></BLOCKQUOTE>
+<H3>Building the Client Classes</H3>
+<BLOCKQUOTE>The <CODE>client</CODE> package contains two classes, 
+  <CODE>ComputePi</CODE>, the main client program, and <CODE>Pi</CODE>, the 
+  client's implementation of the <CODE>Task</CODE> interface. 
+  <P>Assume that user <CODE>jones</CODE>, the developer of the client classes, 
+  has placed <CODE>ComputePi.java</CODE> and <CODE>Pi.java</CODE> in the 
+  directory <CODE>c:\home\jones\src\client</CODE> on Windows or the directory 
+  <CODE>/home/jones/src/client</CODE> on Solaris OS or Linux. He is deploying 
+  the class files for the compute engine to download in a subdirectory of his 
+  <CODE>public_html</CODE> directory, 
+  <CODE>c:\home\jones\public_html\classes</CODE> on Windows or 
+  <CODE>/home/jones/public_html/classes</CODE> on Solaris OS or Linux. This 
+  location is accessible through some web servers as 
+  <CODE>http://<I>host</I>:<I>port</I>/~jones/classes/</CODE>. 
+  <P>The client classes depend on the <CODE>Compute</CODE> and <CODE>Task</CODE> 
+  interfaces, which are contained in the <CODE>compute.jar</CODE> JAR file. 
+  Therefore, you need the <CODE>compute.jar</CODE> file in your class path when 
+  you build the client classes. Assume that the <CODE>compute.jar</CODE> file is 
+  located in the directory <CODE>c:\home\jones\public_html\classes</CODE> on 
+  Windows or the directory <CODE>/home/jones/public_html/classes</CODE> on 
+  Solaris OS or Linux. Given these paths, you can use the following commands to 
+  build the client classes: 
+  <P>
+  <BLOCKQUOTE>
+    <HR>
+
+    <DT><STRONG>Microsoft Windows</STRONG>: <PRE>cd c:\home\jones\src
+javac -cp c:\home\jones\public_html\classes\compute.jar
+    client\ComputePi.java client\Pi.java
+mkdir c:\home\jones\public_html\classes\client
+cp client\Pi.class 
+    c:\home\jones\public_html\classes\client
+</PRE>
+    <P></P>
+    <DT><STRONG>Solaris OS or Linux</STRONG>: <PRE>cd /home/jones/src
+javac -cp /home/jones/public_html/classes/compute.jar
+    client/ComputePi.java client/Pi.java
+mkdir /home/jones/public_html/classes/client
+cp client/Pi.class
+    /home/jones/public_html/classes/client
+</PRE>
+    <HR>
+    </DT></BLOCKQUOTE>
+  <P>Only the <CODE>Pi</CODE> class needs to be placed in the directory 
+  <CODE>public_html\classes\client</CODE> because only the <CODE>Pi</CODE> class 
+  needs to be available for downloading to the compute engine's Java virtual 
+  machine. Now, you can run the server and then the client. </P></BLOCKQUOTE>
+<DIV class=NavBit><A 
+href="http://java.sun.com/docs/books/tutorial/rmi/example.html" target=_top>« 
+Previous</A> • <A href="http://java.sun.com/docs/books/tutorial/rmi/TOC.html" 
+target=_top>Trail</A> • <A 
+href="http://java.sun.com/docs/books/tutorial/rmi/running.html" target=_top>Next 
+»</A> </DIV></DIV>
+<DIV id=Footer>
+<HR>
+
+<DIV id=TagNotes><FONT face=sans-serif size=1>Problems with the examples? Try <A 
+href="http://java.sun.com/docs/books/tutorial/information/run-examples.html" 
+target=_blank>Compiling and Running the Examples: FAQs</A>. <BR>Complaints? 
+Compliments? Suggestions? <A 
+href="http://developer.sun.com/contact/tutorial_feedback.jsp" target=_blank>Give 
+us your feedback</A>. </FONT></DIV>
+<DIV id=Footer>
+<P><FONT face=sans-serif size=1><A name=license_info>Your use of this</A> page 
+<A 
+href="http://java.sun.com/docs/books/tutorial/">(http://java.sun.com/docs/books/tutorial</A> 
+(Last Updated <A 
+href="http://java.sun.com/docs/books/tutorial/information/history.html">2/14/2008</A>)) 
+and all the material on pages under "The Java Tutorials" banner is subject to 
+the <A href="http://developers.sun.com/global/termsofuse.html#g2_12">Terms of 
+Use</A>. Additionally, (i) any example code contained in any of these Java 
+Tutorials pages is also licensed under the <A 
+href="http://developers.sun.com/license/berkeley_license.html">Code Sample 
+License</A>, and (ii) the entire Java Tutorials content is available for 
+download under the Java Tutorials Limited Non-Commercial License for limited, 
+non-commercial individual and/or research and instructional use at <A 
+href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=tutorial-2008_03_14-oth-JPR@CDS-CDS_Developer">Sun 
+Download Center</A>.</FONT></P><!--
+-->
+<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="20%">
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD align=middle><IMG id=duke height=55 
+            src="F07_Compiling the Example Programs (The Java™ Tutorials  RMI)_files/DukeWave.gif" 
+            width=55></TD>
+          <TD vAlign=center align=left><IMG id=sun height=29 
+            src="F07_Compiling the Example Programs (The Java™ Tutorials  RMI)_files/logo_sun_small_sdn.gif" 
+            width=61></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=center align=middle width="55%"><FONT color=#7e9cb1 size=1><A 
+      href="http://developers.sun.com/global/aboutsun.html">About Sun</A> | <A 
+      href="http://developers.sun.com/global/aboutsdn.html">About This Site</A> 
+      | <A href="http://developers.sun.com/global/termsofuse.html">Terms of 
+      Use</A> | <A 
+      href="http://developers.sun.com/global/trademarks.html">Trademarks</A></FONT><FONT 
+      color=#7e9cb1>&nbsp;</FONT> </TD>
+    <TD vAlign=center align=right width="25%"><FONT color=#4b7592 
+      size=2><STRONG>A Sun Developer Network Site</STRONG></FONT><BR><FONT 
+      size=1><A 
+      href="http://java.sun.com/docs/books/tutorial/information/copyright.html">Copyright</A></FONT> 
+      <FONT color=#4b7592 size=2>1995-2008 Sun Microsystems, Inc.</FONT> 
+  </TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV class=PrintHeaders><B>Previous page:</B> Compiling and Running the Example 
+<BR><B>Next page:</B> Running the Example Programs </DIV>
+<SCRIPT language=JavaScript 
+src="F07_Compiling the Example Programs (The Java™ Tutorials  RMI)_files/s_code_remote.js"></SCRIPT>
+</BODY></HTML>

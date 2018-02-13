@@ -1,0 +1,129 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>BIEB_UC2ProdQA_D_300x250_v1r1</title>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+</head><body style="border-width: 0px; margin: 0px;" bgcolor="White">
+<script type="text/javascript">
+var nRequiredVersion = 8; 
+var bIsRightVersion = false;	
+var isIE = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;
+var isWin = (navigator.appVersion.toLowerCase().indexOf("win") != -1) ? true : false;
+var isOpera = (navigator.userAgent.indexOf("Opera") != -1) ? true : false;
+if(isIE && isWin){
+document.writeln('<SCR' + 'IPT LANGUAGE=VBScript\>');
+document.writeln('on error resume next');
+document.writeln('Set oFlashPlayer = CreateObject("ShockwaveFlash.ShockwaveFlash." & nRequiredVersion)');
+document.writeln('If IsObject(oFlashPlayer) Then');
+document.writeln('bIsRightVersion = True');
+document.writeln('End If');
+document.writeln('If (Not bIsRightVersion) And (nRequiredVersion < 3) Then');
+document.writeln('Set oFlashPlayer = CreateObject("ShockwaveFlash.ShockwaveFlash")');
+document.writeln('If IsObject(oFlashPlayer) Then');
+document.writeln('bIsRightVersion = True');
+document.writeln('End If');
+document.writeln('End If');
+document.writeln('</SCR' + 'IPT\>'); 
+}
+function detectPluginITP1253821841489() 
+{ 
+if (!bIsRightVersion) 
+{
+if (navigator.plugins != null && navigator.plugins.length > 0) {
+if (navigator.plugins["Shockwave Flash 2.0"] || navigator.plugins["Shockwave Flash"]) {
+var swVer2 = navigator.plugins["Shockwave Flash 2.0"] ? " 2.0" : "";
+var flashDescription = navigator.plugins["Shockwave Flash" + swVer2].description;
+var descArray = flashDescription.split(" ");
+var tempArrayMajor = descArray[2].split(".");	
+var versionMajor = tempArrayMajor[0];
+bIsRightVersion = (versionMajor >= nRequiredVersion);
+}
+}
+else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
+{
+bIsRightVersion = (4 >= nRequiredVersion);
+}
+else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
+{
+bIsRightVersion = (3 >= nRequiredVersion);
+}
+else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1) 
+{
+bIsRightVersion = (2 >= nRequiredVersion);
+}
+}
+}
+detectPluginITP1253821841489();
+var _ITP1253821841489_Instance =
+{
+click : "http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?",
+clickThruUrl: "http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.$num$/01/",
+imgs : []
+};
+if (!window.armapi_a1_a1)
+{
+var armapi_a1_a1 =
+{
+initialize : function(unique_id){},
+click : function(unique_id, num, suffix)
+{
+this.clickTrack(unique_id);
+this.clickThru(unique_id, num, suffix);
+},
+clickTrack : function(unique_id, num)
+{
+var instance = window[unique_id + "_Instance"];
+if (instance.click != "")
+{
+var img = new Image();
+img.src = instance.click + "http://t.atdmt.com";
+instance.imgs.push(img); 
+}
+},
+clickThru : function(unique_id, num, suffix) { 
+var instance = window[unique_id + "_Instance"];
+var url = instance.clickThruUrl.replace("$num$", num) + suffix;
+window.open(url, "_blank"); 
+}
+};
+}
+var armapi_ArmClickType = isIE ? "ext" : "";
+var _strContentITP1253821841489 = '';
+if(bIsRightVersion) 
+{ 
+var strFQDN = "HTTP://spe.atdmt.com/ds/NMMRTUMISITP/"; 
+var index = strFQDN.indexOf("/ds/");
+strFQDN = strFQDN.substring(0, index);
+_strContentITP1253821841489 = '' + '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="HTTP://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab" id="idSWFITP1253821841489" width="300" height="250">'
++ '<param name="movie" value="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/FY10_BIEB_ProductQA/BIEB_UC2ProdQA_D_300x250_v1r1.swf?ver=1&clickTag1=!~!click!~!http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01&clickTag=!~!click!~!http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01" />'
++ '<param name="base" value="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/" />'
++ '<param name="FlashVars" value="ArmClickType='+ armapi_ArmClickType + '&unique_id=_ITP1253821841489&ArmApi=armapi_a1_a1&ArmClickUrl=http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.$num$/01/&ArmClickToken=$num$" />'
++ '<param name="quality" value="high" />'
++ '<param name="salign" value="lt" />'
++ '<param name="loop" value="true" />'
++ '<param name="wmode" value="opaque" />'
++ '<param name="allowScriptAccess" value="always" />'
++ '<embed allowScriptAccess="always" quality="high" salign="LT" loop="true" type="application/x-shockwave-flash" pluginspace="HTTP://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" base="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/" wmode="opaque" src="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/FY10_BIEB_ProductQA/BIEB_UC2ProdQA_D_300x250_v1r1.swf?ver=1&clickTag1=!~!click!~!http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01&clickTag=!~!click!~!http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01" width="300" height="250" FlashVars="unique_id=_ITP1253821841489&ArmApi=armapi_a1_a1&ArmClickUrl=http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.$num$/01/&ArmClickToken=$num$" />'
++ '</object>'
++ '';
+if ( "%OOB%" == "1" )
+_strContentITP1253821841489 = _strContentITP1253821841489.replace(/!~!click!~!/g,'');
+else
+_strContentITP1253821841489 = _strContentITP1253821841489.replace(/!~!click!~!/g,'http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?');
+} 
+else 
+{ 
+_strContentITP1253821841489 = '<a target="_blank" href="http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01/" onclick="if(\'http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?\')(new Image).src=\'http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?http://t.atdmt.com\'"><img border="0" src="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/FY10_BIEB_ProductQA/BIEB_UC2ProdQA_D_300x250_v1r1.jpg?ver=1" width="300" height="250" /></a>';
+}
+</script>
+<script type="text/javascript" src="011639533145_data/DocumentDotWrite.js"></script>
+<script type="text/javascript">DocumentDotWrite(_strContentITP1253821841489);</script><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="HTTP://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab" id="idSWFITP1253821841489" width="300" height="250"><param name="movie" value="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/FY10_BIEB_ProductQA/BIEB_UC2ProdQA_D_300x250_v1r1.swf?ver=1&amp;clickTag1=http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01&amp;clickTag=http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01"><param name="base" value="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/"><param name="FlashVars" value="ArmClickType=&amp;unique_id=_ITP1253821841489&amp;ArmApi=armapi_a1_a1&amp;ArmClickUrl=http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.$num$/01/&amp;ArmClickToken=$num$"><param name="quality" value="high"><param name="salign" value="lt"><param name="loop" value="true"><param name="wmode" value="opaque"><param name="allowScriptAccess" value="always"><embed allowscriptaccess="always" quality="high" salign="LT" loop="true" type="application/x-shockwave-flash" pluginspace="HTTP://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" base="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/" wmode="opaque" src="011639533145_data/BIEB_UC2ProdQA_D_300x250_v1r1.swf" flashvars="unique_id=_ITP1253821841489&amp;ArmApi=armapi_a1_a1&amp;ArmClickUrl=http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.$num$/01/&amp;ArmClickToken=$num$" width="300" height="250"></object>
+<script type="text/javascript"> 
+</script>
+<noscript>
+<a target="_blank"
+href="http://mjxads.internet.com/RealMedia/ads/click_lx.ads/intm/webdev/www.javaboutique.com/L32/1639533145/flex/WMBrands/MSFT_BIEB_CPC_GEMS_1zzzd/msftbiebcpcgemsbob2.html/7767626d77556e636c674141444c396b?http://clk.atdmt.com/go/172033460/direct;wi.300;hi.250;ai.131234947;ct.1/01"><img
+border="0"
+src="HTTP://spe.atdmt.com/ds/NMMRTUMISITP/FY10_BIEB_ProductQA/BIEB_UC2ProdQA_D_300x250_v1r1.jpg?ver=1"
+width="300" height="250" /></a>
+</noscript>
+<script src="011639533145_data/broker.js"></script><script src="011639533145_data/rc.js"></script></body></html>

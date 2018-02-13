@@ -1,0 +1,117 @@
+Linux UBUNTU 12:
+
+//use ghex for introspecting the files in hex
+
+//set env variables:
+
+Linux Ubuntu 14:
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_25
+export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c05/src
+
+
+A. Sockets - UDP - Multi-threading
+
+cd $DAD/c05/src/S09_Sockets
+
+1.  Multithreading UDP Client & Server
+
+cd udpmultithread01
+
+javac UDPQuoteServer.java
+javac UDPQuoteServerThread.java
+javac UDPQuoteClient.java
+
+java UDPQuoteServer 127.0.0.1 4806
+java UDPQuoteClient 127.0.0.1 4806
+cd ..
+
+2. Real Multithreading UDP Client & Server
+
+cd udpmultithreadreal02
+
+javac UDPQuoteServer.java
+javac UDPQuoteServerThread.java
+javac UDPQuoteClient.java
+
+java UDPQuoteServer 127.0.0.1 4806
+java UDPQuoteClient 127.0.0.1 4806
+
+cd ..
+
+>netstat -na -p udp | grep 4806
+
+3. Simple Multi-threading TCP Client & Server
+
+cd tcpmultithreadsimple03
+
+javac eu/ase/net/tcp/TCPMultiThreadServer.java
+javac eu/ase/net/tcp/TCPServer.java
+javac eu/ase/net/tcp/TCPClient.java
+
+java eu/ase/net/tcp/TCPMultiThreadServer
+java eu/ase/net/tcp/TCPServer
+java eu/ase/net/tcp/TCPClient 127.0.0.1 4801
+
+cd ..
+
+netstat -na -p tcp 3
+
+4. Web Server - Laboratory / Seminar
+
+cd serverWeb04
+
+javac eu/ase/httpserver/HTTPMultiServer.java
+
+cd ..
+
+#Trafic analysis
+>sudo wireshark
+
+Request: http://ip_masina:8085/bba.html
+
+5. HTTP - URLConnection - client
+
+cd urlconn05
+
+javac URLReader.java
+javac URLReaderFileSave.java
+
+java -Dhttp.proxyHost=proxyhost -Dhttp.proxyPort=portNumber URLReader <URL>
+
+*without proxy
+java URLReader http://www.google.ro
+java URLReaderFileSave
+
+*with proxy
+java -Dhttp.proxyHost=cache.ase.ro -Dhttp.proxyPort=8080 URLReader http://www.google.ro
+java -Dhttp.proxyHost=cache.ase.ro -Dhttp.proxyPort=8080 URLReaderFileSave
+
+6. FTP Server - Windows FTP Client - Linux Ubuntu 12 Java FTP Server
+
+Control pannel -> Administrative Tools -> Internet Information Services
+Start FTP server with user account - the computer acc
+>o 127.0.0.1
+user&pass
+>lcd d:\
+>pwd
+>bin
+>put t2.pdf
+>quit
+
+cd serverFTP06
+cd src
+
+javac -d ../classes eu/ase/ftp/*.java
+cp ./eu/ase/ftp/jftpd.properties ../classes/eu/ase/ftp/jftpd.properties
+cd ../classes
+
+sudo su
+
+java eu/ase/ftp/Server
+
+# *** Please be aware of Windows/Linux Firewall for TCP ports 20 and 21
+
