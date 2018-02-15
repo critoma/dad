@@ -63,7 +63,9 @@ public class ProgMainTestSnmp {
 			kk[37]=0x05; //The last two bytes in the packet are 0x05 and 0x00 which collectively stand for a NULL value. This is because we can't have an answer in a query!
 			kk[38]=0x00;
 			
-			InetAddress address = InetAddress.getByName(args[0]);
+			//args[0] = "snmp.live.gambitcommunications.com";
+			//InetAddress address = InetAddress.getByName("snmp.live.gambitcommunications.com");
+			InetAddress address = InetAddress.getByName("127.0.0.1");
 			DatagramPacket packet = new DatagramPacket(kk, kk.length, address, 161);
 			socket.send(packet);
 			
