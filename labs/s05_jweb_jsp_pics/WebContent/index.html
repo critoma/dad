@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Submit picture path and coordinates</title>
+</head>
+<body>
+<!--  
+
+ // http://127.0.0.1:8080/s05_jweb_jsp_pics/
+ // /home/stud/dad/labs/s05_jweb_jsp_pics/WebContent/test1.jpg
+ // /home/stud/dad/labs/s05_jweb_jsp_pics/WebContent/test1out.jpg
+
+	<form action="s07_webjsp_pictureprocess/FormPictureBean05.jsp" method="POST">
+-->
+	<form action="FormPictureBean05.jsp" method="POST">
+		Nume poza input:  <input type="text" name="nume" /><br/>
+		Nume poza output: <input type="text" name="newNume" /><br/>
+		Pozitia X: <input type="text" name="xpoz" /><br/>
+		Pozitia Y: <input type="text" name="ypoz" /><br/>
+		Latime: <input type="text" name="width" /><br/>
+		Inaltime: <input type="text" name="height" /><br/>
+		
+		<input type="SUBMIT" value="Ajusteaza Poza" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>s07_jweb_jaxws_server</display-name>
+  <listener>
+     <listener-class>
+        com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+     </listener-class>
+   </listener>
+   <servlet>
+      <servlet-name>HelloWorldWS</servlet-name>
+      <servlet-class>
+        com.sun.xml.ws.transport.http.servlet.WSServlet
+      </servlet-class>
+   </servlet>
+   <servlet-mapping>
+     <servlet-name>HelloWorldWS</servlet-name>
+     <url-pattern>/HelloWorldWS</url-pattern>
+   </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
