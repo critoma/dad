@@ -1,64 +1,492 @@
-Linux UBUNTU 12:
+Linux UBUNTU:
 
 //use ghex for introspecting the files in hex
 
-//set env variables:
-
-export JAVA_HOME=/opt/software/java/jdks/jdk1.6.0_35
-
-Linux Ubuntu 14:
-export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_25
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
 export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib
 export DAD=/home/stud/dad/lectures
 
-cd $DAD/c03/src
+cd $DAD/c01/src
 
-A. Exceptions
+A. Distributed Applications Development and System Architectures
 
-cd $DAD/c03/src/S06_Exceptions
+// ##############################################################################
 
-A.1. No exception handled
-javac ProgMainE1.java
+# B.Student sample in Java with OOP - simple and jLibs - JARs in command line:
 
-A.2. Catch Exceptions
-javac ProgMainE2.java
-java ProgMainE2
+cd $DAD/c01/src/S02_OOP_ANT_Maven_Gradle
 
-A.3. Pass the exceptions
-javac ProgMainE3.java
-java ProgMainE3
+# B.1 - Simple
+javac eu/ase/ooparrays/Student.java
+javac eu/ase/ooparrays/ProgMainOopArrays.java
 
---------------------------------------------------------------------------------------------
+java eu/ase/ooparrays/ProgMainOopArrays
 
-B. Source Code Design Patterns
+# B.2 - full JAR deployment 
+jar -cmvf ./META-INF/MANIFEST.MF ../student.jar eu/ase/ooparrays/*.class
+rm eu/ase/ooparrays/*.class
 
-cd $DAD/c03/src/S07_FactoryMethodsClasses
+java -jar ../student.jar eu/ase/ooparrays/ProgMainOopArrays
+rm ../student.jar
 
-B.1 Factory Methods
-javac FactMethods.java
-java ProgMain1
-java ProgMain2
-
-B.2 Singleton classes
-javac Singleton.java
-java ProgMain3
+# B.3 - the Java lib - JAR:
+javac eu/ase/ooparrays/Student.java
+jar -cvf ../studentLib.jar eu/ase/ooparrays/Student.class
 
 
---------------------------------------------------------------------------------------------
+javac eu/ase/ooparrays/ProgMainOopArrays.java
+rm eu/ase/ooparrays/Student.class
+java -classpath .:../studentLib.jar eu/ase/ooparrays/ProgMainOopArrays
 
-C. UNIX/Linux IPC - Inter-Process Communications and POSIX Threads - in C/C++
-cd $DAD/c03/src/S07_ipc_pthreads
+rm eu/ase/ooparrays/ProgMainOopArrays.class
+rm ../studentLib.jar
 
-C.1 Fork
-cd $DAD/c03/src/S07_ipc_pthreads/S01_Fork
+// ##############################################################################
+
+# C. Apache ANT
+# https://ant.apache.org/manual/tutorial-HelloWorldWithAnt.html
+
+export ANT_HOME=/opt/software/apache-ant-1.10.1
+export PATH=$PATH:$ANT_HOME/bin
+
+ant -version
+
+
+
+# build.xml
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/student.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="eu.ase.ooparrays.ProgMainOopArrays"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/student.jar" fork="true"/>
+    </target>
+
+</project>
+
+
+cd $DAD/c01/src/S02_OOP_ANT_Maven_Gradle/antproj/
+
+ant compile
+ant jar
+ant run
+
+ant clean
+
+
+// ##############################################################################
+
+# D. Apache Maven - MVN
+
+# https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+# https://maven.apache.org/guides/getting-started/index.html
+# https://www.tutorialspoint.com/maven/maven_build_test_project.htm
+
+export MVN_HOME=/opt/software/apache-maven-3.5.2
+export M2_HOME=/opt/software/apache-maven-3.5.2
+export PATH=$PATH:$MVN_HOME/bin
+
+cd $DAD/c01/src/S02_OOP_ANT_Maven_Gradle/mavenproj
+mvn --version
+
+# mvn archetype:generate -DgroupId=eu.ase.ooparrays -DartifactId=my-app-student -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+ls -latr /home/stud/.m2/repository
+du -k -h ls /home/stud/.m2/repository
+
+# output approx. 18MB
+
+cd my-app-student
+mvn clean 
+mvn compile
+mvn package
+
+ls -latr /home/stud/.m2/repository
+du -k -h ls /home/stud/.m2/repository
+
+ls -latr /root/.m2/repository
+du -k -h ls /root/.m2/repository
+
+# output approx. 27 MB
+
+java -classpath target/my-app-student-1.0-SNAPSHOT.jar eu.ase.ooparrays.App
+
+// ##############################################################################
+
+# E. Gradle
+# https://gradle.org/install/
+# https://gradle.org/install/
+# https://github.com/jabedhasan21/java-hello-world-with-gradle
+# https://www.tutorialspoint.com/gradle/index.htm
+# https://www.tutorialspoint.com/gradle/gradle_build_a_java_project.htm
+
+# https://github.com/jabedhasan21/java-hello-world-with-gradle/blob/master/README.md
+
+export GRADLE_HOME=/opt/software/gradle-4.5
+export PATH=$PATH:$GRADLE_HOME/bin
+
+cd $DAD/c01/src/S02_OOP_ANT_Maven_Gradle/gradleproj
+gradle -v
+
+gradle -tasks
+gradle -help
+
+# mkdir -p my-app-student/src/main/java/eu/ase/ooparrays
+cd my-app-student
+
+
+# gradle init
+
+# in build.gradle file:
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'eu.ase.ooparrays.ProgMainOopArrays'
+
+// tag::jar[]
+jar {
+    baseName = 'student-gradle'
+    version =  '0.1.0'
+}
+// end::jar[]
+
+// tag::dependencies[]
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+
+gradle build
+
+gradle run
+
+java -classpath build/libs/student-gradle-0.1.0.jar eu.ase.ooparrays.ProgMainOopArrays
+
+gradle clean
+
+## git reset --hard head
+#  git reset --hard master 
+// ##############################################################################
+
+# F. Jenkins - DevOps
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export CATALINA_HOME=/opt/software/apache-tomcat-9.0.4
+export PATH=.:$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+cd $CATALINA_HOME
+bin/startup.sh
+
+http://127.0.0.1:8080
+http://127.0.0.1:8080/jenkins/
+
+
+bin/shutdown.sh
+
+// ##############################################################################
+
+# G. Docker
+
+https://hub.docker.com 
+
+https://hub.docker.com/r/critoma/ubuntu-java-node-py-dev/ 
+
+
+
+docker search critoma
+
+docker pull critoma/ubuntu-java-node-py-dev
+
+docker run -it critoma/ubuntu-java-node-py-dev
+
+
+
+
+
+
+
+// ##############################################################################
+
+
+
+H. Reflection
+
+cd $DAD/c01/src/S03_Annotation_Reflection
+
+javac eu/ase/reflection/*.java
+
+java eu/ase/reflection/ProgMainTString
+
+1. Getting method declaration
+java eu/ase/reflection/DumpMethods1 eu.ase.reflection.ProgMainTString
+java eu/ase/reflection/DumpMethods1 eu.ase.reflection.TString
+
+2. Finding Out More About Methods of a Class
+java eu/ase/reflection/Methods3 eu.ase.reflection.TString
+
+3. Creating new Objects, Invoking Methods by Name. and Changing Values of Fields
+java eu/ase/reflection/RComplete6 eu.ase.reflection.TString
+
+
+
+
+// ##############################################################################
+
+I. Annotations (+ Reflection)
+
+cd $DAD/c01/src/S03_Annotation_Reflection
+
+//Combine annotation with reflection
+javac eu/ase/annotations/Test.java
+javac eu/ase/annotations/MyTestClass.java
+
+javac eu/ase/annotations/RunTests.java
+
+
+java eu/ase/annotations/RunTests eu.ase.annotations.MyTestClass
+
+
+
+// ##################################################################################
+
+J. J-Unit 4 Minimal Annotation Intro / Full JUnit 4 and 5 @ SQE/QA Lectures (Sample for Java Libraries):
+// https://www.tutorialspoint.com/junit/index.htm
+
+cd $DAD/c01/src/S03_Annotation_Reflection/junit
+
+javac -classpath .:./lib/junit-4.12.jar eu/ase/junit/*.java
+
+java -classpath .:./lib/junit-4.12.jar:./lib/hamcrest-core-1.3.jar eu/ase/junit/MessageUtilTestJUnitRunner
+
+
+
+
+// ##############################################################################
+
+
+K. I/O + JNI
+
+cd $DAD/c01/src/S04_LibAndIO
+
+
+K2. I/O Data Streams
+
+cd $DAD/c01/src/S04_LibAndIO/DataStreams2
+
+javac ProgMain.java
+java ProgMain
+
+
+K3. Serialization
+
+cd $DAD/c01/src/S04_LibAndIO/ObjectStream_Serialization3
+
+K3.1a. Compile and run serialization 1
+
+javac Serializare1.java
+java SalvareObiect
+-se sterg clasele rezultat, mai putin test1.txt
+
+K3.1b. Compile and run deserialization 1
+
+javac Deserializare1.java
+java RefacereObiect
+-se sterg clasele rezultat, mai putin test1.txt
+
+K4. RandomAccessFile + File
+
+cd $DAD/c01/src/S04_LibAndIO/FileRandomAccessFile4
+
+javac TestRAF.java
+java TestRAF test1.txt
+
+javac ListFiles.java
+java ListFiles .
+
+
+K5. JNI
+
+cd $DAD/c01/src/S05_JNI
+
+K5.1. Compilare
+
+javac JNISample.java
+//javac eu/ase/jni/JNISample.java
+
+K5.2. Generare Header File
+
+javah -jni ReadFile
+//javah -classpath .:./eu/ase/jni -d eu/ase/jni eu.ase.jni.ReadFile
+//javah -jni eu.ase.jni.ReadFile
+
+K5.3. Implement native method in dad_nativelib.c
+
+gedit dad_nativelib.c
+//dad_nativelib.c
+//#include "./eu/ase/jni/eu_ase_jni_ReadFile.h"
+#include "./ReadFile.h"
+#include <malloc.h>
+#include <stdio.h>
+
+JNIEXPORT jbyteArray JNICALL Java_ReadFile_loadFileInMemory (JNIEnv* env, jobject jobj, jstring name)
+{
+	jbyteArray jb;
+	unsigned char *buf;
+	int len = 0;
+	jboolean iscopy;
+    	const char *mfile = (*env)->GetStringUTFChars(env, name, &iscopy);
+    	FILE* f = fopen(mfile, "r");
+
+	fseek(f, 0, 2); // SEEK_END = 2 
+	len = ftell(f); buf = (unsigned char*)malloc(len*sizeof(char));
+	fseek(f, 0, 0); // SEEK_SET = 0
+	
+	jb=(*env)->NewByteArray(env, len);
+	
+	fread(buf, sizeof(char), len, f);
+	
+	printf( "Contents of buffer = %s\n len=%d\n", buf, len );
+
+	(*env)->SetByteArrayRegion(env, jb, 0, len, (jbyte *)buf);	
+  
+	fclose(f);
+	free(buf);
+    	(*env)->ReleaseStringUTFChars(env, name, mfile);
+
+	return (jb);
+
+}
+
+K5.4. In same or another terminal, Compile the C program (dad_nativelib.c) into *.so shared object/library (from command prompt with gcc)
+
+cd $DAD/c01/src/S05_JNI
+
+export LD_LIBRARY_PATH=.:/opt/software/java/jdks/jdk1.8.0_161/jre/lib
+
+gcc -Wall -fPIC -c -I$JAVA_HOME/include -I$JAVA_HOME/include/linux dad_nativelib.c
+gcc -shared -Wl,-soname,libdad_native.so.1 -o libdad_native.so.1.0 dad_nativelib.o
+ln -sf ./libdad_native.so.1.0 ./libdad_native.so.1
+ln -sf ./libdad_native.so.1 ./libdad_native.so
+
+
+K5.5. Run the Java program using the *.so - shared object/library lib
+
+//java -Djava.library.path=$LD_LIBRARY_PATH eu/ase/jni/JNIProgMain tt1.txt
+
+//java -Djava.library.path=. JNIProgMain tt1.txt
+
+java JNIProgMain tt1.txt
+
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+JNI in MS Windows 7/10:
+
+-. setare variabile mediu
+
+set JAVA_HOME=C:\Software\Java\JDKs\<jdk8>
+set PATH=%JAVA_HOME%\bin
+set CLASSPATH=.;%JAVA_HOME%\jre\lib;
+
+d:
+cd D:\Temp\DAD\Lecture\c05\src\S05_JNI
+
+K5.1. Compilare
+
+javac JNISample.java
+
+K5.2. Generare Header File
+
+javah -jni ReadFile
+
+K5.3. Implement native method in nativelib1.c
+
+#include "./ReadFile.h"
+#include <malloc.h>
+#include <stdio.h>
+
+JNIEXPORT jbyteArray JNICALL Java_ReadFile_loadFileInMemory (JNIEnv* env, jobject jobj, jstring name)
+{
+	jbyteArray jb;
+	unsigned char *buf;
+	int len = 0;
+	jboolean iscopy;
+    	const char *mfile = (*env)->GetStringUTFChars(env, name, &iscopy);
+    	FILE* f = fopen(mfile, "r");
+
+	fseek(f, 0, 2); // SEEK_END = 2 
+	len = ftell(f); buf = (unsigned char*)malloc(len*sizeof(char));
+	fseek(f, 0, 0); // SEEK_SET = 0
+	
+	jb=(*env)->NewByteArray(env, len);
+	
+	fread(buf, sizeof(char), len, f);
+	
+	printf( "Contents of buffer = %s\n len=%d\n", buf, len );
+
+	(*env)->SetByteArrayRegion(env, jb, 0, len, (jbyte *)buf);	
+  
+	fclose(f);
+	free(buf);
+    	(*env)->ReleaseStringUTFChars(env, name, mfile);
+
+	return (jb);
+
+}
+
+K5.4. Compile the C program (nativelib1.c) into dll lib (from Visual Studio tools window)
+
+d:
+cd D:\Temp\DAD\Lecture\c05\src\S05_JNI
+
+cl.exe -IC:/Software/Java/JDKs/<jdk8>/include -IC:/Software/Java/JDKs/<jdk8>/include/win32 /LD nativelib1.c /Fenativelib1.dll
+
+K5.5 Run the Java program using the dll lib
+
+java JNIProgMain tt1.txt
+
+
+
+
+
+// ##############################################################################
+
+
+
+
+L. UNIX/Linux IPC - Inter-Process Communications and POSIX Threads - in C/C++
+cd $DAD/c01/src/S07_ipc_pthreads
+
+L.1 Fork
+cd $DAD/c01/src/S07_ipc_pthreads/S01_Fork
 gcc -Wall -O2 fork1.c -o fork1
 ./fork1
 gcc -Wall -O2 fork2.c -o fork2
 ./fork2
 
-C.2 Signaling
-cd $DAD/c03/src/S07_ipc_pthreads/S02_Signals
+L.2 Signaling
+cd $DAD/c01/src/S07_ipc_pthreads/S02_Signals
 
 gcc -O2 sig1.c -o sig1
 ./sig1
@@ -72,8 +500,8 @@ gcc -O2 sig2.c -o sig2
 ps -a | grep sig2
 kill -SIGUSR2 PID_VALUE_nnnn
 
-C3. Pipes
-cd $DAD/c03/src/S07_ipc_pthreads/S03_Pipes
+L.3. Pipes
+cd $DAD/c01/src/S07_ipc_pthreads/S03_Pipes
 
 gcc -O2 pipe0.c -o pipe0
 ./pipe0
@@ -87,8 +515,8 @@ gcc -O2 pipe2.c -o pipe0
 gcc -O2 pipe3.c -o pipe1
 ./pipe3
 
-C.4 FIFO - "Pipes with names"
-cd $DAD/c03/src/S07_ipc_pthreads/S04_Fifo
+L.4 FIFO - "Pipes with names"
+cd $DAD/c01/src/S07_ipc_pthreads/S04_Fifo
 
 Terminal 1 + 2 + 3:
 gcc -O2 speak.c -o speak
@@ -99,8 +527,8 @@ gcc -O2 tick.c -o tick
 * in another terminal:
 rm american_maid
 
-C.5 Linux OS - System V - Message Queues
-cd $DAD/c03/src/S07_ipc_pthreads/S06_Msgqueues
+L.5 Linux OS - System V - Message Queues
+cd $DAD/c01/src/S07_ipc_pthreads/S06_Msgqueues
 
 Terminal 1+2+3:
 gcc -O2 kirk.c -o kirk
@@ -114,9 +542,9 @@ ipcs
 ipcs -q
 ipcs -q -i 0
 
-C.6 POSIX Threads - PThreads
-cd $DAD/c03/src/S07_ipc_pthreads/S12_ConcurrencyThreads
-export LD_LIBRARY_PATH=.:/usr/lib:/usr/lib/i386-linux-gnu:/lib:/lib/i386-linux-gnu
+L.6 POSIX Threads - PThreads
+cd $DAD/c01/src/S07_ipc_pthreads/S12_ConcurrencyThreads
+export LD_LIBRARY_PATH=.:/usr/lib:/usr/lib/x86_64-linux-gnu/:/lib:/lib/x86_64-linux-gnu/
 
 gcc -Wall -O2 pthread1.c -o pthread1 -lpthread
 ./pthread1
@@ -133,43 +561,75 @@ gcc -Wall -O2 -pthread join3.c -o join3
 gcc cond4.c -o cond4 -lpthread
 ./cond4
 
+L.7 C++ '11/'14 Threads
+
+# http://www.bogotobogo.com/cplusplus/C11/1_C11_creating_thread.php
+
+g++ t1.cpp -o t1 -std=c++11 -pthread
+./t1
+
+
+g++ t2.cpp -o t2 -std=c++11 -pthread
+./t2
+
+
+
 ----------------------------------------------------------------------------------------------
 
-D. Java Multi-Threading - Concurrency and Parallel
-cd $DAD/c03/src/S08_Threads
 
-D.1.a Not-synchronized thread
-javac FirNe2.java
-java ProgMainNeA1
+M. Java Multi-Threading - Concurrency and Parallel (non-Lambda approach)
+cd $DAD/c01/src/S08_HPC_Threads
 
-D.1.b Synch thread
-javac FirSi2.java
-java ProgMainSiA1
+M.1.a Not-synchronized thread
+javac eu/ase/threadsintro/FirNe2.java
+java eu/ase/threadsintro/ProgMainNeA1
 
-D.2.a
-javac FirNe3.java
-java ProgMainNeA2
+M.1.b Synch thread
+javac eu/ase/threadsintro/FirSi2.java
+java eu/ase/threadsintro/ProgMainSiA1
 
-D.2.b
-javac FirSi3.java
-java ProgMainSiA2
+M.2.a
+javac eu/ase/threadsintro/FirNe3.java
+java eu/ase/threadsintro/ProgMainNeA2
 
-D.3
+M.2.b
+javac eu/ase/threadsintro/FirSi3.java
+java eu/ase/threadsintro/ProgMainSiA2
+
+M.3
 javac eu/ase/threads/Priority.java
 java eu/ase/threads/Priority
 
-D.4
+M.4
 javac eu/ase/threads/ProducatorConsumator.java
 java eu/ase/threads/ProducatorConsumator
 
-D.5
+M.5
 javac eu/ase/threads/ProducatorConsumator2.java
 java eu/ase/threads/ProducatorConsumator
 
-D.6
+M.6
 javac eu/ase/threads/SimpleThreads.java
 java eu/ase/threads/SimpleThreads
 
-D.7 The Sum of the array items using Parallelism in Java 8 (Standard Multi-threading, Executor-Service, Future-Callable, Fork-Join)
+M.7 The Sum of the array items using Parallelism in Java 8 (Standard Multi-threading, Executor-Service, Future-Callable, Fork-Join)
 javac eu/ase/threads/utilparallel/*.java
 java eu/ase/threads/utilparallel/ProgMainMultiThreadParallel
+
+----------------------------------------------------------------------------------------------
+
+N. OpenMP examples for Parallel Computing Intro:
+
+cd $DAD/c01/src/S09_HPC_OpenMP
+
+g++ -fopenmp -O2 ProgMainOpenMpTest01.cpp -o ProgMainOpenMpTest01
+./ProgMainOpenMpTest01
+
+
+g++ -fopenmp -O2 ProgMainOpenMpTest02.cpp -o ProgMainOpenMpTest02
+./ProgMainOpenMpTest02
+
+
+g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
+./ProgMainOpenMpTest03
+
