@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="s12_jweb_rest">
-        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="s12_jweb_rest"/>
-        <property name="java-output-path" value="/s12_jweb_rest/build/classes"/>
-    </wb-module>
-</project-modules>
