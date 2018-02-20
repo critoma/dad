@@ -1,0 +1,93 @@
+Linux UBUNTU:
+
+//use ghex for introspecting the files in hex
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c10/src
+
+
+
+A. Apache Zookeeper + Kafka Installation and Configuration (plus create the topics in Kafka):
+
+# https://www.tutorialspoint.com/apache_kafka/apache_kafka_installation_steps.htm
+
+cd /home/stud/kits/kafka
+
+tar -xvf zookeeper-3.4.9.tar.gz
+sudo mv zookeeper-3.4.9 /opt/software
+
+
+cd /opt/software/zookeeper-3.4.9
+
+cp conf/zoo_sample.cfg conf/zoo.cfg
+
+nano conf/zoo.cfg
+
+#"
+tickTime=2000
+dataDir=/opt/software/zookeeper-3.4.9/data
+clientPort=2181
+initLimit=5
+syncLimit=2
+#"
+
+
+bin/zkServer.sh start
+bin/zkCli.sh
+
+
+
+bin/zkServer.sh stop
+
+------------------------------------------------
+# in another terminal with JAVA_HOME and PATH set:
+
+cd /home/stud/kits/kafka
+
+tar -xvf kafka_2.11-0.10.1.0.tgz
+sudo mv kafka_2.11-0.10.1.0 /opt/software/
+
+
+cd /opt/software/kafka_2.11-0.10.1.0
+
+# cat config/server.properties
+# be sure about the TCP port 2181
+
+bin/kafka-server-start.sh config/server.properties
+
+# in another terminal (all 3 terminals with JAVA_HOME and PATH set - create topic Hello-Kafka - ONLY once):
+cd /opt/software/kafka_2.11-0.10.1.0
+# bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1   --partitions 1 --topic Hello-Kafka
+
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic Hello-Kafka --from-beginning
+
+
+# in 4th terminal (all 4 terminals with JAVA_HOME and PATH set):
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic Hello-Kafka
+
+
+bin/kafka-server-stop.sh config/server.properties
+
+
+------------------------------------------------
+
+
+B. Run Kafka samples:
+
+# in another 2 terminals set JAVA_HOME and PATH:
+
+cd $DAD/c10/src
+
+javac -cp "/opt/software/kafka_2.11-0.10.1.0/libs/*" kafkajsamples/*.java
+
+
+
+java -cp "/opt/software/kafka_2.11-0.10.1.0/libs/*":. kafkajsamples.SimpleConsumer Hello-Kafka
+
+java -cp "/opt/software/kafka_2.11-0.10.1.0/libs/*":. kafkajsamples.SimpleProducer Hello-Kafka
+
+
