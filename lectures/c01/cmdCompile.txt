@@ -2,12 +2,7 @@ Linux UBUNTU:
 
 //use ghex for introspecting the files in hex
 
-export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
-export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export CLASSPATH=.:$JAVA_HOME/jre/lib
-export DAD=/home/stud/dad/lectures
 
-cd $DAD/c01/src
 
 A. Distributed Applications Development and System Architectures
 

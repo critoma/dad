@@ -66,8 +66,19 @@ java eu/ase/threads/ProgMainCallableFutures
 
 #########################################################
 
-C. Java 8 Lambda Expressions for Multi-Threading - Sync & Parallel 
+C. Java 8 Lambda
+
+cd $DAD/c03/src 
+
+javac lambda/Java8TesterLambda.java
+
+java lambda.Java8TesterLambda
+
+
+D. Java 8 Lambda Expressions for Multi-Threading - Sync & Parallel 
 - Executor-Service, Future-Callable, Schedule Executors, Lock and Semaphores:
+
+cd $DAD/c03/src
 
 javac eu/ase/lambdathreads/ProgMainLambdaThread01.java
 java eu/ase/lambdathreads/ProgMainLambdaThread01
@@ -106,7 +117,7 @@ java -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 eu/ase/lambdathrea
 
 
 
-D. Sockets - UDP - Multi-threading
+E. Sockets - UDP - Multi-threading
 
 cd $DAD/c03/src/S09_Sockets
 
