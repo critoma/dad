@@ -1,15 +1,15 @@
-Linux UBUNTU 12:
+Linux UBUNTU 16:
 
 
-//set env variables for root user:
-sudo su
-export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_25
-export CATALINA_HOME=/opt/software/java/jservers/apache-tomcat-8.0.20
+# //set env vars:
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
 export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar:$CATALINA_HOME/lib/jsp-api.jar
 export DAD=/home/stud/dad/lectures
 
-cd $DAD/c07/src/S11_JSP
+cd $DAD/c05/src/S11_JSP
 
 
 A. JSP - Java Server Page Technology Intro
@@ -123,7 +123,6 @@ cp ./Test1.JPG $CATALINA_HOME/webapps/S10/Test1.jpg
 
 6. TAGLIBS Creation and standard tag libs test
 
-sudo su
 
 export JAVA_HOME=/opt/software/java/jdks/jdk1.6.0_35
 export CATALINA_HOME=/opt/software/java/jservers/apache-tomcat-7.0.37
@@ -132,7 +131,7 @@ export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar:
 export DAD=/home/stud/dad/lectures
 
 6.1 cd directory
-cd $DAD/c07/src/S11_JSP/testTags/WEB-INF/classes
+cd $DAD/c05/src/S11_JSP/testTags/WEB-INF/classes
 
 cp ./testTags/jslt_kits/standard_tag_libs4Tomcat7/javax.servlet.jsp.jstl-1.2.1.jar $CATALINA_HOME/lib/javax.servlet.jsp.jstl-1.2.1.jar
 cp ./testTags/jslt_kits/standard_tag_libs4Tomcat7/javax.servlet.jsp.jstl-api-1.2.1.jar $CATALINA_HOME/lib/javax.servlet.jsp.jstl-api-1.2.1.jar
@@ -183,8 +182,8 @@ http://127.0.0.1:8080/S10/formCard04.html
 
 5.
 http://127.0.0.1:8080/S10/formPicture05.html
-->/home/stud/dad/lectures/c07/src/S11_JSP/Test1.jpg
-->/home/stud/dad/lectures/c07/src/S11_JSP/TestProcessed01.jpg
+->/home/stud/dad/lectures/c05/src/S11_JSP/Test1.jpg
+->/home/stud/dad/lectures/c05/src/S11_JSP/TestProcessed01.jpg
 ->100, 107, 2009, 322
 
 6.4

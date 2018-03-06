@@ -1,14 +1,14 @@
-Linux UBUNTU 12/14:
+Linux UBUNTU 16:
 
 //set env variables:
 
-export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_25
-export CATALINA_HOME=/opt/software/java/jservers/apache-tomcat-8.0.20
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
 export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar
 export DAD=/home/stud/dad/lectures
 
-cd $DAD/c06/src/S10_Servlets/S09
+cd $DAD/c04/src/S10_Servlets/S09
 
 
 A. Java Servlet Technology Intro
@@ -67,17 +67,19 @@ WEB-INF
 
 4. Create web archive
 
-cd $DAD/c06/src/S10_Servlets/S09
+cd $DAD/c04/src/S10_Servlets/S09
 
 jar -cvf S09.war *.html WEB-INF/classes/eu/ase/servlets/*.class WEB-INF/web.xml
 
+rm WEB-INF/classes/eu/ase/servlets/*.class
+
 5. Deploy
 
-sudo cp ./S09.war $CATALINA_HOME/webapps/S09.war
+cp ./S09.war $CATALINA_HOME/webapps/S09.war
 
-sudo rm S09.war
+rm S09.war
 
-6. Start & Stop web server Apache Tomcat 7 / 8
+6. Start & Stop web server Apache Tomcat 7 / 8 / 9 / TomEE
 
 sudo su
 #export all env varialbles +
