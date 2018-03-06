@@ -1,13 +1,6 @@
-Linux UBUNTU 12:
 
-//use ghex for introspecting the files in hex
-
-//set env variables:
-
-export JAVA_HOME=/opt/software/java/jdks/jdk1.6.0_35
-
-Linux Ubuntu 14:
-export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_25
+Linux Ubuntu 16:
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161/
 export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib
 export DAD=/home/stud/dad/lectures
@@ -71,7 +64,7 @@ timetick <=> /100 => seconds / 60 sec => minutes
 
 B. Sockets - TCP - non-multi-threading
 
-cd $DAD/c04/src/S09_Sockets
+cd $DAD/c02/src/S09_Sockets
 
 B.1. TCP Simple Client & Server - TCP State Machine Overview
 

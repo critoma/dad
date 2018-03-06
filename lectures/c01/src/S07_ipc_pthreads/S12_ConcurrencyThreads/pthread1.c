@@ -20,7 +20,7 @@ int main(int argc, char** argv)
      /* Wait till threads are complete before main continues. Unless we  */
      /* wait we run the risk of executing an exit which will terminate   */
      /* the process and all threads before the threads have completed.   */
-
+     printf("Thread main");
      pthread_join( thread1, NULL);
      pthread_join( thread2, NULL); 
 
