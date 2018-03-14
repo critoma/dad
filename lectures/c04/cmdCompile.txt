@@ -3,7 +3,8 @@ Linux UBUNTU 16:
 //set env variables:
 
 export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
-export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+#export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+export CATALINA_HOME=/opt/software/apache-tomcat-9.0.4
 export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar
 export DAD=/home/stud/dad/lectures
