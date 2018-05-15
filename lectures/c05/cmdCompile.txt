@@ -4,7 +4,8 @@ Linux UBUNTU 16:
 # //set env vars:
 
 export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
-export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+#export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+export CATALINA_HOME=/opt/software/apache-tomcat-9.0.4
 export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar:$CATALINA_HOME/lib/jsp-api.jar
 export DAD=/home/stud/dad/lectures
@@ -181,6 +182,9 @@ http://127.0.0.1:8080/S10/includeAction03.jsp
 http://127.0.0.1:8080/S10/formCard04.html
 
 5.
+
+http://10.2.65.160:8080/S10/formPicture05.html
+
 http://127.0.0.1:8080/S10/formPicture05.html
 ->/home/stud/dad/lectures/c05/src/S11_JSP/Test1.jpg
 ->/home/stud/dad/lectures/c05/src/S11_JSP/TestProcessed01.jpg

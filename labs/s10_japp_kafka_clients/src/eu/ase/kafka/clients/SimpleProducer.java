@@ -30,7 +30,7 @@ public class SimpleProducer {
     Properties props = new Properties();
     
     //Assign localhost id
-    props.put("bootstrap.servers", "localhost:9092");
+    props.put("bootstrap.servers", "127.0.0.1:9092");
     
     //Set acknowledgements for producer requests.      
     props.put("acks", "all");
@@ -55,11 +55,13 @@ public class SimpleProducer {
     
     Producer<String, String> producer = new KafkaProducer
        <String, String>(props);
-          
-    for(int i = 0; i < 10; i++)
+    System.out.println("Producer created!");      
+    for(int i = 0; i < 10; i++) {
        producer.send(new ProducerRecord<String, String>(topicName, 
           Integer.toString(i), Integer.toString(i)));
-             System.out.println("Message sent successfully");
-             producer.close();
+       System.out.println("message " + i + " sent!");
+    }
+    System.out.println("Messages sent successfully");
+    producer.close();
  }
 }

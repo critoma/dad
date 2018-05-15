@@ -6,8 +6,16 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
-// Be sure Apache kafka and Zookeeper are started before 
+// Be sure Zookeeper and Apache Kafka and  are started before 
 // running the Consumer and then the Producer
+// cd /opt/software/zookeeper-3.4.9
+// bin/zkServer.sh start
+// bin/zkCli.sh
+
+// bin/zkServer.sh stop
+
+// cd /opt/software/kafka_2.11-0.10.1.0
+// bin/kafka-server-start.sh config/server.properties
 
 public class SimpleConsumer {
    public static void main(String[] args) throws Exception {

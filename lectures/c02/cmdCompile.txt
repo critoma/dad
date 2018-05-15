@@ -5,7 +5,7 @@ export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sb
 export CLASSPATH=.:$JAVA_HOME/jre/lib
 export DAD=/home/stud/dad/lectures
 
-cd $DAD/c04/src
+cd $DAD/c02/src
 
 
 A. Sockets - UDP - non-multi-threading
