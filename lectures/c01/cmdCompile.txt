@@ -2,6 +2,10 @@ Linux UBUNTU:
 
 //use ghex for introspecting the files in hex
 
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161/
+export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/stud/dad/lectures
 
 
 A. Distributed Applications Development and System Architectures
@@ -119,7 +123,7 @@ du -k -h ls /home/stud/.m2/repository
 ls -latr /root/.m2/repository
 du -k -h ls /root/.m2/repository
 
-# output approx. 27 MB
+# output approx. 27/68 MB
 
 java -classpath target/my-app-student-1.0-SNAPSHOT.jar eu.ase.ooparrays.App
 
