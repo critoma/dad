@@ -10,7 +10,7 @@ cd $DAD/c02/src
 
 A. Sockets - UDP - non-multi-threading
 
-cd $DAD/c04/src/S09_Sockets
+cd $DAD/c02/src/S09_Sockets
 
 A.1. UDP Simple Client & Server
 
