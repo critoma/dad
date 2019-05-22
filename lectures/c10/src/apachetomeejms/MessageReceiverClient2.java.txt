@@ -1,0 +1,68 @@
+package apachetomeejms;
+import javax.jms.JMSException;
+import javax.jms.MessageConsumer;
+import javax.jms.Session;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicConnection;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import java.util.Properties;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+
+public class MessageReceiverClient {
+ protected static final String url = "tcp://localhost:61617";
+
+ public static void main(String args[]) {
+
+	 TopicConnection connection = null;
+	 try {
+		 ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(url);
+		 Properties props = new Properties();
+	 	 props.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
+	 	 props.setProperty(Context.PROVIDER_URL, "tcp://localhost:61617");
+
+		 InitialContext jndiContext = new InitialContext(props);
+		 ConnectionFactory connectionFactory = (ConnectionFactory) jndiContext.lookup("ConnectionFactory");
+		 connection = (TopicConnection)connectionFactory.createConnection();
+
+		 //connection = factory.createTopicConnection();
+		 connection.setClientID("durable");
+		 connection.start();
+		 MessageConsumer consumer = null;
+		 Session session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+		 //Topic topic = session.createTopic("jms/topic/test");
+		 Topic topic = (Topic)jndiContext.lookup("jms/topic/test");
+		 consumer = session.createDurableSubscriber(topic, "mySub");
+		 // consumer.setMessageListener(new ReceiverListener());
+
+		 // System.out.println(" Waiting for Message ...");
+		 // while(true){
+		 // Thread.sleep(1000);
+		 // }
+		 while (true) {
+			 TextMessage message = (TextMessage) consumer.receive();
+			 System.out.println(message.getText());
+		 }
+	 } catch (Exception e) {
+	 	e.printStackTrace();
+	 } finally {
+		 try {
+		 	if (connection != null) {
+		 		connection.close();
+		 	}
+		 } catch (JMSException e) {
+		 	e.printStackTrace();
+		 }
+	 }
+
+ }
+
+}

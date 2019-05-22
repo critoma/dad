@@ -103,7 +103,7 @@ Control Panel -> Administrative Tools -> Odbc Connection -> FileDNS ...Add... S1
 ////////////////////////////////////
 
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar:$CATALINA_HOME/lib/jsp-api.jar:$CATALINA_HOME/lib/mysql-connector-java-5.1.24-bin.jar
-sudo -E ./lib/mysql-connector-java-5.1.24-bin.jar $CATALINA_HOME/lib/
+sudo -E cp ./lib/mysql-connector-java-5.1.24-bin.jar $CATALINA_HOME/lib/
 
 cp ./formCard04.html $CATALINA_HOME/webapps/S10/formCard04.html
 cp ./formCardBean04.jsp $CATALINA_HOME/webapps/S10/formCardBean04.jsp

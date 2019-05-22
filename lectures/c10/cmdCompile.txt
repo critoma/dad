@@ -91,3 +91,56 @@ java -cp "/opt/software/kafka_2.11-0.10.1.0/libs/*":. kafkajsamples.SimpleConsum
 java -cp "/opt/software/kafka_2.11-0.10.1.0/libs/*":. kafkajsamples.SimpleProducer Hello-Kafka
 
 
+
+
+C. Apache JMS and JMS Apache TomEE
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+export APACHE_TOMEE_HOME=/opt/software/apache-tomee-plume-7.0.4
+export PATH=$JAVA_HOME/bin:$APACHE_TOMEE_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c10/src
+
+javac -cp "$APACHE_TOMEE_HOME/lib/*" apachetomeejms/*.java
+
+
+java -cp "$APACHE_TOMEE_HOME/lib/*":. apachetomeejms.MessageProducerClient
+
+java -cp "$APACHE_TOMEE_HOME/lib/*":. apachetomeejms.MessageReceiverClient tcp://localhost:61617 jms/topic/test
+
+rm apachetomeejms/*.class
+
+
+
+
+
+cd $DAD/c10/src/s10jms/WEB-INF/classes
+
+javac -cp "$APACHE_TOMEE_HOME/lib/*" apachetomeejms/*.java
+
+cd ../..
+jar -cvf s10jms.war WEB-INF/classes/apachetomeejms/*.class WEB-INF/web.xml
+
+rm WEB-INF/classes/apachetomeejms/*.class
+
+5. Deploy
+
+mv ./s10jms.war $APACHE_TOMEE_HOME/webapps/s10jms.war
+
+
+$APACHE_TOMEE_HOME/bin/startup.sh
+
+Test:
+http://127.0.0.1:8080/s10jms/MyJmsServlet
+cd $DAD/c10/src
+java -cp "$APACHE_TOMEE_HOME/lib/*":. apachetomeejms.MessageReceiverClient tcp://localhost:61616 jms/topic/test
+
+
+$APACHE_TOMEE_HOME/bin/shutdown.sh
+
+rm $APACHE_TOMEE_HOME/webapps/s10jms.war
+rm -rf $APACHE_TOMEE_HOME/webapps/s10jms
+

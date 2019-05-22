@@ -98,4 +98,27 @@ http://127.0.0.1:8080/S09/SetResponseHeader
 http://127.0.0.1:8080/S09/SetGetCookie
 http://127.0.0.1:8080/S09/ShowSession
 
+//ISM CA
+//MUST have same pass at keystore as keypass for Apache Tomcat
+keytool -genkey -keyalg RSA -sigalg "SHA1withRSA" -alias ISMCert1 -storepass ismpasss -keypass ismpasss -keystore keystoreISM.ks -keysize 1024 -dname "CN=www.ism.ase.ro, OU=Informatics Security Master, O=ISM Certificate Authority, c=RO" -validity 730
+
+# keytool -genkey -keyalg RSA -sigalg "SHA1withRSA" -alias ISMCert1 -storepass ismpasss -keypass ismpassk -keystore keystoreISM.ks -keysize 1024 -dname "CN=www.ism.ase.ro, OU=Informatics Security Master, O=ISM Certificate Authority, c=RO" -validity 730
+
+//export certificate for SSL
+keytool -export -alias ISMCert1 -file ISMCertificateBase64X509.cer -rfc -keystore keystoreISM.ks
+keytool -export -alias ISMCert1 -storepass ismpasss -keypass ismpassk -file ISMCertificateBase64X509.cer -rfc -keystore keystoreISM.ks
+
+//copy keystore in Apache Tomcat
+mkdir $CATALINA_HOME/conf/certificates
+copy ./keystoreISM.ks $CATALINA_HOME/conf/certificates/keystoreISM.ks
+
+//modify server.xml from %CATALINA_HOME%\conf + try only with Mozzila
+
+<Connector port="8443" minSpareThreads="5" maxSpareThreads="75"
+           ciphers="TLS_RSA_WITH_AES_128_CBC_SHA" 
+           enableLookups="true" disableUploadTimeout="true" 
+           acceptCount="100"  maxThreads="200"
+           scheme="https" secure="true" SSLEnabled="true"
+           keystoreFile="./conf/certificates/keystoreISM.ks" keystorePass="ismpasss"
+           clientAuth="false" sslProtocol="TLS"/>
 

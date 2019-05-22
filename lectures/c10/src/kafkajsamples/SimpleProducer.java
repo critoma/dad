@@ -59,7 +59,8 @@ public class SimpleProducer {
       for(int i = 0; i < 10; i++)
          producer.send(new ProducerRecord<String, String>(topicName, 
             Integer.toString(i), Integer.toString(i)));
-               System.out.println("Message sent successfully");
-               producer.close();
+               
+       System.out.println("Messages sent successfully");
+       producer.close();
    }
 }
