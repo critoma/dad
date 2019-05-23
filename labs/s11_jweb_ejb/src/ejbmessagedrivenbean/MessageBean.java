@@ -3,7 +3,7 @@ package ejbmessagedrivenbean;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-//import javax.ejb.MessageDrivenContext;
+import javax.ejb.MessageDrivenContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -33,10 +33,10 @@ import javax.jms.Topic;
 		})
 public class MessageBean implements MessageListener {
 
-	//@Resource
-	//private MessageDrivenContext mdc;
-	@Resource(name = "jms/topic/test1")
-    private Topic topic;
+	@Resource
+	private MessageDrivenContext mdc;
+	//@Resource(name = "jms/topic/test1")
+    //private Topic topic;
 	
     /**
      * Default constructor. 
