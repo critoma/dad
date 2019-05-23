@@ -2,7 +2,7 @@
     <wb-module deploy-name="s11_jweb_ejb">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/s11_jweb_ejb/build/classes"/>
         <property name="context-root" value="s11_jweb_ejb"/>
+        <property name="java-output-path" value="/s11_jweb_ejb/build/classes"/>
     </wb-module>
 </project-modules>

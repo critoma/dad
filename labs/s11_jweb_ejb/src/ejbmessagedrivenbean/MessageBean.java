@@ -3,25 +3,40 @@ package ejbmessagedrivenbean;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
-import javax.ejb.MessageDrivenContext;
+//import javax.ejb.MessageDrivenContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
+//import javax.naming.InitialContext;
+import javax.jms.Topic;
+
+//import org.apache.activemq.broker.BrokerService;
+
 
 /**
  * Message-Driven Bean implementation class for: MessageBean
  */
+/*
 @MessageDriven(
 		activationConfig = { @ActivationConfigProperty(
-				propertyName = "destination", propertyValue = "jms/topic/test"), @ActivationConfigProperty(
+				propertyName = "destination", propertyValue = "jms/topic/test1"), @ActivationConfigProperty(
 				propertyName = "destinationType", propertyValue = "javax.jms.Topic")
 		}, 
-		mappedName = "jms/topic/test")
+		mappedName = "jms/topic/test1")
+		*/
+//@MessageDriven
+@MessageDriven(
+		activationConfig = { @ActivationConfigProperty(
+				propertyName = "destination", propertyValue = "jms/topic/test1"), @ActivationConfigProperty(
+				propertyName = "destinationType", propertyValue = "javax.jms.Topic")
+		})
 public class MessageBean implements MessageListener {
 
-	@Resource
-	private MessageDrivenContext mdc;
+	//@Resource
+	//private MessageDrivenContext mdc;
+	@Resource(name = "jms/topic/test1")
+    private Topic topic;
 	
     /**
      * Default constructor. 
@@ -45,7 +60,7 @@ public class MessageBean implements MessageListener {
         	}
         } catch(JMSException jmse) {
         	jmse.printStackTrace();
-        	mdc.setRollbackOnly();
+        	throw new IllegalStateException(jmse);
         } catch(Throwable t) {
         	t.printStackTrace();
         }

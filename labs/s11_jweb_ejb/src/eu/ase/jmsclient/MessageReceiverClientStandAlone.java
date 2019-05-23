@@ -24,8 +24,6 @@ import javax.naming.NamingException;
 
 import java.util.Properties;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -76,7 +74,7 @@ public class MessageReceiverClientStandAlone {
 		try {
 			topicConnection = topicConnectionFactory.createTopicConnection();
 			topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
-			topic = topicSession.createTopic("jms/topic/test");
+			topic = topicSession.createTopic("jms/topic/test1");
 			topicSubscriber = topicSession.createSubscriber(topic);
 				
 			topicListener = new TextListener();

@@ -12,9 +12,8 @@ public class MyBean {
 
     public MyBean() {
     }
-    
+
     public String doSomething() {
     	return "Hello from EJB";
     }
-
 }
