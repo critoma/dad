@@ -1,0 +1,82 @@
+1. Download - unzip Spring Boot:
+git clone https://github.com/spring-guides/gs-spring-boot.git
+
+#or
+
+wget https://github.com/spring-guides/gs-spring-boot/archive/master.zip
+
+2. Go in initial and export environment variables:
+# cd /home/stud/dad/lectures/c12/gs-spring-boot-master/initial
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export GRADLE_HOME=/opt/software/gradle-4.5
+export MVN_HOME=/opt/software/apache-maven-3.5.2
+export PATH=$JAVA_HOME/bin:$GRADLE_HOME/bin:$MVN_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/stud/dad/lectures
+
+
+A. Hello World 
+
+1 Go in directory of Spring Boot project:
+
+cd $DAD/c12/gs-spring-boot-master/initial
+
+2. Compile and run with Gradle or Maven - must have Internet:
+
+gradle -Dhttps.proxyHost=cache.ase.ro -Dhttps.proxyPort=8080 clean build
+#OR
+gradle clean build
+
+
+gradle bootRun
+#OR
+java -jar build/libs/gs-spring-boot-0.1.0.jar
+
+
+# fast:
+./gradlew build && java -jar build/libs/gs-spring-boot-0.1.0.jar
+
+#or
+
+mvn package && java -jar target/gs-spring-boot-0.1.0.jar
+
+#Test:
+http://localhost:8080
+
+B. RESTful API - Products demo:
+# https://www.tutorialspoint.com/spring_boot/spring_boot_building_restful_web_services.htm
+# https://www.baeldung.com/spring-boot-start
+# https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-intro-to-microservices-part-1-c0d24cd422c3
+# https://www.springboottutorial.com/creating-microservices-with-spring-boot-part-1-getting-started
+
+Spring Initializr
+https://start.spring.io/
+# choose Java with 2.1.5 and package: eu.ase.springboot.products - introduce name of the project and artifact: products
+
+cd $DAD/c12/products
+# modify the gradle script with:
+# implementation 'org.springframework.boot:spring-boot-starter-web'
+
+gradle clean build
+java -jar build/libs/products-0.0.1-SNAPSHOT.jar
+#OR
+gradle bootRun
+# http://localhost:8080/products
+
+
+C. RESTFul API with JWT:
+
+cd $DAD/c12/productsjwt
+# modify the gradle script with:
+# implementation 'org.springframework.boot:spring-boot-starter-web'
+# ATTENTION - uses Spring Boot 1.5 (NOT 2+)
+# and Gradle 4.5
+
+
+gradle clean build
+java -jar build/libs/productsjwt-0.0.1-SNAPSHOT.jar
+
+# http://localhost:8080/products
+
+

@@ -1,0 +1,38 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.21.RELEASE'
+	}
+}
+
+plugins {
+	id 'java'
+}
+
+apply plugin: 'org.springframework.boot'
+
+group = 'eu.ase.springboot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//implementation 'org.springframework.security:spring-security-oauth2'
+	implementation 'org.springframework.security.oauth:spring-security-oauth2'
+   	implementation 'org.springframework.security:spring-security-jwt'
+	//implementation 'org.springframework.security:spring-security-jwt:1.0.9.RELEASE'
+   	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-jwt
+	//compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.9.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+   	implementation 'com.h2database:h2:1.4.191'
+        //implementation 'org.springframework.security:spring-security-oauth2-client'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
