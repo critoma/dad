@@ -2,7 +2,7 @@
 //use ghex for introspecting the files in hex
 
 
-Linux Ubuntu 16:
+Linux Ubuntu:
 export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
 export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export CLASSPATH=.:$JAVA_HOME/jre/lib
@@ -114,6 +114,66 @@ java eu/ase/lambdathreads/ProgMainSemaphore08
 
 javac eu/ase/lambdathreads/ProgMainExecServConcurrentHashMap09.java
 java -Djava.util.concurrent.ForkJoinPool.common.parallelism=2 eu/ase/lambdathreads/ProgMainExecServConcurrentHashMap09
+
+
+
+--------------------------------------------------------------------------------------------
+
+EB. Sockets - TCP - non-multi-threading
+
+cd $DAD/c03/src/S09_Sockets
+
+EB.1. TCP Simple Client & Server - TCP State Machine Overview
+
+cd tcpsimple03
+
+>ifconfig
+
+javac eu/ase/net/tcp/TCPServer.java
+javac eu/ase/net/tcp/TCPClient.java
+
+sudo $JAVA_HOME/bin/java eu/ase/net/tcp/TCPServer
+>ps -a
+>sudo kill PID_Server_TCP
+sudo $JAVA_HOME/bin/java eu/ase/net/tcp/TCPServer &
+
+java eu/ase/net/tcp/TCPServer
+
+java eu/ase/net/tcp/TCPClient 127.0.0.1 4801
+java eu/ase/net/tcp/TCPClient 86.55.177.71 4801
+
+>jdb eu/ase/net/tcp/TCPServer
+stop at eu.ase.net.tcp.TCPServer:9
+run
+next
+stop at eu.ase.net.tcp.TCPServer:33
+cont
+next
+
+
+cd ..
+
+>netstat -na -p tcp 3 |  grep 4801
+
+>sudo wireshark
+
+Windows:
+netstat -na -p tcp | findstr /R "4801"
+
+
+EB.2. TCP SMTP Client - E-Mail Sender/Base64 Overview
+
+cd tcpsmtp04
+
+javac eu/ase/net/smtp/TCPSMTPClient.java
+javac eu/ase/net/smtp/Base64Encoder.java
+javac eu/ase/net/smtp/Base64Decoder.java
+java eu/ase/net/smtp/TCPSMTPClient mail.ase.ro 25
+
+cd ..
+
+
+------------------------------------------------
 
 
 
