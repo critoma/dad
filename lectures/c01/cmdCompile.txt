@@ -19,7 +19,7 @@ L.1 Fork
 cd $DAD/c01/src/S07_ipc_pthreads/S01_Fork
 gcc -Wall -O2 fork1.c -o fork1
 ./fork1
-gcc -Wall -O2 fork2.c -o fork2
+g++ -Wall -O2 fork2.c -o fork2
 ./fork2
 
 L.2 Signaling
