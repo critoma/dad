@@ -1,0 +1,82 @@
+Linux UBUNTU 16:
+
+//set env variables:
+
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+#export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+export CATALINA_HOME=/opt/software/apache-tomcat-9.0.4
+export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+#export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$CATALINA_HOME/lib/servlet-api.jar
+export CLASSPATH=".:$CATALINA_HOME/bin/bootstrap.jar:$CATALINA_HOME/bin/tomcat-juli.jar:$CATALINA_HOME/lib/*"
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c07
+
+
+A. SOA - Web Services | JAX-WS
+
+# 1. Stand alone JAX-WS server:
+cd $DAD/c07/soa/s07_japp_jaxws_server/src
+javac -d ../bin eu/ase/jaxws/*.java
+cd ../bin
+java -cp . eu.ase.jaxws.HelloWorldWSPub
+
+# in Wizdler (G Chrome - icon near address bar): 
+# http://127.0.0.1:8080/WS/HelloWorld?wsdl
+# http://127.0.0.1:8080/WS/HelloWorld?xsd=1
+
+
+# 2. SOA WS Client with JAX-WS (the program from point 1 MUST run) 
+# & in another client terminal (as replacement for Wizdler):
+
+cd $DAD/c07/soa/s07_japp_jaxwsClient/src
+wsimport -s . http://127.0.0.1:8080/WS/HelloWorld?wsdl
+javac eu/ase/jaxws/client/JAXWSClient.java
+java eu.ase.jaxws.client.JAXWSClient
+
+rm eu/ase/jaxws/client/JAXWSClient.class
+rm -rf eu/ase/jaxws/*.class 
+rm -rf eu/ase/jaxws/*.java
+
+3. Web Server:
+cd $DAD/c07/soa/s07_jweb_jaxws_server/src
+javac -d ../build/classes eu/ase/webservice/*.java
+cd ..
+wsgen -s src -d build/classes -cp build/classes eu.ase.webservice.HelloWorldImpl
+
+mkdir -p bin
+cd bin
+cp -R ../WebContent/* .
+cp -R ../build/classes ./WEB-INF
+
+jar -cvf S009SOAJAXWS.war *.html WEB-INF/lib/*.jar WEB-INF/classes/eu/ase/webservice/* WEB-INF/*.xml
+cp ./S009SOAJAXWS.war $CATALINA_HOME/webapps/S009SOAJAXWS.war
+
+# Start & Stop web server Apache Tomcat 7 / 8 / 9 / TomEE:
+
+$CATALINA_HOME/bin/startup.sh
+# $CATALINA_HOME/bin/shutdown.sh
+
+# in Wizdler (G Chrome - icon near address bar):
+# http://localhost:8080/S009SOAJAXWS/HelloWorldWS
+# http://127.0.0.1:8080/S009SOAJAXWS/HelloWorldWS
+# http://127.0.0.1:8080/S009SOAJAXWS/HelloWorldWS?wsdl
+
+$CATALINA_HOME/bin/shutdown.sh
+
+rm -rf $CATALINA_HOME/webapps/S009SOAJAXWS.war
+rm -rf $CATALINA_HOME/webapps/S009SOAJAXWS
+
+cd $DAD/c07/soa/s07_jweb_jaxws_server
+rm ./bin/S009SOAJAXWS.war
+rm -rf ./bin
+
+
+
+B. Processes Migration - "naive" business logic code serialization for "migration"
+
+
+
+C. OpenMPI - Messages Passing Interface
+
+
