@@ -73,9 +73,33 @@ rm -rf ./bin
 
 
 
-B. Processes Migration - "naive" business logic code serialization for "migration"
+B. Processes Migration - "naive business logic code/bytecode" sending for "migration"
+# IT is NOT correct in terms or PROCESS migration |  the process migration is not a trivial thing
+# e.g. a VM/Container instance/image saved and migrated and restored are examples of
+# seet of processes migrated in "how swap" mode
+# for replacement of the JAR dynamic loading please refer Java OSGi
+
+#*** in Server-Client paradigm
 
 
+#in 2 terminals after enetering the env variables
+cd $DAD/c07/procmigration/tasks/
+javac euasepmigration/*.java
+jar -cvf tasks.jar euasepmigration/*.class
+cp tasks.jar ../client
+
+cd $DAD/c07/procmigration/client
+javac euasepmigration/Client.java
+
+# compile server in another terminal
+cd $DAD/c07/procmigration/server
+javac euasepmigration/Server4Tasks.java
+java euasepmigration.Server4Tasks
+
+#comeback in initial terminal
+java euasepmigration.Client 127.0.0.1 4805
+
+# please see the client timeout because of Async Socket Channel from NIO
 
 C. OpenMPI - Messages Passing Interface
 
