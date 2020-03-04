@@ -1,6 +1,0 @@
-log.priority=INFO
-log.output=D:/Temp/DAD/Lecture/c08/src/S09_Sockets/serverFTP02/ftpdir/logs/jftpd.out
-log.user=gogu
-log.pass=test
-log.ftpdir=D:/Temp/DAD/Lecture/c08/src/S09_Sockets/serverFTP02/ftpdir
-# comment
