@@ -112,7 +112,7 @@ sudo apt-get install openmpi-bin openmpi-common libopenmpi1.10 libopenmpi-dev
 ############################################################################
 # in Amazon Linux (RHEL) in EC2 Cluster:
 
-
+# in Browser (e.g. Google Chrome)
 # https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#
 # secitc@gmail.com
 
@@ -124,7 +124,7 @@ https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#KeyPairs:s
 https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#KeyPairs:
 
 
-
+# in terminal MacOS/Linux - cd ~/Downloads
 chmod 400 clusterAwsEc2_01.pem
 ssh -i "clusterAwsEc2_01.pem" root@ec2-3-135-9-20.us-east-2.compute.amazonaws.com
 ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-3-135-9-20.us-east-2.compute.amazonaws.com

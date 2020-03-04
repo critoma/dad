@@ -122,3 +122,80 @@ copy ./keystoreISM.ks $CATALINA_HOME/conf/certificates/keystoreISM.ks
            keystoreFile="./conf/certificates/keystoreISM.ks" keystorePass="ismpasss"
            clientAuth="false" sslProtocol="TLS"/>
 
+
+
+
+#############################################################################################
+# https://cloud.google.com/appengine/docs/flexible/java/quickstart
+# in Google App Engine - Cloud PaaS deploy and run a servlet - in Browser (Google Chrome):
+# secitc@gmail.com
+# https://ssh.cloud.google.com/cloudshell/editor
+# 
+# https://cloud.google.com/appengine/docs/standard/java/quickstart
+https://console.cloud.google.com/projectcreate?previousPage=%2Fprojectselector2%2Fbilling%3Flang%3Djava%26st%3Dtrue%26_ga%3D2.187602464.925220531.1582115517-284239323.1582115517%26pli%3D1&project=&folder=&organizationId=0
+https://ssh.cloud.google.com/cloudshell/editor
+
+#secitc@cloudshell:~$ gcloud projects create wserv001
+Create in progress for [https://cloudresourcemanager.googleapis.com/v1/projects/wserv001].
+Waiting for [operations/cp.6948705858711736411] to finish...done.
+Enabling service [cloudapis.googleapis.com] on project [wserv001]...
+Operation "operations/acf.d97afd5e-9a6c-4eb6-81a1-ee6fa07cdb62" finished successfully.
+
+### it must be created from Web GUI
+
+secitc@cloudshell:~$ gcloud projects describe wserv0001
+createTime: '2020-02-19T12:38:54.623Z'
+lifecycleState: ACTIVE
+name: wserv001
+projectId: wserv001
+projectNumber: '163714956555'
+
+
+secitc@cloudshell:~$ gcloud app create --project=wserv0001
+Please enter your numeric choice:  6
+
+Please choose the region where you want your App Engine application located:
+ [1] asia-east2    (supports standard and flexible)
+ [2] asia-northeast1 (supports standard and flexible)
+ [3] asia-northeast2 (supports standard and flexible)
+ [4] asia-south1   (supports standard and flexible)
+ [5] australia-southeast1 (supports standard and flexible)
+ [6] europe-west   (supports standard and flexible)
+
+Creating App Engine application in project [wserv0001] and region [europe-west]....done.
+Success! The app is now created. Please use `gcloud app deploy` to deploy your first app.
+
+secitc@cloudshell:~$ git clone https://github.com/GoogleCloudPlatform/getting-started-java.git
+Cloning into 'getting-started-java'...
+remote: Enumerating objects: 8953, done.
+remote: Total 8953 (delta 0), reused 0 (delta 0), pack-reused 8953
+Receiving objects: 100% (8953/8953), 50.98 MiB | 24.11 MiB/s, done.
+Resolving deltas: 100% (5004/5004), done.
+secitc@cloudshell:~$ pwd
+/home/secitc
+secitc@cloudshell:~$ ls
+getting-started-java  README-cloudshell.txt
+
+
+cd getting-started-java/appengine-standard-java8/helloworld
+
+# localhost
+mvn package appengine:run -DprojectId=wserv0001
+
+# real instance
+gcloud config set project wserv0001
+gcloud config unset project
+# modify wserv0001 in pom.xml and then:
+mvn package appengine:deploy
+
+# https://wserv0001.appspot.com
+# https://wserv0001.appspot.com/hello
+
+
+gcloud app browse
+
+
+# https://console.cloud.google.com/cloud-resource-manager?_ga=2.220128794.2046612007.1583315144-1892989119.1583315144&pli=1
+# go in web and delete the project
+
+
