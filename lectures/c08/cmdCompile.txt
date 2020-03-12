@@ -1,0 +1,221 @@
+# Linux UBUNTU 16:
+
+# //set env variables:
+# Last year 2020 version of Tomcat 9.0.31 and JDK 9
+export JAVA_HOME=/opt/software/java/jdks/jdk-9.0.4
+#export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+export CATALINA_HOME=/opt/software/apache-tomcat-9.0.31
+#export CATALINA_HOME=/opt/software/apache-tomcat-8.0.35
+export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=".:$CATALINA_HOME/bin/bootstrap.jar:$CATALINA_HOME/bin/tomcat-juli.jar:$CATALINA_HOME/lib/*"
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c08
+
+
+A. REST Services Services | JAX-RS
+
+# 1. Stand alone JAX-RS server:
+cd $DAD/c08/rest/s08_jweb_jaxrs_server/src
+javac -cp .:../WebContent/WEB-INF/lib/* -d ../build eu/ase/java/*/*.java
+cd ../build
+mv * ../WebContent/WEB-INF/classes
+cd ../WebContent
+jar -cvf ../build/srest.war *
+cd ..
+cp ./build/srest.war $CATALINA_HOME/webapps/srest.war
+rm ./build/srest.war
+
+$CATALINA_HOME/bin/startup.sh
+
+# in Postman (Mozilla Firefox): 
+# https://www.pegaxchange.com/2016/08/11/jax-rs-java-rest-service-eclipse-tomcat/
+# http://127.0.0.1:8080/srest/restservices/productcatalog/search/category/electronics
+# http://127.0.0.1:8080/srest/restservices/productcatalog/search/category/hardware
+# http://127.0.0.1:8080/srest/restservices/productcatalog/search/category/books
+
+# http://127.0.0.1:8080/srest/restservices/productcatalog/search?name=Hammer
+
+# insert into Postman in Chrome using POST instead of GET:
+# http://127.0.0.1:8080/srest/restservices/productcatalog/insert
+/*
+Content-Type: application/json
+
+{
+ "id":11,
+ "name":"Drill",
+ "category":"Hardware",
+ "unitPrice":294.39
+}
+ */
+
+$CATALINA_HOME/bin/shutdown.sh
+
+rm -rf $CATALINA_HOME/webapps/srest
+rm -rf $CATALINA_HOME/webapps/srest.war
+
+
+B. HTTP2 vs 1 - Tomcat server & Java/Browser client
+# The server may have CONFIGURATION ISSUES
+# https://readlearncode.com/configure-tomcat-9-for-http2/
+# https://gist.github.com/hasalex/7db64e64c77d1ce996c4b9ba89732f7f
+
+# sudo apt-get install libtcnative-1
+# sudo ln -sv /usr/lib/x86_64-linux-gnu/libtcnative-1.so /usr/lib/
+
+# Security is not mandatory
+# cd $CATALINA_HOME/conf/certificates
+# openssl req -newkey RSA:2048 -nodes -keyout tomcat.key -x509 -days 3650 -out tomcat.crt
+# openssl pkcs12 -inkey tomcat.key -in tomcat.crt -export -out tomcat.pfx
+# entered pass stud
+
+<Connector port="8444" protocol="org.apache.coyote.http11.Http11AprProtocol"
+               maxThreads="150" SSLEnabled="true" >
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+<!--
+        <SSLHostConfig>
+            <Certificate certificateKeyFile="conf/certificates/tomcat.key"
+                         certificateFile="./conf/certificates/tomcat.crt"
+                         type="RSA" />
+        </SSLHostConfig>
+-->
+    </Connector>
+
+
+$CATALINA_HOME/bin/startup.sh
+
+
+cd $DAD/c08/http2client
+javac --add-modules jdk.incubator.httpclient eu/ase/http2client/ProgMainHttp2Client.java
+java --add-modules jdk.incubator.httpclient eu.ase.http2client.ProgMainHttp2Client
+
+$CATALINA_HOME/bin/shutdown.sh
+
+C. OpenMPI - Messages Passing Interface (HTC+HPC - Distributed & Parallel vs. Parallel Systems)
+
+# *** OpenMP is used ONLY for shared memory parallelism, therefore not directly in Distributed Systems
+#############################################################################
+
+# OpenMP examples for Parallel Computing Intro:
+
+cd $DAD/c08/src/HPC_OpenMP
+
+g++ -fopenmp -O2 ProgMainOpenMpTest01.cpp -o ProgMainOpenMpTest01
+./ProgMainOpenMpTest01
+
+
+g++ -fopenmp -O2 ProgMainOpenMpTest02.cpp -o ProgMainOpenMpTest02
+./ProgMainOpenMpTest02
+
+
+g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
+./ProgMainOpenMpTest03
+
+#############################################################################
+
+
+# download and extract Open-MPI
+# https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
+# or in Linux Ubuntu 16:
+sudo apt-get install openmpi-bin openmpi-common libopenmpi1.10 libopenmpi-dev
+#sudo apt-get install openmpi-bin openmpi-common openssh-client openssh-server libopenmpi1.10 libopenmpi-dev
+
+
+############################################################################
+# in Amazon Linux (RHEL) in EC2 Cluster:
+
+# in Browser (e.g. Google Chrome)
+# https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#
+# secitc@gmail.com
+
+https://console.aws.amazon.com/ecs/
+https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters
+https://us-east-2.console.aws.amazon.com/ecs/home?region=us-east-2#/clusters/create/new
+# create key pair
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#KeyPairs:sort=keyName
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#KeyPairs:
+
+
+# in terminal MacOS/Linux - cd ~/Downloads
+chmod 400 clusterAwsEc2_01.pem
+ssh -i "clusterAwsEc2_01.pem" root@ec2-3-135-9-20.us-east-2.compute.amazonaws.com
+ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-3-135-9-20.us-east-2.compute.amazonaws.com
+
+ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-18-216-192-115.us-east-2.compute.amazonaws.com
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa-start.html#efa-start-impi
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#Instances:sort=instanceId
+
+
+ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-18-191-38-27.us-east-2.compute.amazonaws.com
+ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-3-14-14-180.us-east-2.compute.amazonaws.com
+
+# https://glennklockwood.blogspot.com/2013/04/quick-mpi-cluster-setup-on-amazon-ec2.html
+
+# sudo yum provides */mpicc
+# sudo yum install openmpi
+# ls -latr /usr/lib64/openmpi
+# sudo yum install openmpi-devel
+# create the C code with source testmpi.c:
+
+#include <mpi.h>
+#include <stdio.h>
+/*
+#include <stdio.h>
+#include <mpi.h>
+
+main(int argc, char **argv)
+{
+   int node;
+   MPI_Init(&argc,&argv);
+   MPI_Comm_rank(MPI_COMM_WORLD, &node);
+   printf("Hello World from Node %d\n",node);
+   MPI_Finalize();
+}
+*/
+
+
+int main(int argc, char** argv) {
+    // Initialize the MPI environment
+    MPI_Init(NULL, NULL);
+
+    // Get the number of processes
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+    // Get the rank of the process
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+    // Get the name of the processor
+    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    int name_len;
+    MPI_Get_processor_name(processor_name, &name_len);
+
+    // Print off a hello world message
+    printf("Hello world from processor %s, rank %d out of %d processors\n",
+           processor_name, world_rank, world_size);
+
+    // Finalize the MPI environment.
+    MPI_Finalize();
+}
+
+# /usr/lib64/openmpi/bin/mpicc testopenmpi.c -o testopenmpi
+# /usr/lib64/openmpi/bin/mpirun ./testopenmpi
+
+mpirun -np 2 -hostfile ~/nodefile ./testopenmpi
+
+
+############################################################################
+
+cd $DAD/c08/openmpi
+mpicc testmpi.c -o testmpi
+mpirun ./testmpi
+# vs.
+./testmpi
+
+mpicc testsend_recv.c -o testsend_recv
+mpirun ./testsend_recv
+mpirun -np 2 ./testsend_recv
+

@@ -155,18 +155,5 @@ java eu/ase/threads/utilparallel/ProgMainMultiThreadParallel
 
 ----------------------------------------------------------------------------------------------
 
-N. OpenMP examples for Parallel Computing Intro:
 
-cd $DAD/c01/src/S09_HPC_OpenMP
-
-g++ -fopenmp -O2 ProgMainOpenMpTest01.cpp -o ProgMainOpenMpTest01
-./ProgMainOpenMpTest01
-
-
-g++ -fopenmp -O2 ProgMainOpenMpTest02.cpp -o ProgMainOpenMpTest02
-./ProgMainOpenMpTest02
-
-
-g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
-./ProgMainOpenMpTest03
 
