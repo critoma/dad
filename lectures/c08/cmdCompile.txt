@@ -1,7 +1,7 @@
 # Linux UBUNTU 16:
 
 # //set env variables:
-# Last year 2020 version of Tomcat 9.0.31 and JDK 9
+
 export JAVA_HOME=/opt/software/java/jdks/jdk-9.0.4
 #export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
 export CATALINA_HOME=/opt/software/apache-tomcat-9.0.31
@@ -207,6 +207,56 @@ int main(int argc, char** argv) {
 mpirun -np 2 -hostfile ~/nodefile ./testopenmpi
 
 
+
+######################################
+Cristians-MBP-2:Downloads ctoma$ ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-18-191-38-27.us-east-2.compute.amazonaws.com
+Last login: Wed Mar  4 09:12:41 2020 from 213.233.110.155
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+3 package(s) needed for security, out of 34 available
+Run "sudo yum update" to apply all updates.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+
+
+Last login: Sun Mar  8 15:41:40 on ttys025
+Cristians-MBP-2:Downloads ctoma$ ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-3-14-14-180.us-east-2.compute.amazonaws.com
+Last login: Wed Mar  4 09:14:34 2020 from node1
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+3 package(s) needed for security, out of 34 available
+Run "sudo yum update" to apply all updates.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+[ec2-user@ip-172-31-33-118 ~]$ ll
+total 16
+-rw-rw-r-- 1 ec2-user ec2-user   29 Mar  4 09:13 nodefile
+-rwxrwxr-x 1 ec2-user ec2-user 8456 Mar  4 09:13 testopenmpi
+[ec2-user@ip-172-31-33-118 ~]$ cat nodefile 
+node1 slots=1
+node2 slots=1
+
+[ec2-user@ip-172-31-33-118 ~]$ cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost6 localhost6.localdomain6
+172.31.45.35 node1
+172.31.33.118 node2
+
+[ec2-user@ip-172-31-33-118 ~]$ uname -a
+Linux ip-172-31-33-118.us-east-2.compute.internal 4.14.165-131.185.amzn2.x86_64 #1 SMP Wed Jan 15 14:19:56 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+[ec2-user@ip-172-31-33-118 ~]$ 
+
+###
+mpicc scatter.c -o scatter
+scp scatter ec2-user@node2:/home/ec2-user
+mpirun -np 2 -hostfile ~/nodefile ./scatter
+
 ############################################################################
 
 cd $DAD/c08/openmpi
@@ -218,4 +268,8 @@ mpirun ./testmpi
 mpicc testsend_recv.c -o testsend_recv
 mpirun ./testsend_recv
 mpirun -np 2 ./testsend_recv
+
+mpicc scatter.c -o scatter
+#mpirun ./scatter
+mpirun -np 2 ./scatter
 
