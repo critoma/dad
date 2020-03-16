@@ -94,3 +94,17 @@ node restServer.js
 # GET: http://127.0.0.1:8081/2
 # DELETE: http://127.0.0.1:8081/deleteUser
 
+####################################################
+
+# AWS FaaS Lmbda sample in Node.js or Java:
+# https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html
+# https://console.aws.amazon.com/lambda/home
+# use an Aws account - e.g. secitc@gmail.com and password
+# https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/functions
+# -> Create Function ; choose name and platform Node.js or Java ; Test it
+# -> Add a trigger -> API Gateway => create an API: Http or Rest => with security open or jwt
+# -> identify the URL of the trigger, by selecting trigger and copy the API Endpoint:
+# https://....amazonaws.com/default/myFunction2
+# https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html
+
+
