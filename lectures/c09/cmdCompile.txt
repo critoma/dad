@@ -105,6 +105,11 @@ node restServer.js
 # -> Add a trigger -> API Gateway => create an API: Http or Rest => with security open or jwt
 # -> identify the URL of the trigger, by selecting trigger and copy the API Endpoint:
 # https://....amazonaws.com/default/myFunction2
+
+# https://us-east-2.console.aws.amazon.com/apigateway/main/apis?region=us-east-2&stage=default
+# see the stages of the associated Gateway API under Deploy left menu
+
+
 # https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html
 
 

@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+  compile 'com.typesafe.akka:akka-actor-typed_2.13:2.6.4'
+  compile 'ch.qos.logback:logback-classic:1.2.3'
+  testCompile 'com.typesafe.akka:akka-actor-testkit-typed_2.13:2.6.4'
+  testCompile 'junit:junit:4.12'
+}
+
+mainClassName = "com.example.AkkaQuickstart"
+
+run {
+  standardInput = System.in
+}

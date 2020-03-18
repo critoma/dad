@@ -1,0 +1,485 @@
+#Linux UBUNTU 16 LTS:
+
+#A) EJB - Enterprise Java Beans 3.x
+
+//-Install JApache TomEE then set the env paths:
+# //sudo su
+export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161
+#export JAVA_HOME=/opt/software/java/jdks/jdk-11
+export TOMEE_HOME=/opt/software/apache-tomee-plume-7.0.4
+export CATALINA_HOME=/opt/software/apache-tomee-plume-7.0.4
+#export TOMEE_HOME=/opt/software/apache-tomee-plume-8.0.1
+#export CATALINA_HOME=/opt/software/apache-tomee-plume-8.0.1
+export PATH=$JAVA_HOME/bin:$TOMEE_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export CLASSPATH=".:$CATALINA_HOME/bin/bootstrap.jar:$CATALINA_HOME/bin/tomcat-juli.jar:$CATALINA_HOME/lib/*"
+export DAD=/home/stud/dad/lectures
+
+cd $DAD/c11
+
+----------------------------------------------------------------------------------------------------------------------
+
+# Start Apache TomEE
+# important jar in lib folder: openejb-api-7.0.4.jar
+# before each example - stop and start Apache TomEE: $TOMEE_HOME/bin/startup.sh
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+######################################################################################################################
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+A. EJB - Enterprise Java Beans 3.x
+# https://github.com/apache/tomee/tree/master/examples/ejb-examples
+-State-less EJB with stand-alone client and/or WEB JSP client
+-State-full EJB with stand-alone client
+-MDB (Message Driven Bean) EJB with stand-alone client
+-Combined Sample (Session state-less EJB + MDB EJB)
+
+-Entity EJB - BMP - Bean Managed Persistence or CMP - Container Managed Persistence
+=> NOW in EJB 3 is JPA - Java Persistence API => best practice implementation Hibernate framework
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+#A.1 EJB 3.x Stateless with stand-alone client
+
+export EJB3_STATELSS_SAMPLE=$DAD/c11/src/SampleEjb3.0AndJMS/Session/Stateless/Converter
+
+# ::1 Compile Java EJBs 3.x:
+
+cd $EJB3_STATELSS_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/Converter.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/ConverterRemote.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/ConverterLocal.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/ConverterBean.java
+
+# ::2 Tayloring and creating XML configuration files ARE NOT NECESSARY anymore => JUST package-ing EJB => JAR file:
+
+cd $EJB3_STATELSS_SAMPLE/src
+rm ../converter-ejb3.jar
+jar -cvf ../converter-ejb3.jar eu/ase/ejb3/*.class
+rm eu/ase/ejb3/*.class
+
+# ::3 IT IS NOT NECESSARY anymore - Assembling enterprise application => EAR file:
+
+
+# ::4 Deploy in Apache TOMEE
+
+cd $EJB3_STATELSS_SAMPLE
+# it should be MV instead of CP
+cp ./converter-ejb3.jar $TOMEE_HOME/webapps/converter-ejb3.jar
+
+$TOMEE_HOME/bin/startup.sh
+
+# ::5 compile and test stand-alone client (jndi.properties file content is included in *.java source file):
+
+cd $EJB3_STATELSS_SAMPLE/src
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/clientejb3/ConverterClient.java
+java -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/clientejb3/ConverterClient
+
+
+::6 clear the env variable
+rm $TOMEE_HOME/webapps/converter-ejb3.jar
+unset EJB3_STATELSS_SAMPLE
+
+$TOMEE_HOME/bin/shutdown.sh
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+#A.2 EJB 3.x Stateful with stand-alone client
+
+export EJB3_STATEFUL_SAMPLE=$DAD/c11/src/SampleEjb3.0AndJMS/Session/Stateful/HtmlReader
+
+# ::1 Compile Java EJBs 3.x:
+
+cd $EJB3_STATEFUL_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/stateful/HTTPResponseException.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/stateful/HTMLReader.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/stateful/HTMLReaderBean.java
+
+
+# ::2 Tayloring and creating XML configuration files ARE NOT NECESSARY anymore => JUST package-ing EJB => JAR file:
+
+cd $EJB3_STATEFUL_SAMPLE/src
+jar -cvf ../HtmlReader-ejb3.jar eu/ase/ejb3/stateful/HTTPResponseException.class eu/ase/ejb3/stateful/HTMLReader.class eu/ase/ejb3/stateful/HTMLReaderBean.class
+rm eu/ase/ejb3/stateful/*.class
+
+$TOMEE_HOME/bin/startup.sh
+
+# ::3 IT IS NOT NECESSARY anymore - Assembling enterprise application => EAR file:
+
+
+# ::4 Deploy in Apache TomEE
+
+cd $EJB3_STATEFUL_SAMPLE
+cp ./HtmlReader-ejb3.jar $TOMEE_HOME/webapps/HtmlReader-ejb3.jar
+
+$TOMEE_HOME/bin/startup.sh
+
+# ::5 compile and test stand-alone client (jndi.properties file content is included in *.java source file):
+
+cd $EJB3_STATEFUL_SAMPLE/src
+##
+***jndi.properties file for JBOSS:
+java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+java.naming.provider.url=jnp://127.0.0.1:1099
+java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+
+cd $EJB3_STATEFUL_SAMPLE/src
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/statefulclient/HTMLReaderClient.java
+java -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/statefulclient/HTMLReaderClient http://www.google.ro http://ism.ase.ro http://www.google.ro > content.txt
+
+cat content.txt
+
+::6 clear the env variable
+rm $JTOMEE_HOME/webapps/HtmlReader-ejb3.jar
+unset EJB3_STATEFUL_SAMPLE
+
+$TOMEE_HOME/bin/shutdown.sh
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+
+A.3 EJB 3.x MDB (Message Driven Bean) with stand-alone client without web-JSP client
+
+export EJB3_MDB_SAMPLE=$DAD/c11/src/SampleEjb3.0AndJMS/MessageDrivenBean/MDB01
+
+# ::1 Compile Java EJBs 3.x:
+
+# instead modifying conf/tomee.xml, just add annotations in the source code:
+# https://tomee.apache.org/latest/docs/jms-resources-and-mdb-container.html
+
+cd $EJB3_MDB_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/mdb/MessageBean.java
+
+
+# ::2 Tayloring and creating XML configuration files ARE NOT NECESSARY anymore => JUST package-ing EJB => JAR file:
+
+cd $EJB3_MDB_SAMPLE/src
+jar -cvf ../testmdb-ejb3.jar eu/ase/ejb3/mdb/*.class
+
+# ::3 IT IS NOT NECESSARY anymore - Assembling enterprise application => EAR file:
+
+
+# ::4 Deploy 
+cd $EJB3_MDB_SAMPLE
+cp ./testmdb-ejb3.jar $TOMEE_HOME/webapps/testmdb-ejb3.jar
+
+rm $TOMEE_HOME/logs/catalina.out
+$TOMEE_HOME/bin/startup.sh
+
+# ::5 Compile and test stand-alone client (jndi.properties file content is included in *.java source file)***jndi.properties file:
+
+cd $EJB3_MDB_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/mdbclient/SimpleMDBClient.java
+java -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/mdbclient/SimpleMDBClient dynamicQueues/queueA 9
+
+# see the messages into catalina.out
+# cat $TOMEE_HOME/logs/catalina.out
+
+//the order of taking messages from queue by MDB is NOT the same as the client put them there =>
+//the programmer should use message-id of the message from the queue
+//BECAUSE The EJB container usually creates a pool of message-driven bean instances (by default in JBOSS are 30 instances) =>
+//Almost for each message is called the ejbCreate() method + EJB construcor() + setMessageDivenContext() method - 7 times =>
+//Almost for each message it is created a MDB => therefore in undeploy procedure is called remove() method for each MDB 
+
+//ASSIGNMENT - HOMEWORK: Check-out if the TOPIC is affecting in the same manner the MDB pool
+
+#::6 clear the env variable + undeploy
+
+rm $TOMEE_HOME/webapps/testmdb-ejb3.jar
+unset EJB3_MDB_SAMPLE
+
+$TOMEE_HOME/bin/shutdown.sh
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+A.4 Combined: EJB 3.x State-less + MDB (Message Driven Bean that consume from topic/testTopic) with stand-alone client sample, without web-JSP client:
+
+export EJB3_MDBSES_SAMPLE=$DAD/c11/src/SampleEjb3.0AndJMS/Combined/SessionMdb
+
+# ::1 Compile Java EJBs 3.x:
+
+cd $EJB3_MDBSES_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdb/Publisher.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdb/PublisherLocal.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdb/PublisherRemote.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdb/PublisherBean.java
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdb/MessageBean.java
+
+
+# ::2 Tayloring and creating XML configuration files ARE NOT NECESSARY anymore => JUST package-ing EJB => JAR file:
+
+cd $EJB3_MDBSES_SAMPLE/src
+jar -cvf ../testsesmdb-ejb3.jar eu/ase/ejb3/sesmdb/*.class
+
+rm -rf eu/ase/ejb3/sesmdb/*.class
+
+# ::3 IT IS NOT NECESSARY anymore - Assembling enterprise application => EAR file:
+
+
+# ::4 Deploy in JBOSS
+
+cd $EJB3_MDBSES_SAMPLE
+cp ./testsesmdb-ejb3.jar $TOMEE_HOME/webapps/testsesmdb-ejb3.jar
+
+rm $TOMEE_HOME/logs/catalina.out
+$TOMEE_HOME/bin/startup.sh
+
+# ::5 Compile and test stand-alone client (jndi.properties file content is included in *.java source file):
+
+cd $EJB3_MDBSES_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdbclient/MyAppClient.java
+java -classpath .:../testsesmdb-ejb3.jar:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/sesmdbclient/MyAppClient
+
+
+#::6 clear the env variable + undeploy
+
+rm $TOMEE_HOME/webapps/testsesmdb-ejb3.jar
+unset EJB3_MDBSES_SAMPLE
+
+$TOMEE_HOME/bin/shutdown.sh
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+# persistance NOT ready
+A.5 EJB JPA - Java Persistance API
+
+export EJB3_JPA_SAMPLE=$DAD/c11/src/SampleEjb3.0AndJMS/JPA/MovieJPA
+
+# ::1 Compile Java EJBs 3.x:
+
+cd $EJB3_JPA_SAMPLE/src
+
+javac -classpath .:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/jpa/*.java
+
+
+# ::2 Tayloring and creating XML configuration files ARE NOT NECESSARY anymore => JUST package-ing EJB => JAR file:
+
+cd $EJB3_JPA_SAMPLE/src
+jar -cvf ../testjpa-ejb3.jar META-INF/* eu/ase/ejb3/jpa/*.class 
+
+# ::3 IT IS NOT NECESSARY anymore - Assembling enterprise application => EAR file:
+
+
+# ::4 Deploy 
+cd $EJB3_JPA_SAMPLE
+cp ./testjpa-ejb3.jar $TOMEE_HOME/webapps/testjpa-ejb3.jar
+
+rm $TOMEE_HOME/logs/catalina.out
+$TOMEE_HOME/bin/startup.sh
+
+# ::5 Compile and test stand-alone client (jndi.properties file content is included in *.java source file)***jndi.properties file:
+
+cd $EJB3_JPA_SAMPLE/src
+
+javac -classpath .:../testjpa-ejb3.jar:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/jpaclient/SimpleJPAClient.java
+java -classpath .:../testjpa-ejb3.jar:$JAVA_HOME/lib/*:$TOMEE_HOME/lib/* eu/ase/ejb3/jpaclient/SimpleJPAClient global/jpa-eclipselink/Movies
+
+# see the messages into catalina.out
+# cat $TOMEE_HOME/logs/catalina.out
+
+#::6 clear the env variable + undeploy
+
+rm $TOMEE_HOME/webapps/testjpa-ejb3.jar
+unset EJB3_JPA_SAMPLE
+
+$TOMEE_HOME/bin/shutdown.sh
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+*** this is working only in JBOSS
+**.5 EJB 3.x JPA (EJB 3 => JPA - Java Persistence API) with stand-alone client without web-JSP client:
+
+export EJB3_JPA_SAMPLE=$DAD/c11/src/SampleEjb3.0AndJMS/JPA
+export JBOSS_CLASSPATH=.:$JBOSS_HOME/common/lib/jboss-javaee.jar:$JBOSS_HOME/common/lib/servlet-api.jar:$JBOSS_HOME/common/lib/jsp-api.jar:$JBOSS_HOME/common/lib/log4j.jar:$JBOSS_HOME/common/lib/ejb3-persistence.jar
+
+# ::1 Compile Java EJBs 3.x:
+
+cd $EJB3_JPA_SAMPLE/src
+
+javac -classpath $JBOSS_CLASSPATH eu/ase/ejb3_jpa/Employee.java
+
+# ::2 Tayloring and creating XML configuration files ARE NOT NECESSARY anymore => JUST package-ing EJB => JAR file:
+
+cd $EJB3_JPA_SAMPLE/src
+jar -cvf ../Employee-ejb3-jpa.jar eu/ase/ejb3_jpa/*.class -C ../dd/ejb/ META-INF
+
+# ::3 IT IS NOT NECESSARY anymore - Assembling enterprise application => EAR file:
+
+
+
+# ::4 Deploy in JBOSS
+
+cd $EJB3_JPA_SAMPLE
+sudo cp ./Employee-ejb3-jpa.jar $JBOSS_HOME/server/myserverall/deploy/Employee-ejb3-jpa.jar
+
+
+#::5.1 Check-out if Hypersonic DB Engine is correctly configured 
+#:: - comment all things related with Local DB and uncomment all things related with TCP Server HSQLDB
+
+#cd $JBOSS_HOME/bin
+cd $TOMEE_BIN
+
+#***create database:
+java -cp .:$TOMEE_HOME/lib/* org/hsqldb/util/DatabaseManagerSwing &
+java -cp .:$JBOSS_HOME/common/lib/hsqldb.jar org/hsqldb/util/DatabaseManagerSwing &
+java -cp .:$JBOSS_HOME/common/lib/hsqldb.jar org.hsqldb.util.DatabaseManager
+ --JUST See and NOT create the table EMP. The BMP Employee is responsable with data-table creation
+
+CREATE TABLE EMPLOYEES (
+ EMPNO INTEGER NOT NULL,
+ ENAME VARCHAR(255),
+ SAL FLOAT,
+ CONSTRAINT EMP_PK PRIMARY KEY (EMPNO)
+);
+
+***check-out the DB:
+select * from PUBLIC.EMPLOYEES;
+
+Setting name: JBossLocalDB
+Type: HSQL Database Engine Server
+Driver: org.hsqldb.jdbcDriver
+Url: jdbc:hsqldb:hsql://127.0.0.1:1701
+User: sa
+
+***uncomment sections in $JBOSS_HOME/server/myserverall/deploy/hsqldb-ds.xml:
+...
+//this are to really create the tables - section 1:
+<connection-url>jdbc:hsqldb:hsql://${jboss.bind.address}:1701</connection-url>
+...
+//this is for access of DB over TCP - section 2:
+   <mbean code="org.jboss.jdbc.HypersonicDatabase" 
+     name="jboss:service=Hypersonic">
+     <attribute name="Port">1701</attribute>
+<!--
+<attribute name="BindAddress">127.0.0.1</attribute>     
+-->
+     <attribute name="BindAddress">${jboss.bind.address}</attribute>     
+     <attribute name="Silent">true</attribute>
+     <attribute name="Database">default</attribute>
+     <attribute name="Trace">false</attribute>
+     <attribute name="No_system_exit">true</attribute>
+   </mbean>
+...
+section x
+
+::5.2 Compile and test stand-alone client (jndi.properties file content is included in *.java source file)***jndi.properties file:
+
+cd $EJB3_JPA_SAMPLE/src
+
+***jndi.properties file:
+java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+java.naming.provider.url=jnp://127.0.0.1:1099
+java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+
+***compile and run the client
+cd $EJB3_JPA_SAMPLE/src
+
+javac -classpath .:$JBOSS_HOME/client/jbossall-client.jar:$JBOSS_HOME/client/ejb3-persistence.jar:$JAVA_HOME/jre/lib/rt.jar eu/ase/ejb3_jpa/EmployeeClient.java
+
+java -classpath .:$JBOSS_HOME/client/jbossall-client.jar:$JBOSS_HOME/client/ejb3-persistence.jar:$JAVA_HOME/jre/lib/rt.jar:./persistence.xml eu/ase/ejb3_jpa/EmployeeClient
+
+
+
+java -classpath .:$JBOSS_HOME/client/jbossall-client.jar:$JBOSS_HOME/client/ejb3-persistence.jar:$JBOSS_HOME/client/hibernate-annotations.jar:$JAVA_HOME/jre/lib/rt.jar:../dd/ejb/META-INF/persistence.xml eu/ase/ejb3_jpa/EmployeeClient
+
+
+::6 clear the env variable + undeploy
+
+sudo rm $JBOSS_HOME/server/myserverall/deploy/Employee-ejb3-jpa.jar
+unset EJB3_JPA_SAMPLE
+
+----------------------------------------------------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+----------------------------------------------------------------------------------------------------------------------
+
+# B. Akka Actors in Java (in Scala)
+
+# https://developer.lightbend.com/guides/akka-quickstart-java/
+# https://developer.lightbend.com/start/?group=akka&project=akka-quickstart-java
+# 
+
+# B.1 - Run with Gradle:
+export GRADLE_HOME=/opt/software/gradle-4.5
+export PATH=$PATH:$GRADLE_HOME/bin
+
+
+cd /home/stud/dad/lectures/c11/src/akka/akka-quickstart-java
+gradle run
+
+####
+gradle run
+Starting a Gradle Daemon (subsequent builds will be faster)
+Download https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor-typed_2.13/2.6.4/akka-actor-typed_2.13-2.6.4.pom
+Download https://repo.maven.apache.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.pom
+Download https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.pom
+Download https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor_2.13/2.6.4/akka-actor_2.13-2.6.4.pom
+Download https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.30/slf4j-parent-1.7.30.pom
+Download https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-slf4j_2.13/2.6.4/akka-slf4j_2.13-2.6.4.pom
+Download https://repo.maven.apache.org/maven2/com/typesafe/config/1.4.0/config-1.4.0.pom
+Download https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.13/0.9.0/scala-java8-compat_2.13-0.9.0.pom
+Download https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor_2.13/2.6.4/akka-actor_2.13-2.6.4.jar
+Download https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor-typed_2.13/2.6.4/akka-actor-typed_2.13-2.6.4.jar
+Download https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.13/0.9.0/scala-java8-compat_2.13-0.9.0.jar
+Download https://repo.maven.apache.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar
+Download https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar
+Download https://repo.maven.apache.org/maven2/com/typesafe/config/1.4.0/config-1.4.0.jar
+Download https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-slf4j_2.13/2.6.4/akka-slf4j_2.13-2.6.4.jar
+
+
+# B.2 - Run with Maven
+export MVN_HOME=/opt/software/apache-maven-3.5.2
+export M2_HOME=/opt/software/apache-maven-3.5.2
+export PATH=$PATH:$MVN_HOME/bin
+
+mvn compile exec:exec
+
+
+# B.3 Run with plain vanilla command line:
+export AKKA_SAMPLE=/home/stud/dad/lectures/c11/src/akka/akka-quickstart-java
+
+# mkdir -p $AKKA_SAMPLE/lib
+# stud@stud-VirtualBoxU16x64:~/dad/lectures/c11/src/akka/akka-quickstart-java$ 
+# cp /home/stud/.m2/repository/com/typesafe/akka/akka-actor_2.13/2.6.4/akka-actor_2.13-2.6.4.jar lib/
+# or wget => download
+
+# 
+cd $AKKA_SAMPLE/lib
+rm -rf *.jar
+
+
+wget https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor-typed_2.13/2.6.4/akka-actor-typed_2.13-2.6.4.jar
+wget https://repo.maven.apache.org/maven2/org/scala-lang/scala-library/2.13.1/scala-library-2.13.1.jar
+wget https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor_2.13/2.6.4/akka-actor_2.13-2.6.4.jar
+wget https://repo.maven.apache.org/maven2/com/typesafe/config/1.4.0/config-1.4.0.jar
+wget https://repo.maven.apache.org/maven2/org/scala-lang/modules/scala-java8-compat_2.13/0.9.0/scala-java8-compat_2.13-0.9.0.jar
+wget https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-slf4j_2.13/2.6.4/akka-slf4j_2.13-2.6.4.jar
+wget https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar
+wget https://repo.maven.apache.org/maven2/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar
+wget https://repo.maven.apache.org/maven2/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar
+wget https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-actor-testkit-typed_2.13/2.6.4/akka-actor-testkit-typed_2.13-2.6.4.jar
+wget https://repo.maven.apache.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.4/akka-testkit_2.13-2.6.4.jar
+
+
+
+cd $AKKA_SAMPLE/src/main/java
+javac -cp .:$AKKA_SAMPLE/lib/* com/example/*.java
+java -cp .:$AKKA_SAMPLE/lib/* com/example/AkkaQuickstart
+

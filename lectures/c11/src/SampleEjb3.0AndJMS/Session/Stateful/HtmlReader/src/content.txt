@@ -1,0 +1,1054 @@
+.
+global
+HTMLReaderBeanRemote
+ConverterBeanRemote
+MessageBean
+
+ The contents 0 of the HTML page in 186 miliseconds is:
+
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="ro"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){window.google={kEI:'6cJxXsv1LIXBlwSK7ZrADA',kEXPI:'0,1353747,5661,732,223,3657,1448,206,2415,789,10,168,883,175,364,1435,4,60,742,75,383,142,104,5,306,318,235,155,339,506,159,105,17,27,29,74,5,263,414406,712176,1197791,233,125,41,329077,1294,12383,4855,32691,15248,867,28684,364,8824,8384,4858,1362,284,4039,4967,3024,4744,3118,7915,1808,4998,7931,5297,2054,920,873,1217,2975,6430,7432,3874,2884,20,318,4516,2778,520,399,2277,8,2796,1593,1279,2212,202,328,149,1103,327,513,517,1466,8,49,157,4100,312,1137,2,2063,606,1839,184,545,1232,520,1947,729,18,429,1053,93,328,1285,15,2927,2247,473,459,880,748,1039,3228,2844,7,438,882,951,2534,794,780,1254,6516,2659,642,2450,2458,1226,1462,281,2037,1617,1382,2854,553,405,503,2,941,532,2082,674,207,531,471,514,2896,2523,226,995,828,842,188,2,290,1767,188,3,346,201,29,157,813,183,388,173,121,372,96,105,623,193,498,125,1906,440,266,149,189,1983,1125,205,742,486,232,507,521,28,201,628,2,531,589,273,120,88,173,218,142,454,622,589,192,921,424,46,134,1399,1333,216,194,142,179,321,300,267,24,1,2,1068,154,301,362,277,354,59,6,592,276,395,2,8,40,283,852,116,99,183,28,95,5835989,13,3263,1802618,4194968,2801054,549,333,444,1,2,80,1,900,896,1,8,1,2,2551,1,748,141,59,736,563,1,4265,1,1,1,1,137,1,1193,641,5,76,20,3,1,328,3,15,20,1,59,1,23963230,24',kBL:'sClC'};google.sn='webhp';google.kHL='ro';})();(function(){google.lc=[];google.li=0;google.getEI=function(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||google.kEI};google.getLEI=function(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b};google.ml=function(){return null};google.time=function(){return Date.now()};google.log=function(a,b,e,c,g){if(a=google.logUrl(a,b,e,c,g)){b=new Image;var d=google.lc,f=google.li;d[f]=b;b.onerror=b.onload=b.onabort=function(){delete d[f]};google.vel&&google.vel.lu&&google.vel.lu(a);b.src=a;google.li=f+1}};google.logUrl=function(a,b,e,c,g){var d="",f=google.ls||"";e||-1!=b.search("&ei=")||(d="&ei="+google.getEI(c),-1==b.search("&lei=")&&(c=google.getLEI(c))&&(d+="&lei="+c));c="";!e&&google.cshid&&-1==b.search("&cshid=")&&"slh"!=a&&(c="&cshid="+google.cshid);a=e||"/"+(g||"gen_204")+"?atyp=i&ct="+a+"&cad="+b+d+f+"&zx="+google.time()+c;/^http:/i.test(a)&&"https:"==window.location.protocol&&(google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a};}).call(this);(function(){google.y={};google.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1};google.lm=[];google.plm=function(a){google.lm.push.apply(google.lm,a)};google.lq=[];google.load=function(a,b,c){google.lq.push([[a],b,c])};google.loadAll=function(a,b){google.lq.push([a,b])};}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a="1"==c||"q"==c&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!=document.documentElement;a=a.parentElement)if("A"==a.tagName){a="1"==a.getAttribute("data-nohref");break a}a=!1}a&&b.preventDefault()},!0);}).call(this);
+var a=window.location,b=a.href.indexOf("#");if(0<=b){var c=a.href.substring(b+1);/(^|&)q=/.test(c)&&-1==c.indexOf("#")&&a.replace("/search?"+c.replace(/(^|&)fp=[^&]*/g,"")+"&cad=h")};</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:arial,sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#36c}.q{color:#00c}.ts td{padding:0}.ts{border-collapse:collapse}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px arial,sans-serif}.gsfs{font:17px arial,sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#000}a{color:#11c;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#36c}a:visited{color:#551a8b}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#eee;border:solid 1px;border-color:#ccc #999 #999 #ccc;height:30px}.lsbb{display:block}.ftl,#fll a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;border:none;color:#000;cursor:pointer;height:30px;margin:0;outline:0;font:15px arial,sans-serif;vertical-align:top}.lsb:active{background:#ccc}.lst:focus{outline:none}.tiah{width:458px}</style><script nonce="E+KWXiqtM5TZZyp33aBY/g=="></script></head><body bgcolor="#fff"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var src='/images/nav_logo229.png';var iesg=false;document.body.onload = function(){window.n && window.n();if (document.images){new Image().src=src;}
+if (!iesg){document.f&&document.f.q.focus();document.gbqf&&document.gbqf.q.focus();}
+}
+})();</script><div id="mngb"> <div id=gbar><nobr><b class=gb1>C�utare</b> <a class=gb1 href="http://www.google.ro/imghp?hl=ro&tab=wi">Imagini</a> <a class=gb1 href="http://maps.google.ro/maps?hl=ro&tab=wl">H�r&#539;i</a> <a class=gb1 href="http://www.youtube.com/?gl=RO&tab=w1">YouTube</a> <a class=gb1 href="http://news.google.ro/nwshp?hl=ro&tab=wn">&#536;tiri</a> <a class=gb1 href="https://mail.google.com/mail/?tab=wm">Gmail</a> <a class=gb1 href="https://drive.google.com/?tab=wo">Drive</a> <a class=gb1 href="https://www.google.com/calendar?tab=wc">Calendar</a> <a class=gb1 style="text-decoration:none" href="https://www.google.ro/intl/ro/about/products?tab=wh"><u>Mai multe</u> &raquo;</a></nobr></div><div id=guser width=100%><nobr><span id=gbn class=gbi></span><span id=gbf class=gbf></span><span id=gbe></span><a href="http://www.google.ro/history/optout?hl=ro" class=gb4>Istoric Web</a> | <a  href="/preferences?hl=ro" class=gb4>Set�ri</a> | <a target=_top id=gb_70 href="https://accounts.google.com/ServiceLogin?hl=ro&passive=true&continue=http://www.google.ro/" class=gb4>Conecta&#539;i-v�</a></nobr></div><div class=gbh style=left:0></div><div class=gbh style=right:0></div> </div><center><br clear="all" id="lgpd"><div id="lga"><img alt="Google" height="92" src="/images/branding/googlelogo/1x/googlelogo_white_background_color_272x92dp.png" style="padding:28px 0 14px" width="272" id="hplogo"><br><br></div><form action="/search" name="f"><table cellpadding="0" cellspacing="0"><tr valign="top"><td width="25%">&nbsp;</td><td align="center" nowrap=""><input name="ie" value="ISO-8859-2" type="hidden"><input value="ro" name="hl" type="hidden"><input name="source" type="hidden" value="hp"><input name="biw" type="hidden"><input name="bih" type="hidden"><div class="ds" style="height:32px;margin:4px 0"><div style="position:relative;zoom:1"><input class="lst tiah" style="margin:0;padding:5px 8px 0 6px;vertical-align:top;color:#000;padding-right:38px" autocomplete="off" value="" title="C�utare Google" maxlength="2048" name="q" size="57"><img src="/textinputassistant/tia.png" style="position:absolute;cursor:pointer;right:5px;top:4px;z-index:300" data-script-url="/textinputassistant/11/ro_tia.js" id="tsuid1" alt="" height="23" width="27"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var id='tsuid1';document.getElementById(id).onclick = function(){var s = document.createElement('script');s.src = this.getAttribute('data-script-url');(document.getElementById('xjsc')||document.body).appendChild(s);};})();</script></div></div><br style="line-height:0"><span class="ds"><span class="lsbb"><input class="lsb" value="C�utare Google" name="btnG" type="submit"></span></span><span class="ds"><span class="lsbb"><input class="lsb" id="tsuid2" value="M� simt norocos" name="btnI" type="submit"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var id='tsuid2';document.getElementById(id).onclick = function(){if (this.form.q.value){this.checked = 1;if (this.form.iflsig)this.form.iflsig.disabled = false;}
+else top.location='/doodles/';};})();</script><input value="AINFCbYAAAAAXnHQ-Zw0XB-IOu1A1r2txv-YW7s0pc22" name="iflsig" type="hidden"></span></span></td><td class="fl sblc" align="left" nowrap="" width="25%"><a href="/advanced_search?hl=ro&amp;authuser=0">C�utare avansat�</a></td></tr></table><input id="gbv" name="gbv" type="hidden" value="1"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var a,b="1";if(document&&document.getElementById)if("undefined"!=typeof XMLHttpRequest)b="2";else if("undefined"!=typeof ActiveXObject){var c,d,e=["MSXML2.XMLHTTP.6.0","MSXML2.XMLHTTP.3.0","MSXML2.XMLHTTP","Microsoft.XMLHTTP"];for(c=0;d=e[c++];)try{new ActiveXObject(d),b="2"}catch(h){}}a=b;if("2"==a&&-1==location.search.indexOf("&gbv=2")){var f=google.gbvu,g=document.getElementById("gbv");g&&(g.value=a);f&&window.setTimeout(function(){location.href=f},0)};}).call(this);</script></form><div id="gac_scont"></div><div style="font-size:83%;min-height:3.5em"><br><div id="gws-output-pages-elements-homepage_additional_languages__als"><style>#gws-output-pages-elements-homepage_additional_languages__als{font-size:small;margin-bottom:24px}#SIvCob{display:inline-block;line-height:28px;}#SIvCob a{padding:0 3px;}.H6sW5{display:inline-block;margin:0 2px;white-space:nowrap}.z4hgWe{display:inline-block;margin:0 2px}</style><div id="SIvCob">Google oferit �n:  <a href="http://www.google.ro/setprefs?sig=0_8wX1gkk_E9KZI7DN1GQ9yq91EdM%3D&amp;hl=hu&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiLjozjtaPoAhWF4IUKHYq2BsgQ2ZgBCAU">magyar</a>    <a href="http://www.google.ro/setprefs?sig=0_8wX1gkk_E9KZI7DN1GQ9yq91EdM%3D&amp;hl=de&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiLjozjtaPoAhWF4IUKHYq2BsgQ2ZgBCAY">Deutsch</a>  </div></div></div><span id="footer"><div style="font-size:10pt"><div style="margin:19px auto;text-align:center" id="fll"><a href="/intl/ro/ads/">Programe de publicitate</a><a href="http://www.google.ro/intl/ro/services/">Solu�ii de afaceri</a><a href="/intl/ro/about.html">Totul despre Google</a><a href="http://www.google.ro/setprefdomain?prefdom=US&amp;sig=K__fo_BAxt-DnzlE6NLmwYRn1dunY%3D" id="fehl">Google.com</a></div></div><p style="font-size:8pt;color:#767676">&copy; 2020 - <a href="/intl/ro/policies/privacy/">Confiden&#539;ialitate</a> - <a href="/intl/ro/policies/terms/">Termeni</a></p></span></center><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){window.google.cdo={height:0,width:0};(function(){var a=window.innerWidth,b=window.innerHeight;if(!a||!b){var c=window.document,d="CSS1Compat"==c.compatMode?c.documentElement:c.body;a=d.clientWidth;b=d.clientHeight}a&&b&&(a!=google.cdo.width||b!=google.cdo.height)&&google.log("","","/client_204?&atyp=i&biw="+a+"&bih="+b+"&ei="+google.kEI);}).call(this);})();(function(){var u='/xjs/_/js/k\x3dxjs.hp.en.yxnGsRJOVRQ.O/m\x3dsb_he,d/am\x3dgAEBNgI/d\x3d1/rs\x3dACT90oGCEo6L8TEG02IxL3BcoXRlwkMisA';
+setTimeout(function(){var b=document;var a="SCRIPT";"application/xhtml+xml"===b.contentType&&(a=a.toLowerCase());a=b.createElement(a);a.src=u;google.timers&&google.timers.load&&google.tick&&google.tick("load","xjsls");document.body.appendChild(a)},0);})();(function(){window.google.xjsu='/xjs/_/js/k\x3dxjs.hp.en.yxnGsRJOVRQ.O/m\x3dsb_he,d/am\x3dgAEBNgI/d\x3d1/rs\x3dACT90oGCEo6L8TEG02IxL3BcoXRlwkMisA';})();function _DumpException(e){throw e;}
+function _F_installCss(c){}
+(function(){google.spjs=false;google.snet=true;google.em=[];google.emw=false;google.pdt=0;})();(function(){var pmc='{\x22d\x22:{},\x22sb_he\x22:{\x22agen\x22:true,\x22cgen\x22:true,\x22client\x22:\x22heirloom-hp\x22,\x22dh\x22:true,\x22dhqt\x22:true,\x22ds\x22:\x22\x22,\x22ffql\x22:\x22en\x22,\x22fl\x22:true,\x22host\x22:\x22google.ro\x22,\x22isbh\x22:28,\x22jsonp\x22:true,\x22msgs\x22:{\x22cibl\x22:\x22&#536;terge&#539;i c�utarea\x22,\x22dym\x22:\x22A&#539;i dorit s� scrie&#539;i:\x22,\x22lcky\x22:\x22M� simt norocos\x22,\x22lml\x22:\x22Afla&#539;i mai multe\x22,\x22oskt\x22:\x22Instrumente pentru introducere de text\x22,\x22psrc\x22:\x22Aceast� c�utare a fost eliminat� din \\u003Ca href\x3d\\\x22/history\\\x22\\u003EIstoricul dvs. Web\\u003C/a\\u003E\x22,\x22psrl\x22:\x22Elimina&#539;i\x22,\x22sbit\x22:\x22C�uta&#539;i dup� imagine\x22,\x22srch\x22:\x22C�utare Google\x22},\x22ovr\x22:{},\x22pq\x22:\x22\x22,\x22refpd\x22:true,\x22rfs\x22:[],\x22sbpl\x22:16,\x22sbpr\x22:16,\x22scd\x22:10,\x22stok\x22:\x22TsKJxaAAmy5LW8we3Wg7uNh5BjY\x22,\x22uhde\x22:false}}';google.pmc=JSON.parse(pmc);})();</script>        </body></html>
+
+ The contents 1 of the HTML page in 904 miliseconds is:
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="shortcut icon" href="http://ism.ase.ro/wp-content/uploads/2015/09/favicon.gif" />
+		 <style type="text/css"> body a, body a:hover { color: #9b0000; } .service-icon i, header .navbar-nav .dropdown.open .dropdown-toggle, .active-category, .post-gallery-title, .comment-navigation .current, .contact-social-icons a, .countup-circle { color: #9b0000!important; } .service-icon, .service-line, .service-line-bottom, .current-menu-item a, .current_page_parent a, blockquote, header .navbar-nav .dropdown.open .dropdown-toggle, .contact-social-icons a, .navbar-nav .current-post-parent a { border-color: #9b0000!important; } .page-404, .btn-danger, .section-title-line, .blog-category, header .navbar-nav .dropdown.open .current-menu-item, .widget-area-2 .widget_search, .widget-area-2 .search-field, #wp-calendar #today, .blog-layout-2 #submit, .blog-layout-2 .comments-title, .wpcf7-submit, .portfolio-categories-container .portfolio-categories li.active a, .portfolio-categories-container .portfolio-categories li.active:hover a, .page-section-slogan .slogan-title, .testimonials-item, .back-top:hover, header .navbar-nav .dropdown .dropdown-menu .active { background-color: #9b0000!important; } @media (min-width: 1000px) { header .navbar-nav .current-menu-item a, header .navbar-nav .current_page_parent a, .navbar-nav .current-post-parent a { color: #9b0000!important; } } @media (max-width: 1000px) { header .navbar-nav .current-menu-item, header .navbar-nav .current_page_parent { background-color: #9b0000; } } footer.bottom { background-color: #3C3C3C!important; } body, .section-content { font-family: Open Sans!important; color: #565656!important; } .page-blog { background-color: #f2f4f5!important; background-image: url(http://37.120.250.22:8090/wp-content/themes/maskitto-light/img/blogbg.png)!important; } #some-block{ padding: 0; } header .header-details { background-color: #9b0000; } </style> 	<title>ISM &#8211; IT&amp;C Security Master &#8211; Informatics Security Master &#8211; Preparing Cybersecurity Professionalls</title>
+                        <script>
+                            /* You can add more configuration options to webfontloader by previously defining the WebFontConfig with your options */
+                            if ( typeof WebFontConfig === "undefined" ) {
+                                WebFontConfig = new Object();
+                            }
+                            WebFontConfig['google'] = {families: ['Open+Sans']};
+
+                            (function() {
+                                var wf = document.createElement( 'script' );
+                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
+                                wf.type = 'text/javascript';
+                                wf.async = 'true';
+                                var s = document.getElementsByTagName( 'script' )[0];
+                                s.parentNode.insertBefore( wf, s );
+                            })();
+                        </script>
+                        <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="ISM - IT&amp;C Security Master - Informatics Security Master &raquo; Feed" href="http://ism.ase.ro/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="ISM - IT&amp;C Security Master - Informatics Security Master &raquo; Comments Feed" href="http://ism.ase.ro/?feed=comments-rss2" />
+<link rel="alternate" type="application/rss+xml" title="ISM - IT&amp;C Security Master - Informatics Security Master &raquo; Home Comments Feed" href="http://ism.ase.ro/?feed=rss2&#038;page_id=16" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/ism.ase.ro\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.2"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='http://ism.ase.ro/wp-includes/css/dist/block-library/style.min.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='siteorigin-panels-front-css'  href='http://ism.ase.ro/wp-content/plugins/siteorigin-panels/css/front-flex.min.css?ver=2.10.5' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-bootstrap-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/bootstrap.min.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-default-style-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/style.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-font-awesome-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/font-awesome.min.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-animate-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/animate.min.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-jquery-tosrus-min-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/jquery.tosrus.all.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-responsive-style-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/responsive.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-owl-carousel-css'  href='http://ism.ase.ro/wp-content/themes/maskitto-light/css/slick.css?ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='maskitto-light-google-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C300%2C400%2C600%2C700&#038;ver=5.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='simcal-qtip-css'  href='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/css/vendor/jquery.qtip.min.css?ver=3.1.22' type='text/css' media='all' />
+<link rel='stylesheet' id='simcal-default-calendar-grid-css'  href='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/css/default-calendar-grid.min.css?ver=3.1.22' type='text/css' media='all' />
+<link rel='stylesheet' id='simcal-default-calendar-list-css'  href='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/css/default-calendar-list.min.css?ver=3.1.22' type='text/css' media='all' />
+<script type='text/javascript' src='http://ism.ase.ro/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var SnazzyDataForSnazzyMaps = [];
+SnazzyDataForSnazzyMaps={"id":61,"name":"Blue Essence","description":"A light blue style that helps you focus on content on the map.\r\nGreat if you use lots of pins and want to have highlighted transportation systems.","url":"https:\/\/snazzymaps.com\/style\/61\/blue-essence","imageUrl":"https:\/\/az769952.vo.msecnd.net\/assets\/61-blue-essence.png?v=20151025070124","json":"[{\"featureType\":\"landscape.natural\",\"elementType\":\"geometry.fill\",\"stylers\":[{\"visibility\":\"on\"},{\"color\":\"#e0efef\"}]},{\"featureType\":\"poi\",\"elementType\":\"geometry.fill\",\"stylers\":[{\"visibility\":\"on\"},{\"hue\":\"#1900ff\"},{\"color\":\"#c0e8e8\"}]},{\"featureType\":\"road\",\"elementType\":\"geometry\",\"stylers\":[{\"lightness\":100},{\"visibility\":\"simplified\"}]},{\"featureType\":\"road\",\"elementType\":\"labels\",\"stylers\":[{\"visibility\":\"off\"}]},{\"featureType\":\"transit.line\",\"elementType\":\"geometry\",\"stylers\":[{\"visibility\":\"on\"},{\"lightness\":700}]},{\"featureType\":\"water\",\"elementType\":\"all\",\"stylers\":[{\"color\":\"#7dcdcd\"}]}]","views":57299,"favorites":195,"createdBy":{"name":"Famous Labs","url":"https:\/\/twitter.com\/famouslabs"},"createdOn":"2014-01-28T20:24:12.717"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/plugins/snazzy-maps/snazzymaps.js?ver=1.1.5'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/hammer.min.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/bootstrap.min.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/jquery.tosrus.min.all.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/jquery.waypoints.min.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/jquery.counterup.min.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/slick.min.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/smoothscroll.js?ver=5.2.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-includes/js/masonry.min.js?ver=3.3.2'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/themes/maskitto-light/js/scripts.js?ver=5.2.2'></script>
+<link rel='https://api.w.org/' href='http://ism.ase.ro/index.php?rest_route=/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ism.ase.ro/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://ism.ase.ro/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.2" />
+<link rel="canonical" href="http://ism.ase.ro/" />
+<link rel='shortlink' href='http://ism.ase.ro/' />
+<link rel="alternate" type="application/json+oembed" href="http://ism.ase.ro/index.php?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fism.ase.ro%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://ism.ase.ro/index.php?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fism.ase.ro%2F&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		                <style type="text/css" media="all"
+                       id="siteorigin-panels-layouts-head">/* Layout 16 */ #pgc-16-0-0 { width:100%;width:calc(100% - ( 0 * 30px ) ) } #pl-16 #panel-16-0-0-0 , #pl-16 #panel-16-0-0-1 , #pl-16 #panel-16-0-0-2 , #pl-16 #panel-16-0-0-3 , #pl-16 #panel-16-0-0-4 , #pl-16 #panel-16-0-0-5 , #pl-16 #panel-16-0-0-6 , #pl-16 #panel-16-0-0-7 , #pl-16 #panel-16-0-0-8 , #pl-16 #panel-16-0-0-9 {  } #pl-16 .so-panel { margin-bottom:30px } #pl-16 .so-panel:last-child { margin-bottom:0px } @media (max-width:780px){ #pg-16-0.panel-no-style, #pg-16-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-16-0 > .panel-grid-cell , #pg-16-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pl-16 .panel-grid-cell { padding:0 } #pl-16 .panel-grid .panel-grid-cell-empty { display:none } #pl-16 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } </style><link rel="icon" href="http://ism.ase.ro/wp-content/uploads/2015/10/cropped-Logo-ISM_medium-32x32.png" sizes="32x32" />
+<link rel="icon" href="http://ism.ase.ro/wp-content/uploads/2015/10/cropped-Logo-ISM_medium-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="http://ism.ase.ro/wp-content/uploads/2015/10/cropped-Logo-ISM_medium-180x180.png" />
+<meta name="msapplication-TileImage" content="http://ism.ase.ro/wp-content/uploads/2015/10/cropped-Logo-ISM_medium-270x270.png" />
+</head>
+<body class="home page-template page-template-template-home page-template-template-home-php page page-id-16 siteorigin-panels siteorigin-panels-before-js siteorigin-panels-home">
+
+
+
+
+
+
+	<header class="top header-layout-standard-large framework-ok" data-sticky="1">
+
+				<div class="header-details header-details-accent-color">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-sm-7 our-info">
+						
+															<a href="mailto:ism@ase.ro"><i class="fa fa-envelope"></i>ism@ase.ro</a>
+							
+															<span><i class="fa fa-phone"></i>(+40) 021 319 19 00 / int 331</span>
+							
+											</div>
+					<div class="col-md-5 col-sm-5 text-right soc-icons">
+													
+		
+					<a href="https://www.facebook.com/ism.master" target = "_blank" ><i class="fa fa-facebook"></i></a>
+		
+					<a href="http://twitter.com/ismasero" target = "_blank" ><i class="fa fa-twitter"></i></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+					<a href="http://www.linkedin.com/pub/it-c-security-master-informatics-security-master/24/873/a15" target = "_blank" ><i class="fa fa-linkedin"></i></a>
+		
+		
+		
+		
+
+    
+															<span class="search-input">
+									<i class="fa fa-search"></i>
+									<form role="search" method="get" action="http://ism.ase.ro"><input type="text" class="top-search-field" name="s" value="" placeholder="Search here.." /></form> 
+								</span>
+																		</div>
+				</div>
+			</div>
+		</div>
+				
+		<nav class="primary navbar navbar-default" role="navigation">
+
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<i class="fa fa-bars"></i>
+					</button>
+					<a class="navbar-brand" href="http://ism.ase.ro/">
+													<img src="http://ism.ase.ro/wp-content/uploads/2015/10/Logo-ISM_medium.png" alt="ISM - IT&amp;C Security Master - Informatics Security Master" />
+											</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul id="menu-menu-1" class="nav navbar-nav navbar-right navbar-primary"><li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-12 active"><a title="Home" href="http://ism.ase.ro">Home</a></li>
+<li id="menu-item-197" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-197 dropdown"><a title="About" href="http://ism.ase.ro/?page_id=53" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">About <i class="fa fa-angle-down"></i></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-293" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-293"><a title="Aims and Objectives" href="http://ism.ase.ro/?page_id=53">Aims and Objectives</a></li>
+	<li id="menu-item-238" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-238"><a title="Staff" href="http://ism.ase.ro/?page_id=236">Staff</a></li>
+	<li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a title="Partners and Professors" href="http://ism.ase.ro/?page_id=210">Partners and Professors</a></li>
+	<li id="menu-item-245" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-245"><a title="Fields of Research" href="http://ism.ase.ro/?page_id=239">Fields of Research</a></li>
+	<li id="menu-item-200" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-200"><a title="Projects" href="http://ism.ase.ro/?page_id=101">Projects</a></li>
+	<li id="menu-item-398" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-398"><a title="Technologies" href="http://ism.ase.ro/?page_id=384">Technologies</a></li>
+	<li id="menu-item-407" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-407"><a title="Statistics" href="http://ism.ase.ro/?page_id=403">Statistics</a></li>
+</ul>
+</li>
+<li id="menu-item-307" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-307 dropdown"><a title="Admission" href="http://ism.ase.ro/?page_id=305" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Admission <i class="fa fa-angle-down"></i></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-319" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-319"><a title="How and when to apply" href="http://ism.ase.ro/?page_id=305">How and when to apply</a></li>
+	<li id="menu-item-318" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-318"><a title="Requirements" href="http://ism.ase.ro/?page_id=316">Requirements</a></li>
+	<li id="menu-item-380" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-380"><a title="Taxes and funding" href="http://ism.ase.ro/?page_id=378">Taxes and funding</a></li>
+	<li id="menu-item-383" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a title="International Students" href="http://ism.ase.ro/?page_id=381">International Students</a></li>
+</ul>
+</li>
+<li id="menu-item-252" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-252 dropdown"><a title="Curricula" href="http://ism.ase.ro/?page_id=248" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Curricula <i class="fa fa-angle-down"></i></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-677" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-677"><a title="Curricula for 2019-2021" href="http://ism.ase.ro/?page_id=640">Curricula for 2019-2021</a></li>
+	<li id="menu-item-596" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-596"><a title="Curricula for 2018-2020" href="http://ism.ase.ro/?page_id=594">Curricula for 2018-2020</a></li>
+	<li id="menu-item-560" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-560"><a title="Curricula for 2017-2019" href="http://ism.ase.ro/?page_id=558">Curricula for 2017-2019</a></li>
+	<li id="menu-item-479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-479"><a title="Curricula for 2016-2018" href="http://ism.ase.ro/?page_id=477">Curricula for 2016-2018</a></li>
+	<li id="menu-item-255" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-255"><a title="Curricula for 2015-2017" href="http://ism.ase.ro/?page_id=253">Curricula for 2015-2017</a></li>
+	<li id="menu-item-296" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-296"><a title="Curricula for 2014-2016" href="http://ism.ase.ro/?page_id=294">Curricula for 2014-2016</a></li>
+	<li id="menu-item-304" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-304"><a title="Curricula for 2013-2015" href="http://ism.ase.ro/?page_id=302">Curricula for 2013-2015</a></li>
+</ul>
+</li>
+<li id="menu-item-291" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-291 dropdown"><a title="Schedule" href="http://ism.ase.ro/?page_id=289" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Schedule <i class="fa fa-angle-down"></i></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-700" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-700"><a title="ISM Schedule 2019-2021" href="http://ism.ase.ro/?page_id=693">ISM Schedule 2019-2021</a></li>
+	<li id="menu-item-611" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-611"><a title="ISM Schedule 2018-2020" href="http://ism.ase.ro/?page_id=279">ISM Schedule 2018-2020</a></li>
+</ul>
+</li>
+<li id="menu-item-410" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-410 dropdown"><a title="Student" href="http://ism.ase.ro/?page_id=358" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Student <i class="fa fa-angle-down"></i></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-360" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-360"><a title="Dissertation" href="http://ism.ase.ro/?page_id=358">Dissertation</a></li>
+	<li id="menu-item-413" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-413"><a title="Student Login" href="https://student.ism.ase.ro/portal">Student Login</a></li>
+	<li id="menu-item-623" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-623"><a title="Faculty Website" href="http://www.csie.ase.ro">Faculty Website</a></li>
+	<li id="menu-item-625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-625"><a title="Academic year schedule" href="http://senat.ase.ro/Media/Default/Hotarari%20Senat/2019/20190327/HS%20nr.%2081_Gr.2019-2020_Masterat.pdf">Academic year schedule</a></li>
+	<li id="menu-item-603" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-603"><a title="University Regulations" href="http://mefc.ase.ro/masterat_legislatie">University Regulations</a></li>
+	<li id="menu-item-411" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-411"><a title="SECITC 2019" href="http://www.secitc.eu">SECITC 2019</a></li>
+	<li id="menu-item-412" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-412"><a title="JMEDS Journal" href="http://www.jmeds.eu">JMEDS Journal</a></li>
+</ul>
+</li>
+<li id="menu-item-198" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-198 dropdown"><a title="News" href="http://ism.ase.ro/?page_id=195" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">News <i class="fa fa-angle-down"></i></a>
+<ul role="menu" class=" dropdown-menu">
+	<li id="menu-item-361" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-361"><a title="ISM News" href="http://ism.ase.ro/?page_id=195">ISM News</a></li>
+	<li id="menu-item-270" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-270"><a title="Hak5.org" href="http://ism.ase.ro/?page_id=268">Hak5.org</a></li>
+	<li id="menu-item-267" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-267"><a title="TED.com" href="http://ism.ase.ro/ted.jsp">TED.com</a></li>
+	<li id="menu-item-535" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-535"><a title="The Hacker news" href="http://thehackernews.com/">The Hacker news</a></li>
+</ul>
+</li>
+<li id="menu-item-199" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-199"><a title="Contacts" href="http://ism.ase.ro/?page_id=90">Contacts</a></li>
+</ul>
+					
+											<ul id="menu-header-menu-1" class="nav navbar-nav navbar-right navbar-secondary">
+							<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-102"><a href="#">Social links</a></li>
+							<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-102 menu-social-icons">
+								
+		
+					<a href="https://www.facebook.com/ism.master" target = "_blank" ><i class="fa fa-facebook"></i></a>
+		
+					<a href="http://twitter.com/ismasero" target = "_blank" ><i class="fa fa-twitter"></i></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+					<a href="http://www.linkedin.com/pub/it-c-security-master-informatics-security-master/24/873/a15" target = "_blank" ><i class="fa fa-linkedin"></i></a>
+		
+		
+		
+		
+
+    							</li>
+						</ul>
+					
+				</div>
+			</div>
+
+		</nav>
+
+	</header>
+	<div id="wrapper">
+
+		<noscript>
+			<div class="enable-javascript">
+				Javascript is disabled in your web browser. Please enable it 
+				<a href="http://www.enable-javascript.com" target="_blank" style="color:#fff;">(see how)</a>.
+			</div>
+		</noscript>
+
+	
+			
+		<div id="pl-16"  class="panel-layout" ><div id="pg-16-0"  class="panel-grid panel-no-style" ><div id="pgc-16-0-0"  class="panel-grid-cell" >
+                    <style type="text/css">
+
+                /* Custom slideshow height */
+                @media (min-width: 1070px) {
+
+                    #wrapper .page-slideshow {
+                        height: 500px;
+                        max-height: 500px;
+                    }
+
+                }
+
+            </style>
+        
+
+        <div class="page-slideshow widget-slider-all">
+            <i class="fa fa-circle-o-notch fa-spin"></i>
+            <div class="slideshow">
+                                    <div class="slideshow-slide" style="background-image: url(http://ism.ase.ro/wp-content/uploads/2015/10/ism_home_slide.jpg);">
+                        <div class="slide-patern slide-patern-show">
+                            <div class="container">
+                                <div class="slide-details">
+                                    <div></div>
+                                
+                                                                            <div class="slide-info2">Admission in 2019, on 22-24 July 2019.</div>
+                                    
+                                    <div class="slide-title">IT&#038;C Security | Cybersecurity Master</div>
+                                    <div></div>
+                                                                            <div class="slide-info">Department of Economic Informatics and Cybernetics</div>
+                                                                                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="slideshow-slide" style="background-image: url(http://ism.ase.ro/wp-content/uploads/2015/10/secitc-web-slider.jpg);">
+                        <div class="slide-patern slide-patern-show">
+                            <div class="container">
+                                <div class="slide-details">
+                                    <div></div>
+                                
+                                    
+                                    <div class="slide-title">SECITC 2019</div>
+                                    <div></div>
+                                                                                                                <div class="slide-button">
+                                            
+                                                                                            <a href="http://secitc.eu/" class="btn btn-white">
+                                                                                                            <i class="fa fa-user-secret"></i>
+                                                                                                        Register                                                </a>
+                                                                                    </div>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                                            </div>
+
+            <div id="slideshow-preload" style="display: none;">
+                                    <img class="slideshow-preload-image" src="http://ism.ase.ro/wp-content/uploads/2015/10/ism_home_slide.jpg" height="1" alt="Loaded" />
+                                    <img class="slideshow-preload-image" src="http://ism.ase.ro/wp-content/uploads/2015/10/secitc-web-slider.jpg" height="1" alt="Loaded" />
+                            </div>
+        </div>
+
+
+    
+    <div id="panel-16-0-0-1" class="so-panel widget widget_maskitto_services" data-index="1" >        <div class="page-section page-section-services">
+            <div class="container">
+
+                
+                <div class="row services-list ">
+                                            <div class="col-md-4 text-center service-item">
+
+                            
+                                <div class="service-column-left">
+                                    <div class="service-line"></div>
+                                    <div class="service-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </div>
+                                    <div class="service-line-bottom"></div>
+                                </div>
+                                <div class="service-column-right">
+                                    <h5>IT&#038;C Security</h5>
+                                    <p>The master is recognized by students, academia and industry as one of the best MSc master programs on IT&#038;C Security and Cybersecurity in Bucharest.</p>
+                                                                    </div>
+
+                            
+                        </div>
+
+
+                        
+                                            <div class="col-md-4 text-center service-item">
+
+                            
+                                <div class="service-column-left">
+                                    <div class="service-line"></div>
+                                    <div class="service-icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="service-line-bottom"></div>
+                                </div>
+                                <div class="service-column-right">
+                                    <h5>MSc  Program</h5>
+                                    <p>Since 2005 we have been educating professionals in the area of the information technology and communications security. In 2010, we started our first steps with &#8216;I18N-internationalization&#8217; having the didactical activities in English.</p>
+                                                                    </div>
+
+                            
+                        </div>
+
+
+                        
+                                            <div class="col-md-4 text-center service-item">
+
+                            
+                                <div class="service-column-left">
+                                    <div class="service-line"></div>
+                                    <div class="service-icon">
+                                        <i class="fa fa-industry"></i>
+                                    </div>
+                                    <div class="service-line-bottom"></div>
+                                </div>
+                                <div class="service-column-right">
+                                    <h5>Academic Partnership</h5>
+                                    <p>The program academic staff gathers well known professors and specialist from partner universities and from the IT industry</p>
+                                                                    </div>
+
+                            
+                        </div>
+
+
+                        
+                                    </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="panel-16-0-0-2" class="so-panel widget widget_maskitto_counter" data-index="2" >                    <div class="page-section" style="padding-top: 70px;">
+                <div class="container countup-list">
+                                            <div class="countup-item">
+                            <div class="countup-circle">14</div>
+                            <div class="countup-title">Years of existence</div>
+                        </div>
+                    
+                                            <div class="countup-item">
+                            <div class="countup-circle">1133</div>
+                            <div class="countup-title">Specialists trained</div>
+                        </div>
+                    
+                                            <div class="countup-item">
+                            <div class="countup-circle">24</div>
+                            <div class="countup-title">IT&amp;C Security courses</div>
+                        </div>
+                    
+                                            <div class="countup-item">
+                            <div class="countup-circle">147</div>
+                            <div class="countup-title">Papers published</div>
+                        </div>
+                                    </div>
+            </div>
+            </div>
+
+    <div id="panel-16-0-0-3" class="so-panel widget widget_maskitto_include_other_page" data-index="3" >	        <div id="page-id-53" class="page- page-section" style="padding: 150px 0;background-color: #efefef;">
+	            <div class="container page-list page-no-subtitle">
+
+
+	                
+	                    	                        <div class="page-node section-title text-center">
+	                            <h3 style="color: #4f4f4f;">
+	                            		                                	About IT&#038;C Security Master Program &#8211; ISM	                                	                                	                            </h3>
+
+	                            
+	                            	                                <div class="section-title-line"></div>
+	                            	                        </div>
+	                    
+	                    	                        <div class="page-node section-content" style="color: #4f4f4f;">
+	                            <div class="post-inner">
+	                                <p>The IT&amp;C SECURITY MASTER &#8211; ISM program is organized since 2005 within the Department of Economic Informatics and Cybernetics (<a href="http://www.dice.ase.ro" target="_blank">www.dice.ase.ro</a> | <a href="http://www.csie.ase.ro" target="_blank">www.csie.ase.ro</a>) from Bucharest University of Economic Studies.</p>
+<p>The master is recognized by students, academia and industry  as one of the best master programs on IT&amp;C Security in Bucharest. Reasons for  doing this master:</p>
+<ul>
+<li>Knowledge on IT&amp;C Security has become a must  have topic for developers, software engineers, quality assurance engineers, DB  admins, systems admins, IT consultants;</li>
+<li>Enlarge your computer science skills and your  horizon of jobs opportunities;</li>
+<li>The master courses and laboratories are  scheduled in weekends;</li>
+<li>The master degree is recognized internationally;</li>
+<li>Some courses are organized by specialists from industry leading companies like Intel, IBM and Oracle.</li>
+</ul>
+<h3>Our Mission</h3>
+<p>Sharing theoretical knowledge and practical technological transfer from IT&#038;C Security field among the developers, administrators, project managers and users of the electronic devices eco-system.</p>
+<p>Rising the security and reliability level of development and deployment of e-Systems taking in consideration the risks of cyber-attacks and specific issues.</p>
+<p>The education of high level specialists in IT&amp;C and Informatics Security.</p>
+<p>To share and transfer the practical &amp; theoretical knowledge from IT&amp;C Security field among the developers, administrators, project managers and users.
+	  </p>
+<h3>ISM Features</h3>
+<p>
+		Since 2005 we have been educating professionals in the area of the information technology and communications security. In 2010, we start our first steps with &#8216;I18N-internationalization&#8217; having the didactic activities in English.
+	  </p>
+<p><a href="http://ism.ase.ro/?page_id=53" class="btn btn-default page-node"><i class="fa fa-angle-right"></i>Read more</a></p>
+	                            </div>
+	                        </div>
+	                    
+	                
+
+	                            
+
+
+	                	                
+
+							                	                	            </div>
+	        </div>
+
+
+	        
+
+		</div><div id="panel-16-0-0-4" class="so-panel widget widget_maskitto_include_other_page" data-index="4" >	        <div id="page-id-56" class="page- page-section" style="background-color: #e15454;">
+	            <div class="container page-list page-no-subtitle">
+
+
+	                
+	                    <h4 class="page-node text-center" style="color: #fff2f2;">
+	                        WANT TO BECOME A CYBER-SECURITY EXPERT? YOU’RE ON THE RIGHT TRACK!	                        	                    </h4>
+	                    
+	                
+
+	                            
+
+
+	                	                    <a href="http://37.120.250.22:8090/index.php/admission/" class="btn btn-default page-node section-button section-button-light">
+	                        	                            <i class="fa fa-thumbs-up"></i>
+	                        	                        APPLY NOW	                    </a>
+	                	                
+
+							                	                	            </div>
+	        </div>
+
+
+	        
+
+		</div>
+    <div id="panel-16-0-0-5" class="so-panel widget widget_maskitto_projects" data-index="5" >                <div class="page-section" style="padding: 0;">
+
+        
+            <div role="tabpanel">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="all37139">
+                        <div class="row portfolio-list">
+                                <a href="http://37.120.250.22:8090/wp-content/uploads/2015/10/inte-galileo-lab.jpg" alt="IOT Laboratory" class="col-md-3 col-sm-6 portfolio-item">
+        <div class="portfolio-thumb" style="background-image: url(http://ism.ase.ro/wp-content/uploads/2015/10/inte-galileo-lab.jpg);"></div>
+        <div class="portfolio-details">
+            <div class="portfolio-details-align">
+                <div class="portfolio-title">IOT Laboratory</div>
+                                    <div class="portfolio-info">Researching and Implementting Security for IOT</div>
+                                            </div>
+        </div>
+    </a>
+        <a href="http://www.secitc.eu" alt="SECITC" class="col-md-3 col-sm-6 portfolio-item">
+        <div class="portfolio-thumb" style="background-image: url(http://ism.ase.ro/wp-content/uploads/2015/01/secitc-logo-si-ITA-black.png);"></div>
+        <div class="portfolio-details">
+            <div class="portfolio-details-align">
+                <div class="portfolio-title">SECITC</div>
+                                    <div class="portfolio-info">International Conference on Information Technology and Communications Security</div>
+                                                	
+                    <div class="portfolio-line"></div>
+                    <div class="portfolio-cat">Events / Tech</div>
+                            </div>
+        </div>
+    </a>
+        <a href="http://jmeds.eu" alt="JMEDS" class="col-md-3 col-sm-6 portfolio-item">
+        <div class="portfolio-thumb" style="background-image: url(http://ism.ase.ro/wp-content/uploads/2015/01/JMEDS.png);"></div>
+        <div class="portfolio-details">
+            <div class="portfolio-details-align">
+                <div class="portfolio-title">JMEDS</div>
+                                    <div class="portfolio-info">Journal of Mobile, Embedded and Distributed Systems</div>
+                                                	
+                    <div class="portfolio-line"></div>
+                    <div class="portfolio-cat">Scientific / Tech</div>
+                            </div>
+        </div>
+    </a>
+        <a href="http://37.120.250.22:8090/index.php/curricula/" alt="Handbook" class="col-md-3 col-sm-6 portfolio-item">
+        <div class="portfolio-thumb" style="background-image: url(http://ism.ase.ro/wp-content/uploads/2015/01/Coperta-1024x695.png);"></div>
+        <div class="portfolio-details">
+            <div class="portfolio-details-align">
+                <div class="portfolio-title">Handbook</div>
+                                    <div class="portfolio-info">Information Security Handbook</div>
+                                                	
+                    <div class="portfolio-line"></div>
+                    <div class="portfolio-cat">Scientific</div>
+                            </div>
+        </div>
+    </a>
+                            </div>
+                    </div>
+
+                                    </div>
+            </div>
+
+        </div>
+    </div>    
+        <div class="page-section page-blog" style="background-color: #f2f4f5; padding: 0px 0!important;">
+             <div id="panel-16-0-0-6" class="so-panel widget widget_maskitto_blog" data-index="6" >
+            <div class="container" style="max-width: 980px; padding: 70px 0!important;">
+
+                <div class="section-title text-center">
+                                            <h3>NEWS</h3>
+                                                                <div class="subtitle"><p>Recent news entries about the master and Information Security</p></div>
+                                                                <div class="section-title-line"></div>
+                                    </div>
+
+                <div class="row blog-list">
+                                            
+
+    
+    <article id="post-519" class="col-md-4 blog-item blog-layout-2 post-519 post type-post status-publish format-standard has-post-thumbnail hentry category-events category-news" >
+        <div class="blog-item-container">
+
+                            <div class="blog-media">
+                    <a href="http://ism.ase.ro/?p=519" class="blog-media-thumbnail">
+                        <img width="560" height="321" src="http://ism.ase.ro/wp-content/uploads/2016/10/agenda_activity.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="http://ism.ase.ro/wp-content/uploads/2016/10/agenda_activity.jpg 560w, http://ism.ase.ro/wp-content/uploads/2016/10/agenda_activity-300x172.jpg 300w" sizes="(max-width: 560px) 100vw, 560px" />                    </a>
+
+                                            <a href="http://ism.ase.ro/?cat=8" class="blog-category">Events</a>
+                                    </div>
+            
+            <div class="blog-top">
+                <a href="http://ism.ase.ro/?p=519" class="blog-title">
+                    Cyber Security Master &#8211; Opening meeting for the 1st year master students                                    </a>
+                <div class="blog-details">
+                    <span style="padding-right: 6px;">September 30, 2019</span>
+                    <span class="post-author-name">By ism.ase.ro</span>
+                </div>
+            </div>
+
+            <div class="blog-bottom">
+                <div class="blog-content">
+                    <p>The opening of the master master program ISM &#8211; ICT | Cyber Security Master Opening, will take place on Friday, 04.10.2019, hour 18:00, room 2013 (ground floor of the CSIE Faculty building on Calea Dorobantilor street). All administrative issues will be discussed in this meeting. Courses will start on Saturda, October 5, accordingly to the 1st semester [&hellip;]</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://ism.ase.ro/?p=519" class="blog-more">
+                            Read more                            <i class="fa fa-angle-right" style="padding-left: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right blog-comments-count">
+                        <a href="http://ism.ase.ro/?p=519#respond"><i class="fa fa-comment-o" style="padding-right: 5px;"></i>0</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+                                            
+
+    
+    <article id="post-681" class="col-md-4 blog-item blog-layout-2 post-681 post type-post status-publish format-standard has-post-thumbnail hentry category-events" >
+        <div class="blog-item-container">
+
+                            <div class="blog-media">
+                    <a href="http://ism.ase.ro/?p=681" class="blog-media-thumbnail">
+                        <img width="525" height="350" src="http://ism.ase.ro/wp-content/uploads/2019/08/hackthezoneconference.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="http://ism.ase.ro/wp-content/uploads/2019/08/hackthezoneconference.jpg 525w, http://ism.ase.ro/wp-content/uploads/2019/08/hackthezoneconference-300x200.jpg 300w, http://ism.ase.ro/wp-content/uploads/2019/08/hackthezoneconference-272x182.jpg 272w" sizes="(max-width: 525px) 100vw, 525px" />                    </a>
+
+                                            <a href="http://ism.ase.ro/?cat=8" class="blog-category">Events</a>
+                                    </div>
+            
+            <div class="blog-top">
+                <a href="http://ism.ase.ro/?p=681" class="blog-title">
+                    HACK THE ZONE Conference                                    </a>
+                <div class="blog-details">
+                    <span style="padding-right: 6px;">August 23, 2019</span>
+                    <span class="post-author-name">By ism.ase.ro</span>
+                </div>
+            </div>
+
+            <div class="blog-bottom">
+                <div class="blog-content">
+                    <p>Conferința anuală HackTheZone își propune sa aducă la un loc pasionații de IT Security, prezentatori de top și companii dornice să angajeze cele mai bune talente din domeniu. Perioada de desfășurare a conferinței este 17-18 Octombrie 2019 la Crystal Palace Ballrooms, Calea Rahovei 198A, Sector 5, Bucuresti. Echipa HackTheZone a conceput o competiție de IT [&hellip;]</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://ism.ase.ro/?p=681" class="blog-more">
+                            Read more                            <i class="fa fa-angle-right" style="padding-left: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right blog-comments-count">
+                        <a href="http://ism.ase.ro/?p=681#respond"><i class="fa fa-comment-o" style="padding-right: 5px;"></i>0</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+                                            
+
+    
+    <article id="post-667" class="col-md-4 blog-item blog-layout-2 post-667 post type-post status-publish format-standard hentry category-events" >
+        <div class="blog-item-container">
+
+                             
+
+                                    <a href="http://ism.ase.ro/?cat=8" class="blog-category blog-category-left">Events</a>
+                            
+            <div class="blog-top">
+                <a href="http://ism.ase.ro/?p=667" class="blog-title">
+                    Admission 2019 Schedule                                    </a>
+                <div class="blog-details">
+                    <span style="padding-right: 6px;">July 12, 2019</span>
+                    <span class="post-author-name">By ism.ase.ro</span>
+                </div>
+            </div>
+
+            <div class="blog-bottom">
+                <div class="blog-content">
+                    <p>The admission for the 2019-2020 university year starts on July 22, at 8:00 AM and lasts until July 24. The admission schedule is available on https://admitere.ase.ro/masterat/index.asp. Foreign students are requested to read the information available on https://www.ase.ro/index_en.asp?page=admission2019 &nbsp;</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://ism.ase.ro/?p=667" class="blog-more">
+                            Read more                            <i class="fa fa-angle-right" style="padding-left: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right blog-comments-count">
+                        <a href="http://ism.ase.ro/?p=667#respond"><i class="fa fa-comment-o" style="padding-right: 5px;"></i>0</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+                                            
+
+    
+    <article id="post-632" class="col-md-4 blog-item blog-layout-2 post-632 post type-post status-publish format-standard has-post-thumbnail hentry category-events" >
+        <div class="blog-item-container">
+
+                            <div class="blog-media">
+                    <a href="http://ism.ase.ro/?p=632" class="blog-media-thumbnail">
+                        <img width="393" height="386" src="http://ism.ase.ro/wp-content/uploads/2019/04/ism_ctf_logo.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="http://ism.ase.ro/wp-content/uploads/2019/04/ism_ctf_logo.png 393w, http://ism.ase.ro/wp-content/uploads/2019/04/ism_ctf_logo-300x295.png 300w" sizes="(max-width: 393px) 100vw, 393px" />                    </a>
+
+                                            <a href="http://ism.ase.ro/?cat=8" class="blog-category">Events</a>
+                                    </div>
+            
+            <div class="blog-top">
+                <a href="http://ism.ase.ro/?p=632" class="blog-title">
+                    ISM CTF #2019                                    </a>
+                <div class="blog-details">
+                    <span style="padding-right: 6px;">April 13, 2019</span>
+                    <span class="post-author-name">By ism.ase.ro</span>
+                </div>
+            </div>
+
+            <div class="blog-bottom">
+                <div class="blog-content">
+                    <p>On April 13, 2019, the first Capture the Flag (CTF) type competition was held within the masters program. The contest was organized for the 2nd year students . Congratulations to the participating teams.</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://ism.ase.ro/?p=632" class="blog-more">
+                            Read more                            <i class="fa fa-angle-right" style="padding-left: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right blog-comments-count">
+                        <a href="http://ism.ase.ro/?p=632#respond"><i class="fa fa-comment-o" style="padding-right: 5px;"></i>0</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+                                            
+
+    
+    <article id="post-627" class="col-md-4 blog-item blog-layout-2 post-627 post type-post status-publish format-standard has-post-thumbnail hentry category-events" >
+        <div class="blog-item-container">
+
+                            <div class="blog-media">
+                    <a href="http://ism.ase.ro/?p=627" class="blog-media-thumbnail">
+                        <img width="1261" height="635" src="http://ism.ase.ro/wp-content/uploads/2019/03/2019_European_CyberSecurity_Challenge.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="http://ism.ase.ro/wp-content/uploads/2019/03/2019_European_CyberSecurity_Challenge.png 1261w, http://ism.ase.ro/wp-content/uploads/2019/03/2019_European_CyberSecurity_Challenge-300x151.png 300w, http://ism.ase.ro/wp-content/uploads/2019/03/2019_European_CyberSecurity_Challenge-768x387.png 768w, http://ism.ase.ro/wp-content/uploads/2019/03/2019_European_CyberSecurity_Challenge-1024x516.png 1024w" sizes="(max-width: 1261px) 100vw, 1261px" />                    </a>
+
+                                            <a href="http://ism.ase.ro/?cat=8" class="blog-category">Events</a>
+                                    </div>
+            
+            <div class="blog-top">
+                <a href="http://ism.ase.ro/?p=627" class="blog-title">
+                    European Cyber Security Challenge 2019                                    </a>
+                <div class="blog-details">
+                    <span style="padding-right: 6px;">March 24, 2019</span>
+                    <span class="post-author-name">By ism.ase.ro</span>
+                </div>
+            </div>
+
+            <div class="blog-bottom">
+                <div class="blog-content">
+                    <p>If you are considering taking part at this event for the Romanian Team you can register for the qualifying phase. The registration schedule and learning resources can be found on http://www.cybersecuritychallenge.ro/etapa-national/</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://ism.ase.ro/?p=627" class="blog-more">
+                            Read more                            <i class="fa fa-angle-right" style="padding-left: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right blog-comments-count">
+                        <a href="http://ism.ase.ro/?p=627#respond"><i class="fa fa-comment-o" style="padding-right: 5px;"></i>0</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+                                            
+
+    
+    <article id="post-605" class="col-md-4 blog-item blog-layout-2 post-605 post type-post status-publish format-standard hentry category-uncategorized" >
+        <div class="blog-item-container">
+
+                             
+
+                                    <a href="http://ism.ase.ro/?cat=1" class="blog-category blog-category-left">Uncategorized</a>
+                            
+            <div class="blog-top">
+                <a href="http://ism.ase.ro/?p=605" class="blog-title">
+                    2018 Admission &#8211; English language interview                                    </a>
+                <div class="blog-details">
+                    <span style="padding-right: 6px;">July 25, 2018</span>
+                    <span class="post-author-name">By ism.ase.ro</span>
+                </div>
+            </div>
+
+            <div class="blog-bottom">
+                <div class="blog-content">
+                    <p>The English language interview for the 2018 admission will take place on Thursday, 26 July 2018, at 8:00, in the 2320 room (3rd floor in the Faculty of Cybernetics, Statistics and Economic Informatics building located on Calea Dorobanti street)</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="http://ism.ase.ro/?p=605" class="blog-more">
+                            Read more                            <i class="fa fa-angle-right" style="padding-left: 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right blog-comments-count">
+                        <a href="http://ism.ase.ro/?p=605#respond"><i class="fa fa-comment-o" style="padding-right: 5px;"></i>0</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+                                    </div>
+
+                                    <a href="http://ism.ase.ro/?page_id=195" class="btn btn-default">
+                        <i class="fa fa-angle-right"></i>
+                        Load more                    </a>
+                
+            </div>
+
+            </div>        </div>
+        <div id="panel-16-0-0-7" class="so-panel widget widget_maskitto_partners" data-index="7" >        <div class="page-section page-section-partners" >
+            <div class="container">
+
+                                <div class="section-title text-center">
+                                            <h3>PARTNERS &amp; FRIENDS</h3>
+                                                                <div class="subtitle"><p>Some of bussines partners that we are proud to call friends</p></div>
+                                                                <div class="section-title-line"></div>
+                                    </div>
+                                
+                
+                <div class="partners-list">
+                                                                        <div class="partner-item">
+                                <a href="http://www.unibuc.ro">
+                                    <img height="100" src="http://ism.ase.ro/wp-content/uploads/2015/10/unibuc.jpg" class="attachment-post-thumbnail wp-post-image" alt="University of Bucharest">
+                                </a>
+                            </div>
+                                                                                                <div class="partner-item">
+                                <a href="http://www.uvt.ro/">
+                                    <img height="100" src="http://ism.ase.ro/wp-content/uploads/2015/10/uvt.jpg" class="attachment-post-thumbnail wp-post-image" alt="Timisoara West Universit">
+                                </a>
+                            </div>
+                                                                                                <div class="partner-item">
+                                <a href="http://www.ubbcluj.ro/">
+                                    <img height="100" src="http://ism.ase.ro/wp-content/uploads/2015/10/ubb.gif" class="attachment-post-thumbnail wp-post-image" alt="Babes Bolyai Cluj-Napoca University">
+                                </a>
+                            </div>
+                                                                                                <div class="partner-item">
+                                <a href="http://www.pub.ro/">
+                                    <img height="100" src="http://ism.ase.ro/wp-content/uploads/2015/10/upb.jpg" class="attachment-post-thumbnail wp-post-image" alt="Politehnica University Bucharest">
+                                </a>
+                            </div>
+                                                                                                <div class="partner-item">
+                                <a href="http://ism.ase.ro/images/partners/atm.gif">
+                                    <img height="100" src="http://ism.ase.ro/wp-content/uploads/2015/10/atm.gif" class="attachment-post-thumbnail wp-post-image" alt="Military Technical Academy">
+                                </a>
+                            </div>
+                                                                                                <div class="partner-item">
+                                <a href="http://www.ase.ro">
+                                    <img height="100" src="http://ism.ase.ro/wp-content/uploads/2015/10/ase.jpg" class="attachment-post-thumbnail wp-post-image" alt="Bucharest University of Economic Studies">
+                                </a>
+                            </div>
+                                                            </div>
+            </div>
+        </div>
+    </div>    <div id="panel-16-0-0-8" class="so-panel widget widget_maskitto_include_other_page" data-index="8" >	        <div id="page-id-94" class="page- page-section" style="padding: 150px 0;background-color: #cfbab9;background-image: url(http://ism.ase.ro/wp-content/uploads/2015/01/cybersecurity_slide.jpg);">
+	            <div class="container page-list page-no-subtitle">
+
+
+	                
+	                    <div class="page-node section-title-large text-center">
+	                        <div class="title" style="color: #ffffff;">
+	                            Cybersecurity	                            	                        </div>
+	                    </div>
+	                    	                        <div class="page-node section-content-large" style="color: #ffffff;">
+	                            <div class="post-inner">
+	                                <p style="text-align: center;">
+<blockquote><p>Companies spend millions of dollars on firewalls, encryption, and secure access devices, and it’s money wasted, because none of these measures address the weakest link in the security chain.</p></blockquote>
+<p> &#8211; Kevin Mitnick</p>
+	                            </div>
+	                        </div>
+	                    
+	                
+
+	                            
+
+
+	                	                
+
+							                	                	            </div>
+	        </div>
+
+
+	        
+
+		</div><div id="panel-16-0-0-9" class="so-panel widget widget_maskitto_include_other_page panel-last-child" data-index="9" >	        <div id="page-id-90" class="page-template-contact page-section" style="padding: 35px 0;">
+	            <div class="container page-list page-no-subtitle">
+
+
+	                
+	                    	                        <div class="page-node section-title text-center">
+	                            <h3 style="">
+	                            		                                	Contacts	                                	                                	                            </h3>
+
+	                            
+	                            	                                <div class="section-title-line"></div>
+	                            	                        </div>
+	                    
+	                    
+	                
+
+	                	                    <div class="page-node contact-section">
+	                        <div>
+	                        	<div class="post-inner"><div id="pl-90"  class="panel-layout" ><div id="pg-90-0"  class="panel-grid panel-no-style" ><div id="pgc-90-0-0"  class="panel-grid-cell" ><div id="panel-90-0-0-0" class="so-panel widget widget_sow-editor panel-first-child" data-index="0" ><div class="so-widget-sow-editor so-widget-sow-editor-base">
+<div class="siteorigin-widget-tinymce textwidget">
+	<p>Location:  Faculty of Cybernetics, Statistics and Economic Informatics, Office 2315, 3rd floor, Virgil Magearu Building, Calea Dorobantilor Ave. No. 15-17, District 1, Bucharest<br />
+010552, Romania</p>
+<p>Phone number:  (+40) 021 319 19 00 / int 331</p>
+<p>E-mail:  ism@ase.ro / ism.ase.ro@gmail.com</p>
+<p>Faculty Secretary: Albu Doris (doris.albu@csie.ase.ro)</p>
+<p>Directions: If you use the subway, get down at Piata Romana station on the <a href="http://www.metrorex.ro/" target="_blank">M2 magistral</a>. If you come from the Gara de Nord railway station take the 79 or 86 bus. Buses 300, 301, 330, 331 have stations in or near Piata Romana square</p>
+</div>
+</div></div><div id="panel-90-0-0-1" class="so-panel widget widget_text" data-index="1" ><div class="panel-widget-style panel-widget-style-for-90-0-0-1" >			<div class="textwidget"><br/></div>
+		</div></div><div id="panel-90-0-0-2" class="so-panel widget widget_sow-image panel-last-child" data-index="2" ><div class="so-widget-sow-image so-widget-sow-image-default-ab3f263fe0f4">
+
+<div class="sow-image-container">
+<a href="https://www.google.ro/maps/place/Cybernetics,+Statistics+and+Informatics/@44.4474423,26.0993479,17.17z/data=!4m5!3m4!1s0x40b1ff527c260e8d:0xf4ab185194d10eba!8m2!3d44.4479606!4d26.099141" target="_blank" rel="noopener noreferrer" >	<img src="http://ism.ase.ro/wp-content/uploads/2015/01/CSIE_map.png" width="1331" height="747" srcset="http://ism.ase.ro/wp-content/uploads/2015/01/CSIE_map.png 1331w, http://ism.ase.ro/wp-content/uploads/2015/01/CSIE_map-300x168.png 300w, http://ism.ase.ro/wp-content/uploads/2015/01/CSIE_map-768x431.png 768w, http://ism.ase.ro/wp-content/uploads/2015/01/CSIE_map-1024x575.png 1024w" sizes="(max-width: 1331px) 100vw, 1331px" alt="" 		class="so-widget-image"/>
+</a></div>
+
+</div></div></div></div></div></div>
+	                        </div>
+	                        	                            <div class="contact-social-icons">  
+	                                
+		
+					<a href="https://www.facebook.com/ism.master" target = "_blank" ><i class="fa fa-facebook"></i></a>
+		
+					<a href="http://twitter.com/ismasero" target = "_blank" ><i class="fa fa-twitter"></i></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+					<a href="http://www.linkedin.com/pub/it-c-security-master-informatics-security-master/24/873/a15" target = "_blank" ><i class="fa fa-linkedin"></i></a>
+		
+		
+		
+		
+
+    	                            </div>
+	                        	                    </div>
+	                            
+
+
+	                	                
+
+							                	                	            </div>
+	        </div>
+
+
+	        
+
+		</div></div></div></div>
+	
+
+</div>
+	<footer class="bottom">
+		<div class="container">
+		
+							<a href="http://ism.ase.ro/" class="footer-logo">
+											<img src="http://ism.ase.ro/wp-content/uploads/2015/10/Logo-ISM_medium.png" alt="" />
+									</a>
+			
+
+							<div class="copyrights">
+					<span class="thank-you-for-your-support">
+						<a href="http://shufflehound.com/maskitto-light/">Maskitto Light</a> WordPress Theme by Shufflehound.</span>
+					</span>
+					Content copyrights 2015 IT&C Security Master				</div>
+			
+		</div>
+	</footer>
+
+			<div class="back-top"><i class="fa fa-angle-up"></i></div>
+	
+                <style type="text/css" media="all"
+                       id="siteorigin-panels-layouts-footer">/* Layout 90 */ #pgc-90-0-0 { width:100%;width:calc(100% - ( 0 * 30px ) ) } #pl-90 #panel-90-0-0-0 , #pl-90 #panel-90-0-0-1 , #pl-90 #panel-90-0-0-2 {  } #pl-90 .so-panel { margin-bottom:30px } #pl-90 .so-panel:last-child { margin-bottom:0px } #panel-90-0-0-1> .panel-widget-style { padding:10px } @media (max-width:780px){ #pg-90-0.panel-no-style, #pg-90-0.panel-has-style > .panel-row-style { -webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column } #pg-90-0 > .panel-grid-cell , #pg-90-0 > .panel-row-style > .panel-grid-cell { width:100%;margin-right:0 } #pl-90 .panel-grid-cell { padding:0 } #pl-90 .panel-grid .panel-grid-cell-empty { display:none } #pl-90 .panel-grid .panel-grid-cell-mobile-last { margin-bottom:0px }  } </style><link rel='stylesheet' id='sow-image-default-ab3f263fe0f4-css'  href='http://ism.ase.ro/wp-content/uploads/siteorigin-widgets/sow-image-default-ab3f263fe0f4.css?ver=5.2.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/js/vendor/jquery.qtip.min.js?ver=3.1.22'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/js/vendor/moment.min.js?ver=3.1.22'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/js/vendor/moment-timezone-with-data.min.js?ver=3.1.22'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var simcal_default_calendar = {"ajax_url":"\/wp-admin\/admin-ajax.php","nonce":"4856f58521","locale":"en_US","text_dir":"ltr","months":{"full":["January","February","March","April","May","June","July","August","September","October","November","December"],"short":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},"days":{"full":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"short":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]},"meridiem":{"AM":"AM","am":"am","PM":"PM","pm":"pm"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/js/default-calendar.min.js?ver=3.1.22'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-content/plugins/google-calendar-events/assets/js/vendor/imagesloaded.pkgd.min.js?ver=3.1.22'></script>
+<script type='text/javascript' src='http://ism.ase.ro/wp-includes/js/wp-embed.min.js?ver=5.2.2'></script>
+<script type="text/javascript">document.body.className = document.body.className.replace("siteorigin-panels-before-js","");</script><!-- Maskitto Light theme by http://shufflehound.com (Shufflehound Themes) -->
+
+	
+
+			<script type="text/javascript">
+			jQuery( document ).ready(function( $ ) {
+				$('.navbar .dropdown').hover(function() {
+				  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
+				}, function() {
+				  $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
+				});
+
+				$( '.dropdown-toggle' ).on( 'click', function() {
+					window.location.href = $(this).attr( 'href' );
+					return false;
+				});
+			});
+			</script>
+
+    
+
+
+</body>
+</html>
+
+ The contents 2 of the HTML page in 15 miliseconds is:
+
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="ro"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){window.google={kEI:'6cJxXsv1LIXBlwSK7ZrADA',kEXPI:'0,1353747,5661,732,223,3657,1448,206,2415,789,10,168,883,175,364,1435,4,60,742,75,383,142,104,5,306,318,235,155,339,506,159,105,17,27,29,74,5,263,414406,712176,1197791,233,125,41,329077,1294,12383,4855,32691,15248,867,28684,364,8824,8384,4858,1362,284,4039,4967,3024,4744,3118,7915,1808,4998,7931,5297,2054,920,873,1217,2975,6430,7432,3874,2884,20,318,4516,2778,520,399,2277,8,2796,1593,1279,2212,202,328,149,1103,327,513,517,1466,8,49,157,4100,312,1137,2,2063,606,1839,184,545,1232,520,1947,729,18,429,1053,93,328,1285,15,2927,2247,473,459,880,748,1039,3228,2844,7,438,882,951,2534,794,780,1254,6516,2659,642,2450,2458,1226,1462,281,2037,1617,1382,2854,553,405,503,2,941,532,2082,674,207,531,471,514,2896,2523,226,995,828,842,188,2,290,1767,188,3,346,201,29,157,813,183,388,173,121,372,96,105,623,193,498,125,1906,440,266,149,189,1983,1125,205,742,486,232,507,521,28,201,628,2,531,589,273,120,88,173,218,142,454,622,589,192,921,424,46,134,1399,1333,216,194,142,179,321,300,267,24,1,2,1068,154,301,362,277,354,59,6,592,276,395,2,8,40,283,852,116,99,183,28,95,5835989,13,3263,1802618,4194968,2801054,549,333,444,1,2,80,1,900,896,1,8,1,2,2551,1,748,141,59,736,563,1,4265,1,1,1,1,137,1,1193,641,5,76,20,3,1,328,3,15,20,1,59,1,23963230,24',kBL:'sClC'};google.sn='webhp';google.kHL='ro';})();(function(){google.lc=[];google.li=0;google.getEI=function(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||google.kEI};google.getLEI=function(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b};google.ml=function(){return null};google.time=function(){return Date.now()};google.log=function(a,b,e,c,g){if(a=google.logUrl(a,b,e,c,g)){b=new Image;var d=google.lc,f=google.li;d[f]=b;b.onerror=b.onload=b.onabort=function(){delete d[f]};google.vel&&google.vel.lu&&google.vel.lu(a);b.src=a;google.li=f+1}};google.logUrl=function(a,b,e,c,g){var d="",f=google.ls||"";e||-1!=b.search("&ei=")||(d="&ei="+google.getEI(c),-1==b.search("&lei=")&&(c=google.getLEI(c))&&(d+="&lei="+c));c="";!e&&google.cshid&&-1==b.search("&cshid=")&&"slh"!=a&&(c="&cshid="+google.cshid);a=e||"/"+(g||"gen_204")+"?atyp=i&ct="+a+"&cad="+b+d+f+"&zx="+google.time()+c;/^http:/i.test(a)&&"https:"==window.location.protocol&&(google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a};}).call(this);(function(){google.y={};google.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1};google.lm=[];google.plm=function(a){google.lm.push.apply(google.lm,a)};google.lq=[];google.load=function(a,b,c){google.lq.push([[a],b,c])};google.loadAll=function(a,b){google.lq.push([a,b])};}).call(this);google.f={};(function(){
+document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a="1"==c||"q"==c&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&&a!=document.documentElement;a=a.parentElement)if("A"==a.tagName){a="1"==a.getAttribute("data-nohref");break a}a=!1}a&&b.preventDefault()},!0);}).call(this);
+var a=window.location,b=a.href.indexOf("#");if(0<=b){var c=a.href.substring(b+1);/(^|&)q=/.test(c)&&-1==c.indexOf("#")&&a.replace("/search?"+c.replace(/(^|&)fp=[^&]*/g,"")+"&cad=h")};</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
+</style><style>body,td,a,p,.h{font-family:arial,sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#36c}.q{color:#00c}.ts td{padding:0}.ts{border-collapse:collapse}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px arial,sans-serif}.gsfs{font:17px arial,sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#000}a{color:#11c;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#36c}a:visited{color:#551a8b}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#eee;border:solid 1px;border-color:#ccc #999 #999 #ccc;height:30px}.lsbb{display:block}.ftl,#fll a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;border:none;color:#000;cursor:pointer;height:30px;margin:0;outline:0;font:15px arial,sans-serif;vertical-align:top}.lsb:active{background:#ccc}.lst:focus{outline:none}.tiah{width:458px}</style><script nonce="E+KWXiqtM5TZZyp33aBY/g=="></script></head><body bgcolor="#fff"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var src='/images/nav_logo229.png';var iesg=false;document.body.onload = function(){window.n && window.n();if (document.images){new Image().src=src;}
+if (!iesg){document.f&&document.f.q.focus();document.gbqf&&document.gbqf.q.focus();}
+}
+})();</script><div id="mngb"> <div id=gbar><nobr><b class=gb1>C�utare</b> <a class=gb1 href="http://www.google.ro/imghp?hl=ro&tab=wi">Imagini</a> <a class=gb1 href="http://maps.google.ro/maps?hl=ro&tab=wl">H�r&#539;i</a> <a class=gb1 href="http://www.youtube.com/?gl=RO&tab=w1">YouTube</a> <a class=gb1 href="http://news.google.ro/nwshp?hl=ro&tab=wn">&#536;tiri</a> <a class=gb1 href="https://mail.google.com/mail/?tab=wm">Gmail</a> <a class=gb1 href="https://drive.google.com/?tab=wo">Drive</a> <a class=gb1 href="https://www.google.com/calendar?tab=wc">Calendar</a> <a class=gb1 style="text-decoration:none" href="https://www.google.ro/intl/ro/about/products?tab=wh"><u>Mai multe</u> &raquo;</a></nobr></div><div id=guser width=100%><nobr><span id=gbn class=gbi></span><span id=gbf class=gbf></span><span id=gbe></span><a href="http://www.google.ro/history/optout?hl=ro" class=gb4>Istoric Web</a> | <a  href="/preferences?hl=ro" class=gb4>Set�ri</a> | <a target=_top id=gb_70 href="https://accounts.google.com/ServiceLogin?hl=ro&passive=true&continue=http://www.google.ro/" class=gb4>Conecta&#539;i-v�</a></nobr></div><div class=gbh style=left:0></div><div class=gbh style=right:0></div> </div><center><br clear="all" id="lgpd"><div id="lga"><img alt="Google" height="92" src="/images/branding/googlelogo/1x/googlelogo_white_background_color_272x92dp.png" style="padding:28px 0 14px" width="272" id="hplogo"><br><br></div><form action="/search" name="f"><table cellpadding="0" cellspacing="0"><tr valign="top"><td width="25%">&nbsp;</td><td align="center" nowrap=""><input name="ie" value="ISO-8859-2" type="hidden"><input value="ro" name="hl" type="hidden"><input name="source" type="hidden" value="hp"><input name="biw" type="hidden"><input name="bih" type="hidden"><div class="ds" style="height:32px;margin:4px 0"><div style="position:relative;zoom:1"><input class="lst tiah" style="margin:0;padding:5px 8px 0 6px;vertical-align:top;color:#000;padding-right:38px" autocomplete="off" value="" title="C�utare Google" maxlength="2048" name="q" size="57"><img src="/textinputassistant/tia.png" style="position:absolute;cursor:pointer;right:5px;top:4px;z-index:300" data-script-url="/textinputassistant/11/ro_tia.js" id="tsuid1" alt="" height="23" width="27"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var id='tsuid1';document.getElementById(id).onclick = function(){var s = document.createElement('script');s.src = this.getAttribute('data-script-url');(document.getElementById('xjsc')||document.body).appendChild(s);};})();</script></div></div><br style="line-height:0"><span class="ds"><span class="lsbb"><input class="lsb" value="C�utare Google" name="btnG" type="submit"></span></span><span class="ds"><span class="lsbb"><input class="lsb" id="tsuid2" value="M� simt norocos" name="btnI" type="submit"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var id='tsuid2';document.getElementById(id).onclick = function(){if (this.form.q.value){this.checked = 1;if (this.form.iflsig)this.form.iflsig.disabled = false;}
+else top.location='/doodles/';};})();</script><input value="AINFCbYAAAAAXnHQ-Zw0XB-IOu1A1r2txv-YW7s0pc22" name="iflsig" type="hidden"></span></span></td><td class="fl sblc" align="left" nowrap="" width="25%"><a href="/advanced_search?hl=ro&amp;authuser=0">C�utare avansat�</a></td></tr></table><input id="gbv" name="gbv" type="hidden" value="1"><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){var a,b="1";if(document&&document.getElementById)if("undefined"!=typeof XMLHttpRequest)b="2";else if("undefined"!=typeof ActiveXObject){var c,d,e=["MSXML2.XMLHTTP.6.0","MSXML2.XMLHTTP.3.0","MSXML2.XMLHTTP","Microsoft.XMLHTTP"];for(c=0;d=e[c++];)try{new ActiveXObject(d),b="2"}catch(h){}}a=b;if("2"==a&&-1==location.search.indexOf("&gbv=2")){var f=google.gbvu,g=document.getElementById("gbv");g&&(g.value=a);f&&window.setTimeout(function(){location.href=f},0)};}).call(this);</script></form><div id="gac_scont"></div><div style="font-size:83%;min-height:3.5em"><br><div id="gws-output-pages-elements-homepage_additional_languages__als"><style>#gws-output-pages-elements-homepage_additional_languages__als{font-size:small;margin-bottom:24px}#SIvCob{display:inline-block;line-height:28px;}#SIvCob a{padding:0 3px;}.H6sW5{display:inline-block;margin:0 2px;white-space:nowrap}.z4hgWe{display:inline-block;margin:0 2px}</style><div id="SIvCob">Google oferit �n:  <a href="http://www.google.ro/setprefs?sig=0_8wX1gkk_E9KZI7DN1GQ9yq91EdM%3D&amp;hl=hu&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiLjozjtaPoAhWF4IUKHYq2BsgQ2ZgBCAU">magyar</a>    <a href="http://www.google.ro/setprefs?sig=0_8wX1gkk_E9KZI7DN1GQ9yq91EdM%3D&amp;hl=de&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwiLjozjtaPoAhWF4IUKHYq2BsgQ2ZgBCAY">Deutsch</a>  </div></div></div><span id="footer"><div style="font-size:10pt"><div style="margin:19px auto;text-align:center" id="fll"><a href="/intl/ro/ads/">Programe de publicitate</a><a href="http://www.google.ro/intl/ro/services/">Solu�ii de afaceri</a><a href="/intl/ro/about.html">Totul despre Google</a><a href="http://www.google.ro/setprefdomain?prefdom=US&amp;sig=K__fo_BAxt-DnzlE6NLmwYRn1dunY%3D" id="fehl">Google.com</a></div></div><p style="font-size:8pt;color:#767676">&copy; 2020 - <a href="/intl/ro/policies/privacy/">Confiden&#539;ialitate</a> - <a href="/intl/ro/policies/terms/">Termeni</a></p></span></center><script nonce="E+KWXiqtM5TZZyp33aBY/g==">(function(){window.google.cdo={height:0,width:0};(function(){var a=window.innerWidth,b=window.innerHeight;if(!a||!b){var c=window.document,d="CSS1Compat"==c.compatMode?c.documentElement:c.body;a=d.clientWidth;b=d.clientHeight}a&&b&&(a!=google.cdo.width||b!=google.cdo.height)&&google.log("","","/client_204?&atyp=i&biw="+a+"&bih="+b+"&ei="+google.kEI);}).call(this);})();(function(){var u='/xjs/_/js/k\x3dxjs.hp.en.yxnGsRJOVRQ.O/m\x3dsb_he,d/am\x3dgAEBNgI/d\x3d1/rs\x3dACT90oGCEo6L8TEG02IxL3BcoXRlwkMisA';
+setTimeout(function(){var b=document;var a="SCRIPT";"application/xhtml+xml"===b.contentType&&(a=a.toLowerCase());a=b.createElement(a);a.src=u;google.timers&&google.timers.load&&google.tick&&google.tick("load","xjsls");document.body.appendChild(a)},0);})();(function(){window.google.xjsu='/xjs/_/js/k\x3dxjs.hp.en.yxnGsRJOVRQ.O/m\x3dsb_he,d/am\x3dgAEBNgI/d\x3d1/rs\x3dACT90oGCEo6L8TEG02IxL3BcoXRlwkMisA';})();function _DumpException(e){throw e;}
+function _F_installCss(c){}
+(function(){google.spjs=false;google.snet=true;google.em=[];google.emw=false;google.pdt=0;})();(function(){var pmc='{\x22d\x22:{},\x22sb_he\x22:{\x22agen\x22:true,\x22cgen\x22:true,\x22client\x22:\x22heirloom-hp\x22,\x22dh\x22:true,\x22dhqt\x22:true,\x22ds\x22:\x22\x22,\x22ffql\x22:\x22en\x22,\x22fl\x22:true,\x22host\x22:\x22google.ro\x22,\x22isbh\x22:28,\x22jsonp\x22:true,\x22msgs\x22:{\x22cibl\x22:\x22&#536;terge&#539;i c�utarea\x22,\x22dym\x22:\x22A&#539;i dorit s� scrie&#539;i:\x22,\x22lcky\x22:\x22M� simt norocos\x22,\x22lml\x22:\x22Afla&#539;i mai multe\x22,\x22oskt\x22:\x22Instrumente pentru introducere de text\x22,\x22psrc\x22:\x22Aceast� c�utare a fost eliminat� din \\u003Ca href\x3d\\\x22/history\\\x22\\u003EIstoricul dvs. Web\\u003C/a\\u003E\x22,\x22psrl\x22:\x22Elimina&#539;i\x22,\x22sbit\x22:\x22C�uta&#539;i dup� imagine\x22,\x22srch\x22:\x22C�utare Google\x22},\x22ovr\x22:{},\x22pq\x22:\x22\x22,\x22refpd\x22:true,\x22rfs\x22:[],\x22sbpl\x22:16,\x22sbpr\x22:16,\x22scd\x22:10,\x22stok\x22:\x22TsKJxaAAmy5LW8we3Wg7uNh5BjY\x22,\x22uhde\x22:false}}';google.pmc=JSON.parse(pmc);})();</script>        </body></html>
+Checkout
+Should throw an object not found exception by invoking on HTMLReader ejb object after @Remove method
