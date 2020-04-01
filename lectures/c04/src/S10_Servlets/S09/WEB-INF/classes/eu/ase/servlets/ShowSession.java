@@ -20,7 +20,7 @@ public class ShowSession extends HttpServlet {
     PrintWriter out = response.getWriter();
     String title = "Show Session";
     String heading;
-    Integer accessCount = new Integer(0);;
+    Integer accessCount = new Integer(0);
     if (session.isNew()) {
       heading = "Welcome, Newcomer";
       session.setAttribute("accessCount", accessCount);

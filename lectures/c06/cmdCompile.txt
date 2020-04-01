@@ -62,6 +62,8 @@ java -Djava.security.policy=policy.all eu/ase/rmi/SampleClient
 
 A.3 RMI Web
 
+# *** run in Amazon EC2
+
 -Prerequisites for running Web JSP/Java Bean and RMI Servers in Linux Ubuntu from Oracle VirtualBox / VMWare Player within network infrastructure with DHCP:
 1) Oracle VirtualBox / VMWare Player with Network in Bridge/Replicate physical network state
 2) Each Linux Ubuntu from Oracle VirtualBox / VMWare Player has its own IP obtain from DHCP inside '/etc/hosts' file
