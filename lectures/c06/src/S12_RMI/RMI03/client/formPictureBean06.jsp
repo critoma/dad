@@ -4,7 +4,7 @@
 
 <BODY>
 <jsp:useBean id="pp1" class="eu.ase.rmiweb.PictureProcessorBean" />
-<%! private String[] rmis = new String[]{"172.31.45.35", "172.31.33.118", "172.31.45.37"}; %>
+<%! private String[] rmis = new String[]{"172.31.45.37", "172.31.45.38", "172.31.45.39"}; %>
 <%
  
 	String numePoza = request.getParameter("oldName");
@@ -17,7 +17,7 @@
 	int processingCounts = 2000;
 
 	//System.setProperty("java.rmi.server.hostname", "10.2.65.95");
-	System.setProperty("java.rmi.server.hostname", "172.31.45.35");
+	System.setProperty("java.rmi.server.hostname", "172.31.45.37");
 	out.println("Web Server IP = " + java.net.InetAddress.getLocalHost());
 	out.println("Web Server RMI Server IP = " + System.getProperty("java.rmi.server.hostname"));
 
@@ -37,7 +37,7 @@
 %>
 <H1 ALIGN=CENTER>Response from JSP to the request from the HTML page : The request has been processed!</H1>
 <%
-		out.println("From: " + d1 + " , To:" + d2 + "using environment: " + rmiType);
+		out.println("From: " + d1 + " , To:" + d2 + ", using environment: " + rmiType);
 	} else {
 %>
 <H1 ALIGN=CENTER>Response from JSP to the request from the HTML page : The request has NOT been processed!</H1>
