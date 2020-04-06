@@ -329,7 +329,10 @@ mpirun -np 2 -hostfile ./nodefile ./testopenmpi.elf64
 mpirun -np 2 -hostfile ./nodefile ./scatter.elf64
 mpirun -mca btl_base_warn_component_unused 0  -np 2 -hostfile ./nodefile ./scatter.elf64
 
-
+# Infiniband Mellanox drivers at byte level from 
+# https://www.mellanox.com/pdf/prod_software/Ubuntu_18_04_Inbox_Driver_User_Manual.pdf 
+# have issues in Ubuntu and the command line can avoid this:
+mpirun --mca btl ^openib -np 2 -hostfile ./nodefile ./scatter.elf64
 
 
 ### debug in Amazon EC2 instances:
