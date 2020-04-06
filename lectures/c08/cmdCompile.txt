@@ -273,3 +273,80 @@ mpicc scatter.c -o scatter
 #mpirun ./scatter
 mpirun -np 2 ./scatter
 
+
+#################################################################################
+# with 3 instances of Linux Ubuntu 18.04 LTS in Amazon AWS EC2 cluster:
+
+
+
+#####
+# https://console.aws.amazon.com/ec2/
+# https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#Instances:sort=instanceId
+# Private IPs: 172.31.45.37, 172.31.45.38 ,    172.31.45.39
+# get the connectivity strings after each reboot from Amazon EC2 dashboard:
+
+ssh -i "clusterAwsEc2_01.pem" ubuntu@ec2-18-191-196-121.us-east-2.compute.amazonaws.com
+ssh -i "clusterAwsEc2_01.pem" ubuntu@ec2-18-191-60-84.us-east-2.compute.amazonaws.com
+ssh -i "clusterAwsEc2_01.pem" ubuntu@ec2-18-224-37-212.us-east-2.compute.amazonaws.com
+
+sudo apt install libopenmpi-dev
+
+lscpu
+uname -a
+free --mega
+ifconfig
+
+# on first 2 nodes:
+sudo nano /etc/hosts
+172.31.45.37 node1
+172.31.45.38 node2
+
+# in first node, only once: 
+cd /home/ubuntu/openmpitest
+nano nodefile
+node1 slots=1
+node2 slots=1
+
+
+mpicc -o testopenmpi.elf64 testopenmpi.c
+mpicc -o scatter.elf64 scatter.c
+
+cd /home/ubuntu
+touch .ssh/clusterAwsEc2_01.pem
+chmod 600 .ssh/clusterAwsEc2_01.pem
+nano .ssh/clusterAwsEc2_01.pem
+...
+cp .ssh/clusterAwsEc2_01.pem ~/.ssh/id_rsa
+
+
+scp -i "./.ssh/clusterAwsEc2_01.pem" -r openmpitest ubuntu@node2:/home/ubuntu
+ssh -i ".ssh/clusterAwsEc2_01.pem" ubuntu@node2
+ssh ubuntu@node2
+ssh ubuntu@node1
+
+mpirun -np 1 ./testopenmpi.elf64
+mpirun -np 2 -hostfile ./nodefile ./testopenmpi.elf64
+mpirun -np 2 -hostfile ./nodefile ./scatter.elf64
+mpirun -mca btl_base_warn_component_unused 0  -np 2 -hostfile ./nodefile ./scatter.elf64
+
+
+
+
+### debug in Amazon EC2 instances:
+# Security Groups - see inbound and outbound rules:
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#SecurityGroups:
+# Save snapshots - be aware about invoice for free tire account - only 30 GB overall storage is allowed (including the standard storage):
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#Snapshots:visibility=owned-by-me;sort=snapshotId
+# Manage volumes - attach to one or another instance macjine:
+https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#Volumes:sort=desc:createTime
+# Console dashboad: - pay attention to stop all instances otherwise a 200 usd+ bill to pay and unfortunately after each restart
+# the CONNECTIVITY STRING VIA SSH AND PUBLIC IP are CHANGED!
+https://console.aws.amazon.com/ec2/
+
+ubuntu@ip-172-31-45-38:~$ sudo mkdir /media/newhd
+sudo mount /dev/xvdf1 /media/newhd
+ls /media/newhd/home/ubuntu
+sudo umount /dev/xvdf1
+ 
+
+
