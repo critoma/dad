@@ -204,7 +204,8 @@ export DAD=/home/ubuntu/dad/lectures
 cd $DAD/c06/src/S12_RMI/RMI03/server
 
 #scp -r ec2-user@172.31.45.35:/home/ec2-user/dad/lectures/c06/src/S12_RMI/RMI03/server/* .
-
+#from ubuntu 18 with internal IP 172.31.45.38 and 172.31.45.39
+#scp -r ubuntu@172.31.45.37:/home/ubuntu/dad/lectures/c06/src/S12_RMI/RMI03/server/* .
 
 
 export JAVA_HOME=/opt/jdk1.8.0_131
@@ -213,21 +214,28 @@ export CLASSPATH=.:$JAVA_HOME/jre/lib
 cd $DAD/c06/src/S12_RMI/RMI03/server
 
 rmiregistry&
-java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.33.118 eu.ase.rmiweb.SampleServerImageProgMain
+#java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.33.118 eu.ase.rmiweb.SampleServerImageProgMain
+java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.45.38 eu.ase.rmiweb.SampleServerImageProgMain
 
 rmiregistry&
-java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.45.37 eu.ase.rmiweb.SampleServerImageProgMain
+java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.45.39 eu.ase.rmiweb.SampleServerImageProgMain
 
 
 #####
 
-[ec2-user@ip-172-31-45-35 ~]$ export JAVA_HOME=/opt/jdk1.8.0_131
-[ec2-user@ip-172-31-45-35 ~]$ export CATALINA_HOME=/opt/apache-tomcat-9.0.4
-[ec2-user@ip-172-31-45-35 ~]$ export PATH=.:$JAVA_HOME/bin:$CATALINA_HOME/bin:$PATH
-[ec2-user@ip-172-31-45-35 ~]$ export CLASSPATH=.:$JAVA_HOME/jre/lib
-[ec2-user@ip-172-31-45-35 ~]$ export DAD=/home/ec2-user/dad/lectures
+#[ec2-user@ip-172-31-45-35 ~]$ export JAVA_HOME=/opt/jdk1.8.0_131
+#[ec2-user@ip-172-31-45-35 ~]$ export DAD=/home/ec2-user/dad/lectures
 
-export PATH=.:/opt/jdk1.8.0_131/bin:/opt/apache-tomcat-9.0.4/bin:/usr/lib64/openmpi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:/home/ec2-user/bin
+#[ubuntu@ip-172-31-45-37 ~]$ export JAVA_HOME=/opt/jdk1.8.0_131
+
+export JAVA_HOME=/opt/jdk1.8.0_131
+export CATALINA_HOME=/opt/apache-tomcat-9.0.4
+export PATH=.:$JAVA_HOME/bin:$CATALINA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/jre/lib
+export DAD=/home/ubuntu/dad/lectures
+
+
+#export PATH=.:/opt/jdk1.8.0_131/bin:/opt/apache-tomcat-9.0.4/bin:/usr/lib64/openmpi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:/home/ec2-user/bin
 
 
 
@@ -286,8 +294,8 @@ http://ec2-18-191-196-121.us-east-2.compute.amazonaws.com:8080/S10/formPicture06
 -> /opt/apache-tomcat-9.0.4/webapps/S10/test1_ct.jpg
 -> 100, 107, 2009, 322 | Local/Distributed
 
-http://ec2-18-191-38-27.us-east-2.compute.amazonaws.com:8080/S10/test1_ct.jpg
-
+#http://ec2-18-191-38-27.us-east-2.compute.amazonaws.com:8080/S10/test1_ct.jpg
+http://ec2-18-191-196-121.us-east-2.compute.amazonaws.com:8080/S10/test1_ct.jpg
 
 
 
