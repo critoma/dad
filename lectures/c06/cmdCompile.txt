@@ -184,10 +184,10 @@ sudo vim ~/.bashrc
 
 #####
 # https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#Instances:sort=instanceId
-ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-18-191-38-27.us-east-2.compute.amazonaws.com
-ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-3-14-14-180.us-east-2.compute.amazonaws.com
-ssh -i "clusterAwsEc2_01.pem" ubuntu@ec2-18-191-173-214.us-east-2.compute.amazonaws.com
-
+# ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-18-191-38-27.us-east-2.compute.amazonaws.com
+# ssh -i "clusterAwsEc2_01.pem" ec2-user@ec2-3-14-14-180.us-east-2.compute.amazonaws.com
+# ssh -i "clusterAwsEc2_01.pem" ubuntu@ec2-18-191-173-214.us-east-2.compute.amazonaws.com
+# Be sure in AWS EC2 instances in /home/ubuntu/.ssh folder there id_rsa with the SSH private key generated into AWS dashboard 
 
 # for: Linux ip-172-31-33-118.us-east-2.compute.internal 4.14.165-131.185.amzn2.x86_64 #1 SMP Wed Jan 15, 2020 x86_64 x86_64 x86_64 GNU/Linux
 scp /home/ec2-user/kits/jdk-8u131-linux-x64.tar.gz ec2-user@172.31.33.118:/home/ec2-user/kits
