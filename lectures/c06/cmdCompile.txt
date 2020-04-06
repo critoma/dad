@@ -161,11 +161,11 @@ http://127.0.0.1:8080/S10/formPicture06.html
 ->C:\Test2.jpg
 ->100, 107, 2009, 322
 
+
 ########################################################################
 # AWS Amazon EC2:
 # https://gist.github.com/diegopacheco/6d69e0cfaf13d4351cfa700bb4af8172
 
-# https://gist.github.com/diegopacheco/6d69e0cfaf13d4351cfa700bb4af8172
 
 # Remove java 7
 sudo yum remove -y java
@@ -195,7 +195,7 @@ scp /home/ec2-user/kits/jdk-8u131-linux-x64.tar.gz ec2-user@172.31.33.118:/home/
 scp /home/ec2-user/kits/jdk-8u131-linux-x64.tar.gz ubuntu@172.31.45.37:/home/ubuntu/kits
 
 @172.31.33.118:
-export DAD=/home/ec2-user/dad/lectures
+# export DAD=/home/ec2-user/dad/lectures
 
 @172.31.45.37
 export DAD=/home/ubuntu/dad/lectures
@@ -203,7 +203,7 @@ export DAD=/home/ubuntu/dad/lectures
 # mkdir -p $DAD/c06/src/S12_RMI/RMI03/server
 cd $DAD/c06/src/S12_RMI/RMI03/server
 
-scp -r ec2-user@172.31.45.35:/home/ec2-user/dad/lectures/c06/src/S12_RMI/RMI03/server/* .
+#scp -r ec2-user@172.31.45.35:/home/ec2-user/dad/lectures/c06/src/S12_RMI/RMI03/server/* .
 
 
 
@@ -236,7 +236,7 @@ cd $DAD/c06/src/S12_RMI/RMI03/client
 javac eu/ase/rmiweb/PictureProcessorBean.java
 
 
-{"172.31.45.35", "172.31.33.118", "172.31.45.37"}
+{"172.31.45.37", "172.31.45.38", "172.31.45.39"}
 
 #### Compile RMI Server plus Start Apache Tomcat 9 and Server RMI
 cd $DAD/c06/src/S12_RMI/RMI03/server
@@ -257,7 +257,7 @@ $CATALINA_HOME/bin/startup.sh
 
 
 rmiregistry &
-java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.45.35 eu.ase.rmiweb.SampleServerImageProgMain
+java -classpath $CLASSPATH -Djava.security.policy=./policy.all -Xmx1000000000 -Djava.rmi.server.hostname=172.31.45.37 eu.ase.rmiweb.SampleServerImageProgMain
 
 #### Compile and Start Client
 cd $DAD/c06/src/S12_RMI/RMI03/client
@@ -279,9 +279,9 @@ cp -R ./eu/ase/rmiweb/*.class $CATALINA_HOME/webapps/S10/WEB-INF/classes/eu/ase/
 # wget https://raw.githubusercontent.com/critoma/dad/master/lectures/c06/src/Test1.jpg
 # mv Test1.jpg test1.jpg
 
-http://ec2-18-191-38-27.us-east-2.compute.amazonaws.com:8080/S10/test1.jpg
+http://ec2-18-191-196-121.us-east-2.compute.amazonaws.com:8080/S10/test1.jpg
 
-http://ec2-18-191-38-27.us-east-2.compute.amazonaws.com:8080/S10/formPicture06.html
+http://ec2-18-191-196-121.us-east-2.compute.amazonaws.com:8080/S10/formPicture06.html
 -> /opt/apache-tomcat-9.0.4/webapps/S10/test1.jpg
 -> /opt/apache-tomcat-9.0.4/webapps/S10/test1_ct.jpg
 -> 100, 107, 2009, 322 | Local/Distributed
