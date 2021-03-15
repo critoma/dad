@@ -116,8 +116,14 @@ g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
 
 # download and extract Open-MPI
 # https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
-# or in Linux Ubuntu 16:
+# or in Linux Ubuntu 16/18/20:
 sudo apt-get install openmpi-bin openmpi-common libopenmpi1.10 libopenmpi-dev
+
+#Ubuntu 20: https://ubuntu.pkgs.org/20.04/ubuntu-universe-arm64/openmpi-bin_4.0.3-0ubuntu1_arm64.deb.html
+Update the package index:
+# sudo apt-get update
+Install openmpi-bin deb package:
+# sudo apt-get install openmpi-bin
 #sudo apt-get install openmpi-bin openmpi-common openssh-client openssh-server libopenmpi1.10 libopenmpi-dev
 
 
