@@ -165,6 +165,12 @@ Please choose the region where you want your App Engine application located:
 Creating App Engine application in project [wserv0001] and region [europe-west]....done.
 Success! The app is now created. Please use `gcloud app deploy` to deploy your first app.
 
+cristian...@cloudshell:~$ #https://github.com/GoogleCloudPlatform/appengine-try-java
+cristian...@cloudshell:~$ git clone https://github.com/GoogleCloudPlatform/appengine-try-java.git
+// https://console.cloud.google.com/cloud-resource-manager?authuser=0&orgonly=true&supportedpurview=project,organizationId,folder&project=&folder=&organizationId=
+// https://console.cloud.google.com/cloud-resource-manager?folder=&organizationId=0&authuser=3&orgonly=true&supportedpurview=project,organizationId,folder
+// Billing: https://console.cloud.google.com/billing/015780-E3245A-04E6B3?authuser=0
+
 secitc@cloudshell:~$ git clone https://github.com/GoogleCloudPlatform/getting-started-java.git
 Cloning into 'getting-started-java'...
 remote: Enumerating objects: 8953, done.
@@ -178,15 +184,26 @@ getting-started-java  README-cloudshell.txt
 
 
 cd getting-started-java/appengine-standard-java8/helloworld
+cd /home/cristian.../wserv0001/appengine-try-java 
+cristian...@cloudshell:~/wserv0001/appengine-try-java$ pwd
+
 
 # localhost
+mvn clean appengine:run
 mvn package appengine:run -DprojectId=wserv0001
 
 # real instance
 gcloud config set project wserv0001
+gcloud config set project wserv0003
 gcloud config unset project
 # modify wserv0001 in pom.xml and then:
+# be sure  in Settings from https://console.cloud.google.com/cloud-build/settings/service-account?project=wserv0003
+# Enabled Cloud Build API for your gmail account (https://console.cloud.google.com/marketplace/product/google/cloudbuild.googleapis.com?project=wserv0003) 
+# and permission are set - App Engine Admin Enabled (https://console.cloud.google.com/apis/library/appengine.googleapis.com?project=wserv0003)
+mvn clean appengine:deploy
 mvn package appengine:deploy
+
+# https://wserv0003.ew.r.appspot.com/index.html
 
 # https://wserv0001.appspot.com
 # https://wserv0001.appspot.com/hello
