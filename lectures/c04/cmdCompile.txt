@@ -208,7 +208,7 @@ mvn package appengine:deploy
 # https://wserv0001.appspot.com
 # https://wserv0001.appspot.com/hello
 
-
+# check your billing account: https://console.cloud.google.com/billing/015780-E3245A-04E6B3?authuser=0
 gcloud app browse
 
 
@@ -252,6 +252,10 @@ public class HelloAppEngine extends HttpServlet {
 
 }
 
+/*
+// be sure in web.xml is edit properly
+*/
+# https://wserv0003.ew.r.appspot.com/hello
 
 ###############################
 
