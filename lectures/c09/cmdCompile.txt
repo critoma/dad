@@ -75,6 +75,11 @@ node oopClasses.js
 node collectArraysMapErr.js
 
 node promise.js
+node promiseasync.js
+
+# Typescript sample:
+# npm install -g typescript
+# tsc hello.ts && node hello.js
 
 # npm install websocket
 node websocket.js
