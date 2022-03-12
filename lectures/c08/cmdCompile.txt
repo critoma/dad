@@ -124,7 +124,7 @@ g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
 # export JAVA_HOME=<JDK_INSTALL_DIR e.g. /opt/software/java/jdk-17.0.2>
 # ./configure --enable-mpi-java --with-jdk-bindir=$JAVA_HOME/bin --with-jdk-headers=$JAVA_HOME/include
 # make
-# make install
+# sudo make install
 
 # or alternatively in Linux Ubuntu 16/18/20:
 sudo apt-get install openmpi-bin openmpi-common libopenmpi-dev
