@@ -124,7 +124,7 @@ Update the package index:
 # sudo apt-get update
 Install openmpi-bin deb package:
 # sudo apt-get install openmpi-bin
-#sudo apt-get install openmpi-bin openmpi-common openssh-client openssh-server libopenmpi1.10 libopenmpi-dev
+#sudo apt-get install build-essential openmpi-bin openmpi-common openssh-client openssh-server libopenmpi1.10 libopenmpi-dev
 
 
 ############################################################################
