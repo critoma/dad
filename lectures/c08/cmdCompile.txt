@@ -117,6 +117,7 @@ g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
 # download and extract Open-MPI
 # https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
 # wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz
+# https://www.open-mpi.org/faq/?category=java
 
 # tar -xf <openmpi_archive>
 # sudo mv <openmpi_dir> /opt/software
@@ -125,6 +126,64 @@ g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
 # ./configure --enable-mpi-java --with-jdk-bindir=$JAVA_HOME/bin --with-jdk-headers=$JAVA_HOME/include
 # make
 # sudo make install
+
+# sudo find / -name mpicc
+# sudo chown ubuntu /usr/local/bin/mpicc
+# sudo cp -R /usr/local/share/openmpi /usr/share/
+# sudo chown -R ubuntu /usr/local/share/openmpi
+# sudo chown -R ubuntu /usr/share/openmpi
+# sudo chown -R ubuntu /usr/local/bin/mpi*
+# sudo chown -R ubuntu /usr/local/bin/*mpi*
+# sudo cp -R /usr/local/bin/mpi* /usr/bin
+# sudo cp -R /usr/local/bin/*mpi* /usr/bin
+# sudo chown ubuntu /usr/local/bin/opal_wrapper
+# sudo chown -R ubuntu /usr/local/bin/orte*
+# ubuntu@ip-172-31-34-167:/opt/software/openmpi-4.1.2$ sudo cp /usr/local/bin/opal_wrapper /usr/bin
+# ubuntu@ip-172-31-34-167:/opt/software/openmpi-4.1.2$ sudo cp /usr/local/bin/orte* /usr/bin
+# ubuntu@ip-172-31-34-167:/opt/software/openmpi-4.1.2$ sudo chown -R ubuntu /usr/bin/orte*
+# sudo chown -R ubuntu /usr/bin/opal_wrapper 
+# mpicc --version && mpijavac -version
+
+# Sample Java bindings MPI program:
+package eudicejmpi;
+
+import mpi.*;
+
+public class TestMpi {
+ public static void main(String[] args) {
+  try {
+   MPI.Init(args);
+   int myrank = MPI.COMM_WORLD.getRank();
+   int size = MPI.COMM_WORLD.getSize();
+   System.out.println("myrank = " + myrank + ", size = " + size);
+ 
+   if(myrank == 0) {
+     char[] message = "Hello, there".toCharArray();
+     MPI.COMM_WORLD.send(message, message.length, MPI.CHAR, 1, 99);
+   }
+   else {
+     char[] message = new char [20] ;
+     MPI.COMM_WORLD.recv(message, 20, MPI.CHAR, 0, 99);
+     System.out.println("received:" + new String(message) + ":");
+   }
+   MPI.Finalize();
+  } catch(MPIException mpie) {
+     mpie.printStackTrace();
+  }
+ }
+}
+
+# /opt/software/java/jdk-17.0.2/bin/javac -classpath .:/usr/local/lib:/opt/software/java/jdk-17.0.2/lib:/usr/local/lib/mpi.jar:/usr/local/lib/shmem.jar eudicejmpi/TestMpi.java
+# nodefile txt file in the current folder should contain:
+node1 slots=1
+node2 slots=1
+
+# put the RSA private key for ssh in ~/.ssh/id_rsa
+# have all the nodes with Java bindings for OpenMPI
+# mpirun /opt/software/java/jdk-17.0.2/bin/java -classpath .:/usr/local/lib:/opt/software/java/jdk-17.0.2/lib:/usr/local/lib/mpi.jar:/usr/local/lib/shmem.jar eudicejmpi.TestMpi
+# mpirun -np 2 -hostfile ./nodefile /opt/software/java/jdk-17.0.2/bin/java -classpath .:/usr/local/lib:/opt/software/java/jdk-17.0.2/lib:/usr/local/lib/mpi.jar:/usr/local/lib/shmem.jar eudicejmpi.TestMpi
+
+
 
 # or alternatively in Linux Ubuntu 16/18/20:
 sudo apt-get install openmpi-bin openmpi-common libopenmpi-dev
