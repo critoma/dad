@@ -25,6 +25,8 @@ public class ProgMainAddVect {
 		// CfgS06_ProgMainAddVectRMIClient => -Djava.security.policy=policy.all
 		// 
 		*/
+		/*
+		// this is for JDK < 15
 	    //set the security manager
 	    try {
 	        System.setSecurityManager(new RMISecurityManager());
@@ -42,7 +44,28 @@ public class ProgMainAddVect {
 	    } catch (RemoteException re) {
 	         System.out.println("Remote exception: " + re.toString());
 	    }
+	    	*/
+		// This is for OpenJDK 17+
+	    try {
+	        // System.setSecurityManager(new RMISecurityManager());
 
-	  } //end method
+	    	LocateRegistry.createRegistry(1099);
+	        //create a local instance of the object
+	        AddVectImpl Server = new AddVectImpl();
+	        //AddVectInterface stub = (AddVectInterface) UnicastRemoteObject.exportObject(Server, 1099);
+	        
+	        
+	        //put the local instance in the registry
+	        //Naming.rebind("SAMPLE-SERVER" , Server);
+	        Naming.rebind("rmi://127.0.0.1:1099/SAMPLE-SERVER-ADDV", Server);
 
-}
+	        System.out.println("Server waiting.....");
+	    } catch (java.net.MalformedURLException me) {
+	         System.out.println("Malformed URL: " + me.toString());
+	    } catch (RemoteException re) {
+	         System.out.println("Remote exception: " + re.toString());
+	    }
+
+	  } //end main method
+
+} // end class
