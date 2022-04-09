@@ -45,7 +45,7 @@ public class ProgMainAddVect {
 	         System.out.println("Remote exception: " + re.toString());
 	    }
 	    	*/
-		// This is for OpenJDK 17+
+		// This is for OpenJDK 17+ / rmic are is not available anymore and launch rmiregistry from here instead command line
 	    try {
 	        // System.setSecurityManager(new RMISecurityManager());
 
