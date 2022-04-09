@@ -10,10 +10,10 @@ public class ProgMainClientRmi {
 	public static void main(String[]  args)
 	   {
 	      // set the security manager for the client
-	      System.setSecurityManager(new RMISecurityManager());
-	      //get the remote object from the registry
+	      // System.setSecurityManager(new RMISecurityManager());
+	      // get the remote object from the registry
 	      try {
-	          System.out.println("Security Manager loaded");
+	          // System.out.println("Security Manager loaded");
 	          String url = "rmi://127.0.0.1:1099/SAMPLE-SERVER-ADDV";
 	          AddVectInterface remoteObject = (AddVectInterface)Naming.lookup(url);
 	          System.out.println("Got remote object");
