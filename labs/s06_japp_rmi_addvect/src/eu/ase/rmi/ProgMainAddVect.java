@@ -51,7 +51,7 @@ public class ProgMainAddVect {
 
 	    	LocateRegistry.createRegistry(1099);
 	        //create a local instance of the object
-	        AddVectImpl Server = new AddVectImpl();
+	        AddVectInterface Server = new AddVectImpl();
 	        //AddVectInterface stub = (AddVectInterface) UnicastRemoteObject.exportObject(Server, 1099);
 	        
 	        
