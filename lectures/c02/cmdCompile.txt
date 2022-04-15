@@ -268,8 +268,14 @@ https://hub.docker.com/r/critoma/ubuntu-java-node-py-dev/
 docker search critoma
 
 docker pull critoma/ubuntu-java-node-py-dev
+# alternatively
+docker pull ubuntu
 
 docker run -it critoma/ubuntu-java-node-py-dev
+
+docker container ls
+
+docker exec -it <container_id> bash
 
 
 
