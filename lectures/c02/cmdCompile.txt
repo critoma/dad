@@ -273,9 +273,9 @@ docker pull ubuntu
 
 docker run -it critoma/ubuntu-java-node-py-dev
 
-docker container ls
+docker container ls -a
 
-docker exec -it <container_id> bash
+docker exec -it <container_id> /bin/bash
 
 
 
