@@ -112,7 +112,31 @@ g++ -fopenmp -O2 ProgMainOpenMpTest03.cpp -o ProgMainOpenMpTest03
 ./ProgMainOpenMpTest03
 
 #############################################################################
+# OpenMPI maybe run in CaaS - Docker, IaaS - Oracle VMBox, Public Cloud - AWS EC2 (Amazon)
+#
+docker search critoma
+# https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
+docker pull critoma/linux-ubuntu-dev-security-ism
+docker run -it critoma/linux-ubuntu-dev-security-ism
 
+$ docker container ls -a
+
+$ docker exec -it <container_id> /bin/bash
+$ docker exec -u stud -t -i 0aa85c74361c /bin/bash
+
+# deprecated:
+# docker pull critoma/ubuntu-java-node-py-dev
+# docker run -it critoma/ubuntu-java-node-py-dev
+
+# alternatively
+docker pull ubuntu
+
+
+docker container ls -a
+
+docker exec -it <container_id> /bin/bash
+e.g.
+docker exec -u stud -t -i 0aa85c74361c /bin/bash
 
 # download and extract Open-MPI
 # https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
