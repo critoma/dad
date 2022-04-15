@@ -274,6 +274,34 @@ docker run -it critoma/ubuntu-java-node-py-dev
 
 
 
+// ##############################################################################
+
+# ***. Create YOUR own Docker container - NOT necessary and totally optional
+https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-from-a-package
+
+https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/
+
+sudo dpkg -i /path/to/package.deb
+
+sudo docker run hello-world
+
+
+
+############
+>terminal
+cd /home/stud/kits/docker
+
+sudo dpkg -i docker-ce_17.03.2~ce-0~ubuntu-xenial_amd64.deb
+
+sudo docker run hello-world
+
+docker --version
+
+docker images
+
+docker container ls
+
+docker exec -it <container_id> bash
 
 
 
