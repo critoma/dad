@@ -276,6 +276,8 @@ docker run -it critoma/ubuntu-java-node-py-dev
 docker container ls -a
 
 docker exec -it <container_id> /bin/bash
+e.g.
+docker exec -u stud -t -i 0aa85c74361c /bin/bash
 
 
 
