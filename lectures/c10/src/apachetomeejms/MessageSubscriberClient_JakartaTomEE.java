@@ -1,5 +1,5 @@
 // # /opt/software/jdk-17.0.2/bin/javac -cp .:/opt/software/apache-tomee-plume-9.0.0-M7/lib/* apachetomeejms/MessageSubscriberClient_JakartaTomEE.java
-// # /opt/software/jdk-17.0.2/bin/java -cp .:/opt/software/apache-tomee-plume-9.0.0-M7/lib/* apachetomeejms.MessageSubscriberClient_JakartaTomEE
+// # /opt/software/jdk-17.0.2/bin/java -cp .:/opt/software/apache-tomee-plume-9.0.0-M7/lib/* apachetomeejms.MessageSubscriberClient_JakartaTomEE tcp://172.17.0.3:61617 jms/topic/test
 
 package apachetomeejms;
 /*
