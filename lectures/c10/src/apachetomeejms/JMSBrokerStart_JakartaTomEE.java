@@ -1,5 +1,5 @@
-// # javac -cp .:$CATALINA_HOME/lib/* apachetomeejms/JMSBrokerStart.java
-// # java -cp .:$CATALINA_HOME/lib/* apachetomeejms.JMSBrokerStart 172.17.0.3 61617
+// # javac -cp .:$CATALINA_HOME/lib/* apachetomeejms/JMSBrokerStart_JakartaTomEE.java
+// # java -cp .:$CATALINA_HOME/lib/* apachetomeejms.JMSBrokerStart_JakartaTomEE 172.17.0.3 61617
 
 package apachetomeejms;
 
@@ -21,7 +21,7 @@ import javax.naming.NamingException;
 
 import org.apache.activemq.broker.BrokerService;
 
-public class JMSBrokerStart {
+public class JMSBrokerStart_JakartaTomEE {
 	public static void initBroker(String ip, String port) throws Exception {
          BrokerService broker = new BrokerService();
          // configure the broker
