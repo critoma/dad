@@ -1,6 +1,7 @@
 # Linux UBUNTU 16/18/20 or Docker:
 https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
 docker pull critoma/linux-ubuntu-dev-security-ism
+docker exec -u stud -it 55c8801b9ad0  -p 3000:3000 /bin/bash
 
 # node.js INTRO and RECAP
 # //set env variables:
