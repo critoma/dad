@@ -91,11 +91,25 @@ node websocket.js
 
 B. REST Services | node.js with Express
 
-# Play with MongoDB first:
+# B.1 node.js + Express for REST API with Files instead Database
+# npm install express
+node restServer.js
+
+# in Chromium, PostMAN plug-in do:
+# GET: http://127.0.0.1:8081/listUsers
+# POST: http://127.0.0.1:8081/addUser
+# GET: http://127.0.0.1:8081/2
+# DELETE: http://127.0.0.1:8081/deleteUser
+
+
+
+
+# B.2 Play with MongoDB first:
 # npm install mongodb
 node testNodeWithMongoDB.js
 
-# Build a REST API using Node.js, Express and MongoDB
+
+# B.3 Complete Build a REST API using Node.js, Express and MongoDB
 mkdir tripcost
 cd tripcost
 npm init -y
@@ -110,15 +124,23 @@ ls -latr node_modules/
 touch serverRESTMongoDB.js
 node serverRESTMongoDB.js
 
+/*
+# // Devoxx May 2019 London UK: https://www.youtube.com/playlist?list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU
+# // DNA for Storage: https://www.youtube.com/watch?v=NsfuBSsF1Fk&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=3
+# // Quantum: https://www.youtube.com/watch?v=RMeWqXdBHIg&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=82
 
-# npm install express
-node restServer.js
+# // # Test REST API with cURL, Postman, etc as plugin in Chrome Browser or command line (CLI) or stand-alone app:
+POST /trip {"name": "London, UK, May 2019"}
+GET /trips
+# POST /expense { trip - id from the prev GET /trips, date, amount, category, description }
+POST /expense { "trip":"61..", "date": "2019-05-16, "amount":25, "category":"food", "description":"Breakfast" }
+POST /expense { "trip":"61..", "date": "2019-05-16, "amount":50, "category":"conference", "description":"Access to Devoxx Conference" }
 
-# in Chromium, PostMAN plug-in do:
-# GET: http://127.0.0.1:8081/listUsers
-# POST: http://127.0.0.1:8081/addUser
-# GET: http://127.0.0.1:8081/2
-# DELETE: http://127.0.0.1:8081/deleteUser
+GET /expenses
+
+*/
+
+
 
 ####################################################
 
