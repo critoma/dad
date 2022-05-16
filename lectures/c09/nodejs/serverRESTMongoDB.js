@@ -1,26 +1,38 @@
 /*
-// Devoxx May 2019 London UK: https://www.youtube.com/playlist?list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU
-// DNA for Storage: https://www.youtube.com/watch?v=NsfuBSsF1Fk&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=3
-// Quantum: https://www.youtube.com/watch?v=RMeWqXdBHIg&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=82
+# // Devoxx May 2019 London UK: https://www.youtube.com/playlist?list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU
+# // DNA for Storage: https://www.youtube.com/watch?v=NsfuBSsF1Fk&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=3
+# // Quantum: https://www.youtube.com/watch?v=RMeWqXdBHIg&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=82
 
-// # Test REST API with cURL, Postman, etc as plugin in Chrome Browser or command line (CLI) or stand-alone app:
+# // # Test REST API with cURL, Postman, etc as plugin in Chrome Browser or command line (CLI) or stand-alone app:
+GET /trips
+# in browser http://127.0.0.1:3000/trips because docker has been started with port forwarding
 POST /trip {"name": "London, UK, May 2019"}
 GET /trips
+
 # POST /expense { trip - id from the prev GET /trips, date, amount, category, description }
-POST /expense { "trip":"61..", "date": "2019-05-16, "amount":25, "category":"food", "description":"Breakfast" }
-POST /expense { "trip":"61..", "date": "2019-05-16, "amount":50, "category":"conference", "description":"Access to Devoxx Conference" }
+POST /expense {"trip": "62822a80236ab9479e834eb6", "date": "2019-05-16", "amount":25, "category":"food", "description":"Breakfast" }
+POST /expense {"trip":"62822a80236ab9479e834eb6", "date": "2019-05-16", "amount":50, "category":"conference", "description":"Access 2 Devoxx Conf" }
 
 GET /expenses
-
 */
-// npm install mongodb
-// npm install express
 
+// npm install express 
+// npm install mongodb
+
+// node.js Express module
 const express = require("express")
-const mongo = require("mongodb").MongoClient
 const app = express()
 
-// MongoDB Connect
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+)
+
+app.use(express.json())
+
+// MongoDB Client module and MongoDB Connect
+const mongo = require("mongodb").MongoClient
 const mongoDbUrl = "mongodb://localhost:27017"
 
 let db, trips, expenses
@@ -45,8 +57,8 @@ mongo.connect(
 
 // REST API Endpoints
 app.post("/trip", (req, res) => {
-  const name = req.body.name
-  trips.insertOne({ name: name }, (err, result) => {
+  const nameP = req.body.name
+  trips.insertOne({ "name": nameP }, (err, result) => {
     if (err) {
       console.error(err)
       res.status(500).json({ err: err })
