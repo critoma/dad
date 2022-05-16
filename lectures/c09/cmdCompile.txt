@@ -1,7 +1,15 @@
 # Linux UBUNTU 16/18/20 or Docker:
 https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
 docker pull critoma/linux-ubuntu-dev-security-ism
-docker exec -u stud -it 55c8801b9ad0  -p 3000:3000 /bin/bash
+docker run -d -p 3000:3000 --name node4 -it critoma/linux-ubuntu-dev-security-ism
+docker container ps
+docker container ps -a
+docker exec -u stud -it node4 /bin/bash
+# docker exec -u stud -it 55c8801b9ad0 /bin/bash
+sudo systemctl start mongod
+# stud@240ed5ab361e:~/dad/c09js/tripcost$ export NODE_HOME=/opt/software/node-v16.14.2-linux-x64 
+# stud@240ed5ab361e:~/dad/c09js/tripcost$ export PATH=.:$NODE_HOME/bin:$PATH
+
 
 # node.js INTRO and RECAP
 # //set env variables:
@@ -131,6 +139,8 @@ node serverRESTMongoDB.js
 # // Quantum: https://www.youtube.com/watch?v=RMeWqXdBHIg&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=82
 
 # // # Test REST API with cURL, Postman, etc as plugin in Chrome Browser or command line (CLI) or stand-alone app:
+GET /trips
+# in browser http://127.0.0.1:3000/trips because docker has been started with port forwarding
 POST /trip {"name": "London, UK, May 2019"}
 GET /trips
 # POST /expense { trip - id from the prev GET /trips, date, amount, category, description }
