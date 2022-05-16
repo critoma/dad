@@ -1,4 +1,6 @@
-# Linux UBUNTU 16:
+# Linux UBUNTU 16/18/20 or Docker:
+https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
+docker pull critoma/linux-ubuntu-dev-security-ism
 
 # node.js INTRO and RECAP
 # //set env variables:
@@ -88,6 +90,25 @@ node websocket.js
 
 
 B. REST Services | node.js with Express
+
+# Play with MongoDB first:
+# npm install mongodb
+node testNodeWithMongoDB.js
+
+# Build a REST API using Node.js, Express and MongoDB
+mkdir tripcost
+cd tripcost
+npm init -y
+ls -latr
+ls -latr node_modules/
+cat package.json
+npm install mongodb
+npm install express
+cat package.json
+ls -latr node_modules/
+
+touch serverRESTMongoDB.js
+node serverRESTMongoDB.js
 
 
 # npm install express
