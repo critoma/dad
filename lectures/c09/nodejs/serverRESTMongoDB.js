@@ -1,3 +1,18 @@
+/*
+// Devoxx May 2019 London UK: https://www.youtube.com/playlist?list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU
+// DNA for Storage: https://www.youtube.com/watch?v=NsfuBSsF1Fk&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=3
+// Quantum: https://www.youtube.com/watch?v=RMeWqXdBHIg&list=PLRsbF2sD7JVqkOs-GFGxBmNf0KECELaiU&index=82
+
+// # Test REST API with cURL, Postman, etc as plugin in Chrome Browser or command line (CLI) or stand-alone app:
+POST /trip {"name": "London, UK, May 2019"}
+GET /trips
+# POST /expense { trip - id from the prev GET /trips, date, amount, category, description }
+POST /expense { "trip":"61..", "date": "2019-05-16, "amount":25, "category":"food", "description":"Breakfast" }
+POST /expense { "trip":"61..", "date": "2019-05-16, "amount":50, "category":"conference", "description":"Access to Devoxx Conference" }
+
+GET /expenses
+
+*/
 // npm install mongodb
 // npm install express
 
