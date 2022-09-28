@@ -48,7 +48,10 @@ Linux Ubuntu 12 | 14:
 >sudo gedit /etc/snmp/snmpd.conf
 ### edit the file with specific "sensitive" info:
 #  Listen for connections on all interfaces (both IPv4 *and* IPv6)
-agentAddress udp:161,udp6:[::1]:161
+# This is for VMs in IaaS Cloud
+# agentAddress udp:161,udp6:[::1]:161
+# This is for Docker containers in Native Cloud CaaS - it is not supported IPv6
+agentAddress udp:161
 
 #  Default access to basic system info...
 rocommunity public  default    -V systemonly
