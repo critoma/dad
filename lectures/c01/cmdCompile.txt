@@ -1,6 +1,6 @@
 Linux UBUNTU:
 
-//use ghex for introspecting the files in hex
+# //use ghex for introspecting the files in hex
 
 export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161/
 export PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
@@ -15,6 +15,7 @@ export DAD=/home/stud/dad/lectures
 L. UNIX/Linux IPC - Inter-Process Communications and POSIX Threads - in C/C++
 cd $DAD/c01/src/S07_ipc_pthreads
 
+# // for C Linux fork(): https://www.geeksforgeeks.org/fork-system-call/
 L.1 Fork
 cd $DAD/c01/src/S07_ipc_pthreads/S01_Fork
 gcc -Wall -O2 fork1.c -o fork1
