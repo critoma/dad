@@ -35,7 +35,8 @@ public class ProgMainSnmpClient {
 			requestPDU.setType(PDU.GETNEXT);
 			
 			// 2. Community Target
-			Address targetAddress = new UdpAddress(InetAddress.getByName("127.0.0.1"), 161);
+			// Address targetAddress = new UdpAddress(InetAddress.getByName("127.0.0.1"), 161);
+			Address targetAddress = new UdpAddress(InetAddress.getByName(args[0]), 161);
 			CommunityTarget target = new CommunityTarget();
 			target.setCommunity(new OctetString("public"));
 			target.setAddress(targetAddress);
