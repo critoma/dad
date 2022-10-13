@@ -63,7 +63,55 @@ iso.3.6.1.2.1.1.3.0 = Timeticks: (109696) 0:18:16.96
 timetick <=> /100 => seconds / 60 sec => minutes
 
 
+// ######################################################### Test in Cloud on 3 containers from Alpine Linux image:
+# Cloud CaaS Docker with Alpine Linux on x86_64 - signi-in ONLY with Hub Docker critoma account:
+# https://labs.play-with-docker.com/
 
+apk update && apk upgrade
+apk add openrc --no-cache
+# server snmpd
+apk add net-snmp
+# client snmpget
+apk add net-snmp-tools
+apk add nano
+
+rc-status
+rc-status --list
+
+ls -latr /usr/sbin/snmpd
+
+# rc-service {service-name} start
+# rc-service snmpd start
+
+# /usr/sbin/snmpd start
+# modify /etc/snmp/snmpd.conf to have agentAddress only udp:161
+snmpd -Lo -f -C -c /etc/snmp/snmpd.conf &
+netstat -na | grep 161
+
+
+snmpget -v 2c -c public 127.0.0.1 1.3.6.1.2.1.1.3.0
+snmpget -v 2c -c public <IP_of_Dcoker_Container> 1.3.6.1.2.1.1.3.0
+
+
+apk add openjdk17-jdk
+ls -latr /usr/lib/jvm/default-jvm/bin
+
+mkdir -p /root/testsnmp02/eu/ase/net/snmp
+mkdir -p /root/testsnmp02/eu/ase/net/snmp4j
+cd /root/testsnmp02/eu/ase/net/snmp
+wget https://raw.githubusercontent.com/critoma/dad/master/labs/s02_japp_snmp/src/eu/ase/net/snmp/ProgMainTestSnmp.java
+cd /root/testsnmp02/eu/ase/net/snmp4j
+wget https://raw.githubusercontent.com/critoma/dad/master/labs/s02_japp_snmp/src/eu/ase/net/snmp4j/ProgMainSnmpClient.java
+cd /root/testsnmp02/lib
+wget https://github.com/critoma/dad/raw/master/labs/s02_japp_snmp/lib/snmp4j-2.3.3.jar
+
+cd /root/testsnmp02/
+javac -cp .:./lib/* eu/ase/net/snmp4j/ProgMainSnmpClient.java 
+java -cp .:./lib/* eu.ase.net.snmp4j.ProgMainSnmpClient 127.0.0.1
+java -cp .:./lib/* eu.ase.net.snmp4j.ProgMainSnmpClient 192.168.0.18
+
+ps | grep snmpd
+kill -9 <SNMPD_PID>
 
 
 
