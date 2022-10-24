@@ -172,3 +172,64 @@ public class HTTPMultiServerThread extends Thread {
 
  */
 
+/*
+package eu.dice.http;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class HTTPServer {
+
+	public static void printNetMsgs(Socket client) {
+		OutputStream os = null; PrintWriter out = null;
+		InputStream is = null; BufferedReader in = null;
+
+		try {
+			is = client.getInputStream();
+			in = new BufferedReader(new InputStreamReader(is));
+
+			os = client.getOutputStream();
+			out = new PrintWriter(os, true);
+
+			String inputLine = ""; String outputLine = "";
+			StringBuffer processLine = new StringBuffer();
+
+			while( ((inputLine = in.readLine()) !=null) && (inputLine.length() > 1) ) {
+				processLine.append(inputLine);
+			}
+			System.out.println("Browser -> " + processLine);
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+	}
+
+	public static void main(String[] args) {
+		ServerSocket serverSock = null;
+		boolean listening = true;
+
+		try {
+			int port = Integer.parseInt(args[0]);
+			serverSock = new ServerSocket(port);
+			System.out.println("Java DICE Web Server onport: " + port);
+			while(listening) {
+				Socket sockFromClient = serverSock.accept();
+				printNetMsgs(sockFromClient);
+			}
+
+			if(serverSock !=null)
+				serverSock.close();
+		} catch(IOException ioe) {
+			ioe.printStackTrace();
+		}
+	} // end main 
+
+} // end class
+*/
+
