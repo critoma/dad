@@ -4,11 +4,23 @@ var http = require('http');
 var postData = querystring.stringify({
   'msg' : 'Hello World!'
 });
-
+/*
 var options = {
   hostname: 'www.google.com',
   port: 80,
   path: '/upload',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': postData.length
+  }
+};
+*/
+
+var options = {
+  hostname: 'webhook.site',
+  port: 80,
+  path: '/a7f11bb7-799b-4886-8da8-9368932c75ae',
   method: 'POST',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
