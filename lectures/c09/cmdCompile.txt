@@ -7,7 +7,9 @@ docker container ps -a
 docker exec -u stud -it node4 /bin/bash
 # docker exec -u stud -it 55c8801b9ad0 /bin/bash
 sudo systemctl start mongod
+# mkdir -p /data/db
 # sudo mongod --port 27018 &
+
 # stud@240ed5ab361e:~/dad/c09js/tripcost$ export NODE_HOME=/opt/software/node-v16.14.2-linux-x64 
 # stud@240ed5ab361e:~/dad/c09js/tripcost$ export PATH=.:$NODE_HOME/bin:$PATH
 
