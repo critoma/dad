@@ -7,8 +7,9 @@ docker container ps -a
 docker exec -u stud -it node4 /bin/bash
 # docker exec -u stud -it 55c8801b9ad0 /bin/bash
 sudo systemctl start mongod
-# mkdir -p /data/db
-# sudo mongod --port 27018 &
+## mkdir -p /data/db
+## sudo mongod --port 27018 &
+
 
 # stud@240ed5ab361e:~/dad/c09js/tripcost$ export NODE_HOME=/opt/software/node-v16.14.2-linux-x64 
 # stud@240ed5ab361e:~/dad/c09js/tripcost$ export PATH=.:$NODE_HOME/bin:$PATH
@@ -100,9 +101,10 @@ node websocket.js
 # in Chromium - file:///home/.../websocketHTML5.html
 
 
-
+############################################################################################
 B. REST Services | node.js with Express
 
+######################################################
 # B.1 node.js + Express for REST API with Files instead Database
 # npm install express
 node restServer.js
@@ -115,12 +117,58 @@ node restServer.js
 
 
 
-
+#######################################################
 # B.2 Play with MongoDB first:
+
 # npm install mongodb
 node testNodeWithMongoDB.js
 
+### --------------------------------------------------
 
+
+
+## in case of issues with MongoDb - reinstall DB and client module 5.0.7 or 5.1.0 upgrade 2 -> 6.0
+sudo apt-get purge mongodb-org*
+sudo rm -r /var/log/mongodb /var/lib/mongodb
+# https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+# already installed: sudo apt-get install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+# sudo apt-get install -y mongodb-org=6.0.4 mongodb-org-database=6.0.4 mongodb-org-server=6.0.4 mongodb-org-mongos=6.0.4 mongodb-org-tools=6.0.4
+sudo mongod --port 27017 &
+# UPDATE node.js code for new drivers:
+const { MongoClient } = require('mongodb');
+// or as an es module:
+// import { MongoClient } from 'mongodb'
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+const client = new MongoClient(url);
+
+// Database Name
+const dbName = 'myProject';
+
+async function main() {
+  // Use connect method to connect to the server
+  await client.connect();
+  console.log('Connected successfully to server');
+  const db = client.db(dbName);
+  const collection = db.collection('documents');
+
+  // the following code examples can be pasted here...
+
+  return 'done.';
+}
+
+main()
+  .then(console.log)
+  .catch(console.error)
+  .finally(() => client.close());
+
+
+##########################################################
 # B.3 Complete Build a REST API using Node.js, Express and MongoDB
 mkdir tripcost
 cd tripcost
