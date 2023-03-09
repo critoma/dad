@@ -178,7 +178,7 @@ ls -latr
 ls -latr node_modules/
 cat package.json
 npm install mongodb@4 # mongodb@5.1.0 has a diffrent API calls:
-npm install express
+npm install express@4.18.2 # in the future the API may change - npm modules version IMPORTANT
 cat package.json
 ls -latr node_modules/
 
