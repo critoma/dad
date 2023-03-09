@@ -1,4 +1,4 @@
-// npm install mongodb
+// npm install mongodb@5.0
 const mongo = require('mongodb').MongoClient
 const url = 'mongodb://localhost:27017'
 
