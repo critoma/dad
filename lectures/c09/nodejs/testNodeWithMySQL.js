@@ -1,5 +1,5 @@
 // https://codeforgeek.com/nodejs-mysql-tutorial/
-// npm install express mysql
+// npm install express@4.18.2 mysql@2.18.1
 const express = require("express");
 const app = express();
 const mysql = require('mysql');
