@@ -27,7 +27,7 @@ app.get("/",(req,res) => {
 
 const pool = mysql.createPool({
   host     : 'localhost',
-  user     : 'stud',
+  user     : 'root', // user     : 'stud',
   password : 'stud',
   database : 'mysql'
 });
@@ -41,6 +41,7 @@ app.get("/",(req,res) => {
             connection.release(); // return the connection to pool
             if(err) throw err;
             console.log('The data from users table are: \n', rows);
+            res.status(200).json(rows)
         });
     });
 });
