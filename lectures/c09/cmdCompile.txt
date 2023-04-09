@@ -124,6 +124,7 @@ node restServer.js
 # sudo service mysql status
 # sudo cat /etc/mysql/debian.cnf # see user and password for root client
 # mysql -u debian-sys-maint -p
+# CREATE USER 'stud'@'localhost' IDENTIFIED BY 'stud';
 # ALTER USER 'root'@'localhost' IDENTIFIED BY 'stud'; 
 # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'stud';
 # FLUSH PRIVILEGES;
