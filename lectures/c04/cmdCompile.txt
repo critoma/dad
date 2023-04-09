@@ -98,6 +98,30 @@ http://127.0.0.1:8080/S09/SetResponseHeader
 http://127.0.0.1:8080/S09/SetGetCookie
 http://127.0.0.1:8080/S09/ShowSession
 
+// #################################
+// in docker container:
+# stud@ee6fa90fad0c:/opt/software/apache-tomcat-10.0.20$ 
+
+export CATALINA_HOME=/opt/software/apache-tomcat-10.0.20
+export JAVA_HOME=/opt/software/jdk-17.0.2
+export PATH=$JAVA_HOME/bin:$CATALINA_HOME/bin:$PATH
+
+keytool -genkey -keyalg RSA -alias selfsigned -keystore ./conf/localhost-rsa.jks -storepass password -validity 360
+
+# please modify in ./conf/server.xml:
+<Connector port="80" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="443" />
+<Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"               
+                maxThreads="150" SSLEnabled="true">
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        <SSLHostConfig>
+            <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
+                         certificateKeystorePassword="password"
+                         type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+
 //ISM CA
 //MUST have same pass at keystore as keypass for Apache Tomcat
 keytool -genkey -keyalg RSA -sigalg "SHA1withRSA" -alias ISMCert1 -storepass ismpasss -keypass ismpasss -keystore keystoreISM.ks -keysize 1024 -dname "CN=www.ism.ase.ro, OU=Informatics Security Master, O=ISM Certificate Authority, c=RO" -validity 730
