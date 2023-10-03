@@ -94,6 +94,9 @@ export LD_LIBRARY_PATH=.:/usr/lib:/usr/lib/x86_64-linux-gnu/:/lib:/lib/x86_64-li
 gcc -Wall -O2 pthread1.c -o pthread1 -lpthread
 ./pthread1
 
+# optional - debug threads with gdb in command line:
+# https://sourceware.org/gdb/onlinedocs/gdb/Threads.html
+
 gcc -Wall -O2 -pthread mutex_21.c -o mutex_21
 ./mutex_21
 
