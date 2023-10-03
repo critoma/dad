@@ -83,6 +83,7 @@ gcc -O2 spock.c -o spock
 * in another terminal please see ipcs and ipcrm Commands
 ipcs -h
 ipcs 
+# stop spock and send messages from kirk to spock and watch the queue messages numbers
 ipcs -q
 ipcs -q -i 0
 
