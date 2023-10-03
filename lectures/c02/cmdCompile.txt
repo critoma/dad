@@ -84,13 +84,43 @@ ls -latr /usr/sbin/snmpd
 # rc-service snmpd start
 
 # /usr/sbin/snmpd start
-# modify /etc/snmp/snmpd.conf to have agentAddress only udp:161
+# modify /etc/snmp/snmpd.conf to have agentAddress only udp:161 and add public and private community to answer "rocommunity private 127.0.0.1 .1"
+# 
 snmpd -Lo -f -C -c /etc/snmp/snmpd.conf &
 netstat -na | grep 161
 
 
 snmpget -v 2c -c public 127.0.0.1 1.3.6.1.2.1.1.3.0
 snmpget -v 2c -c public <IP_of_Dcoker_Container> 1.3.6.1.2.1.1.3.0
+snmpget -v 2c -c public 192.168.0.13 1.3.6.1.2.1.1.3.0
+# OS Version:
+snmpget -v 2c -c public 127.0.0.1 1.3.6.1.2.1.1.1.0
+# Sys Uptime:
+snmpget -v 2c -c public 127.0.0.1 1.3.6.1.2.1.1.3.0
+# Linux CPU 1 minute Load: 
+snmpget -v 2c -c private 127.0.0.1 1.3.6.1.4.1.2021.10.1.3.1
+# Linux CPU 5 minute Load:  
+snmpget -v 2c -c private 127.0.0.1 1.3.6.1.4.1.2021.10.1.3.2
+# Linux Total RAM in machine: .1.3.6.1.4.1.2021.4.5.0 | Total RAM used: .1.3.6.1.4.1.2021.4.6.0 | Total RAM Free: .1.3.6.1.4.1.2021.4.11.0
+snmpget -v 2c -c private 127.0.0.1 1.3.6.1.4.1.2021.4.5.0 1.3.6.1.4.1.2021.4.6.0 1.3.6.1.4.1.2021.4.11.0
+# Linux Path where the disk is mounted: .1.3.6.1.4.1.2021.9.1.2.1 | Path of the device for the partition: .1.3.6.1.4.1.2021.9.1.3.1 | 
+# Linux Total size of the disk/partion (kBytes): .1.3.6.1.4.1.2021.9.1.6.1
+snmpget -v 2c -c private 127.0.0.1 1.3.6.1.4.1.2021.9.1.2.1 1.3.6.1.4.1.2021.9.1.3.1 1.3.6.1.4.1.2021.9.1.6.1
+# Linux network interface
+snmpwalk -v 2c -c private 127.0.0.1 .1.3.6.1.2.1.2.2.1.2
+
+apk add tcpdump
+tcpdump -i lo -s 65535 -w snmp_test.pcap udp port 161 &
+# kill tcpdump
+# start a very fast light weight HTTP server on port 80 and download the pcap file outside by opening PORT 80 into public interface:
+mkdir -p /var/www/localhost/htdocs /var/log/lighttpd /var/lib/lighttpd
+chown -R lighttpd:lighttpd /var/www/localhost/ /var/log/lighttpd /var/lib/lighttpd 
+rc-update add lighttpd default
+rc-service lighttpd restart
+echo "it works" > /var/www/localhost/htdocs/index.html
+cp snmp_test.pcap /var/www/localhost/htdocs/
+# https://ip172-18-0-105-ckds454snmng00do6fjg-80.direct.labs.play-with-docker.com/index.html
+# https://ip172-18-0-105-ckds454snmng00do6fjg-80.direct.labs.play-with-docker.com/snmp_test.pcap
 
 
 apk add openjdk17-jdk
@@ -102,6 +132,7 @@ cd /root/testsnmp02/eu/ase/net/snmp
 wget https://raw.githubusercontent.com/critoma/dad/master/labs/s02_japp_snmp/src/eu/ase/net/snmp/ProgMainTestSnmp.java
 cd /root/testsnmp02/eu/ase/net/snmp4j
 wget https://raw.githubusercontent.com/critoma/dad/master/labs/s02_japp_snmp/src/eu/ase/net/snmp4j/ProgMainSnmpClient.java
+mkdir -p /root/testsnmp02/lib
 cd /root/testsnmp02/lib
 wget https://github.com/critoma/dad/raw/master/labs/s02_japp_snmp/lib/snmp4j-2.3.3.jar
 
