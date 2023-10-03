@@ -41,9 +41,11 @@ kill -SIGUSR2 PID_VALUE_nnnn
 L.3. Pipes
 cd $DAD/c01/src/S07_ipc_pthreads/S03_Pipes
 
-gcc -O2 pipe0.c -o pipe0
-./pipe0
+gcc -O2 pipe0.c -o pipe0.elf64
+./pipe0.elf64
 
+# secitc@cloudshell:~/dad/ipctests/t02signals$ pidof pipe0.elf64
+# 2278
 # secitc@cloudshell:~/dad/ipctests/t02signals$ ls -latr /proc/2278/fd/0
 # lrwx------ 1 secitc secitc 64 Oct  3 09:27 /proc/2278/fd/0 -> /dev/pts/2
 # secitc@cloudshell:~/dad/ipctests/t02signals$ echo "test pipes" >> /proc/2278/fd/0
