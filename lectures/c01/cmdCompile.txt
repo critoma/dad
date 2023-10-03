@@ -44,6 +44,10 @@ cd $DAD/c01/src/S07_ipc_pthreads/S03_Pipes
 gcc -O2 pipe0.c -o pipe0
 ./pipe0
 
+# secitc@cloudshell:~/dad/ipctests/t02signals$ ls -latr /proc/2278/fd/0
+# lrwx------ 1 secitc secitc 64 Oct  3 09:27 /proc/2278/fd/0 -> /dev/pts/2
+# secitc@cloudshell:~/dad/ipctests/t02signals$ echo "test pipes" >> /proc/2278/fd/0
+
 gcc -O2 pipe1.c -o pipe1
 ./pipe1
 
