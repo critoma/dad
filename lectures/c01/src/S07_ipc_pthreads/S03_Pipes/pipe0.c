@@ -9,6 +9,7 @@
     {
         int pfds[2];
         char buf[30];
+        int errcode = 0;
     
         if (pipe(pfds) == -1) {
             perror("pipe");
@@ -20,7 +21,8 @@
         printf("reading from file descriptor #%d\n", pfds[0]);
         read(pfds[0], buf, 5);
         printf("read \"%s\"\n", buf);
-        return 0;
+        scanf("\n errcode = %d", &errcode);
+        return errcode;
     }
 
 
