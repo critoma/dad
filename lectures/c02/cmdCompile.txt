@@ -112,15 +112,22 @@ snmpwalk -v 2c -c private 127.0.0.1 .1.3.6.1.2.1.2.2.1.2
 apk add tcpdump
 tcpdump -i lo -s 65535 -w snmp_test.pcap udp port 161 &
 # kill tcpdump
+
 # start a very fast light weight HTTP server on port 80 and download the pcap file outside by opening PORT 80 into public interface:
 mkdir -p /var/www/localhost/htdocs /var/log/lighttpd /var/lib/lighttpd
-chown -R lighttpd:lighttpd /var/www/localhost/ /var/log/lighttpd /var/lib/lighttpd 
+# chown -R lighttpd:lighttpd /var/www/localhost/ /var/log/lighttpd /var/lib/lighttpd
+apk add lighttpd
 rc-update add lighttpd default
-rc-service lighttpd restart
+# rc-service lighttpd restart
+touch /run/openrc/softlevel
+ls /etc/lighttpd/lighttpd.conf
+chmod 777 /var/log/lighttpd/
+/usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
+# /usr/sbin/lighttpd &
 echo "it works" > /var/www/localhost/htdocs/index.html
 cp snmp_test.pcap /var/www/localhost/htdocs/
-# https://ip172-18-0-105-ckds454snmng00do6fjg-80.direct.labs.play-with-docker.com/index.html
-# https://ip172-18-0-105-ckds454snmng00do6fjg-80.direct.labs.play-with-docker.com/snmp_test.pcap
+# http://ip172-18-0-105-ckds454snmng00do6fjg-80.direct.labs.play-with-docker.com/index.html
+# http://ip172-18-0-105-ckds454snmng00do6fjg-80.direct.labs.play-with-docker.com/snmp_test.pcap
 
 
 apk add openjdk17-jdk
