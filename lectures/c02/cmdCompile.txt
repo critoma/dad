@@ -345,8 +345,30 @@ http://127.0.0.1:8080/jenkins/
 bin/shutdown.sh
 
 // ##############################################################################
-
+############
 # G. Docker
+############
+
+# 1. (Optional) Turn Windows features on or off - FULL Hyper-V & Windows Hypervisor Platform
+
+# 2. Command line:
+wsl.exe --set-version Ubuntu 2
+wsl --set-default-version 2
+# Make sure that it is listing Ubuntu version 2 and it is RUNNING:
+wsl -l -v
+
+# 3. (Optional) Reinstall Docker Engine:
+# Apps & Features - Uninstall Docker, then install again.
+# https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+# - in Downloads - double click and Next (Use WSL2 instead of Hyper-V) => Docker 4.24.0 installed
+
+# 4. In settings of Docker GUI
+# Resources -> WSL Integration - check enable integration and turn (updated) Ubuntu ON => Apply & Restart
+
+# (Optional) RESTART MACHINE!!!
+docker run -dit <ism docker image id>
+docker start -i <ism container id>
+docker stop <ism container id>
 
 https://hub.docker.com 
 
@@ -357,11 +379,13 @@ docker search critoma
 # https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
 docker pull critoma/linux-ubuntu-dev-security-ism
 docker run -it critoma/linux-ubuntu-dev-security-ism
+# docker run -dit critoma/linux-ubuntu-dev-security-ism --name node007 -p 8022:22 -p 8000:80 -p -8080:8080 -p 8030:3000 -p 8443:443 -p 8050-8070:8050-8070
 
 $ docker container ls -a
 $ docker start <container_id>
 $ docker exec -it <container_id> /bin/bash
 $ docker exec -u stud -t -i 0aa85c74361c /bin/bash
+$ docker stop <container_id>
 
 # deprecated:
 # docker pull critoma/ubuntu-java-node-py-dev
