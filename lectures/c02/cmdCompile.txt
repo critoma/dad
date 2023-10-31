@@ -379,7 +379,7 @@ docker search critoma
 # https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
 docker pull critoma/linux-ubuntu-dev-security-ism
 docker run -it critoma/linux-ubuntu-dev-security-ism
-# docker run -dit critoma/linux-ubuntu-dev-security-ism --name node007 -p 8022:22 -p 8000:80 -p -8080:8080 -p 8030:3000 -p 8443:443 -p 8050-8070:8050-8070
+# docker run --name node007 -p 8022:22 -p 8000:80 -p -8080:8080 -p 8030:3000 -p 8443:443 -p 8050-8070:8050-8070 -it critoma/linux-ubuntu-dev-security-ism
 
 $ docker container ls -a
 $ docker start <container_id>
