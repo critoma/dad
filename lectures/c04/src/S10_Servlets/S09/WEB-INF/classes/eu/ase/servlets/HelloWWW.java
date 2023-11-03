@@ -1,8 +1,10 @@
 package eu.ase.servlets;
 
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+//import javax.servlet.*;
+//import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 public class HelloWWW extends HttpServlet {
   private int accCount = 0;
