@@ -235,7 +235,8 @@ POST /expense {"trip":"62822a80236ab9479e834eb6", "date": "2019-05-16", "amount"
 GET /expenses
 */
 
-# /Applications/Docker.app/Contents/Resources/bin/docker stop node004
+## /Applications/Docker.app/Contents/Resources/bin/docker stop node004
+## /Applications/Docker.app/Contents/Resources/bin/docker container rm node004
 # docker stop node004
 
 ####################################################
