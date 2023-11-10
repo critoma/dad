@@ -16,16 +16,16 @@ sudo systemctl start mongod
 ## sudo mongod --port 27017
 ## in js dir: npm install mongodb@4
 
-
-# stud@240ed5ab361e:~/dad/c09js/tripcost$ export NODE_HOME=/opt/software/node-v16.14.2-linux-x64 
+# stud@240ed5ab361e:~/dad/c09js/tripcost$ export NODE_HOME=/opt/software/node-v18.18.0-linux-x64
+### stud@240ed5ab361e:~/dad/c09js/tripcost$ export NODE_HOME=/opt/software/node-v16.14.2-linux-x64 
 # stud@240ed5ab361e:~/dad/c09js/tripcost$ export PATH=.:$NODE_HOME/bin:$PATH
 
 
 # node.js INTRO and RECAP
 # //set env variables:
 # be sure node is not already set
-# export NODEJS_HOME=/opt/software/node-v8.9.4-linux-x64
-# export PATH=$NODEJS_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+### export NODEJS_HOME=/opt/software/node-v8.9.4-linux-x64
+### export PATH=$NODEJS_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 export DAD=/home/stud/dad/lectures
 
@@ -128,7 +128,8 @@ node restServer.js
 
 # sudo service mysql status
 # sudo cat /etc/mysql/debian.cnf # see user and password for root client
-# mysql -u debian-sys-maint -p
+## mysql -u debian-sys-maint -p
+# sudo mysql -u root -pstud
 # CREATE USER 'stud'@'localhost' IDENTIFIED BY 'stud';
 # ALTER USER 'root'@'localhost' IDENTIFIED BY 'stud'; 
 # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'stud';
@@ -137,7 +138,16 @@ node restServer.js
 # sudo service mysql restart
 # netstat -na | grep 3306
 # sudo service mysql status
+# sudo mysql -u stud -pstud
+# exit
+
 # npm install express@4.18.2 mysql@2.18.1
+# stud@5ca463d135f6:~/dad/c09/tripcost$ npm ls
+# tripcost@ /home/stud/dad/c09/tripcost
+# +-- express@4.18.2
+# +-- mongodb@4.17.1
+# `-- mysql@2.18.1
+
 # be sure about root and pass in JS:
 node testNodeWithMySQL.js &
 # curl -X GET http://127.0.0.1:3000/
@@ -225,7 +235,8 @@ POST /expense {"trip":"62822a80236ab9479e834eb6", "date": "2019-05-16", "amount"
 GET /expenses
 */
 
-
+# /Applications/Docker.app/Contents/Resources/bin/docker stop node004
+# docker stop node004
 
 ####################################################
 
