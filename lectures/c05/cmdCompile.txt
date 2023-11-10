@@ -46,21 +46,30 @@ sudo netstat -na -p tcp | grep 3306
 sudo service mysql restart
 
 # change config + IP address and port for listening
-sudo gedit /etc/mysql/my.cnf
+# sudo gedit /etc/mysql/my.cnf
 
 # reconfigure root pass:
-sudo dpkg-reconfigure mysql-server-5.5
+# sudo dpkg-reconfigure mysql-server-5.5
 
 # Default DB Engine for MySQL 5.5 is InnoDB instead of MyISAM 
 
 # create DB for testing JSP:
-mysql test -u root -pstud 
+# mysql test -u root -pstud 
+# in Docker with Linux Ubuntu 20 and MySQL 8.0:
+sudo mysql -u root -pstud
 >
+show databases;
 create database mycards;
+show databases;
+
 use mycards;
 CREATE USER mysqluser IDENTIFIED BY 'mysqluserpwd'; 
-grant usage on *.* to mysqluser@localhost identified by 'mysqluserpwd'; 
-grant all privileges on mycards.* to mysqluser@localhost;
+# grant usage on *.* to mysqluser@localhost identified by 'mysqluserpwd'; 
+# grant all privileges on mycards.* to mysqluser@localhost;
+create ROLE developer_user;
+grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,create routine, execute, create temporary tables  on mycards.* to 'developer_user';
+grant 'developer_user' to 'mysqluser';
+SET DEFAULT ROLE 'developer_user' to 'mysqluser';
 exit
 
 mysql mycards -u mysqluser -pmysqluserpwd
@@ -73,7 +82,7 @@ CREATE TABLE ClientsCards (id INT NOT NULL AUTO_INCREMENT,
     InsertTime DATE NOT NULL,     
     PRIMARY KEY (ID));
 
-INSERT INTO ClientsCards values (default, 'TestName', 'TestFirstName','Visa', '2013-04-10 10:33:11');
+INSERT INTO ClientsCards values (default, 'TestName', 'TestFirstName','Visa', '2023-11-10 10:33:11');
 select * from ClientsCards;
 exit
 
