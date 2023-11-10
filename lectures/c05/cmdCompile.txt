@@ -70,6 +70,7 @@ create ROLE developer_user;
 grant alter,create,delete,drop,index,insert,select,update,trigger,alter routine,create routine, execute, create temporary tables  on mycards.* to 'developer_user';
 grant 'developer_user' to 'mysqluser';
 SET DEFAULT ROLE 'developer_user' to 'mysqluser';
+ALTER USER 'mysqluser' IDENTIFIED WITH mysql_native_password BY 'mysqluserpwd';
 exit
 
 mysql mycards -u mysqluser -pmysqluserpwd
