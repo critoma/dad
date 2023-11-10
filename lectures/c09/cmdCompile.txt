@@ -1,10 +1,15 @@
 # Linux UBUNTU 16/18/20 or Docker:
-https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
-docker pull critoma/linux-ubuntu-dev-security-ism
-docker run -d -p 3000:3000 --name node4 -it critoma/linux-ubuntu-dev-security-ism
+# https://hub.docker.com/u/critoma/
+# https://hub.docker.com/r/critoma/linux-u20-dev-security-ism | https://hub.docker.com/r/critoma/linux-ubuntu-dev-security-ism
+# On MacOS, full path: 
+# /Applications/Docker.app/Contents/Resources/bin/docker --version
+# docker pull critoma/linux-ubuntu-dev-security-ism
+
+docker pull critoma/linux-u20-dev-security-ism
+docker run -d -p 8070:8080 -p 3000:3000 --name node004 -it critoma/linux-u20-dev-security-ism
 docker container ps
 docker container ps -a
-docker exec -u stud -it node4 /bin/bash
+docker exec -u stud -it node004 /bin/bash
 # docker exec -u stud -it 55c8801b9ad0 /bin/bash
 sudo systemctl start mongod
 ## mkdir -p /data/db
