@@ -15,6 +15,8 @@ GET /trips
 POST /trip {"name": "London, UK, May 2019"}
 GET /trips
 
+# for Windows OS:
+# curl -X POST -H "Content-Type: application/json" -d "{\"trip\": \"655cefd292e20d94eb211fd3\",\"date\":\"2023-11-21\", \"amount\":30,\"category\":\"food\",\"description\":\"Devoxx...\"}" http://127.0.0.1:3000/expense
 # POST /expense { trip - id from the prev GET /trips, date, amount, category, description }
 POST /expense {"trip": "62822a80236ab9479e834eb6", "date": "2019-05-16", "amount":25, "category":"food", "description":"Breakfast" }
 POST /expense {"trip":"62822a80236ab9479e834eb6", "date": "2019-05-16", "amount":50, "category":"conference", "description":"Access 2 Devoxx Conf" }
