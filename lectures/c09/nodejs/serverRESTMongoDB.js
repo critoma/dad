@@ -9,6 +9,9 @@ GET /trips
 
 # in browser http://127.0.0.1:3000/trips because docker has been started with port forwarding
 # or command line: curl -X POST http://127.0.0.1:3000/trip -H 'Content-Type: application/json' -d '{"name": "London, UK, May 2019"}'
+# for Windows OS: 
+# curl -X POST -H "Content-Type: application/json" -d "{\"name\": \"London, UK, May 2019\"}" http://127.0.0.1:3000/trip
+
 POST /trip {"name": "London, UK, May 2019"}
 GET /trips
 
