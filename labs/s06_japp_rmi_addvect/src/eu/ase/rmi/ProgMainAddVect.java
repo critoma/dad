@@ -20,6 +20,8 @@ public class ProgMainAddVect {
 		export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar
 		cd /home/stud/dad/labs/s06_japp_rmi_addvect/bin
 		rmic -classpath . -v1.2 -keep eu.ase.rmi.AddVectImpl
+  		// didactic for MacOS with JDK 11:
+    		// # /Library/Java/JavaVirtualMachines/jdk-11.0.20.jdk/Contents/Home/bin/rmic -classpath . -v1.1 -keep eu.ase.rmi.AddVectImpl
 		rmiregistry
 		// PLUS include in Eclipse run configuration the policy.all file:
 		// CfgS06_ProgMainAddVectRMIServer => -Djava.security.policy=policy.all
