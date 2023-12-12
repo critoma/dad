@@ -1,3 +1,3 @@
 # dad
-Distributed Applications Development - DAD | Secure Distributed and Parallel Applications Development
-@ http://ism.ase.ro and http://acs.ase.ro/dad
+Distributed & Parallel Systems Security + Web & Cloud Applications Security | Distributed Applications Development & Cloud - DAD 
+@ http://ism.ase.ro  http://acs.ase.ro/dad
