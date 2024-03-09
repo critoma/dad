@@ -352,6 +352,7 @@ bin/shutdown.sh
 # 1. (Optional) Turn Windows features on or off - FULL Hyper-V & Windows Hypervisor Platform
 
 # 2. Command line:
+wsl --install
 wsl.exe --set-version Ubuntu 2
 wsl --set-default-version 2
 # Make sure that it is listing Ubuntu version 2 and it is RUNNING:
