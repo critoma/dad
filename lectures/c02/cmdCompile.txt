@@ -89,6 +89,21 @@ ls -latr /usr/sbin/snmpd
 snmpd -Lo -f -C -c /etc/snmp/snmpd.conf &
 netstat -na | grep 161
 
+###############################################
+# On Linux Ubuntu, modify /etc/snmp/snmpd.conf:
+#  system + hrSystem groups only
+view   systemonly  included   .1.3.6.1.2.1.1
+view   systemonly  included   .1.3.6.1.2.1.25.1
+view   systemonly1  included   .1
+
+# rocommunity: a SNMPv1/SNMPv2c read-only access community name
+#   arguments:  community [default|hostname|network/bits] [oid | -V view]
+
+# Read-only access to everyone to the systemonly view
+rocommunity  public default -V systemonly
+rocommunity6 public default -V systemonly
+rocommunity private default -V systemonly1
+##########################################
 
 snmpget -v 2c -c public 127.0.0.1 1.3.6.1.2.1.1.3.0
 snmpget -v 2c -c public <IP_of_Dcoker_Container> 1.3.6.1.2.1.1.3.0
