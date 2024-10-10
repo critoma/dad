@@ -39,7 +39,7 @@ cd ..
 
 >netstat -na -p udp | grep 161
 
-Linux Ubuntu 12 | 14:
+Linux Ubuntu:
 >sudo apt-get install snmpd
 >sudo apt-get install snmp
 >sudo apt-get install snmp-mibs-downloader
@@ -61,6 +61,29 @@ rocommunity public  default    -V systemonly
 >snmpget -v 2c -c public 127.0.0.1 1.3.6.1.2.1.1.3.0
 iso.3.6.1.2.1.1.3.0 = Timeticks: (109696) 0:18:16.96
 timetick <=> /100 => seconds / 60 sec => minutes
+
+// ######################################################## Test locally with 3 containers with Linux Ubuntu:
+# In MacOS/Linux/Windows 11 using Docker Desktop => docker run 3 instances:
+apt install snmpd snmp libsnmp-dev nano net-tools tcpdump tree
+nano /etc/snmp/snmpd.conf
+# -> modif:
+
+#	master  no
+#	agentaddress  0.0.0.0,[::1]
+
+# start the daemon:
+/usr/sbin/snmpd
+netstat -na | grep 161
+# on snmp client node/container:
+snmpget -v 2c -c public 172.17.0.3 1.3.6.1.2.1.1.3.0
+
+# on snmpd nodes/containers:
+tcpdump -i eth0 -s 65535 -w /home/ubuntu/t3.pcap port 161
+wget https://raw.githubusercontent.com/critoma/dad/refs/heads/master/labs/s02_japp_snmp/src/eu/ase/net/snmp/ProgMainTestSnmp.java
+# https://jdk.java.net/archive/ | https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz
+
+/opt/software/java/jdk-21/bin/javac -cp . eu/ase/net/snmp/ProgMainTestSnmp.java
+/opt/software/java/jdk-21/bin/java -cp . eu/ase/net/snmp/ProgMainTestSnmp
 
 
 // ######################################################### Test in Cloud on 3 containers from Alpine Linux image:
