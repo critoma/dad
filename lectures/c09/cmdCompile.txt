@@ -171,6 +171,12 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 # sudo apt-get install -y mongodb-org=6.0.4 mongodb-org-database=6.0.4 mongodb-org-server=6.0.4 mongodb-org-mongos=6.0.4 mongodb-org-tools=6.0.4
 sudo mongod --port 27017 &
+
+# for MacOS AArch64/ARM/M1-M4 is NOT working Mongo amd64 Docker image because of AVX in Rosetta 2:
+# add node.js and REST API inside this container:
+# docker run --rm --platform linux/arm64 mongo:8.0
+
+
 # UPDATE node.js code for new drivers:
 const { MongoClient } = require('mongodb');
 // or as an es module:
