@@ -206,7 +206,7 @@ node2 slots=1
 # have all the nodes with Java bindings for OpenMPI
 # mpirun /opt/software/java/jdk-17.0.2/bin/java -classpath .:/usr/local/lib:/opt/software/java/jdk-17.0.2/lib:/usr/local/lib/mpi.jar:/usr/local/lib/shmem.jar eudicejmpi.TestMpi
 # mpirun -np 2 -hostfile ./nodefile /opt/software/java/jdk-17.0.2/bin/java -classpath .:/usr/local/lib:/opt/software/java/jdk-17.0.2/lib:/usr/local/lib/mpi.jar:/usr/local/lib/shmem.jar eudicejmpi.TestMpi
-
+# MANDATORY to do ssh on each node including the node itself - e.g. ssh stud@node1 and ssh stud@node2 (it is maybe a ssh bug or known host keys) - this part may have automation with DevOps
 
 
 # or alternatively in Linux Ubuntu 16/18/20:
@@ -320,9 +320,12 @@ int main(int argc, char** argv) {
     MPI_Finalize();
 }
 
+
+# MANDATORY to do ssh on each node including the node itself - e.g. ssh stud@node1 and ssh stud@node2 (it is maybe a ssh bug or known host keys) - this part may have automation with DevOps
 # /usr/lib64/openmpi/bin/mpicc testopenmpi.c -o testopenmpi
 # /usr/lib64/openmpi/bin/mpirun ./testopenmpi
 
+# MANDATORY to do ssh on each node including the node itself - e.g. ssh stud@node1 and ssh stud@node2 (it is maybe a ssh bug or known host keys) - this part may have automation with DevOps
 mpirun -np 2 -hostfile ~/nodefile ./testopenmpi
 
 
