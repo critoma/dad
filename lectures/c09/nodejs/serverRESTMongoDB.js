@@ -109,7 +109,8 @@ app.post("/expense", (req, res) => {
 })
 
 app.get("/expenses", (req, res) => {
-  expenses.find({ trip: req.body.trip }).toArray((err, items) => {
+  // expenses.find({ trip: req.body.trip }).toArray((err, items) => {
+  expenses.find().toArray((err, items) => {
     if (err) {
       console.error(err)
       res.status(500).json({ err: err })
