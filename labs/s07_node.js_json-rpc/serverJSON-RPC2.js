@@ -20,6 +20,21 @@ const server = new JSONRPCServer();
 server.addMethod("echo", ({ text }) => text);
 server.addMethod("log", ({ message }) => console.log(message));
 
+// Register the XOR function as a method in the server
+server.addMethod('xorArrays', ({arr1, arr2}) => {
+  // Ensure both arrays have the same length
+  if (arr1.length !== arr2.length) {
+    throw new Error('Arrays must have the same length');
+  }
+
+  // XOR operation on each corresponding pair of elements
+  // return arr1.map((value, index) => value ^ arr2[index]);
+  var arr = new Array(arr1.length);
+  for (var i = 0; i < arr.length; i++)
+      arr[i] = arr1[i] ^ arr2[i];
+  return arr;
+});
+
 const app = express();
 app.use(bodyParser.json());
 
