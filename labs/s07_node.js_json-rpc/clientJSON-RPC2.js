@@ -39,3 +39,7 @@ client
 // Use client.notify to make a JSON-RPC notification call.
 // By definition, JSON-RPC notification does not respond.
 client.notify("log", { message: "Hello, World!" });
+
+client
+  .request("xorArrays", { arr1: [1, 2, 3], arr2: [3, 2, 1] })
+  .then((result) => console.log(result));
