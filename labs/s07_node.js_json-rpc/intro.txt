@@ -1,1 +1,8 @@
-
+// https://www.npmjs.com/package/json-rpc-2.0
+// npm install json-rpc-2.0 express
+/*
+ism_ase_ro@cloudshell:~/blockchain/json-rpc$ npm ls
+json-rpc@ /home/ism_ase_ro/blockchain/json-rpc
+├── express@4.21.2
+└── json-rpc-2.0@1.7.0
+*/
