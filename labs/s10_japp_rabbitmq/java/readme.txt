@@ -1,5 +1,6 @@
 # https://www.rabbitmq.com/docs/download
 # docker or installation into OS
+# docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0-management
 # https://github.com/rabbitmq/rabbitmq-tutorials/tree/main/java
 # https://www.rabbitmq.com/tutorials/tutorial-one-java
 
