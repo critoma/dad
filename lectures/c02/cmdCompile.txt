@@ -419,8 +419,10 @@ docker search critoma
 # docker pull critoma/linux-ubuntu-dev-security-ism
 # docker run -it critoma/linux-ubuntu-dev-security-ism
 # docker run --name node007 -p 8022:22 -p 8000:80 -p 8080:8080 -p 8030:3000 -p 8443:443 -p 8050-8070:8050-8070 -it critoma/linux-ubuntu-dev-security-ism
-docker pull critoma/linux-u20-dev-security-ism
-docker run --name node007 -p 8080:8080 -it critoma/linux-u20-dev-security-ism
+# docker pull critoma/linux-u20-dev-security-ism
+# docker run --name node007 -p 8080:8080 -it critoma/linux-u20-dev-security-ism
+docker pull critoma/amd64_u24_noble_ism_security
+docker run --name nodeSnmp01 -p 161:161 -it critoma/amd64_u24_noble_ism_security
 
 $ docker container ls -a
 $ docker start <container_id>
@@ -717,5 +719,6 @@ java JNIProgMain tt1.txt
 
 
 // ##############################################################################
+
 
 
