@@ -208,6 +208,10 @@ node2 slots=1
 # mpirun -np 2 -hostfile ./nodefile /opt/software/java/jdk-17.0.2/bin/java -classpath .:/usr/local/lib:/opt/software/java/jdk-17.0.2/lib:/usr/local/lib/mpi.jar:/usr/local/lib/shmem.jar eudicejmpi.TestMpi
 # MANDATORY to do ssh on each node including the node itself - e.g. ssh stud@node1 and ssh stud@node2 (it is maybe a ssh bug or known host keys) - this part may have automation with DevOps
 
+mpirun --allow-run-as-root -np 2 -hostfile /root/mpi/nodefile --verbose ./t.elf64
+root@efc7465e8ced:~/mpi# cat nodefile
+172.17.0.5 slots=1
+172.17.0.6 slots=1
 
 # or alternatively in Linux Ubuntu 16/18/20:
 sudo apt-get install openmpi-bin openmpi-common libopenmpi-dev
@@ -474,5 +478,6 @@ sudo mount /dev/xvdf1 /media/newhd
 ls /media/newhd/home/ubuntu
 sudo umount /dev/xvdf1
  
+
 
 
