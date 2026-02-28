@@ -10,10 +10,12 @@ return promise;
 */
 
 function getSum(n1, n2) {   
-   var isAnyNegative = function() {   
+   var isAnyNegative = () => {   
       return n1 < 0 || n2 < 0;   
    }   
-   var promise = new Promise(function(resolve, reject) {   
+
+   var promise = new Promise( 
+    (resolve, reject) => {   
       if (isAnyNegative()) {   
          reject(Error("Negatives not supported"));   
       }   
@@ -24,14 +26,12 @@ function getSum(n1, n2) {
 
 getSum(5, 6)
 .then(
-
-function (result) {   
-   console.log(result);   
-},   
-function (error) {   
-   console.log(error);   
-}
-
+    (result) => {   
+        console.log(result);   
+    },   
+    (error) => {   
+        console.log(error);   
+    }
 );
 
 // Since the return type of the getSum() is a Promise, 
