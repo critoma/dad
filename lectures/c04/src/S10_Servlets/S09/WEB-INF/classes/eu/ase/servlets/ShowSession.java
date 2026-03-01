@@ -20,20 +20,20 @@ public class ShowSession extends HttpServlet {
     PrintWriter out = response.getWriter();
     String title = "Show Session";
     String heading;
-    Integer accessCount = new Integer(0);
+    Integer accessCount = Integer.valueOf(0); // new Integer(0);
     if (session.isNew()) {
       heading = "Welcome, Newcomer";
       session.setAttribute("accessCount", accessCount);
     } else {
       heading = "Welcome Back";
       //Integer oldAccessCount =(Integer)session.getValue("accessCount"); 
-	Integer oldAccessCount =new Integer(""+session.getAttribute("accessCount"));
+	Integer oldAccessCount = Integer.valueOf(""+session.getAttribute("accessCount"));
         // Use getAttribute, not getValue, in version
         // 2.2 of servlet API.
         //(Integer)session.getValue("accessCount"); 
         //(Integer)session.getAttribute("accessCount");
       if (oldAccessCount != null) {
-        accessCount = new Integer(oldAccessCount.intValue() + 1);
+        accessCount = Integer.valueOf(oldAccessCount.intValue() + 1);
       }
     }
     // Use setAttribute in version 2.2 of servlet API.
@@ -68,3 +68,4 @@ public class ShowSession extends HttpServlet {
                 "</BODY></HTML>");
   }
 }
+
