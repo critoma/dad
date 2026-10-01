@@ -1,3 +1,9 @@
+# As CaaS (Containr as a Service - Native Cloud):
+podman pull ...
+podman run ...
+podman start node01
+podman stop node01
+podman exec ...
 
 Linux Ubuntu:
 export JAVA_HOME=/opt/software/java/jdks/jdk1.8.0_161/
